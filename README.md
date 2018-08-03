@@ -11,5 +11,5 @@ https://docs.google.com/document/d/e/2PACX-1vQvUh95fiyc7vHqvk5Fp09iIkiptKh-_16dz
 - Sudip Baral
 
 ### mentors
-- 
-- 
+- Randy
+- Andy
