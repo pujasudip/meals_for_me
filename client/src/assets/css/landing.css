@@ -12,7 +12,7 @@
 }
 
 .ingredientButton > div {
-    display: inline;
+    display: block;
     width: 15vw;
     height: 15vh;
     margin: 5px;
