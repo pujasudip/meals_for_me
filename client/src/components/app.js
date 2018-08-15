@@ -4,6 +4,7 @@ import Header from './header';
 import Landing from './landing';
 import Results from './results';
 import Recipe from './recipe';
+import Favorites from './favorites';
 
 
 const App = () => (
@@ -13,7 +14,8 @@ const App = () => (
         {/* <Header/>
         <Results/> */}
         <Header/>
-        <Recipe/>
+        {/* <Recipe/> */}
+        <Favorites/>
     </div>
 );
 
