@@ -11,7 +11,7 @@ class Results extends Component {
             <div className='body'>
                 <div className='indivDish'>
                     <h3>Dish Name</h3>
-                    <div className='dishPicture'>h</div>
+                    <div className='dishPicture'></div>
                 </div>
                 <button className="search">Search</button>
             </div>
