@@ -1,13 +1,21 @@
 import React from 'react';
 import '../assets/css/app.css';
-import logo from '../assets/images/logo.svg';
+import Header from './header';
+import Landing from './landing';
+import Results from './results';
+import Recipe from './recipe';
+import Favorites from './favorites';
+
 
 const App = () => (
     <div>
-        <div className="app">
-            <img src={logo} className="logo rotate"/>
-            <h1>Welcome to React</h1>
-        </div>
+        {/* <Header/>
+        <Landing/> */}
+        {/* <Header/>
+        <Results/> */}
+        <Header/>
+        {/* <Recipe/> */}
+        <Favorites/>
     </div>
 );
 

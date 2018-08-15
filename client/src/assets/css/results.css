@@ -1,0 +1,15 @@
+.indivDish{
+    border: 2px black solid;
+    display: flex;
+    justify-content: space-evenly;
+}
+h3{
+    display: inline-block;
+}
+.dishPicture{
+    width: 15vw;
+    height: 10vh;
+    display: inline-block;
+    background-color: grey;
+    border-radius: 50%;
+}
