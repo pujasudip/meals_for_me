@@ -9,13 +9,13 @@ import Favorites from './favorites';
 
 const App = () => (
     <div>
-        {/* <Header/>
-        <Landing/> */}
+        <Header/>
+        <Landing/>
         {/* <Header/>
         <Results/> */}
-        <Header/>
-        {/* <Recipe/> */}
-        <Favorites/>
+        {/* <Header/>
+         {/* <Recipe/> */} */}
+         {/* <Favorites/> */} */}
     </div>
 );
 
