@@ -13,7 +13,7 @@ class Results extends Component {
                     <h3>Dish Name</h3>
                     <div className='dishPicture'></div>
                 </div>
-                <button className="search">Search</button>
+                <button className="search">Display More</button>
             </div>
         )
     }

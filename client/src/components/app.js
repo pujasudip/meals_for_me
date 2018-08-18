@@ -4,18 +4,17 @@ import Header from './header';
 import Landing from './landing';
 import Results from './results';
 import Recipe from './recipe';
-import Favorites from './favorites';
-
+import Favorites from './about_us';
 
 const App = () => (
     <div>
-        {/* <Header/>
-        <Landing/> */}
+        <Header/>
+        <Landing/>
         {/* <Header/>
         <Results/> */}
-        <Header/>
-        {/* <Recipe/> */}
-        <Favorites/>
+        {/* <Header/>
+        <Recipe/> */}
+         {/* <Favorites/> */} 
     </div>
 );
 

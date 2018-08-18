@@ -1,4 +1,4 @@
-.body{
+/* .body{
     text-align: center;
     height: calc(100vh - 77px);
 }
@@ -6,7 +6,7 @@
     display: block;
 } */
 
-.search {
+/* .search {
     display: block;
     margin: auto;
 }
@@ -17,4 +17,36 @@
     height: 15vh;
     margin: 5px;
     background-color: grey;
+} */ 
+
+.menu-banner {
+    height: 15vh;
+    background-color: #00d3ff;
+}
+
+.userInput {
+    border: 1px solid black;
+}
+
+#ingAdd {
+    width: 30px;
+    margin: auto;
+}
+
+#landPgSearchBtn {
+    border: 1px solid rgba(0, 119, 253, 0.41);
+    background-color: rgba(0, 119, 255, 0.41);
+    border-radius: 2px;
+}
+
+#landPgSearchBtn>* {
+    color: #016200;
+    text-decoration: none;
+}
+
+.ingredientBtns>button {
+    width: 100px;
+    height: 40px;
+    background-color: green;
+    color: white;
 }
