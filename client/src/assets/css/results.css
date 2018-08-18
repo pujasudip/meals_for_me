@@ -7,9 +7,12 @@ h3{
     display: inline-block;
 }
 .dishPicture{
-    width: 15vw;
-    height: 10vh;
+    width: 30vw;
+    height: 15vh;
     display: inline-block;
     background-color: grey;
     border-radius: 50%;
+}
+button{
+    background-color: lightgray;
 }
