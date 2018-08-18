@@ -1,13 +1,17 @@
-.body{
-    display:flex;
-    justify-content: space-around;
+.indivDish {
+    border: 2px black solid;
+    display: flex;
+    justify-content: space-evenly;
 }
-.memberPicture{
-    border-radius: 50%;
-    background-color: red;
-    width: 25vw;
-    height: 25vh;
-}
-.memberInfo {
+
+h3 {
     display: inline-block;
+}
+
+.dishPicture {
+    width: 30vw;
+    height: 15vh;
+    display: inline-block;
+    background-color: grey;
+    border-radius: 50%;
 }

@@ -1,0 +1,15 @@
+.body {
+    display: flex;
+    justify-content: space-around;
+}
+
+.memberPicture {
+    border-radius: 50%;
+    background-color: red;
+    width: 30vw;
+    height: 20vh;
+}
+
+.memberInfo {
+    display: inline-block;
+}
