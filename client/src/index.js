@@ -1,9 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/app';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './reducers/index';
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min';
+
+const store = createStore(rootReducer);
+
 
 ReactDOM.render(
-    <Router><App /></Router>,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('root')
 );

@@ -3,8 +3,12 @@ import '../assets/css/landing.css';
 import plus from '../assets/images/plus.png';
 import minus from '../assets/images/minus.png';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { searchIngredient } from '../actions';
 
 class LandingPage extends Component {
+    commonIngredientsRef = ['Beef', 'Chicken', 'Salmon', 'Shrimp', 'Crab', 'Potato', 'fish'];
+
     constructor(props) {
         super(props);
         this.state = {
@@ -40,8 +44,12 @@ class LandingPage extends Component {
     removeFromTheIngredient(index) {
         const newList = this.state.ingredients;
         const item = newList.splice(index, 1);
-        const newCommonItems = this.state.commonIngredients;
-        newCommonItems.splice(0, 0, item);
+        let newCommonItems = '';
+        console.log('aa:', item);
+        if(this.commonIngredientsRef.includes(item[0])){
+            newCommonItems = this.state.commonIngredients;
+            newCommonItems.splice(0, 0, item);
+        }
 
         this.setState({
             ingredients: newList
@@ -91,4 +99,11 @@ class LandingPage extends Component {
     }
 }
 
-export default LandingPage;
+function mapStateToProps(state){
+    return {
+        src: state.search.userI,
+    }
+
+}
+
+export default connect(mapStateToProps, { searchIngredient: searchIngredient})(LandingPage);
