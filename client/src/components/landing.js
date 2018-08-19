@@ -59,8 +59,13 @@ class LandingPage extends Component {
     render() {
         const ingredient = this.state.ingredients.map((item, index) => {
             console.log('ITEM:', item);
-            return (<div key={index}><input className='userInput' value={item} readOnly />
-                <img id="ingAdd" src={minus} alt='' onClick={() => this.removeFromTheIngredient(index)} />
+            return (<div key={index} className='row'>
+                <div className='col s10'>
+                    <input value={item} readOnly className='center'/>
+                </div>
+                <div className='col s2 right-align'>
+                    <img id="ingAddMinImg" src={minus} alt='' onClick={() => this.removeFromTheIngredient(index)} />
+                </div>
             </div>);
         });
 
@@ -70,26 +75,30 @@ class LandingPage extends Component {
 
         return (
             <div className='container'>
-                <div className='menu-banner'>
+                <div className='green-text center'>
                     <h2>What to Food</h2>
                 </div>
                 {this.state.ingredients.length < 3 ?
-                    <div>
-                        <input className='userInput' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
-                        <img id="ingAdd" src={plus} onClick={this.addIngredientToList.bind(this)} />
+                    <div className='search_field'>
+                        <div>
+                            <input className='center' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
+                        </div>
+                        <div className='center'>
+                            <img id="ingAddMinImg" src={plus} onClick={this.addIngredientToList.bind(this)} />
+                        </div>
                     </div>
                     :
-                    <div><h5>Go for the food</h5></div>
+                    <div className='center purple-text'><h5>Go for the food</h5></div>
                 }
-                <div>
+                <div className='container'>
                     {ingredient}
                 </div>
                 <div>
-                    <button id="landPgSearchBtn"
+                    <button className="landPgSearchBtn btn btn-block center-block"
                         type='button'><Link to='/result'>Search</Link></button>
                 </div>
                 {this.state.ingredients.length < 3 ?
-                    <div className="ingredientBtns">
+                    <div className="ingredientBtns center">
                         {commonIngredientsBtns}
                     </div>
                     : ''

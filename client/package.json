@@ -15,8 +15,10 @@
     "url": "https://github.com/Learning-Fuze/react_starter.git"
   },
   "dependencies": {
+    "ajv": "^5.5.2",
+    "ajv-keywords": "^2.1.1",
     "babel-polyfill": "^6.26.0",
-    "materialize-css": "^0.100.2",
+    "materialize-css": "^1.0.0-rc.2",
     "react": "^16.4.0",
     "react-burger-menu": "^2.5.2",
     "react-dom": "^16.4.0",

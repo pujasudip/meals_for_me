@@ -19,6 +19,14 @@ class Header extends Component {
         });
     }
 
+    backdropClicked(event){
+        if(event.target.className === 'menu_backdrop'){
+            this.setState({
+                menuShow: !this.state.menuShow,
+            });
+        }
+    }
+
     render() {
         let menuClass = this.state.menuShow ? ['menu', 'menu_backdrop'] : ['no_menu', 'no_menu'];
         return (
@@ -34,7 +42,7 @@ class Header extends Component {
                 <div>
                     <img src={hamicon} className='hamicon' onClick={()=>this.hamburgerMenu()}/>
                 </div>
-                <div className={menuClass[1]}>
+                <div className={menuClass[1]} onClick={(event)=>this.backdropClicked(event)}>
                     <div className={menuClass[0]}>
                         <HamburgerMenu hideMenu={()=>this.hamburgerMenu()}/>
                     </div>

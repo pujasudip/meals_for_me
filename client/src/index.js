@@ -4,8 +4,6 @@ import App from './components/app';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers/index';
-import 'materialize-css/dist/css/materialize.min.css';
-import 'materialize-css/dist/js/materialize.min';
 
 const store = createStore(rootReducer);
 

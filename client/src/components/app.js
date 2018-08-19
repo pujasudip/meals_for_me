@@ -1,4 +1,6 @@
 import React from 'react';
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min.js';
 import '../assets/css/app.css';
 import Header from './header';
 import Landing from './landing';
