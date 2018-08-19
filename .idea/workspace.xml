@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="271a849f-614d-4058-b6bf-36507f5827ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/css/favorites.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/css/member.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/css/landing.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/css/landing.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/css/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/css/signup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/about_us.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/about_us.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/favorites.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/favorites.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/hamburger_menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/hamburger_menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/landing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/sign_up.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/sign_up.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="271a849f-614d-4058-b6bf-36507f5827ac" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +12,7 @@
     <session id="1780740711">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
@@ -222,7 +205,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534710142421" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534710144899" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -261,12 +244,12 @@
       <workItem from="1534577402324" duration="2725000" />
       <workItem from="1534646069792" duration="10601000" />
       <workItem from="1534664909698" duration="5700000" />
-      <workItem from="1534697220228" duration="10455000" />
+      <workItem from="1534697220228" duration="10540000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30635000" />
+    <option name="totallyTimeSpent" value="30720000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="725" extended-state="6" />
