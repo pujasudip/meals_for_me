@@ -16,3 +16,8 @@ h3{
 button{
     background-color: lightgray;
 }
+@media only screen and (max-width: 800px) {
+    .body{
+        background-image: url('../images/leaf_board.png');
+    }
+}

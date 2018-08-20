@@ -42,6 +42,9 @@ class LandingPage extends Component {
 
         if (event.target) {
             item = this.state.currentIngredientInput.toLowerCase();
+            if(item.length === 0){
+                return;
+            }
         }
 
         let index = this.state.commonIngredients.indexOf(item);
