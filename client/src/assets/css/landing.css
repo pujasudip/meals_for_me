@@ -1,24 +1,3 @@
-/* .body{
-    text-align: center;
-    height: calc(100vh - 77px);
-}
-/* input{
-    display: block;
-} */
-
-/* .search {
-    display: block;
-    margin: auto;
-}
-
-.ingredientButton > div {
-    display: block;
-    width: 15vw;
-    height: 15vh;
-    margin: 5px;
-    background-color: grey;
-} */ 
-
 .menu-banner {
     height: 15vh;
     background-color: #00d3ff;

@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
+import '../assets/css/favorites.css';
 
-class Favorites extends Component{
-    render(){
+
+class Favorites extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
         return (
-            <div>
-                this is favorite page.
+            <div className='body'>
+                <div className='indivDish'>
+                    <h3>Dish Name</h3>
+                    <div className='dishPicture'></div>
+                    <div>Trash</div>
+                </div>
             </div>
-        );
+        )
     }
 }
 
