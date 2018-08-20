@@ -15,8 +15,12 @@
     "url": "https://github.com/Learning-Fuze/react_starter.git"
   },
   "dependencies": {
+    "ajv": "^5.5.2",
+    "ajv-keywords": "^2.1.1",
     "babel-polyfill": "^6.26.0",
+    "materialize-css": "^1.0.0-rc.2",
     "react": "^16.4.0",
+    "react-burger-menu": "^2.5.2",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
@@ -32,7 +36,7 @@
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "file-loader": "^1.1.11",
-    "image-webpack-loader": "^4.3.0",
+    "image-webpack-loader": "^4.3.1",
     "postcss-loader": "^2.1.5",
     "react-hot-loader": "^4.3.0",
     "style-loader": "^0.21.0",

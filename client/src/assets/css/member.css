@@ -1,0 +1,13 @@
+.memberPicture{
+    border-radius: 50%;
+    background-color: red;
+    width: 100px;
+    height: 100px;
+}
+.memberInfo {
+    display: inline-block;
+}
+.memberIndividual{
+    background-color: rgba(221, 220, 208, 0.25);
+    border-bottom: 2px solid #ffffff;
+}

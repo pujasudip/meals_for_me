@@ -3,19 +3,16 @@
     background-color: #00d3ff;
 }
 
-.userInput {
-    border: 1px solid black;
-}
-
-#ingAdd {
-    width: 30px;
+#ingAddMinImg {
+    width: 50px;
     margin: auto;
 }
 
-#landPgSearchBtn {
-    border: 1px solid rgba(0, 119, 253, 0.41);
-    background-color: rgba(0, 119, 255, 0.41);
-    border-radius: 2px;
+.landPgSearchBtn {
+    width: 50vw;
+}
+.landPgSearchBtn > * {
+    color: white;
 }
 
 #landPgSearchBtn>* {
@@ -29,3 +26,8 @@
     background-color: green;
     color: white;
 }
+button{
+    margin: 2px;
+}
+
+

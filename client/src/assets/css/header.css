@@ -3,3 +3,47 @@
     justify-content: space-between;
     margin: 20px;
 }
+
+.logo{
+    width: 100px;
+}
+.hamicon{
+    width: 50px;
+}
+.no_menu{
+    display: none;
+}
+.menu_backdrop{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(203, 203, 203, 0.4);
+}
+
+.menu{
+    width: 200px;
+    height: 100%;
+    font-family: "Arial Black";
+    font-size: 1.5rem;
+    line-height: 1.5;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #d1ffd9;
+    padding: 10px;
+    animation: slideInRight 0.5s;
+}
+@keyframes slideInRight {
+    from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
