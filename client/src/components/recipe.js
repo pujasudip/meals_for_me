@@ -7,7 +7,7 @@ class Recipe extends Component {
 
     render() {
         return (
-            <div className='body'>
+            <div className='container'>
                 <div className='dishPicture'></div>
                 <h2>Dish Name</h2>
                 <h5>Ready in: 45mins</h5>

@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+    align-content: space-around;
+}
+.dishPicture{
+    width: 25px;
+    height: 50px;
+}
