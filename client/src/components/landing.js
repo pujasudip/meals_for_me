@@ -7,14 +7,27 @@ import { connect } from 'react-redux';
 import { searchIngredient } from '../actions';
 
 class LandingPage extends Component {
-    commonIngredientsRef = ['Beef', 'Chicken', 'Salmon', 'Shrimp', 'Crab', 'Potato', 'fish'];
+    commonIngredientsRef = [
+        {
+            'food' : ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'potato', 'fish'],
+            'displayButtons': true},
+        {
+            'food' : ['broccoli', 'spinach', 'carrot', 'cucumber'],
+            'displayButtons': false},
+        {
+            'food' : ['salt', 'sugar', 'honey'],
+            'displayButtons': false
+        }
+    ];
+
+    commonFoodIndex = 0;
 
     constructor(props) {
         super(props);
         this.state = {
             currentIngredientInput: '',
             ingredients: [],
-            commonIngredients: ['Beef', 'Chicken', 'Salmon', 'Shrimp', 'Crab', 'Potato', 'fish']
+            commonIngredients: ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'potato', 'fish']
         };
     }
 
@@ -24,41 +37,71 @@ class LandingPage extends Component {
         });
     }
 
-    addIngredientToList(item) {
-        if (item.target) {
-            item = this.state.currentIngredientInput;
+    addIngredientToListFromInput(event) {
+        let item = '';
+
+        if (event.target) {
+            item = this.state.currentIngredientInput.toLowerCase();
         }
 
-        const newCommonIngredients = this.state.commonIngredients;
-        const index = newCommonIngredients.indexOf(item);
-        newCommonIngredients.splice(index, 1);
+        let index = this.state.commonIngredients.indexOf(item);
+
+        if(index !== -1){
+            const newCommonIngredients = this.state.commonIngredients;
+            newCommonIngredients.splice(index, 1);
+        }
+
 
         this.setState({
             currentIngredientInput: '',
             ingredients: [...this.state.ingredients, item],
+            // commonIngredients: newCommonIngredients
+        });
+
+    }
+
+    addIngredientToListFromButton(item, index){
+        this.commonFoodIndex++;
+        let newIngredients = this.state.ingredients;
+        newIngredients.push(item);
+
+        const newCommonIngredients = this.state.commonIngredients;
+        newCommonIngredients.splice(index, 1);
+
+        this.setState({
+            ingredients: newIngredients,
             commonIngredients: newCommonIngredients
         });
 
+        console.log(this.commonFoodIndex);
+
+        if(this.commonFoodIndex < 3){
+            this.setState({
+                commonIngredients: this.commonIngredientsRef[this.commonFoodIndex].food
+            });
+        }
     }
 
     removeFromTheIngredient(index) {
         const newList = this.state.ingredients;
         const item = newList.splice(index, 1);
         let newCommonItems = '';
-        console.log('aa:', item);
-        if(this.commonIngredientsRef.includes(item[0])){
-            newCommonItems = this.state.commonIngredients;
-            newCommonItems.splice(0, 0, item);
+        if(!this.commonIngredientsRef.includes(item[0])){
+            this.setState({
+                ingredients: newList,
+            });
+        } else {
+            newCommonItems = [item, ...this.state.commonIngredients];
+            this.setState({
+                // ingredients: newList,
+                commonIngredients: newCommonItems
+            });
         }
-
-        this.setState({
-            ingredients: newList
-        });
     }
 
     render() {
+        const colorArray = ['#ffebee red lighten-2', 'green lighten-2', '#795548 brown'];
         const ingredient = this.state.ingredients.map((item, index) => {
-            console.log('ITEM:', item);
             return (<div key={index} className='row'>
                 <div className='col s10'>
                     <input value={item} readOnly className='center'/>
@@ -70,7 +113,7 @@ class LandingPage extends Component {
         });
 
         const commonIngredientsBtns = this.state.commonIngredients.map((item, index) => {
-            return (<button onClick={() => this.addIngredientToList(item)} key={index}>{item}</button>)
+            return (<button className={`btn btn-flat ${colorArray[this.commonFoodIndex]}`} onClick={() => this.addIngredientToListFromButton(item, index)} key={index}>{item}</button>)
         });
 
         return (
@@ -84,7 +127,7 @@ class LandingPage extends Component {
                             <input className='center' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
                         </div>
                         <div className='center'>
-                            <img id="ingAddMinImg" src={plus} onClick={this.addIngredientToList.bind(this)} />
+                            <img id="ingAddMinImg" src={plus} onClick={this.addIngredientToListFromInput.bind(this)} />
                         </div>
                     </div>
                     :

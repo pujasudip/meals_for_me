@@ -8,12 +8,14 @@ class Login extends React.Component{
            <div className='container login'>
                <form className='col'>
                    <div className='input-field col s6'>
+                   <i className="material-icons prefix">account_circle</i>
                    <input id='icon_prefix'
                           type='text'
                           className='validate' />
                        <label htmlFor='icon_prefix'>Full Name</label>
                    </div>
                    <div className='input-field col s6'>
+                       <i className="material-icons prefix">email</i>
                        <input id='icon_email'
                               type='tel'
                               className='validate' />

@@ -9,12 +9,14 @@ class SignUp extends React.Component{
                 <form className='col'>
                     <div className='row'>
                         <div className='input-field col s6'>
+                            <i className="material-icons prefix">person_outline</i>
                             <input id='fName'
                                    type='text'
                                    className='validate' />
                             <label htmlFor='fName'>First Name</label>
                         </div>
                         <div className='input-field col s6'>
+                            <i className="material-icons prefix">person_outline</i>
                             <input id='lName'
                                    type='text'
                                    className='validate' />
@@ -22,24 +24,28 @@ class SignUp extends React.Component{
                         </div>
                     </div>
                     <div className='input-field col s6'>
+                        <i className="material-icons prefix">person</i>
                         <input id='username'
                                type='text'
                                className='validate' />
                         <label htmlFor='username'>Username</label>
                     </div>
                     <div className='input-field col s6'>
+                        <i className="material-icons prefix">email</i>
                         <input id='icon_email'
                                type='tel'
                                className='validate' />
                         <label htmlFor='icon_email'>Email</label>
                     </div>
                     <div className='input-field col s6'>
+                        <i className="material-icons prefix">lock</i>
                         <input id='password'
                                type='tel'
                                className='validate' />
                         <label htmlFor='password'>Password</label>
                     </div>
                     <div className='input-field col s6'>
+                        <i className="material-icons prefix">lock</i>
                         <input id='c_password'
                                type='tel'
                                className='validate' />

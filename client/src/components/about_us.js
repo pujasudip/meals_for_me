@@ -6,10 +6,10 @@ class AboutUs extends Component {
     constructor(props) {
         super(props);
         this.members = [
-            { name: 'sudip', github: 'https://github.com/pujasudip', linkedin: 'https://www.linkedin.com/in/sudip-baral-5a2a96113/', image: 'i.i'},
-            { name: 'leah', github: 'a.a', linkedin: 'l.l', image: 'i.i'},
-            { name: 'josh', github: 'a.a', linkedin: 'l.l', image: 'i.i'},
-            { name: 'sohn', github: 'a.a', linkedin: 'l.l', image: 'i.i'},
+            { name: 'Leah Choi', github: 'a.a', linkedin: 'l.l', image: 'i.i'},
+            { name: 'Josh Sohn', github: 'a.a', linkedin: 'l.l', image: 'i.i'},
+            { name: 'Sudip Baral', github: 'https://github.com/pujasudip', linkedin: 'https://www.linkedin.com/in/sudip-baral-5a2a96113/', image: 'i.i'},
+            { name: 'Sean Prouty', github: 'a.a', linkedin: 'l.l', image: 'i.i'},
         ];
     }
     render() {

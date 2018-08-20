@@ -6,9 +6,9 @@ function Member(props){
         <div className='body valign-wrapper memberIndividual'>
             <div className='memberPicture center-align'>image</div>
             <div className='memberInfo'>
-                <h4 className='left-align'>Name: {props.name}</h4>
-                <h5 className='left-align'><a href={props.linkedin}>LinkedIn</a></h5>
-                <h5 className='left-align'><a href={props.github}>Github</a></h5>
+                <h5 className='left-align'>{props.name}</h5>
+                <p className='left-align'><a href={props.linkedin}>LinkedIn</a></p>
+                <p className='left-align'><a href={props.github}>Github</a></p>
             </div>
         </div>
     );
