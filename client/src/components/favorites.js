@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/css/favorites.css';
-
 
 class Favorites extends Component {
     constructor(props) {
@@ -10,11 +10,13 @@ class Favorites extends Component {
     render() {
         return (
             <div className='body'>
-                <div className='indivDish'>
-                    <h3>Dish Name</h3>
-                    <div className='dishPicture'></div>
-                    <div>Trash</div>
-                </div>
+                <Link to = '/recipe'>
+                    <div className='indivDish'>
+                        <h3>Dish Name</h3>
+                        <div className='dishPicture'></div>
+                        <div>Trash</div>
+                    </div>
+                </Link>
             </div>
         )
     }
