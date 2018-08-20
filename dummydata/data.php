@@ -1,4 +1,8 @@
-[{
+
+<?php
+require_once('mysqliconnect.php');
+
+$json = '[{
 	"id": 986153,
 	"title": "Korean Fried Chicken",
 	"image": "https://spoonacular.com/recipeImages/986153-312x231.jpg",
@@ -360,7 +364,7 @@
 	"likes": 14
 }, {
 	"id": 136336,
-	"title": "Melissa's Lemon Pepper Chicken",
+	"title": "Melissa\'s Lemon Pepper Chicken",
 	"image": "https://spoonacular.com/recipeImages/136336-312x231.jpg",
 	"imageType": "jpg",
 	"usedIngredientCount": 1,
@@ -712,7 +716,7 @@
 	"likes": 0
 }, {
 	"id": 136393,
-	"title": "Mom's Fried Chicken",
+	"title": "Mom\'s Fried Chicken",
 	"image": "https://spoonacular.com/recipeImages/136393-312x231.jpg",
 	"imageType": "jpg",
 	"usedIngredientCount": 1,
@@ -752,7 +756,7 @@
 	"likes": 0
 }, {
 	"id": 136548,
-	"title": "Unknownchef86's Lemon-Pepper Chicken (Sbd Phase One)",
+	"title": "Unknownchef86\'s Lemon-Pepper Chicken (Sbd Phase One)",
 	"image": "https://spoonacular.com/recipeImages/136548-312x231.jpg",
 	"imageType": "jpg",
 	"usedIngredientCount": 1,
@@ -798,9 +802,7 @@
 	"usedIngredientCount": 1,
 	"missedIngredientCount": 2,
 	"likes": 0
-},
-
-{
+}, {
 	"id": 577077,
 	"title": "College Student Meals – Bacon Cheeseburger Meatloaf Week",
 	"image": "https://spoonacular.com/recipeImages/577077-312x231.jpg",
@@ -1066,7 +1068,7 @@
 	"likes": 4
 }, {
 	"id": 307148,
-	"title": "CBLT'S",
+	"title": "CBLTS",
 	"image": "https://spoonacular.com/recipeImages/307148-312x231.jpeg",
 	"imageType": "jpeg",
 	"usedIngredientCount": 4,
@@ -1258,7 +1260,7 @@
 	"likes": 1
 }, {
 	"id": 265094,
-	"title": "Sizzlin' BBQ Bacon Cheeseburgers",
+	"title": "Sizzlin BBQ Bacon Cheeseburgers",
 	"image": "https://spoonacular.com/recipeImages/265094-312x231.jpg",
 	"imageType": "jpg",
 	"usedIngredientCount": 4,
@@ -1482,7 +1484,7 @@
 	"likes": 1
 }, {
 	"id": 149115,
-	"title": "Surf N' Turf Burger (Grilled Burger with Lobster and Bacon)",
+	"title": "Surf N Turf Burger (Grilled Burger with Lobster and Bacon)",
 	"image": "https://spoonacular.com/recipeImages/149115-312x231.jpg",
 	"imageType": "jpg",
 	"usedIngredientCount": 4,
@@ -1570,7 +1572,7 @@
 	"likes": 9
 }, {
 	"id": 287299,
-	"title": "Jack's Brunswick Stew",
+	"title": "Jack\'s Brunswick Stew",
 	"image": "https://spoonacular.com/recipeImages/287299-312x231.jpeg",
 	"imageType": "jpeg",
 	"usedIngredientCount": 4,
@@ -1600,4 +1602,40 @@
 	"usedIngredientCount": 4,
 	"missedIngredientCount": 6,
 	"likes": 0
-}]
+}]';
+
+
+
+//query template to follow
+// INSERT INTO `recipes`(`recipe_id`, `recipe_name`, `recipe_img`) 
+// VALUES ([value-1],[value-2],[value-3])
+
+$data = json_decode($json,true);
+$query = "INSERT INTO `recipes`(`recipe_id`, `recipe_name`, `recipe_img`) 
+ VALUES ($data[$i]['id'],$data[$i]['title'],$data[$i]['image'])";
+ $result = $db -> query($query);
+ $output = [
+    'success'=> false;
+ ];
+
+// if($result){
+// $output['data'] = [];
+//     if($result->num_rows > 0){
+//         while($row = $result -> fetch_assoc()){
+//             $output['data'][] = $row;
+//         }
+
+//     }else{
+//         $output['error'] = true;
+//     }
+// }else {
+//     $output['error'] = $result ->error;
+// }
+
+
+for($i=0 ; $i<count($data) ; $i++){
+	echo "Recipe Id:",$data[$i]['id'],"<br/>";
+	echo "   Recipe Title: ",$data[$i]['title'],"<br/>";
+	echo "IMG file path: ",$data[$i]['image'],"<br/>","<br/>","<br/>";
+
+}
