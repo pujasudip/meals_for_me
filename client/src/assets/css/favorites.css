@@ -5,13 +5,13 @@
 }
 
 h3 {
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .dishPicture {
     width: 30vw;
     height: 15vh;
-    display: inline-block;
+    /* display: inline-block; */
     background-color: grey;
     border-radius: 50%;
 }
