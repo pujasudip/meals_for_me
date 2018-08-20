@@ -42,6 +42,9 @@ class LandingPage extends Component {
 
         if (event.target) {
             item = this.state.currentIngredientInput.toLowerCase();
+            if(item.length === 0){
+                return;
+            }
         }
 
         let index = this.state.commonIngredients.indexOf(item);
@@ -138,7 +141,7 @@ class LandingPage extends Component {
                 </div>
                 <div>
                     <button className="landPgSearchBtn btn btn-block center-block"
-                        type='button'><Link to='/result'>Search</Link></button>
+                        type='button'><Link to='/results'>Search</Link></button>
                 </div>
                 {this.state.ingredients.length < 3 ?
                     <div className="ingredientBtns center">
