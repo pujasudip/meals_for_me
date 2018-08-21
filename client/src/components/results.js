@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import '../assets/css/results.css'
 import { Link } from 'react-router-dom';
+import lf_image from "../assets/images/leaf_board.png";
 class Results extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        document.body.style.backgroundImage = `url(${lf_image})`;
     }
 
     render() {

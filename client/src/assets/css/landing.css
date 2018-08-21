@@ -29,12 +29,3 @@
 button{
     margin: 2px;
 }
-body{
-    /*background-image: url('../images/leaf_board.png');*/
-}
-@media only screen and (max-width: 800px) {
-    .container{
-        background-image: url('../images/leaf_board.png');
-        background-size: cover;
-    }
-}
