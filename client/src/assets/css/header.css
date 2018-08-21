@@ -1,14 +1,19 @@
 .header {
     display: flex;
+    height: 10vh;
     justify-content: space-between;
-    margin: 20px;
+    background-color: rgba(115, 128, 0, 0.65);
+    margin-bottom: 30px;
 }
 
 .logo{
     width: 100px;
+    border: 2px solid rgba(115, 128, 0, 0.65);
+    border-radius: 50px;
+    animation: spin 50s alternate infinite;
 }
 .hamicon{
-    width: 50px;
+    width: 80px;
 }
 .no_menu{
     display: none;
@@ -20,10 +25,11 @@
     top: 0;
     left: 0;
     background-color: rgba(203, 203, 203, 0.4);
+    z-index: 100;
 }
 
 .menu{
-    width: 200px;
+    width: 27vh;
     height: 100%;
     font-family: "Arial Black";
     font-size: 1.5rem;
@@ -46,4 +52,23 @@
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
     }
+}
+@keyframes spin{
+    25%{
+        transform: rotate(-180deg);
+    }
+    50%{
+        transform: rotate(90deg);
+    }
+    100%{
+        transform: rotate(180deg);
+    }
+}
+
+.headerBtn{
+    margin: 27% 0 0 15%;
+}
+button.backBtn{
+   background-color: #d3d3d300;
+    border-color: #d3d3d300;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../assets/css/header.css';
-import logo from '../assets/images/logo_placeholder.png';
+import logo from '../assets/images/logo_placeh.jpg';
 import hamicon from '../assets/images/hamicon.png';
 import HamburgerMenu from '../components/hamburger_menu';
 import { Link } from 'react-router-dom';
@@ -29,19 +29,19 @@ class Header extends Component {
     }
 
     goBack(){
-        console.log('this.props in goback:', this.props)
+        console.log('this.props in goback:', this.props);
         this.props.history.goBack();
     }
 
     displayLogInBtn(){
         if(this.props.location.pathname === '/'){
            return( <Link to='/login'>
-                <button className='btn btn-flat purple white-text btn-small'>Login</button>
+                <button className='btn btn-flat purple white-text btn-small headerBtn'>Login</button>
         </Link> )
         } else {
             return (
-                <button onClick={this.goBack.bind(this)}>
-                    <img src={backButton} className='btn-small' />
+                <button onClick={this.goBack.bind(this)} className='backBtn'>
+                    <img src={backButton} className='btn btn-small' />
                 </button>
             )
         }

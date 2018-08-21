@@ -8,7 +8,7 @@ class Results extends Component {
     }
 
     componentDidMount() {
-        document.body.style.backgroundImage = `url(${lf_image})`;
+        // document.body.style.backgroundImage = `url(${lf_image})`;
     }
 
     render() {

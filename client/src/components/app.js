@@ -13,6 +13,8 @@ import Login from './login_page';
 import SignUp from './sign_up';
 import AboutUs from './about_us';
 
+const a = 'abc';
+
 const App = () => (
     <Router>
         <div>
