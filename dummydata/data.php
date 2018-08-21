@@ -1,6 +1,6 @@
 
 <?php
-require_once('mysqliconnect.php');
+require_once('mysqlconnect.php');
 
 $json = '[{
 	"id": 986153,
@@ -1609,33 +1609,20 @@ $json = '[{
 //query template to follow
 // INSERT INTO `recipes`(`recipe_id`, `recipe_name`, `recipe_img`) 
 // VALUES ([value-1],[value-2],[value-3])
+// echo "Recipe Id:",$data[$i]['id'],"<br/>";
+// echo "   Recipe Title: ",$data[$i]['title'],"<br/>";
+// echo "IMG file path: ",$data[$i]['image'],"<br/>","<br/>","<br/>";
 
 $data = json_decode($json,true);
-$query = "INSERT INTO `recipes`(`recipe_id`, `recipe_name`, `recipe_img`) 
- VALUES ($data[$i]['id'],$data[$i]['title'],$data[$i]['image'])";
- $result = $db -> query($query);
- $output = [
-    'success'=> false;
- ];
+$output = [];
 
-// if($result){
-// $output['data'] = [];
-//     if($result->num_rows > 0){
-//         while($row = $result -> fetch_assoc()){
-//             $output['data'][] = $row;
-//         }
-
-//     }else{
-//         $output['error'] = true;
-//     }
-// }else {
-//     $output['error'] = $result ->error;
-// }
-
-
-for($i=0 ; $i<count($data) ; $i++){
-	echo "Recipe Id:",$data[$i]['id'],"<br/>";
-	echo "   Recipe Title: ",$data[$i]['title'],"<br/>";
-	echo "IMG file path: ",$data[$i]['image'],"<br/>","<br/>","<br/>";
-
+for($i=0 ; $i<count((array)$data) ; $i++){
+	$data[$i]['title'] = mysqli_real_escape_string($conn, $data[$i]['title']);
+	$query = "REPLACE INTO `recipes`(`recipe_id`, `recipe_name`, `recipe_img`)VALUES({$data[$i]['id']},'{$data[$i]['title']}','{$data[$i]['image']}')";
+	$result = mysqli_query($conn, $query);
+	if (mysqli_errno($conn)){
+		print(mysqli_error($conn).': ');
+		print($query);
+	}
+	$row = mysqli_affected_rows($conn); 
 }
