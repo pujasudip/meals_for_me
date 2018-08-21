@@ -5,18 +5,19 @@ import minus from '../assets/images/minus.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { searchIngredient } from '../actions';
-import bg_image from '../assets/images/landing-bg.jpg';
+import bg_image from '../assets/images/bg.jpg';
+import slogan from '../assets/images/chicken_soup.gif';
 
 class LandingPage extends Component {
     commonIngredientsRef = [
         {
-            'food' : ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'potato', 'fish'],
+            'food' : ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'fish'],
             'displayButtons': true},
         {
-            'food' : ['broccoli', 'spinach', 'carrot', 'cucumber'],
+            'food' : ['broccoli', 'spinach', 'carrot', 'cucumber', 'potato'],
             'displayButtons': false},
         {
-            'food' : ['salt', 'sugar', 'honey'],
+            'food' : ['pepper', 'turmeric','salt', 'sugar', 'honey'],
             'displayButtons': false
         }
     ];
@@ -33,7 +34,7 @@ class LandingPage extends Component {
     }
 
     componentDidMount() {
-        document.body.style.backgroundImage = `url(${bg_image})`;
+        // document.body.style.backgroundImage = `url(${bg_image})`;
     }
 
     userInputHandler(event) {
@@ -126,13 +127,13 @@ class LandingPage extends Component {
 
         return (
             <div className='container'>
-                <div className='green-text center'>
-                    <h2>What to Food</h2>
+                <div className='slogan center'>
+                    <img src={slogan}/>
                 </div>
                 {this.state.ingredients.length < 3 ?
                     <div className='search_field'>
                         <div>
-                            <input className='center' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
+                            <input placeholder='Insert upto 3 items' className='center' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
                         </div>
                         <div className='center'>
                             <img id="ingAddMinImg" src={plus} onClick={this.addIngredientToListFromInput.bind(this)} />
@@ -149,6 +150,9 @@ class LandingPage extends Component {
                 </div>
                 {this.state.ingredients.length < 3 ?
                     <div className="ingredientBtns center">
+                        <div>
+                            <h5 className='commonFoodHeader'>COMMON FOODS</h5>
+                        </div>
                         {commonIngredientsBtns}
                     </div>
                     : ''

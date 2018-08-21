@@ -4,5 +4,6 @@
 }
 .dishPicture{
     width: 25px;
-    height: 50px;
+    height: 25px;
+    background-color: red;
 }
