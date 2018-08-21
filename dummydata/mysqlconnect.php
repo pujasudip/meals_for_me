@@ -1,4 +1,4 @@
 <?php
-$db = new mysqli('localhost', 'root', 'root', 'final_project', '3306');
+$conn = mysqli_connect('localhost', 'root', 'root', 'final_project', '3306');
 
 ?>
