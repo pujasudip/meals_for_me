@@ -140,8 +140,7 @@ class LandingPage extends Component {
                     {ingredient}
                 </div>
                 <div>
-                    <button className="landPgSearchBtn btn btn-block center-block"
-                        type='button'><Link to='/results'>Search</Link></button>
+                    <Link className="landPgSearchBtn btn btn-block center-block" to='/results'>Search</Link>
                 </div>
                 {this.state.ingredients.length < 3 ?
                     <div className="ingredientBtns center">

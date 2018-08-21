@@ -16,7 +16,7 @@ import AboutUs from './about_us';
 const App = () => (
     <Router>
         <div>
-            <Header/>
+            <Route path="/" component={Header}/>
             <Route exact path='/' component={Landing}/>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={Login}/>

@@ -4,6 +4,7 @@ import logo from '../assets/images/logo_placeholder.png';
 import hamicon from '../assets/images/hamicon.png';
 import HamburgerMenu from '../components/hamburger_menu';
 import { Link } from 'react-router-dom';
+import backButton from '../assets/images/back_arrow.png'
 
 class Header extends Component {
     constructor(props) {
@@ -27,13 +28,29 @@ class Header extends Component {
         }
     }
 
+    goBack(){
+        console.log('this.props in goback:', this.props)
+        this.props.history.goBack();
+    }
+
+    displayLogInBtn(){
+        if(this.props.location.pathname === '/'){
+           return( <Link to='/login'>
+                <button className='btn btn-flat purple white-text btn-small'>Login</button>
+        </Link> )
+        } else {
+            return (
+                <button onClick={this.goBack.bind(this)}>
+                    <img src={backButton} className='btn-small' />
+                </button>
+            )
+        }
+    }
     render() {
         let menuClass = this.state.menuShow ? ['menu', 'menu_backdrop'] : ['no_menu', 'no_menu'];
         return (
             <div className='header'>
-                <Link to='/login'>
-                    <button className='btn btn-flat purple white-text btn-small'>Login</button>
-                </Link>
+                {this.displayLogInBtn()}
                 <div>
                     <Link to='/'>
                         <img src={logo} className='logo'/>
