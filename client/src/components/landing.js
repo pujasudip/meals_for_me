@@ -5,6 +5,7 @@ import minus from '../assets/images/minus.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { searchIngredient } from '../actions';
+import bg_image from '../assets/images/landing-bg.jpg';
 
 class LandingPage extends Component {
     commonIngredientsRef = [
@@ -29,6 +30,10 @@ class LandingPage extends Component {
             ingredients: [],
             commonIngredients: ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'potato', 'fish']
         };
+    }
+
+    componentDidMount() {
+        document.body.style.backgroundImage = `url(${bg_image})`;
     }
 
     userInputHandler(event) {
