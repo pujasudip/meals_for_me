@@ -7,20 +7,21 @@ import { connect } from 'react-redux';
 import { searchIngredient } from '../actions';
 import bg_image from '../assets/images/bg.jpg';
 import slogan from '../assets/images/chicken_soup.gif';
+import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 
 class LandingPage extends Component {
-    commonIngredientsRef = [
-        {
-            'food' : ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'fish'],
-            'displayButtons': true},
-        {
-            'food' : ['broccoli', 'spinach', 'carrot', 'cucumber', 'potato'],
-            'displayButtons': false},
-        {
-            'food' : ['pepper', 'turmeric','salt', 'sugar', 'honey'],
-            'displayButtons': false
-        }
-    ];
+    // commonIngredientsRef = [
+    //     {
+    //         'food' : ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'fish'],
+    //         'displayButtons': true},
+    //     {
+    //         'food' : ['broccoli', 'spinach', 'carrot', 'cucumber', 'potato'],
+    //         'displayButtons': false},
+    //     {
+    //         'food' : ['pepper', 'turmeric','salt', 'sugar', 'honey'],
+    //         'displayButtons': false
+    //     }
+    // ];
 
     commonFoodIndex = 0;
 
@@ -86,7 +87,7 @@ class LandingPage extends Component {
 
         if(this.commonFoodIndex < 3){
             this.setState({
-                commonIngredients: this.commonIngredientsRef[this.commonFoodIndex].food
+                commonIngredients: commonIngredientsRef[this.commonFoodIndex].food
             });
         }
     }
