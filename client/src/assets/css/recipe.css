@@ -1,4 +1,4 @@
-.container{
+/* .container{
     display: flex;
     align-content: space-around;
 }
@@ -6,4 +6,198 @@
     width: 25px;
     height: 25px;
     background-color: red;
+} */
+
+/*  */
+
+header {
+    display: inline-block;
+    height: 10vh;
+    width: 100vw;
+    border-bottom: 8px solid black;
+    position: relative;
+}
+
+#backArrow {
+    display: inline-block;
+    height: 100%;
+    width: auto;
+}
+
+#logo {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: auto;
+    border-radius: 50%;
+    border: 8px solid black;
+}
+
+#logo img {
+    height: 100%;
+    width: auto;
+}
+
+#menuButton {
+    height: 75%;
+    width: 10%;
+    float: right;
+    background-color: black;
+    margin: 10px 25px 0 0;
+}
+
+#mainContent {
+    display: inline-block;
+    width: 100vw;
+    height: 25vh;
+    position: relative;
+}
+/*  */
+
+.pictureContainer {
+    height: 90%;
+    width: 50%;
+    max-width: 25vh;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pictureContainer img {
+    height: 100%;
+    width: 100%;
+    border: 8px solid black;
+    border-radius: 50%;
+}
+
+#splittingAnimation {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: -1;
+}
+
+@keyframes splittingLines {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 50%;
+    }
+}
+
+#splittingAnimation>div {
+    height: 8px;
+    width: 50%;
+    float: left;
+    background-color: black;
+    animation-name: splittingLines;
+    animation-duration: 2s;
+}
+
+#splittingAnimation>div:last-child {
+    float: right;
+}
+
+.dishDetails {
+    height: 10vh;
+    width: 100vw;
+}
+
+.dishDetails h1 {
+    text-align: center;
+    font-size: 5vmax;
+    margin: 0;
+}
+
+.dishDetails h3 {
+    text-align: center;
+    font-size: 3vmax;
+    margin: 0;
+}
+
+.ingredients,
+.directions {
+    margin: 0 3vw;
+}
+
+.ingredients>ol,
+.directions>ol {
+    font-size: 3vmax;
+    font-weight: bold;
+}
+
+ol {
+    counter-reset: indexForLi;
+}
+
+ol li {
+    display: block;
+}
+
+ol li:before {
+    content: counter(indexForLi) ") ";
+    counter-increment: indexForLi;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+ol>li {
+    font-size: 1.5vmax;
+    font-weight: 400;
+}
+
+.heartPic {
+    position: absolute;
+    top: 55%;
+    left: 10%;
+    font-size: 10vmax;
+    color: white;
+    -webkit-text-stroke: 4px red;
+}
+
+@media only screen and (min-width: 1000px) {
+    body {
+        margin: 0 8%;
+    }
+    header {
+        width: 84vw;
+    }
+    #mainContent {
+        width: 84vw;
+    }
+    .dishDetails {
+        width: 84vw;
+    }
+    .dishDetails h1 {
+        font-size: 5.5vmin;
+    }
+    .dishDetails h3 {
+        font-size: 4vmin;
+    }
+    .ingredients>ol,
+    .directions>ol {
+        font-size: 2.5vmax;
+    }
+    ol li:before {
+        font-size: 125%
+    }
+    .heartPic {
+        font-size: 10vmin;
+    }
+    #menuButton {
+        max-width: 55px;
+    }
+    #mainContent {
+        height: 35vh;
+    }
+    .pictureContainer {
+        max-width: 25vw;
+    }
 }

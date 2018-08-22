@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { searchIngredient } from '../actions';
 import bg_image from '../assets/images/bg.jpg';
 import slogan from '../assets/images/chicken_soup.gif';
+// import commonIngredients from "../data/dummydata.json";
 
 class LandingPage extends Component {
     commonIngredientsRef = [
