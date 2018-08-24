@@ -1616,6 +1616,20 @@ $json = '[{
 $data = json_decode($json,true);
 $output = [];
 
+$joshQueryStringForUpdatedData = "
+REPLACE INTO `recipes`
+(`id`, `title`, `image`, `imageType`, `usedIngredientCount`, `missedIngredientCount`,`likes`)
+VALUES(
+{$data[$i]['id']},
+'{$data[$i]['title']}',
+'{$data[$i]['image']}',
+'{$data[$i]['imageType']}',
+{$data[$i]['usedIngredientCount']}),
+{$data[$i]['missedIngredientCount']},
+{$data[$i]['likes']}
+)";
+
+
 for($i=0 ; $i<count((array)$data) ; $i++){
 	$data[$i]['title'] = mysqli_real_escape_string($conn, $data[$i]['title']);
 	$query = "REPLACE INTO `recipes`(`recipe_id`, `recipe_name`, `recipe_img`)VALUES({$data[$i]['id']},'{$data[$i]['title']}','{$data[$i]['image']}')";
