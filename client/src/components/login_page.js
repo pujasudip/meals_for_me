@@ -1,9 +1,44 @@
 import React from 'react';
 import '../assets/css/login.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { userLogin, checkLoginStatus } from "../actions";
+
 
 class Login extends React.Component{
+
+    userLoggingIn = () =>{
+        this.props.userLogin('leah', 'abc');
+
+        // if(resp.data.success){
+        //     console.log('logged in');
+        // } else {
+        //     console.log('login unsuccessful');
+        // }
+    };
+
+    componentDidMount(){
+        console.log('login_status:', this.props.login_status);
+
+    }
+
+    async logOutUser(){
+        const dataToSend = new URLSearchParams;
+
+        dataToSend.append('logout', 'true');
+        const resp = await axios.post('http://localhost:8000/user_info.php', dataToSend);
+        console.log(resp);
+        if(resp.data.success){
+            console.log('logged in');
+        } else {
+            console.log('you are not logged in');
+        }
+    }
+
     render(){
+        const resp = this.props.loginResponse.userLoginResponse.data;
+        console.log('a:', resp);
         return (
            <div className='container login'>
                <form className='col'>
@@ -21,14 +56,21 @@ class Login extends React.Component{
                               className='validate' />
                            <label htmlFor='icon_email'>Email</label>
                    </div>
-               <button className='btn btn-block center-block'>Log In</button>
+               <button type='button' className='btn btn-block center-block' onClick={this.userLoggingIn}>Log In</button>
                </form>
                <div className='center'>
                 <Link to='/signup'>Sign Up</Link>
                </div>
+               <button type='button' onClick={this.logOutUser}>Log out</button>
            </div>
         );
     }
 }
 
-export default Login;
+function mapStateToProps(state){
+    return {
+        loginResponse: state.userLoginResponse,
+    }
+}
+
+export default connect(mapStateToProps, {userLogin: userLogin,  login_status: checkLoginStatus})(Login);

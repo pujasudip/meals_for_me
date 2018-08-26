@@ -5,7 +5,10 @@ import '../assets/css/hamburger.css';
 const HamburgerMenu = (props) => {
     return (
         <div className='home'>
-            <div onClick={props.hideMenu} className='right-align'>&times;</div>
+            <div  className='right-align'>
+                <i className='material-icons closeIcon' onClick={props.hideMenu}>close</i>
+            </div>
+
             <i className='material-icons'>home</i>
             <Link to='/' onClick={props.hideMenu}>&nbsp;Home</Link><br />
             <i className='material-icons prefix'>favorite</i>

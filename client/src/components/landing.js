@@ -10,18 +10,6 @@ import slogan from '../assets/images/chicken_soup.gif';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 
 class LandingPage extends Component {
-    // commonIngredientsRef = [
-    //     {
-    //         'food' : ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'fish'],
-    //         'displayButtons': true},
-    //     {
-    //         'food' : ['broccoli', 'spinach', 'carrot', 'cucumber', 'potato'],
-    //         'displayButtons': false},
-    //     {
-    //         'food' : ['pepper', 'turmeric','salt', 'sugar', 'honey'],
-    //         'displayButtons': false
-    //     }
-    // ];
 
     commonFoodIndex = 0;
 
