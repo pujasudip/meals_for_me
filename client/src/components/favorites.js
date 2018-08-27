@@ -14,7 +14,7 @@ class Favorites extends Component {
                     <div className='indivDish'>
                         <h3>Dish Name</h3>
                         <div className='dishPicture'></div>
-                        <div>Trash</div>
+                        <i className="material-icons red-text">delete</i>
                     </div>
                 </Link>
             </div>
