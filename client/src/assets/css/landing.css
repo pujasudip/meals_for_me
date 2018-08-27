@@ -70,3 +70,7 @@ button{
         animation: swing 10s linear alternate infinite;
     }
 }
+.clearBtn{
+    border: 1px solid red;
+    border-radius: 5px;
+}

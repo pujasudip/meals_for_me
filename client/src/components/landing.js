@@ -4,7 +4,7 @@ import plus from '../assets/images/plus.png';
 import minus from '../assets/images/minus.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { searchIngredient } from '../actions';
+import { searchIngredient, addIngredeints, removeIngredients, clearUserIngredientInputs } from '../actions';
 import bg_image from '../assets/images/bg.jpg';
 import slogan from '../assets/images/chicken_soup.gif';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
@@ -17,8 +17,7 @@ class LandingPage extends Component {
         super(props);
         this.state = {
             currentIngredientInput: '',
-            ingredients: [],
-            commonIngredients: ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'potato', 'fish']
+            commonIngredients: commonIngredientsRef[this.commonFoodIndex].food
         };
     }
 
@@ -42,36 +41,13 @@ class LandingPage extends Component {
             }
         }
 
-        let index = this.state.commonIngredients.indexOf(item);
-
-        if(index !== -1){
-            const newCommonIngredients = this.state.commonIngredients;
-            newCommonIngredients.splice(index, 1);
-        }
-
-
-        this.setState({
-            currentIngredientInput: '',
-            ingredients: [...this.state.ingredients, item],
-            // commonIngredients: newCommonIngredients
-        });
+        this.props.addIngredient(item);
 
     }
 
-    addIngredientToListFromButton(item, index){
+    addIngredientToListFromButton(item){
         this.commonFoodIndex++;
-        let newIngredients = this.state.ingredients;
-        newIngredients.push(item);
-
-        const newCommonIngredients = this.state.commonIngredients;
-        newCommonIngredients.splice(index, 1);
-
-        this.setState({
-            ingredients: newIngredients,
-            commonIngredients: newCommonIngredients
-        });
-
-        console.log(this.commonFoodIndex);
+        this.props.addIngredient(item);
 
         if(this.commonFoodIndex < 3){
             this.setState({
@@ -81,25 +57,18 @@ class LandingPage extends Component {
     }
 
     removeFromTheIngredient(index) {
-        const newList = this.state.ingredients;
-        const item = newList.splice(index, 1);
-        let newCommonItems = '';
-        if(!this.commonIngredientsRef.includes(item[0])){
-            this.setState({
-                ingredients: newList,
-            });
-        } else {
-            newCommonItems = [item, ...this.state.commonIngredients];
-            this.setState({
-                // ingredients: newList,
-                commonIngredients: newCommonItems
-            });
-        }
+       this.props.removeIngredient(index);
+    }
+
+    clearUserInputs(){
+        this.commonFoodIndex = 0;
+        this.props.clearUserIngredientInputs();
     }
 
     render() {
+        console.log('prosp:', this.props.ingredients);
         const colorArray = ['#ffebee red lighten-2', 'green lighten-2', '#795548 brown'];
-        const ingredient = this.state.ingredients.map((item, index) => {
+        const ingredient = this.props.ingredients.map((item, index) => {
             return (<div key={index} className='row'>
                 <div className='col s10'>
                     <input value={item} readOnly className='center'/>
@@ -119,7 +88,7 @@ class LandingPage extends Component {
                 <div className='slogan center'>
                     <img src={slogan}/>
                 </div>
-                {this.state.ingredients.length < 3 ?
+                {this.props.ingredients.length < 3 ?
                     <div className='search_field'>
                         <div>
                             <input placeholder='Insert upto 3 items' className='center' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
@@ -136,8 +105,11 @@ class LandingPage extends Component {
                 </div>
                 <div>
                     <Link className="landPgSearchBtn btn btn-block center-block" to='/results'>Search</Link>
+                    <div className='center' style={this.props.ingredients.length !== 3 ? {'display': 'none'} : {}}>
+                        <button type='button' className='btn btn-flat clearBtn waves-effect' onClick={()=>this.clearUserInputs()}>Clear Inputs</button>
+                    </div>
                 </div>
-                {this.state.ingredients.length < 3 ?
+                {this.props.ingredients.length < 3 ?
                     <div className="ingredientBtns center">
                         <div>
                             <h5 className='commonFoodHeader'>COMMON FOODS</h5>
@@ -153,9 +125,17 @@ class LandingPage extends Component {
 
 function mapStateToProps(state){
     return {
-        src: state.search.userI,
+        ingredients: state.search.ingredients
     }
 
 }
 
-export default connect(mapStateToProps, { searchIngredient: searchIngredient})(LandingPage);
+
+const mapActionsToProps = {
+    searchIngredient: searchIngredient,
+    addIngredient: addIngredeints,
+    removeIngredient: removeIngredients,
+    clearUserIngredientInputs: clearUserIngredientInputs
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(LandingPage);

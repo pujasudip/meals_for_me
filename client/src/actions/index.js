@@ -30,3 +30,24 @@ export function checkLoginStatus(){
         payload: response
     }
 }
+
+export function addIngredeints(ingredient){
+    return {
+        type: types.ADD_INGREDIENT,
+        payload: ingredient
+    }
+}
+
+export function removeIngredients(index){
+    return {
+        type: types.REMOVE_INGREDIENT,
+        payload: index
+    }
+}
+
+export function clearUserIngredientInputs(){
+    return {
+        type: types.CLEAR_USER_INGREDIENT_INPUTS,
+        payload: []
+    }
+}
