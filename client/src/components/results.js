@@ -3,6 +3,7 @@ import '../assets/css/results.css'
 import lf_image from "../assets/images/leaf_board.png";
 import axios from 'axios';
 import OneResult from './individual_result_panel';
+import { connect } from 'react-redux';
 
 const BASE_URL = 'http://localhost:8000/data.php';
 
@@ -27,6 +28,7 @@ class Results extends Component {
         
     }
     render() {
+        console.log('inputs:', this.props.userInputs);
         const resultResponse = this.state.resultArray;
 
         console.log('result response on result.js:', resultResponse);
@@ -53,4 +55,10 @@ resultResponse.sort
     }
 }
 
-export default Results;
+function mapStateToProps(state){
+    return {
+        userInputs: state.search.ingredients
+    }
+}
+
+export default connect(mapStateToProps, {})(Results);

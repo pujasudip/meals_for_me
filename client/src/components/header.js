@@ -4,7 +4,8 @@ import logo from '../assets/images/logo_placeh.jpg';
 import hamicon from '../assets/images/hamicon.png';
 import HamburgerMenu from '../components/hamburger_menu';
 import { Link } from 'react-router-dom';
-import backButton from '../assets/images/back_arrow.png'
+import backButton from '../assets/images/back_arrow.png';
+import { connect } from 'react-redux';
 
 class Header extends Component {
     constructor(props) {
@@ -47,6 +48,7 @@ class Header extends Component {
         }
     }
     render() {
+        console.log('aa:', this.props.login_status);
         let menuClass = this.state.menuShow ? ['menu', 'menu_backdrop'] : ['no_menu', 'no_menu'];
         return (
             <div className='header'>
@@ -69,4 +71,10 @@ class Header extends Component {
     }
 }
 
-export default Header;
+function mapStateToProps(state){
+    return {
+        login_status: state.login_status
+    }
+}
+
+export default connect(mapStateToProps, {})(Header);

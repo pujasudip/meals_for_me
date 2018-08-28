@@ -10,14 +10,14 @@ class SignUp extends React.Component{
                     <div className='row'>
                         <div className='input-field col s6'>
                             <i className="material-icons prefix">person_outline</i>
-                            <input id='fName'
+                            <input name='firstName'
                                    type='text'
                                    className='validate' />
                             <label htmlFor='fName'>First Name</label>
                         </div>
                         <div className='input-field col s6'>
                             <i className="material-icons prefix">person_outline</i>
-                            <input id='lName'
+                            <input name='lastName'
                                    type='text'
                                    className='validate' />
                             <label htmlFor='lName'>Last Name</label>
@@ -25,21 +25,22 @@ class SignUp extends React.Component{
                     </div>
                     <div className='input-field col s6'>
                         <i className="material-icons prefix">person</i>
-                        <input id='username'
+                        <input name='username'
                                type='text'
                                className='validate' />
                         <label htmlFor='username'>Username</label>
                     </div>
                     <div className='input-field col s6'>
                         <i className="material-icons prefix">email</i>
-                        <input id='icon_email'
+                        <input name='email'
                                type='tel'
                                className='validate' />
                         <label htmlFor='icon_email'>Email</label>
                     </div>
                     <div className='input-field col s6'>
                         <i className="material-icons prefix">lock</i>
-                        <input id='password'
+                        <input name='password'
+                               id='password'
                                type='tel'
                                className='validate' />
                         <label htmlFor='password'>Password</label>

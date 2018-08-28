@@ -4,33 +4,21 @@ import plus from '../assets/images/plus.png';
 import minus from '../assets/images/minus.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { searchIngredient, addIngredeints, removeIngredients, clearUserIngredientInputs } from '../actions';
+import bg_image from '../assets/images/bg.jpg';
 import { searchIngredient } from '../actions';
 //import bg_image from '../assets/images/dogbg.jpg';
 import slogan from '../assets/images/chicken_soup.gif';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 
 class LandingPage extends Component {
-    // commonIngredientsRef = [
-    //     {
-    //         'food' : ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'fish'],
-    //         'displayButtons': true},
-    //     {
-    //         'food' : ['broccoli', 'spinach', 'carrot', 'cucumber', 'potato'],
-    //         'displayButtons': false},
-    //     {
-    //         'food' : ['pepper', 'turmeric','salt', 'sugar', 'honey'],
-    //         'displayButtons': false
-    //     }
-    // ];
-
-    commonFoodIndex = 0;
+    foodGroup = [0,1,2];
 
     constructor(props) {
         super(props);
         this.state = {
             currentIngredientInput: '',
-            ingredients: [],
-            commonIngredients: ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'potato', 'fish']
+            commonIngredients: commonIngredientsRef[this.foodGroup[0]].food,
         };
     }
 
@@ -54,64 +42,45 @@ class LandingPage extends Component {
             }
         }
 
-        let index = this.state.commonIngredients.indexOf(item);
-
-        if(index !== -1){
-            const newCommonIngredients = this.state.commonIngredients;
-            newCommonIngredients.splice(index, 1);
-        }
-
-
-        this.setState({
-            currentIngredientInput: '',
-            ingredients: [...this.state.ingredients, item],
-            // commonIngredients: newCommonIngredients
-        });
+        this.props.addIngredient(item);
 
     }
 
-    addIngredientToListFromButton(item, index){
-        this.commonFoodIndex++;
-        let newIngredients = this.state.ingredients;
-        newIngredients.push(item);
+    addIngredientToListFromButton(item){
+        console.log('foodGroup:', this.foodGroup);
+        this.foodGroup.shift();
+        this.props.addIngredient(item);
 
-        const newCommonIngredients = this.state.commonIngredients;
-        newCommonIngredients.splice(index, 1);
-
-        this.setState({
-            ingredients: newIngredients,
-            commonIngredients: newCommonIngredients
-        });
-
-        console.log(this.commonFoodIndex);
-
-        if(this.commonFoodIndex < 3){
+        if(this.props.ingredients.length < 2){
             this.setState({
-                commonIngredients: commonIngredientsRef[this.commonFoodIndex].food
+                commonIngredients: commonIngredientsRef[this.foodGroup[0]].food
             });
         }
     }
 
     removeFromTheIngredient(index) {
-        const newList = this.state.ingredients;
-        const item = newList.splice(index, 1);
-        let newCommonItems = '';
-        if(!this.commonIngredientsRef.includes(item[0])){
+        debugger;
+        console.log(this.foodGroup);
+        this.foodGroup.push(index);
+        this.foodGroup.sort();
+        this.props.removeIngredient(index);
+        const modifiedIngredient = commonIngredientsRef[this.foodGroup[0]].food;
+        console.log('modifiedIngredient:', modifiedIngredient);
+        if(this.props.ingredients.length < 2){
             this.setState({
-                ingredients: newList,
-            });
-        } else {
-            newCommonItems = [item, ...this.state.commonIngredients];
-            this.setState({
-                // ingredients: newList,
-                commonIngredients: newCommonItems
+                commonIngredients: modifiedIngredient
             });
         }
     }
 
+    clearUserInputs(){
+        this.props.clearUserIngredientInputs();
+    }
+
     render() {
+        console.log('prosp:', this.props.ingredients);
         const colorArray = ['#ffebee red lighten-2', 'green lighten-2', '#795548 brown'];
-        const ingredient = this.state.ingredients.map((item, index) => {
+        const ingredient = this.props.ingredients.map((item, index) => {
             return (<div key={index} className='row'>
                 <div className='col s10'>
                     <input value={item} readOnly className='center'/>
@@ -123,7 +92,7 @@ class LandingPage extends Component {
         });
 
         const commonIngredientsBtns = this.state.commonIngredients.map((item, index) => {
-            return (<button className={`btn btn-flat ${colorArray[this.commonFoodIndex]}`} onClick={() => this.addIngredientToListFromButton(item, index)} key={index}>{item}</button>)
+            return (<button className={`btn btn-flat ${colorArray[this.foodGroup[0]]}`} onClick={() => this.addIngredientToListFromButton(item, index)} key={index}>{item}</button>)
         });
 
         return (
@@ -131,7 +100,7 @@ class LandingPage extends Component {
                 <div className='slogan center'>
                     <img src={slogan}/>
                 </div>
-                {this.state.ingredients.length < 3 ?
+                {this.props.ingredients.length < 3 ?
                     <div className='search_field'>
                         <div>
                             <input placeholder='Insert upto 3 items' className='center' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
@@ -148,8 +117,11 @@ class LandingPage extends Component {
                 </div>
                 <div>
                     <Link className="landPgSearchBtn btn btn-block center-block" to='/results'>Search</Link>
+                    <div className='center' style={this.props.ingredients.length !== 3 ? {'display': 'none'} : {}}>
+                        <button type='button' className='btn btn-flat clearBtn waves-effect' onClick={()=>this.clearUserInputs()}>Clear Inputs</button>
+                    </div>
                 </div>
-                {this.state.ingredients.length < 3 ?
+                {this.props.ingredients.length < 3 ?
                     <div className="ingredientBtns center">
                         <div>
                             <h5 className='commonFoodHeader'>COMMON FOODS</h5>
@@ -165,9 +137,17 @@ class LandingPage extends Component {
 
 function mapStateToProps(state){
     return {
-        src: state.search.userI,
+        ingredients: state.search.ingredients
     }
 
 }
 
-export default connect(mapStateToProps, { searchIngredient: searchIngredient})(LandingPage);
+
+const mapActionsToProps = {
+    searchIngredient: searchIngredient,
+    addIngredient: addIngredeints,
+    removeIngredient: removeIngredients,
+    clearUserIngredientInputs: clearUserIngredientInputs
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(LandingPage);
