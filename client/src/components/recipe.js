@@ -7,16 +7,18 @@ class Recipe extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            imgSrc: emptyHeart
+            imgSrc: emptyHeart,
+            addFavText: 'Add to Favorites'
         }
     }
 changeHeart = ()=>{
     let heartStatus;
     if(this.state.imgSrc === emptyHeart){
         heartStatus = redHeart;
-        
+        this.state.addFavText = 'Added'
     } else {
         heartStatus = emptyHeart;
+        this.state.addFavText = 'Add to Favorites'
     }
     this.setState({
         imgSrc: heartStatus
@@ -33,7 +35,9 @@ changeHeart = ()=>{
                     <div className="splittingLine"></div>
                     <div className="splittingLine"></div>
                     </section>
-            <div className="heartPic"><img src= {this.state.imgSrc} onClick={this.changeHeart}></img></div>
+            <div className="heartPic"><img src= {this.state.imgSrc} onClick={this.changeHeart}></img>
+                    <p>{this.state.addFavText}</p>
+            </div>
         </section>
             <section className="dishDetails">
                     <h1>Dish Name</h1>
@@ -41,9 +45,12 @@ changeHeart = ()=>{
                 </section>
             <section className="ingredients">
                     <ol>Ingredients
-                        <li>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan risus ac iaculis tincidunt. Ut dignissim metus in euismod lobortis. Praesent convallis, ligula rhoncus elementum mattis</li>
-                        <li>2. eget condimentum enim nisl a libero. Integer at lorem massa. Cras porttitor tincidunt tellus a accumsan. Phasellus eu dui ultricies, luctus felis eu, venenatis mi. Quisque in facilisis dui.</li>
-                        <li>3. Aenean at sapien vel purus facilisis blandit. Aliquam erat volutpat. Mauris sed arcu dapibus, varius urna sit amet, iaculis tortor. Quisque condimentum nisi et placerat efficitur. Donec ornar</li>
+                        <li>1. Lorem ipsum </li>
+                        <li>2. eget condimentum </li>
+                        <li>3. Aenean at </li>
+                        <li>4. Lorem ipsum </li>
+                        <li>5. eget condimentum </li>
+                        <li>6. Aenean at </li>
                     </ol>
                 </section>
             <section className="directions">

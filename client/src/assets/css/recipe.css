@@ -170,6 +170,12 @@ ol>li {
     left: -16px;
 }
 
+.heartPic>p {
+    width: 14vw;
+    position: absolute;
+    top: 49px;
+    left: -29px;
+}
 @media only screen and (min-width: 1000px) {
     body {
         margin: 0 8%;

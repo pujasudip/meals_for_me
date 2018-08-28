@@ -15,7 +15,7 @@ function OneResult(props){
                         <img src={props.imageSrc} style={style}/>
                     </div>
                     <div className="col s6">{props.title}</div>
-                    <div className="col s6">{props.likes}</div>
+                    <div className="col s6">Likes: {props.likes}</div>
                 </div>
             </div>
         </Link>
