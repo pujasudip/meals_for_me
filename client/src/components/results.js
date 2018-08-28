@@ -23,26 +23,31 @@ class Results extends Component {
         });
     }
 
+    displayMore(){
+        
+    }
     render() {
         const resultResponse = this.state.resultArray;
 
         console.log('result response on result.js:', resultResponse);
 
         let resultArray = '';
-
+resultResponse.sort
         if(resultResponse){
             resultArray = resultResponse.map((ele, index)=>{
                 return (
                     <OneResult key={ele.id} title={ele.title} likes={ele.likes} imageSrc={ele.image}/>
                 );
             });
+            // for(let recipeIndx = 0; recipeIndx < 10; recipeIndx++){
+            //     <OneResult key={ele.id} title={ele.title} likes={ele.likes} imageSrc={ele.image} />
+            // };
         }
-
-
 
         return (
             <div>
                 {resultArray}
+                {/* <button type='text' onClick={this.displayMore}>Display More</button> */}
             </div>
         )
     }
