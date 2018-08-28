@@ -5,9 +5,8 @@ import minus from '../assets/images/minus.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { searchIngredient } from '../actions';
-import bg_image from '../assets/images/bg.jpg';
+//import bg_image from '../assets/images/dogbg.jpg';
 import slogan from '../assets/images/chicken_soup.gif';
-// import commonIngredients from "../data/dummydata.json";
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 
 class LandingPage extends Component {
@@ -36,7 +35,7 @@ class LandingPage extends Component {
     }
 
     componentDidMount() {
-        // document.body.style.backgroundImage = `url(${bg_image})`;
+        //document.body.style.backgroundColor = '';
     }
 
     userInputHandler(event) {
