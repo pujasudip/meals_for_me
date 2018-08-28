@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
 import reduxPromise from 'redux-promise';
 
-const store = createStore(rootReducer, {}, applyMiddleware(reduxPromise));
+const store = createStore(rootReducer, applyMiddleware(reduxPromise));
 
 
 ReactDOM.render(

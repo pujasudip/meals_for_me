@@ -3,19 +3,13 @@ import '../assets/css/login.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { userLogin, checkLoginStatus } from "../actions";
+import { userLogin } from "../actions";
 
 
 class Login extends React.Component{
 
     userLoggingIn = () =>{
         this.props.userLogin('leah', 'abc');
-
-        // if(resp.data.success){
-        //     console.log('logged in');
-        // } else {
-        //     console.log('login unsuccessful');
-        // }
     };
 
     componentDidMount(){
@@ -38,8 +32,14 @@ class Login extends React.Component{
 
     render(){
         const resp = this.props.loginResponse.userLoginResponse.data;
-        console.log('a:', resp);
+        let userLoggedIn = false;
+        if(resp){
+            userLoggedIn =  resp.success;
+        }
+
         return (
+            userLoggedIn ? 'logged in'
+                :
            <div className='container login'>
                <form className='col'>
                    <div className='input-field col s6'>
@@ -73,4 +73,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {userLogin: userLogin,  login_status: checkLoginStatus})(Login);
+export default connect(mapStateToProps, {userLogin: userLogin})(Login);

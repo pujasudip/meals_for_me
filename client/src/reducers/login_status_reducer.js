@@ -7,7 +7,7 @@ const DEFAULT_STATE = {
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type){
         case types.LOGIN_STATUS:
-            return { userLoginResponse: action.payload};
+            return { login_status : action.payload};
         default:
             return state;
     }

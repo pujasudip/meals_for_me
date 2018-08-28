@@ -4,6 +4,7 @@ import axios from 'axios';
 
 
 const BASE_URL = 'http://localhost:8000/user_info.php';
+const DEFAULT_LOGIN_STATUS = false;
 
 export function searchIngredient(){
     return {
@@ -22,14 +23,16 @@ export function userLogin(username, password){
     }
 }
 
-export function checkLoginStatus(){
-    const response = axios.post(`${BASE_URL}`);
-    console.log('status:', response);
-    return {
-        type: types.LOGIN_STATUS,
-        payload: response
-    }
-}
+// export function setLoginStatus(username = 'No one is logged in', status = DEFAULT_LOGIN_STATUS){
+//     let userInfo = {
+//         username: username,
+//         status: status
+//     };
+//     return {
+//         type: types.LOGIN_STATUS,
+//         payload: userInfo
+//     }
+// }
 
 export function addIngredeints(ingredient){
     return {

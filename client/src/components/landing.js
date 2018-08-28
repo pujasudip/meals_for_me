@@ -10,14 +10,13 @@ import slogan from '../assets/images/chicken_soup.gif';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 
 class LandingPage extends Component {
-
-    commonFoodIndex = 0;
+    foodGroup = [0,1,2];
 
     constructor(props) {
         super(props);
         this.state = {
             currentIngredientInput: '',
-            commonIngredients: commonIngredientsRef[this.commonFoodIndex].food
+            commonIngredients: commonIngredientsRef[this.foodGroup[0]].food,
         };
     }
 
@@ -46,22 +45,33 @@ class LandingPage extends Component {
     }
 
     addIngredientToListFromButton(item){
-        this.commonFoodIndex++;
+        console.log('foodGroup:', this.foodGroup);
+        this.foodGroup.shift();
         this.props.addIngredient(item);
 
-        if(this.commonFoodIndex < 3){
+        if(this.props.ingredients.length < 2){
             this.setState({
-                commonIngredients: commonIngredientsRef[this.commonFoodIndex].food
+                commonIngredients: commonIngredientsRef[this.foodGroup[0]].food
             });
         }
     }
 
     removeFromTheIngredient(index) {
-       this.props.removeIngredient(index);
+        debugger;
+        console.log(this.foodGroup);
+        this.foodGroup.push(index);
+        this.foodGroup.sort();
+        this.props.removeIngredient(index);
+        const modifiedIngredient = commonIngredientsRef[this.foodGroup[0]].food;
+        console.log('modifiedIngredient:', modifiedIngredient);
+        if(this.props.ingredients.length < 2){
+            this.setState({
+                commonIngredients: modifiedIngredient
+            });
+        }
     }
 
     clearUserInputs(){
-        this.commonFoodIndex = 0;
         this.props.clearUserIngredientInputs();
     }
 
@@ -80,7 +90,7 @@ class LandingPage extends Component {
         });
 
         const commonIngredientsBtns = this.state.commonIngredients.map((item, index) => {
-            return (<button className={`btn btn-flat ${colorArray[this.commonFoodIndex]}`} onClick={() => this.addIngredientToListFromButton(item, index)} key={index}>{item}</button>)
+            return (<button className={`btn btn-flat ${colorArray[this.foodGroup[0]]}`} onClick={() => this.addIngredientToListFromButton(item, index)} key={index}>{item}</button>)
         });
 
         return (
