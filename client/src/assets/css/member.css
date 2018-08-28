@@ -1,0 +1,21 @@
+.memberPicture{
+    border-radius: 50%;
+    background-color: red;
+    width: 100px;
+    height: 100px;
+}
+.memberInfo {
+    display: inline-block;
+}
+.memberIndividual{
+    background-color: rgba(141, 140, 128, 0.36);
+    border-bottom: 2px solid #ffffff;
+}
+
+img.memberImg {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #d0ff00;
+    border-radius: 50px;
+    box-shadow: 7px 7px 5px rgba(165, 165, 165, 0.73);
+}

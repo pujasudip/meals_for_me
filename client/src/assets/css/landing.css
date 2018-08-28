@@ -1,0 +1,64 @@
+.menu-banner {
+    height: 15vh;
+    background-color: #00d3ff;
+}
+
+#ingAddMinImg {
+    width: 50px;
+    margin: auto;
+}
+
+.landPgSearchBtn {
+    width: 50vw;
+}
+.landPgSearchBtn > * {
+    color: white;
+}
+
+#landPgSearchBtn>* {
+    color: #016200;
+    text-decoration: none;
+}
+
+.ingredientBtns>button {
+    width: 100px;
+    height: 40px;
+    background-color: green;
+    color: white;
+}
+button{
+    margin: 2px;
+}
+.slogan > img{
+    width: 50vw;
+    height: 100px;
+    animation: swing 10s linear alternate infinite;
+}
+.commonFoodHeader{
+    text-align: center;
+    width: 250px;
+    margin: 10px auto;
+    color: green;
+    border-width: 3px 3px 0 3px;
+    border-color: #61fb16;
+    border-style: groove;
+    border-radius: 30px;
+    text-shadow: 2px 2px 7px #8e8e8e;
+}
+@keyframes swing {
+    0%{
+        transform: rotate(10deg);
+    }
+    25%{
+        transform: rotate(-10deg);
+    }
+    50%{
+        transform: translateX(0%);
+    }
+    75%{
+        transform: translateX(-10%);
+    }
+    100%{
+        transform: translateX(10%);
+    }
+}
