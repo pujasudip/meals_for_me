@@ -1,9 +1,14 @@
 .header {
+    position: sticky !important;
     display: flex;
     height: 10vh;
     justify-content: space-between;
     background-color: rgba(115, 128, 0, 0.65);
     margin-bottom: 30px;
+}
+
+.headerBanner{
+    : sticky;
 }
 
 .logo{
