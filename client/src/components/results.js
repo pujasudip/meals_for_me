@@ -26,7 +26,7 @@ class Results extends Component {
     render() {
         const resultResponse = this.state.resultArray;
 
-        console.log(resultResponse);
+        console.log('result response on result.js:', resultResponse);
 
         let resultArray = '';
 
