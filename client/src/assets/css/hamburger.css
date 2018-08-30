@@ -1,6 +1,6 @@
-.home > i{
+.home i{
     vertical-align: sub;
-    color: green;
+    color: #ff1383;
 }
 .closeIcon{
     cursor: pointer;

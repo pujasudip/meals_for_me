@@ -216,3 +216,39 @@ ol>li {
         z-index: -1;
     }
 }
+.tab{
+    border: 1px solid red;
+    height: 50px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.tab:hover{
+    background-color: rgba(255, 0, 0, 0.47);
+    color: white;
+    border: none;
+}
+
+.wine_pairing_slider{
+    position: absolute;
+    top: 30%;
+    right: -120px;
+    width: 150px;
+    height: 50px;
+    border-radius: 20px 0 0 20px;
+    background-color: red;
+    transition: right 500ms, height 1000ms;
+}
+
+.wine_pairing_slider:hover{
+    right: 0;
+    height: 200px;
+    background-color: rgba(255, 0, 116, 0.78);
+}
+.wine_pairing_body{
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 200px;
+    background-color: blue;
+}

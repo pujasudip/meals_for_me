@@ -34,7 +34,6 @@ class Results extends Component {
         // console.log('result response on result.js:', resultResponse);
 
         let resultArray = '';
-// resultResponse.sort
         if(resultResponse){
             resultArray = resultResponse.map((ele, index)=>{
                 return (

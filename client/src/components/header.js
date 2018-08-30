@@ -48,11 +48,16 @@ class Header extends Component {
         }
     }
     render() {
-        console.log('aa:', this.props.login_status);
         let menuClass = this.state.menuShow ? ['menu', 'menu_backdrop'] : ['no_menu', 'no_menu'];
+        let username = '';
+        let success = false;
+        if(this.props.loginResponse){
+            username = this.props.loginResponse.username;
+            success = this.props.loginResponse.success;
+        }
         return (
             <div className='header'>
-                {this.displayLogInBtn()}
+                { success ? <h5 className='center'>Hello, {username}</h5> : this.displayLogInBtn() }
                 <div>
                     <Link to='/'>
                         <img src={logo} className='logo'/>
@@ -73,7 +78,7 @@ class Header extends Component {
 
 function mapStateToProps(state){
     return {
-        login_status: state.login_status
+        loginResponse: state.userLoginResponse.userLoginResponse.data
     }
 }
 

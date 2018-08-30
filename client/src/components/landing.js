@@ -13,6 +13,7 @@ import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 class LandingPage extends Component {
     foodGroup = [0,1,2];
 
+
     constructor(props) {
         super(props);
         this.state = {
