@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
 import '../assets/css/recipe.css';
-import emptyHeart from '../assets/images/heart-outline.png'
-import redHeart from '../assets/images/heart-icon-red.png'
+import emptyHeart from '../assets/images/heart-outline.png';
+import redHeart from '../assets/images/heart-icon-red.png';
+import Directions from './directions';
+import Nutrition from './nutrition';
+import ShoppingList from './shopping_list';
 
 class Recipe extends Component {
     constructor(props) {
         super(props);
         this.state = {
             imgSrc: emptyHeart,
-            addFavText: 'Add to Favorites'
+            addFavText: 'Add to Favorites',
+            component: 'Directions'
         }
+        this.handleSelect = this.handleSelect.bind(this);
     }
 changeHeart = ()=>{
     let heartStatus;
@@ -24,6 +29,29 @@ changeHeart = ()=>{
         imgSrc: heartStatus
     });
 }
+    handleSelect(key) {
+        alert(`selected ${key}`);
+        this.setState({ key: key });
+    }
+
+    dynamicComponent(){
+        const comp = this.state.component;
+
+        switch(comp){
+            case 'Directions':
+                return  <Directions />;
+            case 'Nutrition':
+                return <Nutrition />;
+            case 'ShoppingList':
+                return <ShoppingList />;
+        }
+    }
+
+    setStateForComponentRender(comp){
+        this.setState({
+            component: comp
+        });
+    }
     render() {
         return(
         <div>
@@ -53,17 +81,23 @@ changeHeart = ()=>{
                         <li>6. Aenean at </li>
                     </ol>
                 </section>
-            <section className="directions">
-                    <ol start= '1'>Directions
-                        <li>t viverra diam at libero interdum, quis dignissim leo aliquam. Quisque quis scelerisque dui. Aenean justo mi, semper convallis massa ac, pulvinar mollis dolor. Suspendisse ris</li>
-                        <li>nte aliquam et. Nullam egestas fringilla dapibus. Quisque eget metus odio. Duis ac ante auctor, consequat eros at, euismod tellus. Aliquam et cursus quam, sed lacinia tortor.</li>
-                        <li>llis. Ut malesuada sapien sed varius ullamcorper. Praesent vestibulum, orci eget varius tristique, nisi magna vehicula sapien, mollis ullamcorper felis felis a justo. Aenean in vehicula est. Mauris feugiat orci ac neque finibus faucibus. Donec ac lacus aliquam, aliquet arcu id, imperdiet tellus. Ut consequat id arcu vitae placerat. </li>
-                    </ol>
-                </section>
-                </div>
+            <div className='row s12'>
+                <div className='tab col s4 center' title='Directions' onClick={()=>this.setStateForComponentRender('Directions')}>Directions</div>
+                <div className='tab col s4 center' title='Nutrition' onClick={()=>this.setStateForComponentRender('Nutrition')}>Nutritions</div>
+                <div className='tab col s4' title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList')}>Shopping List</div>
+            </div>
+            <div>
+                {this.dynamicComponent()}
+            </div>
+            <div className='wine_pairing_slider'>
+                <i className='material-icons prefix'>navigate_before</i><span className='white-text'>Paired Wines</span>
+            </div>
+
+        </div>
 
         )}
 }
+
 
 export default Recipe;
 

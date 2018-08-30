@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import '../assets/css/signup.css';
 import {Link} from "react-router-dom";
 
-class SignUp extends React.Component{
+class SignUp extends Component{
+
+    renderInput(){
+
+    }
+
+
     render(){
         return (
             <div className='container signup'>
@@ -18,6 +24,7 @@ class SignUp extends React.Component{
                         <div className='input-field col s6'>
                             <i className="material-icons prefix">person_outline</i>
                             <input name='lastName'
+                                   id='lName'
                                    type='text'
                                    className='validate' />
                             <label htmlFor='lName'>Last Name</label>
@@ -26,6 +33,7 @@ class SignUp extends React.Component{
                     <div className='input-field col s6'>
                         <i className="material-icons prefix">person</i>
                         <input name='username'
+                               id='username'
                                type='text'
                                className='validate' />
                         <label htmlFor='username'>Username</label>
@@ -33,9 +41,10 @@ class SignUp extends React.Component{
                     <div className='input-field col s6'>
                         <i className="material-icons prefix">email</i>
                         <input name='email'
+                               id='email'
                                type='tel'
                                className='validate' />
-                        <label htmlFor='icon_email'>Email</label>
+                        <label htmlFor='email'>Email</label>
                     </div>
                     <div className='input-field col s6'>
                         <i className="material-icons prefix">lock</i>

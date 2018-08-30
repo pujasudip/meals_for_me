@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/css/hamburger.css';
 import { connect } from 'react-redux';
+import axios from "axios";
+import { userLogout } from '../actions';
 
 class HamburgerMenu extends Component{
+    logOutUser = async () => {
+        this.props.hideMenu();
+        console.log('aa:', this.props.userLogout());
+    };
+
     render() {
         let username = '';
         let success = false;
@@ -17,25 +24,28 @@ class HamburgerMenu extends Component{
                     <i className='material-icons closeIcon'
                        onClick={this.props.hideMenu}>close</i>
                 </div>
-                <div>Hello, {username}</div>
-                <i className='material-icons'>home</i>
+                { success ? <div>Hello, {username}</div> : '' }
+                <i className='material-icons prefix'>home</i>
                 <Link to='/'
                       onClick={this.props.hideMenu}>&nbsp;Home</Link><br/>
                 <i className='material-icons prefix'>favorite</i>
                 <Link to='/favorites'
                       onClick={this.props.hideMenu}>&nbsp;Favorites</Link><br/>
-
-                { success ? ''
+                <i className='material-icons prefix'>group</i>
+                <Link to='/about_us'
+                      onClick={this.props.hideMenu}>&nbsp;About Team</Link><br/>
+                { success ?
+                    <div>
+                        <i className='material-icons prefix'>exit_to_app</i>
+                        <Link to='/' onClick={this.logOutUser}>&nbsp;Log out</Link>
+                    </div>
                     :
                     <div>
-                        <i className='material-icons'>account_circle</i>
+                        <i className='material-icons prefix'>account_circle</i>
                         < Link to='/login'
-                        onClick={this.props.hideMenu}>&nbsp;Log In</Link><br/>
+                               onClick={this.props.hideMenu}>&nbsp;Log In</Link><br/>
                     </div>
                 }
-                <i className='material-icons'>group</i>
-                <Link to='/about_us'
-                      onClick={this.props.hideMenu}>&nbsp;About Team</Link>
             </div>
         );
     }
@@ -43,8 +53,8 @@ class HamburgerMenu extends Component{
 
 function mapStateToProps(state){
     return {
-        loginResponse: state.userLoginResponse.userLoginResponse.data
+        loginResponse: state.userLoginResponse.userLoginResponse.data,
     }
 }
 
-export default connect(mapStateToProps, {})(HamburgerMenu);
+export default connect(mapStateToProps, { userLogout: userLogout })(HamburgerMenu);

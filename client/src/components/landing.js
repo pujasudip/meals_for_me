@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { searchIngredient, addIngredeints, removeIngredients, clearUserIngredientInputs } from '../actions';
 import bg_image from '../assets/images/bg.jpg';
-import { searchIngredient } from '../actions';
 //import bg_image from '../assets/images/dogbg.jpg';
 import slogan from '../assets/images/chicken_soup.gif';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 
 class LandingPage extends Component {
     foodGroup = [0,1,2];
+
 
     constructor(props) {
         super(props);

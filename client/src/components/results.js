@@ -31,10 +31,9 @@ class Results extends Component {
         console.log('inputs:', this.props.userInputs);
         const resultResponse = this.state.resultArray;
 
-        console.log('result response on result.js:', resultResponse);
+        // console.log('result response on result.js:', resultResponse);
 
         let resultArray = '';
-resultResponse.sort
         if(resultResponse){
             resultArray = resultResponse.map((ele, index)=>{
                 return (
