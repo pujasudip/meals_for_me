@@ -231,18 +231,20 @@ ol>li {
 .wine_pairing_slider{
     position: absolute;
     top: 30%;
-    right: -120px;
-    width: 150px;
+    right: 0;
+    width: 40px;
     height: 50px;
     border-radius: 20px 0 0 20px;
     background-color: red;
-    transition: right 500ms, height 1000ms;
+    transition: height 100ms, width 1000ms;
 }
 
 .wine_pairing_slider:hover{
     right: 0;
+    width: 150px;
     height: 200px;
     background-color: rgba(255, 0, 116, 0.78);
+    transition: height 1000ms, width 100ms;
 }
 .wine_pairing_body{
     position: relative;
