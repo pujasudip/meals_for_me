@@ -1690,27 +1690,4 @@ $a = '[{
 }]';
 
 
-//query template to follow
-// INSERT INTO `recipes`(`recipe_id`, `recipe_name`, `recipe_img`) 
-// VALUES ([value-1],[value-2],[value-3])
-// echo "Recipe Id:",$data[$i]['id'],"<br/>";
-// echo "   Recipe Title: ",$data[$i]['title'],"<br/>";
-// echo "IMG file path: ",$data[$i]['image'],"<br/>","<br/>","<br/>";
 
-//$data = json_encode($json);
-
-$data = json_decode($a);
-print($a);
-
-//$output = [];
-
-//for($i=0 ; $i<count((array)$data) ; $i++){
-//	$data[$i]['title'] = mysqli_real_escape_string($conn, $data[$i]['title']);
-//	$query = "REPLACE INTO `recipes`(`recipe_id`, `recipe_name`, `recipe_img`)VALUES({$data[$i]['id']},'{$data[$i]['title']}','{$data[$i]['image']}')";
-//	$result = mysqli_query($conn, $query);
-//	if (mysqli_errno($conn)){
-//		print(mysqli_error($conn).': ');
-//		print($query);
-//	}
-//	$row = mysqli_affected_rows($conn);
-//}
