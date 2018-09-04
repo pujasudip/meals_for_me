@@ -37,7 +37,7 @@ class Header extends Component {
     displayLogInBtn(){
         if(this.props.location.pathname === '/'){
            return( <Link to='/login'>
-                <button className='btn btn-flat purple white-text btn-small headerBtn'>Login</button>
+                <button className='btn btn-flat white-text btn-small headerBtn'>Login</button>
         </Link> )
         } else {
             return (
@@ -60,7 +60,8 @@ class Header extends Component {
                 { success ? <h5 className='center'>Hello, {username}</h5> : this.displayLogInBtn() }
                 <div>
                     <Link to='/'>
-                        <img src={logo} className='logo'/>
+                        {/* <img src={logo} className='logo'/> */}
+                        <h4 className='logo'>RF</h4>
                     </Link>
                 </div>
                 <div>
