@@ -1,9 +1,6 @@
 <?php
 
 require_once('mysql_connect.php');
-$j=0;
-
-do{
 
 $ch = curl_init();
 
@@ -14,8 +11,8 @@ $url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' . $
 curl_setopt($ch, CURLOPT_URL, $url);
 
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'X-Mashape-Key: d5nUBNnVnGmshBtJT6cj4FVln0Rfp10wqLgjsnMZpzV7REGknF',
-    'X-Mashape-Host: spoonacular-recipe-food-nutrition-v1.p.mashape.com'
+'X-Mashape-Key: d5nUBNnVnGmshBtJT6cj4FVln0Rfp10wqLgjsnMZpzV7REGknF',
+'X-Mashape-Host: spoonacular-recipe-food-nutrition-v1.p.mashape.com'
 ));
 
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -36,7 +33,6 @@ $dishID = $decoded['id'];
 
 if(empty($dishID)) {
     echo 'dish did not exist';
-    continue;
 }
 $dishScore = $decoded['spoonacularScore'];
 $dishName = addslashes($decoded['title']);
@@ -75,26 +71,14 @@ $healthScore = $decoded['healthScore'];
 $diets = $decoded['diets'];
 $winePairing = $decoded['winePairing'];
 
-//these are for table input
 $jsonInstructions = addslashes(json_encode($dishInstructions));
 $jsonIngredients = addslashes(json_encode($extendedIngredients));
 $jsonWinePairing = addslashes(json_encode($winePairing));
 $jsonDiets = addslashes(json_encode($diets));
 
-
 if (!$conn) {
     die("Connection Failed: " . mysqli_connect_error());
 }
-/*print($dishID);
-print($dishScore);
-print($dishName);
-print($dishTimeToCook);
-print($dishServings);
-print($dishImage);
-print($jsonInstructions);
-print($jsonIngredients);
-print($vegetarian);
-print($vegan);*/
 
 $recipeQuery = "
 REPLACE INTO 
@@ -107,45 +91,42 @@ $dishID,$dishScore,'$dishName',$dishTimeToCook,$dishServings,
 $glutenFree,$dairyFree,$dishLikes,$healthScore,'$jsonDiets','$jsonWinePairing'
 )";
 
-    if (mysqli_query($conn, $recipeQuery)) {
-        print( $dishID . ' ' . $dishName);
-    } else {
-        echo "Error Recipes: " . $recipeQuery . '<br>' . mysqli_error($conn);
-        //echo 'error';
-    }
+if (mysqli_query($conn, $recipeQuery)) {
+    print( $dishID . ' ' . $dishName);
+} else {
+    echo "Error Recipes: " . $recipeQuery . '<br>' . mysqli_error($conn);
+    //echo 'error';
+}
 
-    for ($i = 0; $i < count($extendedIngredients); $i++) {
-        $eachIngredientID = $decoded["extendedIngredients"][$i]['id'];
-        $eachIngredientName = addslashes($decoded["extendedIngredients"][$i]['name']);
-        $ingredientsQuery = "
+for ($i = 0; $i < count($extendedIngredients); $i++) {
+    $eachIngredientID = $decoded["extendedIngredients"][$i]['id'];
+    $eachIngredientName = addslashes($decoded["extendedIngredients"][$i]['name']);
+    $ingredientsQuery = "
 REPLACE INTO `ingredients`(`ingredient_ID`, `ingredient_name`) VALUES ($eachIngredientID,'$eachIngredientName')";
 
-        if (mysqli_query($conn, $ingredientsQuery)) {
-            echo " ";
-        } else {
-            echo "Error Ingredients: " . $ingredientsQuery . '<br>' . mysqli_error($conn);
-        }
+    if (mysqli_query($conn, $ingredientsQuery)) {
+        echo " ";
+    } else {
+        echo "Error Ingredients: " . $ingredientsQuery . '<br>' . mysqli_error($conn);
     }
+}
 
-    for ($x = 0; $x < count($extendedIngredients); $x++) {
-        $eachIngredientID = $decoded["extendedIngredients"][$x]['id'];
-        $eachIngredientName = addslashes($decoded["extendedIngredients"][$x]['name']);
+for ($x = 0; $x < count($extendedIngredients); $x++) {
+    $eachIngredientID = $decoded["extendedIngredients"][$x]['id'];
+    $eachIngredientName = addslashes($decoded["extendedIngredients"][$x]['name']);
 
-        $recipeIngredientQuery = "
+    $recipeIngredientQuery = "
 REPLACE INTO `recipe_ingredients`(`recipe_ID`, `ingredient_ID`, `Name`, `Image_url`) 
 VALUES (
 $dishID,$eachIngredientID,'$dishName','$dishImage'
 )";
-        if (mysqli_query($conn, $recipeIngredientQuery)) {
-            echo " ";
-        } else {
-            echo "Error REC ING: " . $recipeIngredientQuery . '<br>' . mysqli_error($conn);
-        }
+    if (mysqli_query($conn, $recipeIngredientQuery)) {
+        echo " ";
+    } else {
+        echo "Error REC ING: " . $recipeIngredientQuery . '<br>' . mysqli_error($conn);
     }
-$j++;
-} while($j<15);
+}
 
 mysqli_close($conn);
-
 
 ?>

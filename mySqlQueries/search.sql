@@ -1,4 +1,5 @@
 //FOR 1 query
+
 SELECT `recipes`.*
 FROM `recipes`
 JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
@@ -6,7 +7,9 @@ JOIN `ingredients` ON `recipe_ingredients`.`ingredient_ID` = `ingredients`.`ingr
 WHERE `ingredients`.`ingredient_name` LIKE "%cheese%"
 ORDER BY `recipes`.`Score` DESC
 
+
 //FOR 2 queries
+
 SELECT `recipes`.*
 FROM `recipes`
 JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
@@ -15,7 +18,9 @@ WHERE (`ingredients`.`ingredient_name` LIKE "%rice%" AND `ingredients`.`ingredie
 OR (`ingredients`.`ingredient_name` LIKE "%chicken%" AND `ingredients`.`ingredient_name` NOT LIKE "%rice%")
 ORDER BY `recipes`.`Score` DESC
 
+
 //FOR 3 queries
+
 SELECT `recipes`.*
 FROM `recipes`
 JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
