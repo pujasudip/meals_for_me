@@ -23,7 +23,7 @@ class LandingPage extends Component {
     }
 
     componentDidMount() {
-        //document.body.style.backgroundColor = '';
+        document.body.style.backgroundColor = '#FEFAE0';
     }
 
     userInputHandler(event) {
@@ -79,7 +79,7 @@ class LandingPage extends Component {
 
     render() {
         console.log('prosp:', this.props.ingredients);
-        const colorArray = ['#ffebee red lighten-2', 'green lighten-2', '#795548 brown'];
+        const colorArray = ['#C98474','#EFB951', '#874C62'];
         const ingredient = this.props.ingredients.map((item, index) => {
             return (<div key={index} className='row'>
                 <div className='col s10'>
@@ -92,20 +92,21 @@ class LandingPage extends Component {
         });
 
         const commonIngredientsBtns = this.state.commonIngredients.map((item, index) => {
-            return (<button className={`btn btn-flat ${colorArray[this.foodGroup[0]]}`} onClick={() => this.addIngredientToListFromButton(item, index)} key={index}>{item}</button>)
+            return (<button className={`btn btn-flat ${colorArray[this.foodGroup[0]]}`} 
+            style={{ backgroundColor: colorArray[this.foodGroup[0]] }} 
+            onClick={() => this.addIngredientToListFromButton(item, index)} 
+            key={index}>{item}</button>)
         });
 
         return (
             <div className='container'>
-                <div className='slogan center'>
-                    <img src={slogan}/>
+                <div className='text center'>
+                    <h1>Enter your Ingredients</h1>
                 </div>
                 {this.props.ingredients.length < 3 ?
                     <div className='search_field'>
-                        <div>
-                            <input placeholder='Insert upto 3 items' className='center' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
-                        </div>
-                        <div className='center'>
+                        <div className='col s12'>
+                            <input placeholder='Insert upto 3 ingredents' className='col s6 left' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
                             <img id="ingAddMinImg" src={plus} onClick={this.addIngredientToListFromInput.bind(this)} />
                         </div>
                     </div>
@@ -115,21 +116,21 @@ class LandingPage extends Component {
                 <div className='container'>
                     {ingredient}
                 </div>
-                <div>
-                    <Link className="landPgSearchBtn btn btn-block center-block" to='/results'>Search</Link>
-                    <div className='center' style={this.props.ingredients.length !== 3 ? {'display': 'none'} : {}}>
-                        <button type='button' className='btn btn-flat clearBtn waves-effect' onClick={()=>this.clearUserInputs()}>Clear Inputs</button>
-                    </div>
-                </div>
                 {this.props.ingredients.length < 3 ?
                     <div className="ingredientBtns center">
                         <div>
-                            <h5 className='commonFoodHeader'>COMMON FOODS</h5>
+                            <h5 className='commonFoodHeader'>Common Choices</h5>
                         </div>
                         {commonIngredientsBtns}
                     </div>
                     : ''
                 }
+                <div>
+                    <Link className="landPgSearchBtn btn btn-block center-block" to='/results'>Search</Link>
+                    <div className='center' style={this.props.ingredients.length !== 3 ? { 'display': 'none' } : {}}>
+                        <button type='button' className='btn btn-flat clearBtn waves-effect' onClick={() => this.clearUserInputs()}>Clear Inputs</button>
+                    </div>
+                </div>
             </div>
         );
     }
