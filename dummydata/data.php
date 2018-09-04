@@ -1,5 +1,8 @@
 
 <?php
+
+header("Access-Control-Allow-Origin: *");
+
 require_once('mysqlconnect.php');
 
 $json = '[{
@@ -1604,39 +1607,87 @@ $json = '[{
 	"likes": 0
 }]';
 
+$a = '[{
+	"id": 986153,
+	"title": "Korean Fried Chicken",
+	"image": "https://spoonacular.com/recipeImages/986153-312x231.jpg",
+	"imageType": "jpg",
+	"usedIngredientCount": 1,
+	"missedIngredientCount": 0,
+	"likes": 209
+}, {
+	"id": 1013083,
+	"title": "Perfect Instant Pot Chicken Breasts (Fresh or Frozen!)",
+	"image": "https://spoonacular.com/recipeImages/1013083-312x231.jpg",
+	"imageType": "jpg",
+	"usedIngredientCount": 1,
+	"missedIngredientCount": 0,
+	"likes": 25
+}, {
+	"id": 1013523,
+	"title": "4 Ingredient Grilled Pepper Chicken",
+	"image": "https://spoonacular.com/recipeImages/1013523-312x231.jpg",
+	"imageType": "jpg",
+	"usedIngredientCount": 1,
+	"missedIngredientCount": 0,
+	"likes": 12
+}, {
+	"id": 1009580,
+	"title": "How to Make Shredded Chicken in the Instant Pot",
+	"image": "https://spoonacular.com/recipeImages/1009580-312x231.png",
+	"imageType": "png",
+	"usedIngredientCount": 1,
+	"missedIngredientCount": 0,
+	"likes": 1
+}, {
+	"id": 492233,
+	"title": "Santa Fe Baked Chicken",
+	"image": "https://spoonacular.com/recipeImages/492233-312x231.jpg",
+	"imageType": "jpg",
+	"usedIngredientCount": 1,
+	"missedIngredientCount": 1,
+	"likes": 107520
+}, {
+	"id": 989736,
+	"title": "Oven Roasted Chicken Legs",
+	"image": "https://spoonacular.com/recipeImages/989736-312x231.jpg",
+	"imageType": "jpg",
+	"usedIngredientCount": 1,
+	"missedIngredientCount": 1,
+	"likes": 3682
+}, {
+	"id": 986172,
+	"title": "Fried Chicken",
+	"image": "https://spoonacular.com/recipeImages/986172-312x231.jpg",
+	"imageType": "jpg",
+	"usedIngredientCount": 1,
+	"missedIngredientCount": 1,
+	"likes": 499
+}, {
+	"id": 974461,
+	"title": "Brown Sugar Italian Chicken",
+	"image": "https://spoonacular.com/recipeImages/974461-312x231.jpg",
+	"imageType": "jpg",
+	"usedIngredientCount": 1,
+	"missedIngredientCount": 1,
+	"likes": 323
+}, {
+	"id": 944490,
+	"title": "Slow Cooker Rotisserie Chicken",
+	"image": "https://spoonacular.com/recipeImages/944490-312x231.jpg",
+	"imageType": "jpg",
+	"usedIngredientCount": 1,
+	"missedIngredientCount": 1,
+	"likes": 246
+}, {
+	"id": 956194,
+	"title": "Bacon Brown Sugar Chicken Bites",
+	"image": "https://spoonacular.com/recipeImages/956194-312x231.jpg",
+	"imageType": "jpg",
+	"usedIngredientCount": 1,
+	"missedIngredientCount": 1,
+	"likes": 215
+}]';
 
 
-//query template to follow
-// INSERT INTO `recipes`(`recipe_id`, `recipe_name`, `recipe_img`) 
-// VALUES ([value-1],[value-2],[value-3])
-// echo "Recipe Id:",$data[$i]['id'],"<br/>";
-// echo "   Recipe Title: ",$data[$i]['title'],"<br/>";
-// echo "IMG file path: ",$data[$i]['image'],"<br/>","<br/>","<br/>";
 
-$data = json_decode($json,true);
-$output = [];
-
-$joshQueryStringForUpdatedData = "
-REPLACE INTO `recipes`
-(`id`, `title`, `image`, `imageType`, `usedIngredientCount`, `missedIngredientCount`,`likes`)
-VALUES(
-{$data[$i]['id']},
-'{$data[$i]['title']}',
-'{$data[$i]['image']}',
-'{$data[$i]['imageType']}',
-{$data[$i]['usedIngredientCount']}),
-{$data[$i]['missedIngredientCount']},
-{$data[$i]['likes']}
-)";
-
-
-for($i=0 ; $i<count((array)$data) ; $i++){
-	$data[$i]['title'] = mysqli_real_escape_string($conn, $data[$i]['title']);
-	$query = "REPLACE INTO `recipes`(`recipe_id`, `recipe_name`, `recipe_img`)VALUES({$data[$i]['id']},'{$data[$i]['title']}','{$data[$i]['image']}')";
-	$result = mysqli_query($conn, $query);
-	if (mysqli_errno($conn)){
-		print(mysqli_error($conn).': ');
-		print($query);
-	}
-	$row = mysqli_affected_rows($conn); 
-}

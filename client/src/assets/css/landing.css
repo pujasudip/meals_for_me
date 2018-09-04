@@ -30,9 +30,10 @@ button{
     margin: 2px;
 }
 .slogan > img{
-    width: 50vw;
+    width: 20vw;
     height: 100px;
     animation: swing 10s linear alternate infinite;
+    z-index: 1;
 }
 .commonFoodHeader{
     text-align: center;
@@ -60,5 +61,12 @@ button{
     }
     100%{
         transform: translateX(10%);
+    }
+}
+@media only screen and (max-width: 500px) {
+    .slogan > img{
+        width: 30vw;
+        height: 50px;
+        animation: swing 10s linear alternate infinite;
     }
 }
