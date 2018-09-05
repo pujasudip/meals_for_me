@@ -17,7 +17,7 @@ class Results extends Component {
 
     async componentDidMount() {
         // document.body.style.backgroundImage = `url(${lf_image})`;
-        const response = await axios.get(BASE_URL);
+        const response = await axios.get(BASE_URL + '?one=' + 'banana' );
 
         this.setState({
             resultArray: response.data
