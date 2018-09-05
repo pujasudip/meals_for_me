@@ -1,7 +1,8 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE = {
-    ingredients: []
+    ingredients: [],
+    searched_recipe: ''
 };
 
 function  searchResult(state = DEFAULT_STATE, action){
@@ -15,6 +16,8 @@ function  searchResult(state = DEFAULT_STATE, action){
             return { ...state, ingredients};
         case types.CLEAR_USER_INGREDIENT_INPUTS:
             return {ingredients: []};
+        case types.SEARCHED_RECIPE:
+            return { searched_recipe: action.payload}
         default:
             return state;
 

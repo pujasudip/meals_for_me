@@ -4,8 +4,10 @@ import lf_image from "../assets/images/leaf_board.png";
 import axios from 'axios';
 import OneResult from './individual_result_panel';
 import { connect } from 'react-redux';
+import { formatPostData, formatQueryString } from '../helpers';
+import { searchedRecipe } from '../actions';
 
-const BASE_URL = 'http://localhost:8000/data.php';
+const BASE_URL = 'http://localhost:8000/server/getData.php';
 
 class Results extends Component {
     constructor(props) {
@@ -16,12 +18,7 @@ class Results extends Component {
     }
 
     async componentDidMount() {
-        // document.body.style.backgroundImage = `url(${lf_image})`;
-        const response = await axios.get(BASE_URL);
-
-        this.setState({
-            resultArray: response.data
-        });
+        this.props.searchedRecipe(this.props.userInputs);
     }
 
     displayMore(){
@@ -29,21 +26,21 @@ class Results extends Component {
     }
     render() {
         console.log('inputs:', this.props.userInputs);
-        const resultResponse = this.state.resultArray;
+        console.log('searched: ', this.props.searchedIngredients)
 
         // console.log('result response on result.js:', resultResponse);
 
         let resultArray = '';
-        if(resultResponse){
-            resultArray = resultResponse.map((ele, index)=>{
-                return (
-                    <OneResult key={ele.id} title={ele.title} likes={ele.likes} imageSrc={ele.image}/>
-                );
-            });
+        // if(resultResponse){
+        //     resultArray = resultResponse.map((ele, index)=>{
+        //         return (
+        //             <OneResult key={ele.id} title={ele.title} likes={ele.likes} imageSrc={ele.image}/>
+        //         );
+        //     });
             // for(let recipeIndx = 0; recipeIndx < 10; recipeIndx++){
             //     <OneResult key={ele.id} title={ele.title} likes={ele.likes} imageSrc={ele.image} />
             // };
-        }
+        // }
 
         return (
             <div>
@@ -56,8 +53,9 @@ class Results extends Component {
 
 function mapStateToProps(state){
     return {
-        userInputs: state.search.ingredients
+        userInputs: state.search.ingredients,
+        searchedIngredients: state.search.searched_recipe
     }
 }
 
-export default connect(mapStateToProps, {})(Results);
+export default connect(mapStateToProps, { searchedRecipe })(Results);
