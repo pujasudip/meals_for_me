@@ -1,4 +1,8 @@
 <?php
+
+header("Access-Control-Allow-Origin: *");
+
+
 if(empty($_GET)){
     exit('Invalid Search');
 }
@@ -21,7 +25,7 @@ FROM `recipes`
 JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
 JOIN `ingredients` ON `recipe_ingredients`.`ingredient_ID` = `ingredients`.`ingredient_ID`
 WHERE `ingredients`.`ingredient_name` LIKE '.'"%'.$ingredientOne.'%" 
-ORDER BY `recipes`.`Score` DESC';
+ORDER BY `recipes`.`Score` DESC LIMIT 50';
         $query = $queryForOne;
         break;
     case 2:
@@ -36,7 +40,7 @@ WHERE (`ingredients`.`ingredient_name` LIKE '.'"%'.$ingredientOne.'%"
 AND `ingredients`.`ingredient_name` NOT LIKE '.'"%'.$ingredientTwo.'%")
 OR (`ingredients`.`ingredient_name` LIKE '.'"%'.$ingredientTwo.'%" 
 AND `ingredients`.`ingredient_name` NOT LIKE '.'"%'.$ingredientOne.'%")
-ORDER BY `recipes`.`Score` DESC';
+ORDER BY `recipes`.`Score` DESC LIMIT 50';
         $query = $queryForTwo;
         break;
     case 3:
@@ -57,7 +61,7 @@ AND `ingredients`.`ingredient_name` NOT LIKE '.'"%'.$ingredientThree.'%")
 OR (`ingredients`.`ingredient_name` LIKE '.'"%'.$ingredientThree.'%"
 AND `ingredients`.`ingredient_name` NOT LIKE '.'"%'.$ingredientOne.'%"
 AND `ingredients`.`ingredient_name` NOT LIKE '.'"%'.$ingredientTwo.'%")
-ORDER BY `recipes`.`Score` DESC
+ORDER BY `recipes`.`Score` DESC LIMIT 50
 ';
         $query = $queryForThree;
         break;
