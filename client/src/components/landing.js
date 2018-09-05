@@ -11,14 +11,13 @@ import slogan from '../assets/images/chicken_soup.gif';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 
 class LandingPage extends Component {
-    foodGroup = [0,1,2];
-
+    foodIndex = 0;
 
     constructor(props) {
         super(props);
         this.state = {
             currentIngredientInput: '',
-            commonIngredients: commonIngredientsRef[this.foodGroup[0]].food,
+            commonIngredients: commonIngredientsRef[this.foodIndex].protein,
         };
     }
 
@@ -66,15 +65,27 @@ class LandingPage extends Component {
         this.props.removeIngredient(index);
         const modifiedIngredient = commonIngredientsRef[this.foodGroup[0]].food;
         console.log('modifiedIngredient:', modifiedIngredient);
-        if(this.props.ingredients.length < 2){
-            this.setState({
-                commonIngredients: modifiedIngredient
-            });
-        }
+        this.setState({
+            commonIngredients: modifiedIngredient
+        });
     }
 
     clearUserInputs(){
         this.props.clearUserIngredientInputs();
+        this.foodGroup = [0,1,2];
+    }
+
+    commonFoodCarousel(direction){
+
+        switch(direction){
+            case 'left':
+                return
+        }
+
+
+        this.setIndex({
+            commonIngredients: commonIngredientsRef[this.foodIndex].protein,
+        });
     }
 
     render() {
@@ -92,10 +103,8 @@ class LandingPage extends Component {
         });
 
         const commonIngredientsBtns = this.state.commonIngredients.map((item, index) => {
-            return (<button className={`btn btn-flat ${colorArray[this.foodGroup[0]]}`} 
-            style={{ backgroundColor: colorArray[this.foodGroup[0]] }} 
-            onClick={() => this.addIngredientToListFromButton(item, index)} 
-            key={index}>{item}</button>)
+
+            return (<button className={`btn btn-flat ${colorArray[0]}`} onClick={() => this.addIngredientToListFromButton(item, index)} key={index}>{item}</button>)
         });
 
         return (
@@ -121,7 +130,17 @@ class LandingPage extends Component {
                         <div>
                             <h5 className='commonFoodHeader'>Common Choices</h5>
                         </div>
-                        {commonIngredientsBtns}
+                        <div className="row s12 valign-wrapper">
+                            <div className="col s2">
+                                <i className="material-icons" onClick={this.commonFoodCarousel.bind(this)}>chevron_left</i>
+                            </div>
+                            <div className="col s8">
+                                {commonIngredientsBtns}
+                            </div>
+                            <div className="col s2">
+                                <i className="material-icons">chevron_right</i>
+                            </div>
+                        </div>
                     </div>
                     : ''
                 }
