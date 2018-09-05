@@ -10,40 +10,34 @@
 
 .landPgSearchBtn {
     width: 50vw;
+    background-color: #527E45;
 }
 .landPgSearchBtn > * {
     color: white;
 }
 
 #landPgSearchBtn>* {
-    color: #016200;
+    color: #527E45;
     text-decoration: none;
 }
 
 .ingredientBtns>button {
     width: 100px;
     height: 40px;
-    background-color: green;
     color: white;
 }
 button{
     margin: 2px;
 }
-.slogan > img{
+/* .slogan > img{
     width: 20vw;
     height: 100px;
     animation: swing 10s linear alternate infinite;
     z-index: 1;
-}
+} */
 .commonFoodHeader{
     text-align: center;
-    width: 250px;
     margin: 10px auto;
-    color: green;
-    border-width: 3px 3px 0 3px;
-    border-color: #61fb16;
-    border-style: groove;
-    border-radius: 30px;
     text-shadow: 2px 2px 7px #8e8e8e;
 }
 @keyframes swing {
