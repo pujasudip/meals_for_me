@@ -5,3 +5,30 @@ export function formatPostData(data){
     }
     return params;
 }
+
+export function formatQueryString(userInputArray){
+    switch(userInputArray.length){
+        case 1:
+            return {params: {
+                one: userInputArray[0]
+            }};
+        case 2:
+            return {
+                params: {
+                    one: userInputArray[0],
+                    two: userInputArray[1],
+                }
+            };
+        case 3:
+            return {
+                params: {
+                    one: userInputArray[0],
+                    two: userInputArray[1],
+                    three: userInputArray[2],
+                }
+            };
+        default:
+            return;
+
+    }
+}

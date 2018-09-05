@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     userLoginResponse: userLoginResponse,
     login_status: login_status,
     logout: userLoginResponse,
-    form: formReducer
+    form: formReducer,
 });
 
 export default rootReducer;
