@@ -51,3 +51,10 @@ export function clearUserIngredientInputs(){
         payload: []
     }
 }
+
+export function setDetailsOfItem(details){
+    return {
+        type: types.DETAILS_PAGE,
+        payload: details
+    }
+}

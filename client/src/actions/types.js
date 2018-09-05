@@ -5,5 +5,6 @@ export default {
     REMOVE_INGREDIENT: 'remove_ingredient',
     CLEAR_USER_INGREDIENT_INPUTS: 'clear_user_ingredient_inputs',
     USER_LOGOUT: 'user_logout',
-    SEARCHED_RECIPE: 'searched_recipe'
+    SEARCHED_RECIPE: 'searched_recipe',
+    DETAILS_PAGE: 'details_page'
 }
