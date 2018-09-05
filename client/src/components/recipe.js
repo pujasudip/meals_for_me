@@ -5,6 +5,7 @@ import redHeart from '../assets/images/heart-icon-red.png';
 import Directions from './directions';
 import Nutrition from './nutrition';
 import ShoppingList from './shopping_list';
+import { connect } from 'react-redux';
 
 class Recipe extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class Recipe extends Component {
         }
         this.handleSelect = this.handleSelect.bind(this);
     }
+
 changeHeart = ()=>{
     let heartStatus;
     if(this.state.imgSrc === emptyHeart){
@@ -53,11 +55,25 @@ changeHeart = ()=>{
         });
     }
     render() {
+        const ingredients = JSON.parse(this.props.details.Ingredients);
+        console.log('details:', ingredients);
+
+        let ingredientList = '';
+
+
+        if(ingredients){
+            ingredientList = ingredients.map((ele)=>{
+                return <li key={ele.ID}>{ele.name}</li>
+            });
+        }
+
+
+
         return(
         <div>
             <section id='mainContent'>
                 <div className="pictureContainer">
-                    <img src="http://www.happymumhappychild.co.nz/wp-content/uploads/2016/12/Honey-Glazed-Ham-LINK.jpg" alt="hamPic" className="mainPicture"/>
+                    <img src={this.props.details.Image} alt="hamPic" className="mainPicture"/>
             </div>
                     <section id='splittingAnimation'>
                     <div className="splittingLine"></div>
@@ -68,17 +84,12 @@ changeHeart = ()=>{
             </div>
         </section>
             <section className="dishDetails">
-                    <h1>Dish Name</h1>
-                    <h3>Ready in: 45 mins</h3>
+                    <h1>{this.props.details.Name}</h1>
+                    <h3>Ready in: {this.props.details.Time} mins</h3>
                 </section>
             <section className="ingredients">
                     <ol>Ingredients
-                        <li>1. Lorem ipsum </li>
-                        <li>2. eget condimentum </li>
-                        <li>3. Aenean at </li>
-                        <li>4. Lorem ipsum </li>
-                        <li>5. eget condimentum </li>
-                        <li>6. Aenean at </li>
+                        {ingredientList}
                     </ol>
                 </section>
             <div className='row s12'>
@@ -98,7 +109,13 @@ changeHeart = ()=>{
         )}
 }
 
+function mapStateToProps(state){
+    return {
+        details: state.search.details
+    }
+}
 
-export default Recipe;
+
+export default connect(mapStateToProps, {})(Recipe);
 
 

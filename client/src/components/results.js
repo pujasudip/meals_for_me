@@ -5,7 +5,7 @@ import axios from 'axios';
 import OneResult from './individual_result_panel';
 import { connect } from 'react-redux';
 import { formatPostData, formatQueryString } from '../helpers';
-import { searchedRecipe } from '../actions';
+import { searchedRecipe, setDetailsOfItem } from '../actions';
 
 const BASE_URL = 'http://localhost:8000/server/getData.php';
 
@@ -21,26 +21,30 @@ class Results extends Component {
         this.props.searchedRecipe(this.props.userInputs);
     }
 
+    setDetailsAction(details){
+        this.props.setDetailsOfItem(details);
+    }
+
     displayMore(){
         
     }
     render() {
         console.log('inputs:', this.props.userInputs);
-        console.log('searched: ', this.props.searchedIngredients)
+        let searchedIngredients = '';
+        if(this.props.searchedIngredients){
+           searchedIngredients = this.props.searchedIngredients.data.data;
+        }
 
-        // console.log('result response on result.js:', resultResponse);
+        console.log('result response on result.js:', searchedIngredients);
 
         let resultArray = '';
-        // if(resultResponse){
-        //     resultArray = resultResponse.map((ele, index)=>{
-        //         return (
-        //             <OneResult key={ele.id} title={ele.title} likes={ele.likes} imageSrc={ele.image}/>
-        //         );
-        //     });
-            // for(let recipeIndx = 0; recipeIndx < 10; recipeIndx++){
-            //     <OneResult key={ele.id} title={ele.title} likes={ele.likes} imageSrc={ele.image} />
-            // };
-        // }
+        if(searchedIngredients){
+            resultArray = searchedIngredients.map((ele, index)=>{
+                return (
+                    <OneResult key={ele.ID} id={ele.ID} title={ele.Name} details={ele} likes={ele.likes} imageSrc={ele.Image} clickItem={this.setDetailsAction.bind(this)}/>
+                );
+            });
+        }
 
         return (
             <div>
@@ -58,4 +62,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { searchedRecipe })(Results);
+export default connect(mapStateToProps, { searchedRecipe, setDetailsOfItem })(Results);
