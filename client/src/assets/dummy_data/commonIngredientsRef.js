@@ -1,5 +1,5 @@
 export default [
-    {'protein' : ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'fish']},
-    {'vegetables' : ['broccoli', 'spinach', 'carrot', 'cucumber', 'potato']},
-    {'seasoning' : ['pepper', 'turmeric','salt', 'sugar', 'honey']}
+    {'food' : ['beef', 'chicken', 'salmon', 'shrimp', 'crab', 'fish']},
+    {'food' : ['broccoli', 'spinach', 'carrot', 'cucumber', 'potato']},
+    {'food' : ['pepper', 'turmeric','salt', 'sugar', 'honey']}
 ]
