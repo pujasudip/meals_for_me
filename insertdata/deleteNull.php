@@ -12,27 +12,26 @@ LEFT JOIN `recipes`
 ON `recipes`.ID = `recipe_ingredients`.`recipe_ID` 
 WHERE `recipes`.ID IS null";
 
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
 $result = mysqli_query($conn, $recipeDelete);
 
-if (empty($result)) {
-    $output['errors'][] = 'database error';
+if (mysqli_query($conn, $result)) {
+    echo "Recipe deleted successfully";
 } else {
-    if (mysqli_affected_rows($conn) > 0 ) {
-        $output['success'] = true;
-    } else {
-        $output['errors'][] = 'delete error';
-    };
+    echo "Error deleting record: " . mysqli_error($conn);
 }
 
 $result2 = mysqli_query($conn, $recIngDelete);
-if (empty($result2)) {
-    $output['errors'][] = 'database error';
+
+if (mysqli_query($conn, $result2)) {
+    echo "REC ING deleted successfully";
 } else {
-    if (mysqli_affected_rows($conn) > 0 ) {
-        $output['success'] = true;
-    } else {
-        $output['errors'][] = 'delete error';
-    };
-};
+    echo "Error deleting record: " . mysqli_error($conn);
+}
+
+mysqli_close($conn);
 
 ?>
