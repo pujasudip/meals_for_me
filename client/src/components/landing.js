@@ -23,10 +23,6 @@ class LandingPage extends Component {
         };
     }
 
-    componentDidMount() {
-        document.body.style.backgroundColor = '#FEFAE0';
-    }
-
     userInputHandler(event) {
         this.setState({
             currentIngredientInput: event.target.value
@@ -129,9 +125,9 @@ class LandingPage extends Component {
         };
 
         return (
-            <div className='center'>
+            <div className='center bgImg' style={{ backgroundImage: `url(${bg_image})` }}>
                 <div className='text center'>
-                    <h1>Enter your Ingredients</h1>
+                    <h4 className='margin-top-zero'>Enter your Ingredients</h4>
                 </div>
                 <div className="center">
                     {ingredient}
