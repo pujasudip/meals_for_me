@@ -12,12 +12,14 @@ import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 
 class LandingPage extends Component {
     foodIndex = 0;
+    allowedEntries = 3;
 
     constructor(props) {
         super(props);
         this.state = {
             currentIngredientInput: '',
-            commonIngredients: commonIngredientsRef[this.foodIndex].protein,
+            commonIngredients: commonIngredientsRef[this.foodIndex].food,
+            remainingEntries: this.allowedEntries,
         };
     }
 
@@ -40,112 +42,139 @@ class LandingPage extends Component {
                 return;
             }
         }
+        this.setState({
+            currentIngredientInput: '',
+            remainingEntries: --this.allowedEntries,
+        });
 
         this.props.addIngredient(item);
 
     }
 
     addIngredientToListFromButton(item){
-        console.log('foodGroup:', this.foodGroup);
-        this.foodGroup.shift();
         this.props.addIngredient(item);
-
-        if(this.props.ingredients.length < 2){
-            this.setState({
-                commonIngredients: commonIngredientsRef[this.foodGroup[0]].food
-            });
-        }
+        this.setState({
+            remainingEntries: --this.allowedEntries,
+        });
+        this.commonFoodCarousel('right');
     }
 
-    removeFromTheIngredient(index) {
-        debugger;
-        console.log(this.foodGroup);
-        this.foodGroup.push(index);
-        this.foodGroup.sort();
-        this.props.removeIngredient(index);
-        const modifiedIngredient = commonIngredientsRef[this.foodGroup[0]].food;
-        console.log('modifiedIngredient:', modifiedIngredient);
+    removeFromTheIngredient(item) {
+        let index = this.props.ingredients.indexOf(item);
+        console.log('index: ', index);
         this.setState({
-            commonIngredients: modifiedIngredient
+            remainingEntries: ++this.allowedEntries,
         });
+        this.props.removeIngredient(index);
+        console.log('aaa:', this.props.ingredients.length);
     }
 
     clearUserInputs(){
         this.props.clearUserIngredientInputs();
-        this.foodGroup = [0,1,2];
     }
 
     commonFoodCarousel(direction){
-
         switch(direction){
             case 'left':
-                return
+                this.foodIndex--;
+                if(this.foodIndex < 0){
+                    this.foodIndex++;
+                    return;
+                }
+                break;
+            case 'right':
+                this.foodIndex++;
+                if(this.foodIndex > 2){
+                    this.foodIndex--;
+                    return;
+                }
+                break;
+            default:
+                return;
         }
 
-
-        this.setIndex({
-            commonIngredients: commonIngredientsRef[this.foodIndex].protein,
+        this.setState({
+            commonIngredients: commonIngredientsRef[this.foodIndex].food,
         });
     }
 
+    goToResultsPage = () => {
+        if(this.props.ingredients.length !== 0){
+            this.props.history.push('/results');
+        }
+    }
+
     render() {
-        console.log('prosp:', this.props.ingredients);
-        const colorArray = ['#C98474','#EFB951', '#874C62'];
+        const colorArray = ['#ff8a80 red accent-1','#90caf9 blue lighten-3', '#e8f5e9 green lighten-3'];
         const ingredient = this.props.ingredients.map((item, index) => {
-            return (<div key={index} className='row'>
-                <div className='col s10'>
-                    <input value={item} readOnly className='center'/>
-                </div>
-                <div className='col s2 right-align'>
-                    <img id="ingAddMinImg" src={minus} alt='' onClick={() => this.removeFromTheIngredient(index)} />
+            return (<div key={index} className='ingredients'>
+                <div className='chip'>
+                    <div className="valign-wrapper">
+                        {item}
+                        <i className="material-icons" onClick={() => this.removeFromTheIngredient(item)}>close</i>
+                    </div>
                 </div>
             </div>);
         });
 
-        const commonIngredientsBtns = this.state.commonIngredients.map((item, index) => {
 
-            return (<button className={`btn btn-flat ${colorArray[0]}`} onClick={() => this.addIngredientToListFromButton(item, index)} key={index}>{item}</button>)
+        const commonIngredientsBtns = this.state.commonIngredients.map((item, index) => {
+            return (<button className={`btn btn-flat ${colorArray[this.foodIndex]}`} onClick={() => this.addIngredientToListFromButton(item, index)} key={index}>{item}</button>)
         });
 
+        let hideBubbles = ()=> {
+            if (this.props.ingredients.length === 3) {
+                return {'display': 'none'};
+            }
+        };
+
         return (
-            <div className='container'>
+            <div className='center'>
                 <div className='text center'>
                     <h1>Enter your Ingredients</h1>
                 </div>
+                <div className="center">
+                    {ingredient}
+                </div>
                 {this.props.ingredients.length < 3 ?
                     <div className='search_field'>
-                        <div className='col s12'>
-                            <input placeholder='Insert upto 3 ingredents' className='col s6 left' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
-                            <img id="ingAddMinImg" src={plus} onClick={this.addIngredientToListFromInput.bind(this)} />
+                        <div className="">
+                            <input placeholder={`Insert ${this.state.remainingEntries} more Ingredients`} className='center' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
                         </div>
+                        <img id="ingAddMinImg" src={plus} onClick={this.addIngredientToListFromInput.bind(this)} className="center-block"/>
                     </div>
                     :
                     <div className='center purple-text'><h5>Go for the food</h5></div>
                 }
-                <div className='container'>
-                    {ingredient}
-                </div>
                 {this.props.ingredients.length < 3 ?
-                    <div className="ingredientBtns center">
+                    <div className="ingredientBtns">
                         <div>
-                            <h5 className='commonFoodHeader'>Common Choices</h5>
+                            <h5 className="commonFoodHeader">Common Choices</h5>
                         </div>
                         <div className="row s12 valign-wrapper">
                             <div className="col s2">
-                                <i className="material-icons" onClick={this.commonFoodCarousel.bind(this)}>chevron_left</i>
+                                <i className="material-icons medium directionLeft" onClick={this.commonFoodCarousel.bind(this, 'left')}>chevron_left</i>
                             </div>
-                            <div className="col s8">
+                            <div className="col s8 center">
                                 {commonIngredientsBtns}
                             </div>
                             <div className="col s2">
-                                <i className="material-icons">chevron_right</i>
+                                <i className="material-icons medium directionRight" onClick={this.commonFoodCarousel.bind(this, 'right')}>chevron_right</i>
                             </div>
                         </div>
                     </div>
                     : ''
                 }
                 <div>
-                    <Link className="landPgSearchBtn btn btn-block center-block" to='/results'>Search</Link>
+                    <div className="center" style={hideBubbles()}>
+                        <div className={this.foodIndex === 0 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                        </div>
+                        <div className={this.foodIndex === 1 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                        </div>
+                        <div className={this.foodIndex === 2 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                        </div>
+                    </div>
+                    <div className="landPgSearchBtn btn btn-block center-block" onClick={this.goToResultsPage}>Search</div>
                     <div className='center' style={this.props.ingredients.length !== 3 ? { 'display': 'none' } : {}}>
                         <button type='button' className='btn btn-flat clearBtn waves-effect' onClick={() => this.clearUserInputs()}>Clear Inputs</button>
                     </div>
@@ -161,7 +190,6 @@ function mapStateToProps(state){
     }
 
 }
-
 
 const mapActionsToProps = {
     searchIngredient: searchIngredient,

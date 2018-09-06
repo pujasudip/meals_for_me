@@ -27,23 +27,23 @@ class HamburgerMenu extends Component{
                 { success ? <div>Hello, {username}</div> : '' }
                 <i className='material-icons prefix'>home</i>
                 <Link to='/'
-                      onClick={this.props.hideMenu}>&nbsp;Home</Link><br/>
+                      onClick={this.props.hideMenu} className='menuItem'>&nbsp;Home</Link><br/>
                 <i className='material-icons prefix'>favorite</i>
                 <Link to='/favorites'
-                      onClick={this.props.hideMenu}>&nbsp;Favorites</Link><br/>
+                      onClick={this.props.hideMenu} className='menuItem'>&nbsp;Favorites</Link><br/>
                 <i className='material-icons prefix'>group</i>
                 <Link to='/about_us'
-                      onClick={this.props.hideMenu}>&nbsp;About Team</Link><br/>
+                      onClick={this.props.hideMenu} className='menuItem'>&nbsp;About Team</Link><br/>
                 { success ?
                     <div>
                         <i className='material-icons prefix'>exit_to_app</i>
-                        <Link to='/' onClick={this.logOutUser}>&nbsp;Log out</Link>
+                        <Link to='/' onClick={this.logOutUser} className='menuItem'>&nbsp;Log out</Link>
                     </div>
                     :
                     <div>
                         <i className='material-icons prefix'>account_circle</i>
-                        < Link to='/login'
-                               onClick={this.props.hideMenu}>&nbsp;Log In</Link><br/>
+                        <Link to='/login'
+                               onClick={this.props.hideMenu} className='menuItem'>&nbsp;Log In</Link><br/>
                     </div>
                 }
             </div>
