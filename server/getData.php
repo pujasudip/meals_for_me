@@ -89,8 +89,7 @@ if (empty($result)) {
 
 $jsonOutput = json_encode($output);
 
-print_r($jsonOutput)
-
+echo $jsonOutput;
 
 ?>
 
