@@ -12,8 +12,7 @@ import { Route } from 'react-router-dom';
 import Login from './login_page';
 import SignUp from './sign_up';
 import AboutUs from './about_us';
-
-const a = 'abc';
+import NotFound from '../404/404_page';
 
 const App = () => (
     <Router>
@@ -26,6 +25,7 @@ const App = () => (
             <Route path='/recipe' component={Recipe}/>
             <Route path='/results' component={Results}/>
             <Route path='/favorites' component={Favorites}/>
+            {/*<Route path='/*' component={NotFound}/>*/}
         </div>
     </Router>
 );

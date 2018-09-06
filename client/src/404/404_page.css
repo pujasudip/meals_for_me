@@ -1,0 +1,14 @@
+.wholePage{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ff0071;
+    z-index: 1404;
+}
+.container{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}

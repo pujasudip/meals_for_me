@@ -3,6 +3,11 @@
     background-color: #00d3ff;
 }
 
+.search_field{
+    width: 90%;
+    margin: auto;
+}
+
 #ingAddMinImg {
     width: 50px;
     margin: auto;
@@ -21,14 +26,32 @@
     text-decoration: none;
 }
 
-.ingredientBtns>button {
+.ingredientBtns button {
     width: 100px;
     height: 40px;
     color: white;
+    border-radius: 10px;
 }
 button{
     margin: 2px;
 }
+.btnBox{
+}
+.ingredientBtns button:hover{
+    box-shadow: 0 0 5px 2px #daf857;
+    color: #000000;
+}
+.directions:hover{
+     text-shadow: 0 0 7px #0088ff;
+     color: #5c8000;
+     cursor: pointer;
+}
+.directionRight:hover{
+    text-shadow: 0 0 7px #0088ff;
+    color: #5c8000;
+    cursor: pointer;
+}
+
 /* .slogan > img{
     width: 20vw;
     height: 100px;
@@ -67,4 +90,24 @@ button{
 .clearBtn{
     border: 1px solid red;
     border-radius: 5px;
+}
+.ingredients{
+    display: inline;
+}
+.commonFoodBubble{
+    display: inline-block;
+    margin: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.commonFoodBubbleActive{
+    display: inline-block;
+    background-color: rgba(255, 194, 168, 0.51);
+    margin: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 3px green;
 }
