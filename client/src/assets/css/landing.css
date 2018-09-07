@@ -3,6 +3,16 @@
     background-color: #00d3ff;
 }
 
+.margin-top-zero{
+    margin-top: 0;
+}
+.bgImg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
 .search_field{
     width: 90%;
     margin: auto;
