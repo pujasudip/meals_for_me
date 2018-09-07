@@ -3,7 +3,7 @@ import { formatPostData } from '../helpers';
 import axios from 'axios';
 
 
-const BASE_URL = 'http://localhost:8000/user_info.php';
+const BASE_URL = 'http://localhost:8000/login.php';
 
 export function searchIngredient(){
     return {

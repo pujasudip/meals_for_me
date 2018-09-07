@@ -12,7 +12,7 @@ class SignUp extends Component{
     render(){
         return (
             <div className='container signup'>
-                <form className='col'>
+                <form className='col' action='http://localhost:8000/createuser.php' method='post'>
                     <div className='row'>
                         <div className='input-field col s6'>
                             <i className="material-icons prefix">person_outline</i>
@@ -61,12 +61,13 @@ class SignUp extends Component{
                                className='validate' />
                         <label htmlFor='c_password'>Confirm Password</label>
                     </div>
-                </form>
-                <div className='center'>
+                    <div className='center'>
                     <div className='btn btn-small'>
-                        <Link to='/signup' className='white-text'>Sign Up</Link>
+                        <button type="submit">Sign Up</button>
                     </div>
                 </div>
+                </form>
+               
             </div>
         );
     }
