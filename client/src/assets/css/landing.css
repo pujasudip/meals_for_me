@@ -41,7 +41,7 @@ button{
     box-shadow: 0 0 5px 2px #daf857;
     color: #000000;
 }
-.directions:hover{
+.directionLeft:hover{
      text-shadow: 0 0 7px #0088ff;
      color: #5c8000;
      cursor: pointer;

@@ -22,7 +22,7 @@ const App = () => (
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={Login}/>
             <Route path='/about_us' component={AboutUs}/>
-            <Route path='/recipe' component={Recipe}/>
+            <Route path='/recipe/:id' component={Recipe}/>
             <Route path='/results' component={Results}/>
             <Route path='/favorites' component={Favorites}/>
             {/*<Route path='/*' component={NotFound}/>*/}
