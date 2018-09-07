@@ -63,3 +63,10 @@ export function getDetailsById(id){
         payload: resp
     }
 }
+
+export function addToShoppingList(item){
+    return {
+        type: types.ADD_TO_SHOPPINGLIST,
+        payload: item
+    }
+}

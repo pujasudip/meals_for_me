@@ -7,4 +7,5 @@ export default {
     USER_LOGOUT: 'user_logout',
     SEARCHED_RECIPE: 'searched_recipe',
     DETAILS_PAGE: 'details_page',
+    ADD_TO_SHOPPINGLIST: 'add_to_shoppinglist'
 }

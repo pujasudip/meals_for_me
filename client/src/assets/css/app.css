@@ -2,9 +2,6 @@
     font-family: monaFont;
     src: url(../fonts/Mona-Free.woff);
 }
-*{
-    font-family: 'monaFont';
-}
 body {
     margin: 0;
 }

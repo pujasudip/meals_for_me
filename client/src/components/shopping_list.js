@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class ShoppingList extends Component{
     render(){
+        console.log('shop:', this.props.shoppingList);
         return (
             <section className="shopping_list">
                 <ul start= '1'>Nutrition
@@ -16,4 +18,10 @@ class ShoppingList extends Component{
     }
 }
 
-export default ShoppingList;
+function mapStateToProps(state){
+    return {
+        shoppingList: state.shoppingList
+    }
+}
+
+export default connect(mapStateToProps, {})(ShoppingList);
