@@ -52,9 +52,14 @@ export function clearUserIngredientInputs(){
     }
 }
 
-export function setDetailsOfItem(details){
+export function getDetailsById(id){
+    var dataToSend = {params: {
+        'id': id
+    }};
+    console.log('id:', id);
+    const resp = axios.get(BASE_URL_SEARCH, dataToSend);
     return {
         type: types.DETAILS_PAGE,
-        payload: details
+        payload: resp
     }
 }

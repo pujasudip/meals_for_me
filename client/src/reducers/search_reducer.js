@@ -3,7 +3,7 @@ import types from '../actions/types';
 const DEFAULT_STATE = {
     ingredients: [],
     searched_recipe: '',
-    details: ''
+    details: '',
 };
 
 function  searchResult(state = DEFAULT_STATE, action){
@@ -21,6 +21,7 @@ function  searchResult(state = DEFAULT_STATE, action){
             return { searched_recipe: action.payload};
         case types.DETAILS_PAGE:
             return { ...state, details: action.payload};
+
         default:
             return state;
     }
