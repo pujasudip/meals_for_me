@@ -6,6 +6,7 @@ import Directions from './directions';
 import Nutrition from './nutrition';
 import ShoppingList from './shopping_list';
 import { connect } from 'react-redux';
+import { getDetailsById } from '../actions';
 
 class Recipe extends Component {
     constructor(props) {
@@ -16,6 +17,11 @@ class Recipe extends Component {
             component: 'Directions'
         }
         this.handleSelect = this.handleSelect.bind(this);
+    }
+
+    componentDidMount(){
+        const id =  this.props.match.params.id;
+        this.props.getDetailsById(id);
     }
 
 changeHeart = ()=>{
@@ -36,12 +42,12 @@ changeHeart = ()=>{
         this.setState({ key: key });
     }
 
-    dynamicComponent(){
+    dynamicComponent(directions){
         const comp = this.state.component;
 
         switch(comp){
             case 'Directions':
-                return  <Directions />;
+                return  <Directions directions={directions}/>;
             case 'Nutrition':
                 return <Nutrition />;
             case 'ShoppingList':
@@ -55,15 +61,18 @@ changeHeart = ()=>{
         });
     }
     render() {
-        const ingredients = JSON.parse(this.props.details.Ingredients);
-        console.log('details:', ingredients);
-
+        let directions = '';
+        let ingredients = '';
+        if(this.props.details){
+            directions = this.props.details.data.data[0];
+            ingredients = JSON.parse(directions.Ingredients);
+        }
         let ingredientList = '';
 
 
         if(ingredients){
             ingredientList = ingredients.map((ele)=>{
-                return <li key={ele.ID}>{ele.name}</li>
+                return <li key={ele.ID}>{ele.original}</li>
             });
         }
 
@@ -71,9 +80,11 @@ changeHeart = ()=>{
 
         return(
         <div>
+            { this.props.details ?
+                <div>
             <section id='mainContent'>
                 <div className="pictureContainer">
-                    <img src={this.props.details.Image} alt="hamPic" className="mainPicture"/>
+                    <img src={directions.Image} alt="hamPic" className="mainPicture"/>
             </div>
                     <section id='splittingAnimation'>
                     <div className="splittingLine"></div>
@@ -84,8 +95,8 @@ changeHeart = ()=>{
             </div>
         </section>
             <section className="dishDetails">
-                    <h1>{this.props.details.Name}</h1>
-                    <h3>Ready in: {this.props.details.Time} mins</h3>
+                    <h1>{directions.Name}</h1>
+                    <h3>Ready in: {directions.Time} mins</h3>
                 </section>
             <section className="ingredients">
                     <ol>Ingredients
@@ -98,24 +109,24 @@ changeHeart = ()=>{
                 <div className='tab col s4' title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList')}>Shopping List</div>
             </div>
             <div>
-                {this.dynamicComponent()}
+                {this.dynamicComponent(directions)}
             </div>
             <div className='wine_pairing_slider'>
                 <i className='material-icons prefix'>navigate_before</i><span className='white-text'>Paired Wines</span>
             </div>
+                </div> : ""}
 
         </div>
-
         )}
 }
 
 function mapStateToProps(state){
     return {
-        details: state.search.details
+        details: state.search.details,
     }
 }
 
 
-export default connect(mapStateToProps, {})(Recipe);
+export default connect(mapStateToProps, {getDetailsById})(Recipe);
 
 

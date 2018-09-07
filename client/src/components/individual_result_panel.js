@@ -7,10 +7,10 @@ function OneResult(props){
         'border': '1px solid green',
     };
 
-    const {details, id, imageSrc, title, likes} = props;
+    const {id, imageSrc, title, likes} = props;
 
     return (
-        <Link to='/recipe' onClick={()=>props.clickItem(details)}>
+        <Link to={`/recipe/${id}`}>
             <div className=''>
                 <div className="row" key={id}>
                     <div className="col s5">

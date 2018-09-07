@@ -5,7 +5,7 @@ import axios from 'axios';
 import OneResult from './individual_result_panel';
 import { connect } from 'react-redux';
 import { formatPostData, formatQueryString } from '../helpers';
-import { searchedRecipe, setDetailsOfItem } from '../actions';
+import { searchedRecipe, setDetailsOfItem, setDetailsId } from '../actions';
 
 const BASE_URL = 'http://localhost:8000/server/getData.php';
 
@@ -17,12 +17,8 @@ class Results extends Component {
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this.props.searchedRecipe(this.props.userInputs);
-    }
-
-    setDetailsAction(details){
-        this.props.setDetailsOfItem(details);
     }
 
     displayMore(){
@@ -41,7 +37,7 @@ class Results extends Component {
         if(searchedIngredients){
             resultArray = searchedIngredients.map((ele, index)=>{
                 return (
-                    <OneResult key={ele.ID} id={ele.ID} title={ele.Name} details={ele} likes={ele.likes} imageSrc={ele.Image} clickItem={this.setDetailsAction.bind(this)}/>
+                    <OneResult key={ele.ID} id={ele.ID} title={ele.Name} details={ele} likes={ele.likes} imageSrc={ele.Image}/>
                 );
             });
         }
@@ -62,4 +58,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { searchedRecipe, setDetailsOfItem })(Results);
+export default connect(mapStateToProps, { searchedRecipe, setDetailsOfItem, setDetailsId })(Results);

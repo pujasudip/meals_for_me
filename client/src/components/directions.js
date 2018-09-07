@@ -3,33 +3,37 @@ import { connect } from 'react-redux';
 
 class Directions extends Component{
     render(){
-        const directions = JSON.parse(this.props.directions.Instructions);
+        const directions = JSON.parse(this.props.directions.Instructions)[0].steps;
         let directionList = '';
 
-        console.log('directions:', directions);
+        // console.log('directions:', directions);
 
-        if(directionList){
-            directionList = directions.map((ele, index)=>{
-                return <li key={ele.ID}>{ele.name}</li>
+        if(directions){
+            let directionListArray = directions.map((ele, index)=>{
+                return ele.step;
             });
+            directionListArray = directionListArray.join('');
+            directionListArray = directionListArray.split('.');
+            directionList = directionListArray.map((ele, index)=>{
+                return <li key={index}>{ele}</li>;
+            });
+
         }
 
-        console.log('directionsList:', directionList);
-
-
         return (
-            <section className="directions">
-                <ol start= '1'>Directions
+            <div className="directions">
+                <h4>Directions</h4>
+                <ul>
                     {directionList}
-                </ol>
-            </section>
+                </ul>
+            </div>
         );
     }
 }
 
 function mapStateToProps(state){
     return {
-        directions: state.search.details
+        // directions: state.search.details
     }
 }
 
