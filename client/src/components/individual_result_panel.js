@@ -7,15 +7,17 @@ function OneResult(props){
         'border': '1px solid green',
     };
 
+    const {id, imageSrc, title, likes} = props;
+
     return (
-        <Link to='/recipe'>
+        <Link to={`/recipe/${id}`}>
             <div className=''>
-                <div className="row" key={props.id}>
+                <div className="row" key={id}>
                     <div className="col s5">
-                        <img src={props.imageSrc} style={style}/>
+                        <img src={imageSrc} style={style}/>
                     </div>
-                    <div className="col s6">{props.title}</div>
-                    <div className="col s6">Likes: {props.likes}</div>
+                    <div className="col s6">{title}</div>
+                    <div className="col s6">Likes: {likes}</div>
                 </div>
             </div>
         </Link>

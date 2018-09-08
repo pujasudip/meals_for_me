@@ -41,7 +41,7 @@ class Login extends React.Component{
         return (
             userLoggedIn ? `${this.props.history.goBack()}`
                 :
-           <div className='container login'>
+           <div className='login'>
                <form className='col' onSubmit={handleSubmit(this.userLoggingIn)}>
                    <div className='input-field col s6'>
                        <i className="material-icons prefix">account_circle</i>

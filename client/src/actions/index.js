@@ -1,14 +1,17 @@
 import types from './types';
-import { formatPostData } from '../helpers';
+import { formatPostData, formatQueryString } from '../helpers';
 import axios from 'axios';
 
 
-const BASE_URL = 'http://localhost:8000/login.php';
+const BASE_URL = 'http://localhost:8000/user_info.php';
+const BASE_URL_SEARCH = 'http://localhost:8000/server/getData.php';
 
-export function searchIngredient(){
+export function searchedRecipe(userIngredient){
+    var dataToSend = formatQueryString(userIngredient);
+    const resp = axios.get(BASE_URL_SEARCH, dataToSend);
     return {
-        type: types.type,
-        payload: 'these are the user query for search'
+        type: types.SEARCHED_RECIPE,
+        payload: resp
     }
 }
 
@@ -46,5 +49,17 @@ export function clearUserIngredientInputs(){
     return {
         type: types.CLEAR_USER_INGREDIENT_INPUTS,
         payload: []
+    }
+}
+
+export function getDetailsById(id){
+    var dataToSend = {params: {
+        'id': id
+    }};
+    console.log('id:', id);
+    const resp = axios.get(BASE_URL_SEARCH, dataToSend);
+    return {
+        type: types.DETAILS_PAGE,
+        payload: resp
     }
 }

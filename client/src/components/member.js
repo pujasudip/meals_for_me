@@ -10,7 +10,7 @@ function Member(props){
             <div className='memberInfo'>
                 <h5 className='left-align'>{props.name}</h5>
                 <p onClick={()=>props.clicked(props.linkedin)}>{props.linkedin}</p>
-                <p className='left-align'>{props.github}</p>
+                <p onClick={()=>props.clicked(props.github)} className='left-align'>{props.github}</p>
             </div>
         </div>
     );

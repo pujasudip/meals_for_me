@@ -3,8 +3,7 @@
     display: flex;
     height: 10vh;
     justify-content: space-between;
-    background-color: rgb(115, 128, 0);
-    margin-bottom: 30px;
+    background-color: #98BF5C;
 }
 .header{
     position: absolute;
@@ -19,13 +18,15 @@
 
 .logo{
     width: 100px;
-    border: 2px solid rgba(115, 128, 0, 0.65);
-    border-radius: 50px;
-    animation: spin 50s alternate infinite;
+    color: white;
+    /* border: 2px solid rgba(115, 128, 0, 0.65); */
+    /* border-radius: 50px;
+    animation: spin 50s alternate infinite; */
 }
 .hamicon{
     width: 80px;
 }
+
 .no_menu{
     display: none;
 }
@@ -78,6 +79,7 @@
 
 .headerBtn{
     margin: 27% 0 0 15%;
+    background-color: #527E45;
 }
 button.backBtn{
    background-color: #d3d3d300;

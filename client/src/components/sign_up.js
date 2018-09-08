@@ -11,12 +11,15 @@ class SignUp extends Component{
 
     render(){
         return (
+
             <div className='container signup'>
                 <form className='col' action='http://localhost:8000/createuser.php' method='post'>
+
                     <div className='row'>
                         <div className='input-field col s6'>
                             <i className="material-icons prefix">person_outline</i>
                             <input name='firstName'
+                                   id='fName'
                                    type='text'
                                    className='validate' />
                             <label htmlFor='fName'>First Name</label>
