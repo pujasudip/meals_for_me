@@ -29,7 +29,7 @@ function fetchAssocStatement($stmt){
 $countPost = count($_GET);
 switch ($countPost){
     case 1:
-        $ingredientOne = '%'.$_GET['one'].'%';
+        $ingredientOne = '%'.addslashes($_GET['one']).'%';
         $queryForOne = '
 SELECT `recipes`.*
 FROM `recipes`
@@ -52,8 +52,8 @@ ORDER BY `recipes`.`Score` DESC';
         break;
 
     case 2:
-        $ingredientOne = '%'.$_GET['one'].'%';
-        $ingredientTwo = '%'.$_GET['two'].'%';
+        $ingredientOne = '%'.addslashes($_GET['one']).'%';
+        $ingredientTwo = '%'.addslashes($_GET['two']).'%';
         $queryForTwo = '
 SELECT `recipes`.*
 FROM `recipes`
@@ -80,9 +80,9 @@ ORDER BY `recipes`.`Score` DESC';
         break;
 
     case 3:
-        $ingredientOne = '%'.$_GET['one'].'%';
-        $ingredientTwo = '%'.$_GET['two'].'%';
-        $ingredientThree = '%'.$_GET['three'].'%';
+        $ingredientOne = '%'.addslashes($_GET['one']).'%';
+        $ingredientTwo = '%'.addslashes($_GET['two']).'%';
+        $ingredientThree = '%'.addslashes($_GET['three']).'%';
         $queryForThree = '
 SELECT `recipes`.*
 FROM `recipes`
