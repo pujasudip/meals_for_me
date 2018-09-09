@@ -6,6 +6,7 @@
 .margin-top-zero{
     margin-top: 0;
 }
+
 .bgImg {
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,8 +26,9 @@
 
 .landPgSearchBtn {
     width: 50vw;
-    background-color: #527E45;
+    background-color: #FCD8A7;
 }
+
 .landPgSearchBtn > * {
     color: white;
 }
@@ -42,20 +44,25 @@
     color: white;
     border-radius: 10px;
 }
+
 button{
     margin: 2px;
 }
+
 .btnBox{
 }
+
 .ingredientBtns button:hover{
     box-shadow: 0 0 5px 2px #daf857;
     color: #000000;
 }
+
 .directionLeft:hover{
      text-shadow: 0 0 7px #0088ff;
      color: #5c8000;
      cursor: pointer;
 }
+
 .directionRight:hover{
     text-shadow: 0 0 7px #0088ff;
     color: #5c8000;
