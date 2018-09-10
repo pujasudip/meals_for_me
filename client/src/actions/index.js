@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:8000/user_info.php';
 const BASE_URL_SEARCH = 'http://localhost:8000/server/getData.php';
+const BASE_URL_SIGNUP = 'http://localhost:8000/userauth/createuser.php';
 
 export function searchedRecipe(userIngredient){
     var dataToSend = formatQueryString(userIngredient);
@@ -62,4 +63,22 @@ export function getDetailsById(id){
         type: types.DETAILS_PAGE,
         payload: resp
     }
+}
+
+export function clearRecipes(){
+    return {
+        type: types.CLEAR_RECIPES,
+        payload: ''
+    }
+}
+
+export function createUserAccount(values){
+    const { firstName, lastName, username, email, password} = values;
+    const dataToSend = formatPostData({firstName, lastName, username, email, password});
+    const response = axios.post(`${BASE_URL_SIGNUP}`, dataToSend);
+    return {
+        type: types.DETAILS_PAGE,
+        payload: response
+    }
+
 }

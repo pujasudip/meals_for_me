@@ -7,4 +7,6 @@ export default {
     USER_LOGOUT: 'user_logout',
     SEARCHED_RECIPE: 'searched_recipe',
     DETAILS_PAGE: 'details_page',
+    CLEAR_RECIPES: 'clear_recipes',
+    SIGN_UP: 'sign_up'
 }
