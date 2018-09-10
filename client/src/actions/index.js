@@ -65,6 +65,13 @@ export function getDetailsById(id){
     }
 }
 
+
+export function addToShoppingList(item){
+    return {
+        type: types.ADD_TO_SHOPPINGLIST,
+        payload: item
+    }
+
 export function clearRecipes(){
     return {
         type: types.CLEAR_RECIPES,

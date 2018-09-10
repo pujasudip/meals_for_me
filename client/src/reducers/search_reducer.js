@@ -18,8 +18,9 @@ function  searchResult(state = DEFAULT_STATE, action){
         case types.CLEAR_USER_INGREDIENT_INPUTS:
             return {...state, ingredients: []};
         case types.SEARCHED_RECIPE:
-            let recipes = [ ...state.searched_recipe, ...action.payload.data];
-            return { ...state, searched_recipe: recipes };
+            return { ...state, searched_recipe: action.payload};
+//             let recipes = [ ...state.searched_recipe, ...action.payload.data];
+//             return { ...state, searched_recipe: recipes };
         case types.DETAILS_PAGE:
             return { ...state, details: action.payload};
         case types.CLEAR_RECIPES:
