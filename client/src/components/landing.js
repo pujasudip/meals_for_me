@@ -4,7 +4,7 @@ import plus from '../assets/images/plus.png';
 import minus from '../assets/images/minus.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { searchIngredient, addIngredeints, removeIngredients, clearUserIngredientInputs } from '../actions';
+import { clearRecipes, searchIngredient, addIngredeints, removeIngredients, clearUserIngredientInputs } from '../actions';
 import bg_image from '../assets/images/mobile-bg.png';
 //import bg_image from '../assets/images/dogbg.jpg';
 import slogan from '../assets/images/chicken_soup.gif';
@@ -21,6 +21,15 @@ class LandingPage extends Component {
             commonIngredients: commonIngredientsRef[this.foodIndex].food,
             remainingEntries: this.allowedEntries,
         };
+    }
+    componentDidMount() {
+        console.log(this.props,'initial prop from LP');
+        this.props.clearUserIngredientInputs();
+        this.props.clearRecipes();
+
+    }
+    componentWillReceiveProps(newProp) {
+        console.log(newProp,'new prop from LP')
     }
 
     userInputHandler(event) {
@@ -193,7 +202,8 @@ const mapActionsToProps = {
     searchIngredient: searchIngredient,
     addIngredient: addIngredeints,
     removeIngredient: removeIngredients,
-    clearUserIngredientInputs: clearUserIngredientInputs
+    clearUserIngredientInputs: clearUserIngredientInputs,
+    clearRecipes: clearRecipes,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(LandingPage);

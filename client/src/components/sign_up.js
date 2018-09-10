@@ -1,68 +1,59 @@
 import React, {Component, Fragment} from 'react';
 import '../assets/css/signup.css';
 import {Link} from "react-router-dom";
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
+import { createUserAccount } from '../actions'
 
 class SignUp extends Component{
 
-    renderInput(){
-
+    userSignUp = (values) => {
+        this.props.createUserAccount(values)
     }
 
+    renderInput(props){
+        const { label, type, input, meta: {touched, error}} = props;
+        return (
+            <Fragment>
+                <label>{label}</label>
+                <input {...input} type={type} />
+                <p className="red-text">{touched && error}</p>
+            </Fragment>
+        )
+    }
 
     render(){
+        const {handleSubmit} = this.props;
         return (
 
             <div className='container signup'>
-                <form className='col' action='http://localhost:8000/createuser.php' method='post'>
+                <form className='col' onSubmit={handleSubmit(this.userSignUp)}>
 
                     <div className='row'>
                         <div className='input-field col s6'>
                             <i className="material-icons prefix">person_outline</i>
-                            <input name='firstName'
-                                   id='fName'
-                                   type='text'
-                                   className='validate' />
-                            <label htmlFor='fName'>First Name</label>
+                            <Field name='firstName' label='First Name' type='text' component={this.renderInput}/>
                         </div>
                         <div className='input-field col s6'>
                             <i className="material-icons prefix">person_outline</i>
-                            <input name='lastName'
-                                   id='lName'
-                                   type='text'
-                                   className='validate' />
-                            <label htmlFor='lName'>Last Name</label>
+                            <Field name='lastName' label='Last Name' type='text' component={this.renderInput} />
                         </div>
                     </div>
                     <div className='input-field col s6'>
-                        <i className="material-icons prefix">person</i>
-                        <input name='username'
-                               id='username'
-                               type='text'
-                               className='validate' />
-                        <label htmlFor='username'>Username</label>
-                    </div>
-                    <div className='input-field col s6'>
                         <i className="material-icons prefix">email</i>
-                        <input name='email'
-                               id='email'
-                               type='tel'
-                               className='validate' />
-                        <label htmlFor='email'>Email</label>
+                        <Field name='email' label='Email' type='text' component={this.renderInput} />
+                    </div>
+                    <div className='input-field col s6'>
+                        <i className="material-icons prefix">person</i>
+                        <Field name='username' label='Username' type='text' component={this.renderInput} />
                     </div>
                     <div className='input-field col s6'>
                         <i className="material-icons prefix">lock</i>
-                        <input name='password'
-                               id='password'
-                               type='tel'
-                               className='validate' />
-                        <label htmlFor='password'>Password</label>
+                        <Field name='password' label='Password' type='text' component={this.renderInput} />
                     </div>
                     <div className='input-field col s6'>
                         <i className="material-icons prefix">lock</i>
-                        <input id='c_password'
-                               type='tel'
-                               className='validate' />
-                        <label htmlFor='c_password'>Confirm Password</label>
+                        <Field name='c_password' label='Confirm Password' type='text' component={this.renderInput} />
                     </div>
                     <div className='center'>
                     <div className='btn btn-small'>
@@ -76,4 +67,38 @@ class SignUp extends Component{
     }
 }
 
-export default SignUp;
+function validate(values){
+    const { firstName, lastName, username, email, password, c_password } = values;
+    const errors = {};
+
+    if(!firstName){
+        errors.firstName = 'First name is required.'
+    }
+    if (!lastName) {
+        errors.lastName = 'Last name is required.'
+    }
+    if (!email) {
+        errors.email = 'Email is required.'
+    }
+    if (!username) {
+        errors.username = 'Username is required.'
+    }
+    if (!password) {
+        errors.password = 'Password is required.'
+    }
+    if(password !== c_password ){
+        errors.c_password = 'Password do not match' 
+    }
+    return errors;
+}
+
+// function mapStateToProps(state){
+
+// }
+
+SignUp = reduxForm({
+    form: 'sign-form',
+    validate: validate
+})(SignUp);
+
+export default connect(null, {createUserAccount})(SignUp);
