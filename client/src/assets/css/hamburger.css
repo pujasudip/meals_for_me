@@ -7,8 +7,9 @@
     cursor: pointer;
     animation: bounce 1s;
 }
-.menuItem{
 
+.menu{
+    height: 29vh;
 }
 @keyframes bounce {
     from,

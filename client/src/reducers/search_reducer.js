@@ -16,12 +16,15 @@ function  searchResult(state = DEFAULT_STATE, action){
             ingredients.splice(action.payload, 1);
             return { ...state, ingredients};
         case types.CLEAR_USER_INGREDIENT_INPUTS:
-            return {ingredients: []};
+            return {...state, ingredients: []};
         case types.SEARCHED_RECIPE:
             return { ...state, searched_recipe: action.payload};
+//             let recipes = [ ...state.searched_recipe, ...action.payload.data];
+//             return { ...state, searched_recipe: recipes };
         case types.DETAILS_PAGE:
             return { ...state, details: action.payload};
-
+        case types.CLEAR_RECIPES:
+            return {...state, searched_recipe: ''}
         default:
             return state;
     }

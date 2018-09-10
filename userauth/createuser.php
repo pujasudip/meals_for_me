@@ -1,10 +1,13 @@
 <?php
-
+    header("Access-Control-Allow-Origin: *");  
+    include_once 'mysqlconnect.php';
+    $output['success']='false';
+    print_r($output);
 //security measure to make sure the submit button was clicked
-    if(isset($_POST['submit'])){
-        include_once 'mysqliconnect.php';
+    if(isset($_POST)){
+        print_r($_POST);
         //obtain the information that was sent
-        $firstName = mysqli_real_escape_string($conn, $_POST['first']);
+        $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
         $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -12,44 +15,45 @@
         //make sure everything was filled out
         if(empty($firstName) || empty($lastName) || empty($username) || empty($email) || empty($password)){
             //will pass along an error message if a field is empty
-            header("signup=empty")//"Locattion: ../signup.php?
+            $output['message'] = 'Fill in all fields.';
+            $output['success']=false;
             exit();
         }else{
             //checking if the name is valid if so return user to signup with error message
             if (!preg_match("/^[a-zA-Z]*$/",$firstName) || !preg_match("/^[a-zA-Z]*$/",$lastName)){
-                header("invalidname")//"Location: ../sign_up.js?signup
+                $output['message'] = 'invalid name.';
+                $output['success']=false;
                 exit();
             }else{
                 //checking if email is valid if so return user to signup with error message invalid email
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                    header("invalidemail")//Location: ../sign_up.js?signup=
+                   $output['message'] = 'invalid email.';
+                   $output['success']=false;
                     exit();
                 }else{
-                    //checking if username is taken if it does return user to signup page with error username taken
-                    $query = "SELECT * FROM `users` WHERE `user_name`=$username";
+                    //checking if username is taken if it does return user to signup page with error username taken and
+                    //checking if email is unique
+                    $query = "SELECT * FROM `users` WHERE `user_username`='$username' OR `user_email`='$email'";
                     $result = mysqli_query($conn, $query);
                     $queryResult = mysqli_num_rows($result);
                     if($queryResult > 0){
-                        header("usernametaken")//Location: ../sign_up.js?signup=
+                       $output['message'] = 'username or email is taken.';
+                       $output['success']=false;
+                    print_r($output);
+
                         exit();
                     }else{
                         //encrypt password then insert user into database
                         $hidePassword = password_hash($password, PASSWORD_BCRYPT);
-                        $query = "INSERT INTO `users` (`user_firstname`,`user_lastname`,`user_username`,`user_email`,`user_password`) VALUES ('$firsname','$lastName','$username','$email','$hidePassword');";
+                        $query = "INSERT INTO `users` (`user_firstname`,`user_lastname`,`user_username`,`user_email`,`user_password`) VALUES ('$firstName','$lastName','$username','$email','$hidePassword');";
                         $result = mysqli_query($conn , $query);
-                        header("success")//Location: ../sign_up.js?signup=
+                        $output['message'] = 'user has been created.';
+                        $output['success']=true;
+                        //print_r($output);
                     }
                 }
             }
         }
 
-    }else{
-        // if they wrote address in the url send them back to the sign up page
-        header("Locattion: ../sign_up.js")
-        exit();
-    }
-
-
-
-
+     }
 ?>

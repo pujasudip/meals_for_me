@@ -8,4 +8,6 @@ export default {
     SEARCHED_RECIPE: 'searched_recipe',
     DETAILS_PAGE: 'details_page',
     ADD_TO_SHOPPINGLIST: 'add_to_shoppinglist'
+    CLEAR_RECIPES: 'clear_recipes',
+    SIGN_UP: 'sign_up'
 }
