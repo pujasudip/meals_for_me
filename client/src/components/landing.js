@@ -22,6 +22,14 @@ class LandingPage extends Component {
             remainingEntries: this.allowedEntries,
         };
     }
+    componentDidMount() {
+        console.log(this.props,'initial prop from LP');
+        this.props.clearUserIngredientInputs();
+
+    }
+    componentWillReceiveProps(newProp) {
+        console.log(newProp,'new prop from LP')
+    }
 
     userInputHandler(event) {
         this.setState({
