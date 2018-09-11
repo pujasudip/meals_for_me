@@ -71,6 +71,7 @@ export function addToShoppingList(item){
         type: types.ADD_TO_SHOPPINGLIST,
         payload: item
     }
+}
 
 export function clearRecipes(){
     return {

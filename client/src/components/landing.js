@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { clearRecipes, searchIngredient, addIngredeints, removeIngredients, clearUserIngredientInputs } from '../actions';
 import bg_image from '../assets/images/mobile-bg.png';
 //import bg_image from '../assets/images/dogbg.jpg';
-import slogan from '../assets/images/chicken_soup.gif';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 
 class LandingPage extends Component {

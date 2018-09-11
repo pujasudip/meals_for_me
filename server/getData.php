@@ -40,7 +40,8 @@ FROM `recipes`
 JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
 JOIN `ingredients` ON `recipe_ingredients`.`ingredient_ID` = `ingredients`.`ingredient_ID`
 WHERE `ingredients`.`ingredient_name` LIKE (?)
-ORDER BY `recipes`.`likes` DESC LIMIT 0, 10';
+ORDER BY `recipes`.`likes` DESC LIMIT 0, 15';
+
 
         if($stmt = $conn->prepare($queryForOne)){
             $stmt->bind_param('s', $ingredientOne);
@@ -67,7 +68,7 @@ WHERE (`ingredients`.`ingredient_name` LIKE (?)
 OR `ingredients`.`ingredient_name` LIKE (?) )
 GROUP BY `recipes`.`ID`
 HAVING COUNT(*) > 1
-ORDER BY `recipes`.`likes` DESC LIMIT 0, 10';
+ORDER BY `recipes`.`likes` DESC LIMIT 0, 60';
 
         if($stmt = $conn->prepare($queryForTwo)){
             $stmt->bind_param('ss', $ingredientOne,$ingredientTwo);
@@ -97,7 +98,7 @@ OR `ingredients`.`ingredient_name` LIKE (?)
 OR `ingredients`.`ingredient_name` LIKE (?) )
 GROUP BY `recipes`.`ID`
 HAVING COUNT(*) > 2
-ORDER BY `recipes`.`likes` DESC LIMIT 0, 10';
+ORDER BY `recipes`.`likes` DESC LIMIT 0, 60';
 
         if($stmt = $conn->prepare($queryForThree)){
             $stmt->bind_param('sss', $ingredientOne,$ingredientTwo,$ingredientThree);
