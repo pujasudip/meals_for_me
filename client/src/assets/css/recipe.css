@@ -54,6 +54,7 @@ header {
     width: 100vw;
     height: 25vh;
     position: relative;
+    margin-top: 4rem;
 }
 /*  */
 
@@ -106,7 +107,6 @@ header {
 }
 
 .dishDetails {
-    height: 10vh;
     width: 100vw;
 }
 
