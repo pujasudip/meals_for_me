@@ -62,6 +62,15 @@ changeHeart = ()=>{
         });
     }
 
+    dietOptions(diet){
+        console.log('inside of diet options method', diet)
+        if(diet === 1){
+            return 'True';
+        }else{
+            return 'False';
+        }
+    }
+
     addToShopingList(item){
         this.props.addToShoppingList(item.name);
     }
@@ -110,9 +119,12 @@ changeHeart = ()=>{
             <section className="dishDetails center">
                 <h1>{directions.Name}</h1>
                 <h3>Prep & Cooking Time: {directions.Time} mins</h3>
+                <p>Vegan: {this.dietOptions(directions.vegan)}</p>
+                <p>Vegetarian: {this.dietOptions(directions.vegetarian)}</p>
             </section>
         <div>
             <p className='left'>Ingredients</p>
+            <div>{Ingredients}</div>
         </div>
             <div className='row s12 tabs'>
                 <div className='tab col s4 center' title='Directions' onClick={()=>this.setStateForComponentRender('Directions')}>Directions</div>
