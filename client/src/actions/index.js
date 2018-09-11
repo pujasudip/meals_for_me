@@ -66,7 +66,7 @@ export function getDetailsById(id){
 }
 
 
-export function addToShoppingList(item){
+export function addToShoppingList(item) {
     return {
         type: types.ADD_TO_SHOPPINGLIST,
         payload: item

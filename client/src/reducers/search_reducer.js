@@ -9,6 +9,10 @@ const DEFAULT_STATE = {
 function  searchResult(state = DEFAULT_STATE, action){
     switch (action.type) {
         case types.ADD_INGREDIENT:
+            let prevIngredients = [...state.ingredients];
+            if(prevIngredients.includes(action.payload)){
+                return state;
+            }
             let ingredients = [ ...state.ingredients, action.payload ];
             return { ...state, ingredients };
         case types.REMOVE_INGREDIENT:
@@ -24,7 +28,7 @@ function  searchResult(state = DEFAULT_STATE, action){
         case types.DETAILS_PAGE:
             return { ...state, details: action.payload};
         case types.CLEAR_RECIPES:
-            return {...state, searched_recipe: ''}
+            return {...state, searched_recipe: ''};
         default:
             return state;
     }
