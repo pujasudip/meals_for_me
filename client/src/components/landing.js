@@ -126,6 +126,9 @@ class LandingPage extends Component {
 
         return (
             <div className='center bgImg' style={{ backgroundImage: `url(${bg_image})` }}>
+            {/* <div className='center bgImg' style={{ background: `linear-gradient( rgba(185, 160, 160, 0.5), rgba(0, 0, 0, 0.5) ), url(${bg_image})` }}> */}
+
+
                 <div className="main">
                     <div className='text center'>
                         <h4 className='margin-top-zero'>Enter your Ingredients</h4>
