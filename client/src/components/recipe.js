@@ -70,6 +70,7 @@ changeHeart = ()=>{
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
+        console.log('props in recipe', this.props)
         if(this.props.details){
             directions = this.props.details.data.data[0];
             ingredients = JSON.parse(directions.Ingredients);
