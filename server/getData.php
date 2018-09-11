@@ -7,7 +7,7 @@ if(empty($_GET)){
     exit('Invalid Search');
 }
 
-require_once('mysqlconnect.php');
+require_once('mysql_server_connect.php');
 
 if($conn->connect_error){
     die("failed to connect to MYSQL: (" . $conn->connect_errorno .") " . $conn->connect_error);
