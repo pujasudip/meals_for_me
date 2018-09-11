@@ -25,9 +25,14 @@ class LandingPage extends Component {
         // console.log(this.props,'initial prop from LP');
         this.props.clearUserIngredientInputs();
     }
-    componentWillUnmount(){
+//     componentWillUnmount(){
+//         this.props.clearRecipes();
+
+//     }
+    componentWillUnmount() {
         this.props.clearRecipes();
     }
+
     componentWillReceiveProps(newProp) {
         // console.log(newProp,'new prop from LP')
     }

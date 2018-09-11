@@ -7,7 +7,7 @@ if(empty($_GET)){
     exit('Invalid Search');
 }
 
-require_once('mysqlconnect.php');
+require_once('mysql_server_connect.php');
 
 if($conn->connect_error){
     die("failed to connect to MYSQL: (" . $conn->connect_errorno .") " . $conn->connect_error);
@@ -33,13 +33,13 @@ $countPost = count($_GET);
 switch ($countPost){
     case 2:
         $ingredientOne = '%'.addslashes($_GET['one']).'%';
-        $numOfResults = 15*intval($_GET['page']);
+        $numOfResults = 50*intval($_GET['page']);
         $queryForOne = '
 SELECT *
 FROM `recipes`
 WHERE `recipes`.`Ingredients` LIKE (?)
 GROUP BY `recipes`.`ID`
-ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET '. $numOfResults;
+ORDER BY `recipes`.`likes` DESC LIMIT 50 OFFSET '. $numOfResults;
 
 
         if($stmt = $conn->prepare($queryForOne)){
@@ -58,7 +58,7 @@ ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET '. $numOfResults;
     case 3:
         $ingredientOne = '%'.addslashes($_GET['one']).'%';
         $ingredientTwo = '%'.addslashes($_GET['two']).'%';
-        $numOfResults = 15*intval($_GET['page']);
+        $numOfResults = 50*intval($_GET['page']);
 
         $queryForTwo = '
 SELECT *
@@ -66,7 +66,7 @@ FROM `recipes`
 WHERE (`recipes`.`Ingredients` LIKE (?)
 AND `recipes`.`Ingredients` LIKE (?))
 GROUP BY `recipes`.`ID`
-ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET '. $numOfResults;
+ORDER BY `recipes`.`likes` DESC LIMIT 50 OFFSET '. $numOfResults;
 
 
         if($stmt = $conn->prepare($queryForTwo)){
@@ -87,7 +87,7 @@ ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET '. $numOfResults;
         $ingredientOne = '%'.addslashes($_GET['one']).'%';
         $ingredientTwo = '%'.addslashes($_GET['two']).'%';
         $ingredientThree = '%'.addslashes($_GET['three']).'%';
-        $numOfResults = 15*intval($_GET['page']);
+        $numOfResults = 50*intval($_GET['page']);
 
         $queryForThree = '
 SELECT *
@@ -96,7 +96,7 @@ WHERE (`recipes`.`Ingredients` LIKE (?)
 AND `recipes`.`Ingredients` LIKE (?)
 AND `recipes`.`Ingredients` LIKE (?))
 GROUP BY `recipes`.`ID`
-ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET ' . $numOfResults ;
+ORDER BY `recipes`.`likes` DESC LIMIT 50 OFFSET ' . $numOfResults ;
 
         if($stmt = $conn->prepare($queryForThree)){
             $stmt->bind_param('sss', $ingredientOne,$ingredientTwo,$ingredientThree);

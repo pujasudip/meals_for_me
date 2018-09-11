@@ -70,6 +70,7 @@ changeHeart = ()=>{
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
+        console.log('props in recipe', this.props)
         if(this.props.details){
             directions = this.props.details.data.data[0];
             ingredients = JSON.parse(directions.Ingredients);
@@ -108,10 +109,12 @@ changeHeart = ()=>{
         </section>
             <section className="dishDetails center">
                 <h1>{directions.Name}</h1>
-                <h3>Ready in: {directions.Time} mins</h3>
+                <h3>Prep & Cooking Time: {directions.Time} mins</h3>
             </section>
+        <div>
+            <p className='left'>Ingredients</p>
+        </div>
             <div className='row s12 tabs'>
-                <div className='tab col s4 center' title='Nutrition' onClick={()=>this.setStateForComponentRender('Ingredients')}>Ingredients</div>
                 <div className='tab col s4 center' title='Directions' onClick={()=>this.setStateForComponentRender('Directions')}>Directions</div>
                 <div className='tab col s4' title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList')}>Shopping List</div>
             </div>
