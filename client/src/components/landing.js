@@ -22,13 +22,13 @@ class LandingPage extends Component {
         };
     }
     componentDidMount() {
-        console.log(this.props,'initial prop from LP');
+        // console.log(this.props,'initial prop from LP');
         this.props.clearUserIngredientInputs();
         this.props.clearRecipes();
 
     }
     componentWillReceiveProps(newProp) {
-        console.log(newProp,'new prop from LP')
+        // console.log(newProp,'new prop from LP')
     }
 
     userInputHandler(event) {
@@ -65,12 +65,12 @@ class LandingPage extends Component {
 
     removeFromTheIngredient(item) {
         let index = this.props.ingredients.indexOf(item);
-        console.log('index: ', index);
+        // console.log('index: ', index);
         this.setState({
             remainingEntries: ++this.allowedEntries,
         });
         this.props.removeIngredient(index);
-        console.log('aaa:', this.props.ingredients.length);
+        // console.log('aaa:', this.props.ingredients.length);
     }
 
     clearUserInputs() {

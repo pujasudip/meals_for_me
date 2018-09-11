@@ -7,8 +7,8 @@ const BASE_URL = 'http://localhost:8000/user_info.php';
 const BASE_URL_SEARCH = 'http://localhost:8000/server/getData.php';
 const BASE_URL_SIGNUP = 'http://localhost:8000/userauth/createuser.php';
 
-export function searchedRecipe(userIngredient){
-    var dataToSend = formatQueryString(userIngredient);
+export function searchedRecipe(userIngredient, page){
+    var dataToSend = formatQueryString(userIngredient, page);
     const resp = axios.get(BASE_URL_SEARCH, dataToSend);
     return {
         type: types.SEARCHED_RECIPE,

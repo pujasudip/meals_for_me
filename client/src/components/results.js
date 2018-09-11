@@ -13,15 +13,20 @@ class Results extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            resultArray: ''
+            resultArray: '',
+            page: 0
         }
         this.handleOnScroll = this.handleOnScroll.bind(this);
     }
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleOnScroll);
-        console.log(this.props.searchedRecipe(this.props.userInputs), "@@@@@@")
-        this.props.searchedRecipe(this.props.userInputs);
+        // console.log(this.props.searchedRecipe(this.props.userInputs), "@@@@@@")
+        this.props.searchedRecipe(this.props.userInputs, 0);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleOnScroll);
     }
 
     // displayMore(){
@@ -34,19 +39,22 @@ class Results extends Component {
         let clientHeight = document.documentElement.clientHeight + 1 || window.innerHeight; // changed client height to + 1
         let scrolledToBottom = (parseInt(scrollTop + clientHeight)) >= scrollHeight;
         if (scrolledToBottom) {
-            this.props.searchedRecipe(this.props.userInputs);
+            console.log('scrolled to bottom')
+            console.log(this.props.userInputs)
+            this.props.searchedRecipe(this.props.userInputs, 1);
+            this.setState({
+                page: this.state.page + 1
+            })
         }
     }
     render() {
         // debugger;
-        console.log('inputs 1:', this.props.userInputs);
-        console.log(this.props.searchedIngredients, "Check how many times")
         const { searchedIngredients } = this.props;
+        console.log(searchedIngredients);
         let resultArray = '';
         if(!this.props.userInputs.length){
             return <div>Go Back</div>
         }
-        debugger;
         //if on load
         if (searchedIngredients.length <= 0) {
             
@@ -55,9 +63,6 @@ class Results extends Component {
             );
         // when valid search
         } else if (typeof (searchedIngredients.data[0]) === 'object') {
-            console.log(searchedIngredients, "testing");
-            console.log(typeof (searchedIngredients.data[0]));
-            
             resultArray = searchedIngredients.data.map((ele, index) => {
                 return (
                     <OneResult key={ele.ID} id={ele.ID} title={ele.Name} details={ele} likes={ele.likes} imageSrc={ele.Image} />
