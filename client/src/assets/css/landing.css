@@ -3,6 +3,22 @@
     background-color: #00d3ff;
 }
 
+.margin-top-zero{
+    margin-top: 0;
+}
+
+.bgImg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.search_field{
+    width: 90%;
+    margin: auto;
+}
+
 #ingAddMinImg {
     width: 50px;
     margin: auto;
@@ -10,39 +26,58 @@
 
 .landPgSearchBtn {
     width: 50vw;
+    background-color: #FCD8A7;
 }
+
 .landPgSearchBtn > * {
     color: white;
 }
 
 #landPgSearchBtn>* {
-    color: #016200;
+    color: #527E45;
     text-decoration: none;
 }
 
-.ingredientBtns>button {
+.ingredientBtns button {
     width: 100px;
     height: 40px;
-    background-color: green;
     color: white;
+    border-radius: 10px;
 }
+
 button{
     margin: 2px;
 }
-.slogan > img{
-    width: 50vw;
+
+.btnBox{
+}
+
+.ingredientBtns button:hover{
+    box-shadow: 0 0 5px 2px #daf857;
+    color: #000000;
+}
+
+.directionLeft:hover{
+     text-shadow: 0 0 7px #0088ff;
+     color: #5c8000;
+     cursor: pointer;
+}
+
+.directionRight:hover{
+    text-shadow: 0 0 7px #0088ff;
+    color: #5c8000;
+    cursor: pointer;
+}
+
+/* .slogan > img{
+    width: 20vw;
     height: 100px;
     animation: swing 10s linear alternate infinite;
-}
+    z-index: 1;
+} */
 .commonFoodHeader{
     text-align: center;
-    width: 250px;
     margin: 10px auto;
-    color: green;
-    border-width: 3px 3px 0 3px;
-    border-color: #61fb16;
-    border-style: groove;
-    border-radius: 30px;
     text-shadow: 2px 2px 7px #8e8e8e;
 }
 @keyframes swing {
@@ -61,4 +96,35 @@ button{
     100%{
         transform: translateX(10%);
     }
+}
+@media only screen and (max-width: 500px) {
+    .slogan > img{
+        width: 30vw;
+        height: 50px;
+        animation: swing 10s linear alternate infinite;
+    }
+}
+.clearBtn{
+    border: 1px solid red;
+    border-radius: 5px;
+}
+.ingredients{
+    display: inline;
+}
+.commonFoodBubble{
+    display: inline-block;
+    margin: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.commonFoodBubbleActive{
+    display: inline-block;
+    background-color: rgba(255, 194, 168, 0.51);
+    margin: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 3px green;
 }

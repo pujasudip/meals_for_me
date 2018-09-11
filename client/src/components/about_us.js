@@ -17,25 +17,16 @@ class AboutUs extends Component {
             { name: 'Sean Prouty', github: 'a.a', linkedin: 'l.l', image: sean},
         ];
         this.state = {
-            modalClass: 'hideModal'
+            modalClass: 'hideModal',
+            pageToDisplay: ''
         }
     }
 
     clickHandler(link){
         this.setState({
-            modalClass: this.state.modalClass === 'showModal' ? 'hideModal' : 'showModal'
+            modalClass: this.state.modalClass === 'showModal' ? 'hideModal' : 'showModal',
+            pageToDisplay: link
         });
-
-        if(link){
-            this.loadWebpage(link);
-        }
-    }
-
-    loadWebpage(link){
-        console.log('hello from about_us:', link);
-        return (<div>
-            <iframe src='https://www.google.com'></iframe>
-        </div>)
     }
 
     render() {
@@ -57,10 +48,12 @@ class AboutUs extends Component {
                 <div className={this.state.modalClass}>
                    <div className='inner-content-modal'>
                        <i className='material-icons close' onClick={()=>this.clickHandler()}>close</i>
+                       <div className='webpage'>
+                           <div>
+                               <iframe src={this.state.pageToDisplay}></iframe>
+                           </div>
+                       </div>
                    </div>
-                    <div className='webpage'>
-                        {this.loadWebpage()}
-                    </div>
                     <div>
                         <button className='btn btn-small modalBtn center' onClick={()=>this.clickHandler()}>Close</button>
                     </div>

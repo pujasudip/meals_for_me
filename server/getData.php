@@ -1,9 +1,13 @@
 <?php
+
+header("Access-Control-Allow-Origin: *");
+
+
 if(empty($_GET)){
     exit('Invalid Search');
 }
 
-require_once('mysql_server_connect.php');
+require_once('mysqlconnect.php');
 
 if($conn->connect_error){
     die("failed to connect to MYSQL: (" . $conn->connect_errorno .") " . $conn->connect_error);
@@ -37,6 +41,7 @@ WHERE `recipes`.`Ingredients` LIKE (?)
 GROUP BY `recipes`.`ID`
 ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET (?)';
 
+
         if($stmt = $conn->prepare($queryForOne)){
             $stmt->bind_param('si', $ingredientOne,$numOfResults);
             $stmt->execute();
@@ -62,6 +67,7 @@ WHERE (`recipes`.`Ingredients` LIKE (?)
 AND `recipes`.`Ingredients` LIKE (?))
 GROUP BY `recipes`.`ID`
 ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET (?)';
+
 
         if($stmt = $conn->prepare($queryForTwo)){
             $stmt->bind_param('ssi', $ingredientOne,$ingredientTwo,$numOfResults);
@@ -90,6 +96,7 @@ WHERE (`recipes`.`Ingredients` LIKE (?)
 AND `recipes`.`Ingredients` LIKE (?)
 AND `recipes`.`Ingredients` LIKE (?))
 GROUP BY `recipes`.`ID`
+
 ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET (?)
 ';
 

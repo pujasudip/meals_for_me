@@ -1,20 +1,32 @@
 .header {
+    position: sticky !important;
     display: flex;
     height: 10vh;
     justify-content: space-between;
-    background-color: rgba(115, 128, 0, 0.65);
-    margin-bottom: 30px;
+    background-color: #7F977C;
+}
+.header{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.headerBanner{
+    : sticky;
 }
 
 .logo{
     width: 100px;
-    border: 2px solid rgba(115, 128, 0, 0.65);
-    border-radius: 50px;
-    animation: spin 50s alternate infinite;
+    color: white;
+    /* border: 2px solid rgba(115, 128, 0, 0.65); */
+    /* border-radius: 50px;
+    animation: spin 50s alternate infinite; */
 }
 .hamicon{
     width: 80px;
 }
+
 .no_menu{
     display: none;
 }
@@ -29,7 +41,7 @@
 }
 
 .menu{
-    width: 27vh;
+    width: 50vmin;
     height: 100%;
     font-family: "Arial Black";
     font-size: 1.5rem;
@@ -67,6 +79,7 @@
 
 .headerBtn{
     margin: 27% 0 0 15%;
+    background-color: #527E45;
 }
 button.backBtn{
    background-color: #d3d3d300;

@@ -1,4 +1,4 @@
-.container{
+/* .container{
     display: flex;
     align-content: space-around;
 }
@@ -6,4 +6,265 @@
     width: 25px;
     height: 25px;
     background-color: red;
+} */
+
+/*  */
+
+header {
+    display: inline-block;
+    height: 10vh;
+    width: 100vw;
+    border-bottom: 8px solid black;
+    position: relative;
+}
+
+#backArrow {
+    display: inline-block;
+    height: 100%;
+    width: auto;
+}
+
+#logo {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: auto;
+    border-radius: 50%;
+    border: 8px solid black;
+}
+
+#logo img {
+    height: 100%;
+    width: auto;
+}
+
+#menuButton {
+    height: 75%;
+    width: 10%;
+    float: right;
+    background-color: black;
+    margin: 10px 25px 0 0;
+}
+
+#mainContent {
+    display: inline-block;
+    width: 100vw;
+    height: 25vh;
+    position: relative;
+}
+/*  */
+
+.pictureContainer {
+    height: 90%;
+    width: 50%;
+    max-width: 25vh;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.pictureContainer img {
+    height: 100%;
+    width: 100%;
+    border: 3px solid rgba(0, 0, 0, 0.51);
+    border-radius: 50%;
+}
+
+#splittingAnimation {
+    position: relative;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: -1;
+}
+
+@keyframes splittingLines {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 50%;
+    }
+}
+
+#splittingAnimation>div {
+    height: 3px;
+    width: 50%;
+    float: left;
+    background-color: #0d8000;
+    animation-name: splittingLines;
+    animation-duration: 2s;
+}
+
+#splittingAnimation>div:last-child {
+    float: right;
+}
+
+.dishDetails {
+    height: 10vh;
+    width: 100vw;
+}
+
+.dishDetails h1 {
+    text-align: center;
+    font-size: 5vmax;
+    margin-top: -45px;
+}
+
+.dishDetails h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: -50px 0 15px;
+}
+
+.ingredients,
+.directions {
+    margin: 0 3vw;
+}
+
+.ingredients>ol,
+.directions>ol {
+    font-size: 3vmax;
+    font-weight: bold;
+}
+
+ol {
+    padding: 2px;
+}
+
+ol li {
+    display: block;
+}
+
+/* ol li:before {
+    content: counter(indexForLi) ") ";
+    counter-increment: indexForLi;
+    font-weight: bold;
+    font-size: 150%;
+} */
+
+ol>li {
+    font-size: 1.5vmax;
+    font-weight: 400;
+}
+
+.heartPic {
+    position: absolute;
+    top: -15%;
+    left: 10%;
+    /* z-index: -1; */
+}
+
+
+.heartPic > img {
+    width: 14vw;
+    position: absolute;
+    top: 15px;
+    left: -16px;
+}
+
+.heartPic>p {
+    width: 14vw;
+    position: absolute;
+    top: 49px;
+    left: -29px;
+}
+@media only screen and (min-width: 1000px) {
+    body {
+        margin: 0 8%;
+    }
+    header {
+        width: 84vw;
+    }
+    #mainContent {
+        width: 84vw;
+    }
+    .dishDetails {
+        width: 84vw;
+    }
+    .dishDetails h1 {
+        font-size: 5.5vmin;
+    }
+    .dishDetails h3 {
+        font-size: 4vmin;
+    }
+    .ingredients>ol,
+    .directions>ol {
+        font-size: 2.5vmax;
+    }
+    /* ol li:before {
+        font-size: 125%
+    } */
+    .heartPic {
+        font-size: 10vmin;
+    }
+    #menuButton {
+        max-width: 55px;
+    }
+    .pictureContainer {
+        max-width: 25vw;
+        z-index: -1;
+    }
+}
+.tabs{
+    margin-top: 25px;
+}
+.tab{
+    border: 1px solid red;
+    height: 50px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.tab:hover{
+    background-color: rgba(255, 0, 0, 0.47);
+    color: white;
+    border: none;
+}
+
+.wine_pairing_slider{
+    position: absolute;
+    top: 23%;
+    right: 0;
+    width: 40px;
+    height: 50px;
+    border-radius: 20px 0 0 20px;
+    background-color: red;
+    transition: height 100ms, width 1000ms;
+}
+
+.wine_pairing_slider:hover{
+    right: 0;
+    width: 150px;
+    height: 200px;
+    background-color: rgba(255, 0, 116, 0.78);
+    transition: height 1000ms, width 100ms;
+}
+.wine_pairing_body{
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 200px;
+    background-color: blue;
+}
+.wineNavLeft{
+    margin-left: -5px;
+}
+.wineNavLeft:hover{
+    animation: rightTurn 1s;
+    transform: rotate(-180deg);
+}
+@keyframes rightTurn {
+    0%{
+        transform: rotate(-90deg);
+    }
+    100%{
+        transform: rotate(-180deg);
+    }
+
 }

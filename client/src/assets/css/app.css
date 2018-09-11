@@ -1,8 +1,7 @@
 @font-face {
-    font-family: quest;
-    src: url(../fonts/quest.ttf);
+    font-family: monaFont;
+    src: url(../fonts/Mona-Free.woff);
 }
-
 body {
     margin: 0;
 }
