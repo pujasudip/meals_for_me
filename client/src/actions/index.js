@@ -1,5 +1,4 @@
 import types from './types';
-import types from './types';
 import { formatPostData, formatQueryString } from '../helpers';
 import axios from 'axios';
 
