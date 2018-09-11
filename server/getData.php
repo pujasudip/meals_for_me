@@ -27,16 +27,15 @@ function fetchAssocStatement($stmt){
 //SWITCH STATEMENT TO DIRECT WHICH QUERY TO USE AND GET SEARCH RESULTS
 $countPost = count($_GET);
 switch ($countPost){
-    case 1:
+    case 2:
         $ingredientOne = '%'.addslashes($_GET['one']).'%';
-        $numOfResults = 10*intval($_GET['number']);
+        $numOfResults = 15*intval($_GET['page']);
         $queryForOne = '
-SELECT `recipes`.*
+SELECT *
 FROM `recipes`
-JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
-JOIN `ingredients` ON `recipe_ingredients`.`ingredient_ID` = `ingredients`.`ingredient_ID`
-WHERE `ingredients`.`ingredient_name` LIKE (?)
-ORDER BY `recipes`.`likes` DESC LIMIT 10 OFFSET (?)';
+WHERE `recipes`.`Ingredients` LIKE (?)
+GROUP BY `recipes`.`ID`
+ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET (?)';
 
         if($stmt = $conn->prepare($queryForOne)){
             $stmt->bind_param('si', $ingredientOne,$numOfResults);
@@ -51,21 +50,18 @@ ORDER BY `recipes`.`likes` DESC LIMIT 10 OFFSET (?)';
         }
         break;
 
-    case 2:
+    case 3:
         $ingredientOne = '%'.addslashes($_GET['one']).'%';
         $ingredientTwo = '%'.addslashes($_GET['two']).'%';
-        $numOfResults = 10*intval($_GET['number']);
+        $numOfResults = 15*intval($_GET['page']);
 
         $queryForTwo = '
-SELECT `recipes`.*
+SELECT *
 FROM `recipes`
-JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
-JOIN `ingredients` ON `recipe_ingredients`.`ingredient_ID` = `ingredients`.`ingredient_ID`
-WHERE (`ingredients`.`ingredient_name` LIKE (?)
-OR `ingredients`.`ingredient_name` LIKE (?) )
+WHERE (`recipes`.`Ingredients` LIKE (?)
+AND `recipes`.`Ingredients` LIKE (?))
 GROUP BY `recipes`.`ID`
-HAVING COUNT(*) > 1
-ORDER BY `recipes`.`likes` DESC LIMIT 10 OFFSET (?)';
+ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET (?)';
 
         if($stmt = $conn->prepare($queryForTwo)){
             $stmt->bind_param('ssi', $ingredientOne,$ingredientTwo,$numOfResults);
@@ -81,23 +77,21 @@ ORDER BY `recipes`.`likes` DESC LIMIT 10 OFFSET (?)';
         }
         break;
 
-    case 3:
+    case 4:
         $ingredientOne = '%'.addslashes($_GET['one']).'%';
         $ingredientTwo = '%'.addslashes($_GET['two']).'%';
         $ingredientThree = '%'.addslashes($_GET['three']).'%';
-        $numOfResults = 10*intval($_GET['number']);
+        $numOfResults = 15*intval($_GET['page']);
 
         $queryForThree = '
-SELECT `recipes`.*
+SELECT *
 FROM `recipes`
-JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
-JOIN `ingredients` ON `recipe_ingredients`.`ingredient_ID` = `ingredients`.`ingredient_ID`
-WHERE (`ingredients`.`ingredient_name` LIKE (?)
-OR `ingredients`.`ingredient_name` LIKE (?)
-OR `ingredients`.`ingredient_name` LIKE (?) )
+WHERE (`recipes`.`Ingredients` LIKE (?)
+AND `recipes`.`Ingredients` LIKE (?)
+AND `recipes`.`Ingredients` LIKE (?))
 GROUP BY `recipes`.`ID`
-HAVING COUNT(*) > 2
-ORDER BY `recipes`.`likes` DESC LIMIT 10 OFFSET (?)';
+ORDER BY `recipes`.`likes` DESC LIMIT 15 OFFSET (?)
+';
 
         if($stmt = $conn->prepare($queryForThree)){
             $stmt->bind_param('sssi', $ingredientOne,$ingredientTwo,$ingredientThree,$numOfResults);
@@ -113,11 +107,11 @@ ORDER BY `recipes`.`likes` DESC LIMIT 10 OFFSET (?)';
         break;
 
     default:
-        die('invalid search');
-        break;
+        die('invalid search parameters');
 }
 $conn->close();
 ?>
+
 
 
 
