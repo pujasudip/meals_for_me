@@ -8,5 +8,3 @@ $conn = new mysqli(
     '3306');
 
 ?>
-
-
