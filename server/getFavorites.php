@@ -22,6 +22,7 @@ if($result = $conn->query($query)){
 } else{
     print('bad query');
 }
+$result->close();
 
 $conn->close();
 

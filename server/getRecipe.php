@@ -24,4 +24,6 @@ if($result = $conn->query($query)){
 
 $result->close();
 
+$conn->close();
+
 ?>
