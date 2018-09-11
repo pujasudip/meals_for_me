@@ -1,4 +1,5 @@
 import types from './types';
+import types from './types';
 import { formatPostData, formatQueryString } from '../helpers';
 import axios from 'axios';
 
@@ -6,6 +7,7 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:8000/user_info.php';
 const BASE_URL_SEARCH = 'http://localhost:8000/server/getData.php';
 const BASE_URL_SIGNUP = 'http://localhost:8000/userauth/createuser.php';
+const BASE_URL_RECIPE_SEARCH = 'http://localhost:8000/server/getRecipe.php';
 
 export function searchedRecipe(userIngredient, page){
     var dataToSend = formatQueryString(userIngredient, page);
@@ -58,7 +60,7 @@ export function getDetailsById(id){
         'id': id
     }};
     console.log('id:', id);
-    const resp = axios.get(BASE_URL_SEARCH, dataToSend);
+    const resp = axios.get(BASE_URL_RECIPE_SEARCH, dataToSend);
     return {
         type: types.DETAILS_PAGE,
         payload: resp
