@@ -22,6 +22,7 @@ class Results extends Component {
     componentDidMount() {
         window.addEventListener('scroll', this.handleOnScroll);
         // console.log(this.props.searchedRecipe(this.props.userInputs), "@@@@@@")
+        console.log('compoennet did mount called data')
         this.props.searchedRecipe(this.props.userInputs, 0);
     }
 
@@ -48,7 +49,7 @@ class Results extends Component {
         }
     }
     render() {
-        // debugger;
+        debugger;
         const { searchedIngredients } = this.props;
         console.log(searchedIngredients);
         let resultArray = '';
