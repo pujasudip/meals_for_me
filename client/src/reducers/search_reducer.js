@@ -2,7 +2,7 @@ import types from '../actions/types';
 
 const DEFAULT_STATE = {
     ingredients: [],
-    searched_recipe: '',
+    searched_recipe: [],
     details: '',
 };
 
@@ -22,7 +22,11 @@ function  searchResult(state = DEFAULT_STATE, action){
         case types.CLEAR_USER_INGREDIENT_INPUTS:
             return {...state, ingredients: []};
         case types.SEARCHED_RECIPE:
-            return { ...state, searched_recipe: action.payload};
+            console.log('action payload:', action.payload);
+            if(Array.isArray(action.payload.data)){
+                return { ...state, searched_recipe: [ ...state.searched_recipe, ...action.payload.data]};
+            }
+
 //             let recipes = [ ...state.searched_recipe, ...action.payload.data];
 //             return { ...state, searched_recipe: recipes };
         case types.DETAILS_PAGE:

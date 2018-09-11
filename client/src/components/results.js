@@ -20,15 +20,15 @@ class Results extends Component {
     }
 
     componentDidMount() {
-        window.addEventListener('scroll', this.handleOnScroll);
         // console.log(this.props.searchedRecipe(this.props.userInputs), "@@@@@@")
         console.log('compoennet did mount called data')
         this.props.searchedRecipe(this.props.userInputs, 0);
+        window.addEventListener('scroll', this.handleOnScroll);
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleOnScroll);
-    }
+    // componentWillUnmount() {
+    //     window.removeEventListener('scroll', this.handleOnScroll);
+    // }
 
     // displayMore(){
         
@@ -37,21 +37,23 @@ class Results extends Component {
         // debugger;
         let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
         let scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
-        let clientHeight = document.documentElement.clientHeight + 1 || window.innerHeight; // changed client height to + 1
+        let clientHeight = document.documentElement.clientHeight + 1 || window.innerHeight + 1; // changed client height to + 1
         let scrolledToBottom = (parseInt(scrollTop + clientHeight)) >= scrollHeight;
+        console.log('log:', scrolledToBottom);
         if (scrolledToBottom) {
-            console.log('scrolled to bottom')
-            console.log(this.props.userInputs)
+            console.log('scrolled to bottom');
+            console.log(this.props.userInputs);
             this.props.searchedRecipe(this.props.userInputs, 1);
             this.setState({
                 page: this.state.page + 1
-            })
+            });
+            scrolledToBottom = false;
         }
     }
     render() {
         debugger;
         const { searchedIngredients } = this.props;
-        console.log(searchedIngredients);
+        console.log('se:',searchedIngredients);
         let resultArray = '';
         if(!this.props.userInputs.length){
             return <div>Go Back</div>
@@ -63,8 +65,8 @@ class Results extends Component {
                 <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span className="sr-only">Loading...</span></div>
             );
         // when valid search
-        } else if (typeof (searchedIngredients.data[0]) === 'object') {
-            resultArray = searchedIngredients.data.map((ele, index) => {
+        } else if (typeof (searchedIngredients[0]) === 'object') {
+            resultArray = searchedIngredients.map((ele, index) => {
                 return (
                     <OneResult key={ele.ID} id={ele.ID} title={ele.Name} details={ele} likes={ele.likes} imageSrc={ele.Image} />
                 );
