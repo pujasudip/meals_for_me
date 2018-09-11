@@ -6,9 +6,6 @@ import OneResult from './individual_result_panel';
 import { connect } from 'react-redux';
 import { formatPostData, formatQueryString } from '../helpers';
 import { searchedRecipe, setDetailsOfItem, setDetailsId } from '../actions';
-import 'font-awesome/css/font-awesome.min.css';
-
-const BASE_URL = 'http://localhost:8000/server/getData.php';
 
 class Results extends Component {
     constructor(props) {
@@ -21,7 +18,7 @@ class Results extends Component {
 
     componentDidMount() {
         // window.addEventListener('scroll', this.handleOnScroll);
-        console.log(this.props.searchedRecipe(this.props.userInputs), "@@@@@@")
+        // console.log(this.props.searchedRecipe(this.props.userInputs), "@@@@@@")
         this.props.searchedRecipe(this.props.userInputs);
     }
 
