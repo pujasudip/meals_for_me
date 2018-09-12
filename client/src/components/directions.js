@@ -10,17 +10,20 @@ class Directions extends Component{
         // console.log('directions:', directions);
 
         if(directions){
-            // let directionListArray = directions.map((ele, index)=>{
-            //     return ele.step;
-            // });
-            // directionListArray = directionListArray.join('');
-            // directionListArray = directionListArray.split('.');
-            // directionList = directionListArray.map((ele, index)=>{
-            //     return <li key={index}>{ele}</li>;
-            // });
-
+            let directionListArray = directions.map((ele, index)=>{
+                return ele.step;
+            });
+            directionListArray = directionListArray.join('');
+            // if(directionListArray[index] === '.'){
+            //     if (directionListArray[index - 1] === 'tbsp' || directionListArray[index - 1] === 'teaspoon')
+            // }
+            directionListArray = directionListArray.split('.');
+            directionList = directionListArray.map((ele, index)=>{
+                return <li key={index}>{ele}</li>;
+// -----
             directionList = directions.map((ele, index)=>{
                 return <li key={index}>{ele.step}</li>;
+
             });
 
         }

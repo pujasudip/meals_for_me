@@ -121,6 +121,7 @@ class Recipe extends Component {
                 <p>Vegetarian: {this.dietOptions(directions.vegetarian)}</p>
             </section>
         <div>
+            <p>Ingredients</p>
             <Ingredients ingredients={ingredientList} />
         </div>
             <div className='row s12 tabs'>
