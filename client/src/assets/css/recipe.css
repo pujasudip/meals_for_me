@@ -9,7 +9,32 @@
 } */
 
 /*  */
+#pictureFrame{
+    padding: 0px;
+    height:auto;
+}
+.main-content{
+    /* background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../images/recipe-background.png"); */
+    /* background: url("../images/recipe-background.png"); */
+}
 
+.likeTitle{
+    color: #FF8A80;
+    margin-top: 5px;
+    text-shadow: 0px 0px 0px #000000;
+    font-weight: bold;
+
+}
+#titleText{
+    color:#7F977C;
+    font-size: 14px;
+    text-shadow: 0px 0px 0px #000000;
+    font-weight: bold;
+}
+.resultRow{
+    margin-bottom: 25px;
+    
+}
 header {
     display: inline-block;
     height: 10vh;

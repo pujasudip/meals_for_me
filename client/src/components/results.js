@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { formatPostData, formatQueryString } from '../helpers';
 import { searchedRecipe, setDetailsOfItem, setDetailsId } from '../actions';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
+import recipebackground from '../assets/images/recipe-background.png';
 
 const BASE_URL = 'http://localhost:8000/server/getData.php';
 
@@ -21,6 +22,7 @@ class Results extends Component {
     }
 
     componentDidMount() {
+        
         // console.log(this.props.searchedRecipe(this.props.userInputs), "@@@@@@")
         console.log('compoennet did mount called data')
         this.props.searchedRecipe(this.props.userInputs, 0);
@@ -72,8 +74,8 @@ class Results extends Component {
         }
 
         return (
-            <div className= 'main-content'>
-                <h5>Results for: {this.props.userInputs.join(", ")}</h5>
+            <div className= 'main-content mainPage'>
+                <h5 className='resultHeader'>Results for: {this.props.userInputs.join(", ")}</h5>
                     {
                         resultArray
                     }      
