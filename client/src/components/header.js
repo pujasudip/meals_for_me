@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../assets/css/header.css';
-import logo from '../assets/images/logo_placeh.jpg';
 import hamicon from '../assets/images/hamicon.png';
 import HamburgerMenu from '../components/hamburger_menu';
 import { Link } from 'react-router-dom';
@@ -31,6 +30,7 @@ class Header extends Component {
 
     goBack(){
         console.log('this.props in goback:', this.props);
+        console.log('this.state in goback', this.state)
         this.props.history.goBack();
     }
 

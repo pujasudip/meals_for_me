@@ -2,13 +2,17 @@ import types from '../actions/types';
 
 const DEFAULT_STATE = {
     ingredients: [],
-    searched_recipe: '',
+    searched_recipe: [],
     details: '',
 };
 
 function  searchResult(state = DEFAULT_STATE, action){
     switch (action.type) {
         case types.ADD_INGREDIENT:
+            let prevIngredients = [...state.ingredients];
+            if(prevIngredients.includes(action.payload)){
+                return state;
+            }
             let ingredients = [ ...state.ingredients, action.payload ];
             return { ...state, ingredients };
         case types.REMOVE_INGREDIENT:
@@ -16,12 +20,19 @@ function  searchResult(state = DEFAULT_STATE, action){
             ingredients.splice(action.payload, 1);
             return { ...state, ingredients};
         case types.CLEAR_USER_INGREDIENT_INPUTS:
-            return {ingredients: []};
+            return {...state, ingredients: []};
         case types.SEARCHED_RECIPE:
-            return { searched_recipe: action.payload};
+            console.log('action payload:', action.payload);
+            if(Array.isArray(action.payload.data)){
+                return { ...state, searched_recipe: [ ...state.searched_recipe, ...action.payload.data]};
+            }
+
+//             let recipes = [ ...state.searched_recipe, ...action.payload.data];
+//             return { ...state, searched_recipe: recipes };
         case types.DETAILS_PAGE:
             return { ...state, details: action.payload};
-
+        case types.CLEAR_RECIPES:
+            return {...state, searched_recipe: ''};
         default:
             return state;
     }

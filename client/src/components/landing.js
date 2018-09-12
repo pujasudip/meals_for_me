@@ -4,10 +4,9 @@ import plus from '../assets/images/plus.png';
 import minus from '../assets/images/minus.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { searchIngredient, addIngredeints, removeIngredients, clearUserIngredientInputs } from '../actions';
+import { clearRecipes, searchIngredient, addIngredeints, removeIngredients, clearUserIngredientInputs } from '../actions';
 import bg_image from '../assets/images/mobile-bg.png';
 //import bg_image from '../assets/images/dogbg.jpg';
-import slogan from '../assets/images/chicken_soup.gif';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 
 class LandingPage extends Component {
@@ -21,6 +20,21 @@ class LandingPage extends Component {
             commonIngredients: commonIngredientsRef[this.foodIndex].food,
             remainingEntries: this.allowedEntries,
         };
+    }
+    componentDidMount() {
+        // console.log(this.props,'initial prop from LP');
+        this.props.clearUserIngredientInputs();
+    }
+//     componentWillUnmount(){
+//         this.props.clearRecipes();
+
+//     }
+    componentWillUnmount() {
+        this.props.clearRecipes();
+    }
+
+    componentWillReceiveProps(newProp) {
+        // console.log(newProp,'new prop from LP')
     }
 
     userInputHandler(event) {
@@ -57,12 +71,12 @@ class LandingPage extends Component {
 
     removeFromTheIngredient(item) {
         let index = this.props.ingredients.indexOf(item);
-        console.log('index: ', index);
+        // console.log('index: ', index);
         this.setState({
             remainingEntries: ++this.allowedEntries,
         });
         this.props.removeIngredient(index);
-        console.log('aaa:', this.props.ingredients.length);
+        // console.log('aaa:', this.props.ingredients.length);
     }
 
     clearUserInputs() {
@@ -101,7 +115,7 @@ class LandingPage extends Component {
     }
 
     render() {
-        const colorArray = ['#ff8a80 red accent-1', '#90caf9 blue lighten-3', '#e8f5e9 green lighten-3'];
+        const colorArray = ['red accent-1', 'blue lighten-3', 'green lighten-3'];
         const ingredient = this.props.ingredients.map((item, index) => {
             return (<div key={index} className='ingredients'>
                 <div className='chip'>
@@ -196,7 +210,8 @@ const mapActionsToProps = {
     searchIngredient: searchIngredient,
     addIngredient: addIngredeints,
     removeIngredient: removeIngredients,
-    clearUserIngredientInputs: clearUserIngredientInputs
+    clearUserIngredientInputs: clearUserIngredientInputs,
+    clearRecipes: clearRecipes,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(LandingPage);

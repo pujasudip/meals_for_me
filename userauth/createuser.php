@@ -1,4 +1,5 @@
 <?php
+    header("Access-Control-Allow-Origin: *");  
     include_once 'mysqlconnect.php';
     $output['success']=0;
     print_r($output);

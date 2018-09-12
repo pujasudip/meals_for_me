@@ -5,9 +5,11 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:8000/user_info.php';
 const BASE_URL_SEARCH = 'http://localhost:8000/server/getData.php';
+const BASE_URL_SIGNUP = 'http://localhost:8000/userauth/createuser.php';
+const BASE_URL_RECIPE_SEARCH = 'http://localhost:8000/server/getRecipe.php';
 
-export function searchedRecipe(userIngredient){
-    var dataToSend = formatQueryString(userIngredient);
+export function searchedRecipe(userIngredient, page){
+    var dataToSend = formatQueryString(userIngredient, page);
     const resp = axios.get(BASE_URL_SEARCH, dataToSend);
     return {
         type: types.SEARCHED_RECIPE,
@@ -57,9 +59,35 @@ export function getDetailsById(id){
         'id': id
     }};
     console.log('id:', id);
-    const resp = axios.get(BASE_URL_SEARCH, dataToSend);
+    const resp = axios.get(BASE_URL_RECIPE_SEARCH, dataToSend);
     return {
         type: types.DETAILS_PAGE,
         payload: resp
     }
+}
+
+
+export function addToShoppingList(item) {
+    return {
+        type: types.ADD_TO_SHOPPINGLIST,
+        payload: item
+    }
+}
+
+export function clearRecipes(){
+    return {
+        type: types.CLEAR_RECIPES,
+        payload: ''
+    }
+}
+
+export function createUserAccount(values){
+    const { firstName, lastName, username, email, password} = values;
+    const dataToSend = formatPostData({firstName, lastName, username, email, password});
+    const response = axios.post(`${BASE_URL_SIGNUP}`, dataToSend);
+    return {
+        type: types.DETAILS_PAGE,
+        payload: response
+    }
+
 }

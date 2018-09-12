@@ -16,7 +16,6 @@ header {
     width: 100vw;
     border-bottom: 8px solid black;
     position: relative;
-    z-index: -1;
 }
 
 #backArrow {
@@ -55,6 +54,7 @@ header {
     width: 100vw;
     height: 25vh;
     position: relative;
+    margin-top: 4rem;
 }
 /*  */
 
@@ -64,25 +64,24 @@ header {
     max-width: 25vh;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 30%;
     transform: translate(-50%, -50%);
-    z-index: -1;
 }
 
 .pictureContainer img {
     height: 100%;
     width: 100%;
-    border: 8px solid black;
+    border: 3px solid rgba(0, 0, 0, 0.51);
     border-radius: 50%;
 }
 
 #splittingAnimation {
     position: relative;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    z-index: -2;
+    z-index: -1;
 }
 
 @keyframes splittingLines {
@@ -95,10 +94,10 @@ header {
 }
 
 #splittingAnimation>div {
-    height: 12px;
+    height: 3px;
     width: 50%;
     float: left;
-    background-color: grey;
+    background-color: #0d8000;
     animation-name: splittingLines;
     animation-duration: 2s;
 }
@@ -108,20 +107,19 @@ header {
 }
 
 .dishDetails {
-    height: 10vh;
     width: 100vw;
 }
 
 .dishDetails h1 {
     text-align: center;
     font-size: 5vmax;
-    margin: 0;
+    margin-top: -45px;
 }
 
 .dishDetails h3 {
     text-align: center;
-    font-size: 3vmax;
-    margin: 0;
+    font-size: 1.5rem;
+    margin: -50px 0 15px;
 }
 
 .ingredients,
@@ -157,7 +155,7 @@ ol>li {
 
 .heartPic {
     position: absolute;
-    top: 55%;
+    top: -15%;
     left: 10%;
     /* z-index: -1; */
 }
@@ -208,13 +206,13 @@ ol>li {
     #menuButton {
         max-width: 55px;
     }
-    #mainContent {
-        height: 35vh;
-    }
     .pictureContainer {
         max-width: 25vw;
         z-index: -1;
     }
+}
+.tabs{
+    margin-top: 25px;
 }
 .tab{
     border: 1px solid red;
@@ -230,7 +228,7 @@ ol>li {
 
 .wine_pairing_slider{
     position: absolute;
-    top: 30%;
+    top: 23%;
     right: 0;
     width: 40px;
     height: 50px;
@@ -253,4 +251,20 @@ ol>li {
     width: 70px;
     height: 200px;
     background-color: blue;
+}
+.wineNavLeft{
+    margin-left: -5px;
+}
+.wineNavLeft:hover{
+    animation: rightTurn 1s;
+    transform: rotate(-180deg);
+}
+@keyframes rightTurn {
+    0%{
+        transform: rotate(-90deg);
+    }
+    100%{
+        transform: rotate(-180deg);
+    }
+
 }

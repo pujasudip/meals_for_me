@@ -3,10 +3,11 @@ import '../assets/css/recipe.css';
 import emptyHeart from '../assets/images/heart-outline.png';
 import redHeart from '../assets/images/heart-icon-red.png';
 import Directions from './directions';
-import Nutrition from './nutrition';
+import Ingredients from './ingredients';
 import ShoppingList from './shopping_list';
 import { connect } from 'react-redux';
-import { getDetailsById } from '../actions';
+import { getDetailsById, addToShoppingList } from '../actions';
+import wine_up from '../assets/images/wine_up.png';
 
 class Recipe extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class Recipe extends Component {
         this.state = {
             imgSrc: emptyHeart,
             addFavText: 'Add to Favorites',
-            component: 'Directions'
+            component: 'Ingredients',
         }
         this.handleSelect = this.handleSelect.bind(this);
     }
@@ -42,14 +43,14 @@ changeHeart = ()=>{
         this.setState({ key: key });
     }
 
-    dynamicComponent(directions){
+    dynamicComponent(directions, ingredients){
         const comp = this.state.component;
 
         switch(comp){
+            case 'Ingredients':
+                return  <Ingredients ingredients={ingredients}/>;
             case 'Directions':
-                return  <Directions directions={directions}/>;
-            case 'Nutrition':
-                return <Nutrition />;
+                return <Directions directions={directions}/>;
             case 'ShoppingList':
                 return <ShoppingList />;
         }
@@ -60,23 +61,44 @@ changeHeart = ()=>{
             component: comp
         });
     }
+
+    dietOptions(diet){
+        console.log('inside of diet options method', diet)
+        if(diet === 1){
+            return 'True';
+        }else{
+            return 'False';
+        }
+    }
+
+    addToShopingList(item){
+        this.props.addToShoppingList(item.name);
+    }
+
     render() {
         let directions = '';
         let ingredients = '';
+        let pairedWines = '';
+        console.log('props in recipe', this.props)
         if(this.props.details){
             directions = this.props.details.data.data[0];
             ingredients = JSON.parse(directions.Ingredients);
+            pairedWines = JSON.parse(directions.winepairings).pairedWines;
         }
         let ingredientList = '';
-
+        let wineList = '';
+        console.log('det:', pairedWines);
 
         if(ingredients){
             ingredientList = ingredients.map((ele)=>{
-                return <li key={ele.ID}>{ele.original}</li>
+                return <li key={ele.id} onClick={this.addToShopingList.bind(this, ele)}>{ele.original}</li>
             });
         }
-
-
+        if(pairedWines){
+            wineList = pairedWines.map((ele, index)=>{
+                return <li key={index}>{ele}</li>
+            });
+        }
 
         return(
         <div>
@@ -94,25 +116,30 @@ changeHeart = ()=>{
                     <p>{this.state.addFavText}</p>
             </div>
         </section>
-            <section className="dishDetails">
-                    <h1>{directions.Name}</h1>
-                    <h3>Ready in: {directions.Time} mins</h3>
-                </section>
-            <section className="ingredients">
-                    <ol>Ingredients
-                        {ingredientList}
-                    </ol>
-                </section>
-            <div className='row s12'>
+            <section className="dishDetails center">
+                <h1>{directions.Name}</h1>
+                <h3>Prep & Cooking Time: {directions.Time} mins</h3>
+                <p>Vegan: {this.dietOptions(directions.vegan)}</p>
+                <p>Vegetarian: {this.dietOptions(directions.vegetarian)}</p>
+            </section>
+        <div>
+            <p className='left'>Ingredients</p>
+            <div>{Ingredients}</div>
+        </div>
+            <div className='row s12 tabs'>
                 <div className='tab col s4 center' title='Directions' onClick={()=>this.setStateForComponentRender('Directions')}>Directions</div>
-                <div className='tab col s4 center' title='Nutrition' onClick={()=>this.setStateForComponentRender('Nutrition')}>Nutritions</div>
                 <div className='tab col s4' title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList')}>Shopping List</div>
             </div>
             <div>
-                {this.dynamicComponent(directions)}
+                {this.dynamicComponent(directions, ingredientList)}
             </div>
-            <div className='wine_pairing_slider'>
-                <i className='material-icons prefix'>navigate_before</i><span className='white-text'>Paired Wines</span>
+            <div className='wine_pairing_slider valign-wrapper'>
+                <i className='material-icons medium wineNavLeft'>navigate_before</i>
+                <div>
+                    <ul>
+                        {wineList}
+                    </ul>
+                </div>
             </div>
                 </div> : ""}
 
@@ -127,6 +154,6 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, {getDetailsById})(Recipe);
+export default connect(mapStateToProps, {getDetailsById, addToShoppingList})(Recipe);
 
 

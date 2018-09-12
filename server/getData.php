@@ -7,12 +7,12 @@ if(empty($_GET)){
     exit('Invalid Search');
 }
 
-require_once('mysqlconnect.php');
+require_once('mysql_server_connect.php');
 
 if($conn->connect_error){
     die("failed to connect to MYSQL: (" . $conn->connect_errorno .") " . $conn->connect_error);
 }
-
+// FUNCTION TO REPLACE GET_RESULTS()
 function fetchAssocStatement($stmt){
     if ($stmt->num_rows > 0) {
         $result = array();
@@ -25,56 +25,28 @@ function fetchAssocStatement($stmt){
         if ($stmt->fetch()) {
             return $result;
         }
-
         return null;
     }
 }
-
+//SWITCH STATEMENT TO DIRECT WHICH QUERY TO USE AND GET SEARCH RESULTS
 $countPost = count($_GET);
 switch ($countPost){
-    case 1:
-        $ingredientOne = '%'.$_GET['one'].'%';
+    case 2:
+        $ingredientOne = '%'.addslashes($_GET['one']).'%';
+        $numOfResults = 50*intval($_GET['page']);
         $queryForOne = '
-SELECT `recipes`.*
+SELECT *
 FROM `recipes`
-JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
-JOIN `ingredients` ON `recipe_ingredients`.`ingredient_ID` = `ingredients`.`ingredient_ID`
-WHERE `ingredients`.`ingredient_name` LIKE (?)
-ORDER BY `recipes`.`Score` DESC';
+WHERE `recipes`.`Ingredients` LIKE (?)
+GROUP BY `recipes`.`ID`
+ORDER BY `recipes`.`likes` DESC LIMIT 50 OFFSET '. $numOfResults;
+
 
         if($stmt = $conn->prepare($queryForOne)){
             $stmt->bind_param('s', $ingredientOne);
             $stmt->execute();
             $stmt->store_result();
-            while ($row = fetchAssocStatement($stmt)) {
-                $results[] = $row;
-            }
-            $jsonOutput = json_encode($results);
-            print_r($jsonOutput);
-            $stmt->close();
-        }
-        break;
-
-    case 2:
-        $ingredientOne = '%'.$_GET['one'].'%';
-        $ingredientTwo = '%'.$_GET['two'].'%';
-        $queryForTwo = '
-SELECT `recipes`.*
-FROM `recipes`
-JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
-JOIN `ingredients` ON `recipe_ingredients`.`ingredient_ID` = `ingredients`.`ingredient_ID`
-WHERE (`ingredients`.`ingredient_name` LIKE (?)
-OR `ingredients`.`ingredient_name` LIKE (?) )
-GROUP BY `recipes`.`ID`
-HAVING COUNT(*) > 1
-ORDER BY `recipes`.`Score` DESC';
-
-        if($stmt = $conn->prepare($queryForTwo)){
-            $stmt->bind_param('ss', $ingredientOne,$ingredientTwo);
-            $stmt->execute();
-            $stmt->store_result();
-
-            while ($row = fetchAssocStatement($stmt)) {
+            while ($row = fetchAssocStatement($stmt)){
                 $results[] = $row;
             }
             $jsonOutput = json_encode($results);
@@ -84,26 +56,53 @@ ORDER BY `recipes`.`Score` DESC';
         break;
 
     case 3:
-        $ingredientOne = '%'.$_GET['one'].'%';
-        $ingredientTwo = '%'.$_GET['two'].'%';
-        $ingredientThree = '%'.$_GET['three'].'%';
-        $queryForThree = '
-SELECT `recipes`.*
+        $ingredientOne = '%'.addslashes($_GET['one']).'%';
+        $ingredientTwo = '%'.addslashes($_GET['two']).'%';
+        $numOfResults = 50*intval($_GET['page']);
+
+        $queryForTwo = '
+SELECT *
 FROM `recipes`
-JOIN `recipe_ingredients` ON `recipes`.`ID` = `recipe_ingredients`.`recipe_ID`
-JOIN `ingredients` ON `recipe_ingredients`.`ingredient_ID` = `ingredients`.`ingredient_ID`
-WHERE (`ingredients`.`ingredient_name` LIKE (?)
-OR `ingredients`.`ingredient_name` LIKE (?)
-OR `ingredients`.`ingredient_name` LIKE (?) )
+WHERE (`recipes`.`Ingredients` LIKE (?)
+AND `recipes`.`Ingredients` LIKE (?))
 GROUP BY `recipes`.`ID`
-HAVING COUNT(*) > 2
-ORDER BY `recipes`.`Score` DESC';
+ORDER BY `recipes`.`likes` DESC LIMIT 50 OFFSET '. $numOfResults;
+
+
+        if($stmt = $conn->prepare($queryForTwo)){
+            $stmt->bind_param('ss', $ingredientOne,$ingredientTwo);
+            $stmt->execute();
+            $stmt->store_result();
+
+            while ($row = fetchAssocStatement($stmt)){
+                $results[] = $row;
+            }
+            $jsonOutput = json_encode($results);
+            print_r($jsonOutput);
+            $stmt->close();
+        }
+        break;
+
+    case 4:
+        $ingredientOne = '%'.addslashes($_GET['one']).'%';
+        $ingredientTwo = '%'.addslashes($_GET['two']).'%';
+        $ingredientThree = '%'.addslashes($_GET['three']).'%';
+        $numOfResults = 50*intval($_GET['page']);
+
+        $queryForThree = '
+SELECT *
+FROM `recipes`
+WHERE (`recipes`.`Ingredients` LIKE (?)
+AND `recipes`.`Ingredients` LIKE (?)
+AND `recipes`.`Ingredients` LIKE (?))
+GROUP BY `recipes`.`ID`
+ORDER BY `recipes`.`likes` DESC LIMIT 50 OFFSET ' . $numOfResults ;
 
         if($stmt = $conn->prepare($queryForThree)){
             $stmt->bind_param('sss', $ingredientOne,$ingredientTwo,$ingredientThree);
             $stmt->execute();
             $stmt->store_result();
-            while ($row = fetchAssocStatement($stmt)) {
+            while ($row = fetchAssocStatement($stmt)){
                 $results[] = $row;
             }
             $jsonOutput = json_encode($results);
@@ -113,13 +112,11 @@ ORDER BY `recipes`.`Score` DESC';
         break;
 
     default:
-        die('invalid search');
-        break;
+        die('invalid search parameters');
 }
-
 $conn->close();
-
 ?>
+
 
 
 
