@@ -26,7 +26,8 @@ class Directions extends Component{
 
             });
 
-        }
+        })
+     }
 
         return (
             <div className="directions">
