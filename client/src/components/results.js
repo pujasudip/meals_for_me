@@ -28,9 +28,9 @@ class Results extends Component {
         window.addEventListener('scroll', this.handleOnScroll);
     }
 
-    // componentWillUnmount() {
-    //     window.removeEventListener('scroll', this.handleOnScroll);
-    // }
+     componentWillUnmount() {
+         window.removeEventListener('scroll', this.handleOnScroll);
+     }
 
     // displayMore(){
         
