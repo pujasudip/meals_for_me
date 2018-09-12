@@ -57,7 +57,6 @@ export function getDetailsById(id){
     var dataToSend = {params: {
         'id': id
     }};
-    console.log('id:', id);
     const resp = axios.get(BASE_URL_RECIPE_SEARCH, dataToSend);
     return {
         type: types.DETAILS_PAGE,
@@ -69,6 +68,13 @@ export function getDetailsById(id){
 export function addToShoppingList(item) {
     return {
         type: types.ADD_TO_SHOPPINGLIST,
+        payload: item
+    }
+}
+
+export function removeFromShoppingList(item){
+    return {
+        type: types.REMOVE_FROM_SHOPPINGLIST,
         payload: item
     }
 }
