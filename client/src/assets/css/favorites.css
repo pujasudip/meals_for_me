@@ -1,0 +1,13 @@
+.dishContainer{
+    height: 20vh;
+}
+
+.dishContainer > img{
+    width: 30vmin;
+    height: 30vmin;
+    margin-top: 10%;
+    border-radius: 50%;
+}
+.favTrash{
+    margin-top: 10%;
+}

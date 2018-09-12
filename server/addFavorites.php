@@ -5,15 +5,18 @@ if(empty($_POST)){
 
 require_once('mysql_server_connect.php');
 
+header("Access-Control-Allow-Origin: *");
+
+$user_id = $_POST['user_id'];
+$recipe_id = $_POST['recipe_id'];
+
 if($conn->connect_errno){
     die('Bad connection');
 }
 
-
-
 $query = "
-INSERT INTO `favorites`(`favorite_id`, `recipe_id`, `user_id`) 
-VALUES (null,'$test1','$test2')";
+REPLACE INTO `favorites`(`ID`, `recipe_id`, `user_id`) 
+VALUES (null,$recipe_id, $user_id)";
 
 
 if($result = $conn->query($query)){

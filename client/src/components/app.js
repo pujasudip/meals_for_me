@@ -14,6 +14,7 @@ import Login from './login_page';
 import SignUp from './sign_up';
 import AboutUs from './about_us';
 import NotFound from '../404/404_page';
+import auth from '../hoc/auth';
 
 const App = () => (
     <Router>
@@ -25,7 +26,7 @@ const App = () => (
             <Route path='/about_us' component={AboutUs}/>
             <Route path='/recipe/:id' component={Recipe}/>
             <Route path='/results' component={Results}/>
-            <Route path='/favorites' component={Favorites}/>
+            <Route path='/favorites' component={auth(Favorites, '/login')}/>
             {/*<Route path='/*' component={NotFound}/>*/}
         </div>
     </Router>
