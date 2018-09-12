@@ -10,6 +10,7 @@ if(isset($_POST)){
     $output = [];
     $output['success'] = 0;
 
+
     //check if inputs are empty
     if(empty($username) || empty($userPassword)){
         $output['message'] = 'empty fields.';
@@ -42,6 +43,7 @@ if(isset($_POST)){
                     $output['message'] = 'login successful';
                     $output['username'] = $username;
                     $output['firstname'] = $_SESSION['user_firstname'];
+
                     print_r($output);
                     exit();
 

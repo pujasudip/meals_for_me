@@ -2,6 +2,7 @@
     header("Access-Control-Allow-Origin: *");  
     include_once 'mysqlconnect.php';
     $output['success']= 0;
+
 //security measure to make sure the submit button was clicked
     if(isset($_POST)){
         //obtain the information that was sent
@@ -16,6 +17,7 @@
             $output['message'] = 'Fill in all fields.';
             $output['success']= 0;
             print_r($output);
+
             exit();
         }else{
             //checking if the name is valid if so return user to signup with error message
@@ -42,6 +44,7 @@
                     if($queryResult > 0){
                        $output['message'] = 'username or email is taken.';
                        $output['success']= 0;
+
                     print_r($output);
 
                         exit();
@@ -51,8 +54,8 @@
                         $query = "INSERT INTO `users` (`user_firstname`,`user_lastname`,`user_username`,`user_email`,`user_password`) VALUES ('$firstName','$lastName','$username','$email','$hidePassword');";
                         $result = mysqli_query($conn , $query);
                         $output['message'] = 'user has been created.';
-                        $output['success']= 1;
-                        print_r($output);
+
+                        $output['success']=1;
                     }
                 }
             }
