@@ -16,3 +16,15 @@ h3{
 button{
     background-color: lightgray;
 }
+.main-content{
+    background-color: #F5F5F5;
+}
+.loading-spinner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.loading-spinner > *{
+    font-size: 6rem;
+}

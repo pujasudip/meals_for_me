@@ -2,7 +2,6 @@ import types from './types';
 import { formatPostData, formatQueryString } from '../helpers';
 import axios from 'axios';
 
-
 const BASE_URL = 'http://localhost:8000/userauth/login.php';
 const BASE_URL_SEARCH = 'http://localhost:8000/server/getData.php';
 const BASE_URL_SIGNUP = 'http://localhost:8000/userauth/createuser.php';
