@@ -19,11 +19,14 @@ button{
 .main-content{
     background-color: #F5F5F5;
 }
-.loading-spinner{
+.loading-spinner, .goback{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.goback{
+    display: block;
 }
 .loading-spinner > *{
     font-size: 6rem;

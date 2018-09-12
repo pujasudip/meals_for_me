@@ -115,7 +115,7 @@ class LandingPage extends Component {
     }
 
     render() {
-        const colorArray = ['red accent-1', 'blue lighten-3', 'green lighten-3'];
+        const colorArray = ['#F07A5B red accent-1', '#D2AA3D blue lighten-3', '#BE5846 green lighten-3'];
         const ingredient = this.props.ingredients.map((item, index) => {
             return (<div key={index} className='ingredients'>
                 <div className='chip'>

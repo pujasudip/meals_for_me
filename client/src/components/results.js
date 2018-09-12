@@ -5,6 +5,7 @@ import OneResult from './individual_result_panel';
 import { connect } from 'react-redux';
 import { formatPostData, formatQueryString } from '../helpers';
 import { searchedRecipe, setDetailsOfItem, setDetailsId } from '../actions';
+import backButton from '../assets/images/back_arrow.png';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 const BASE_URL = 'http://localhost:8000/server/getData.php';
@@ -34,6 +35,10 @@ class Results extends Component {
     // displayMore(){
         
     // }
+
+    goBack() {
+        this.props.history.goBack();
+    }
     handleOnScroll() {
         // debugger;
         let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
@@ -54,7 +59,12 @@ class Results extends Component {
         console.log('se:',searchedIngredients);
         let resultArray = '';
         if(!this.props.userInputs.length){
-            return <div>Go Back</div>
+            return <div className='goback'>
+                <h5>No Search Available</h5>
+                <button onClick={this.goBack.bind(this)} className='backBtn'>
+                    <img src={backButton} className='btn btn-small' /> Go Back
+                </button>
+                </div>
         }
         //if on load
         if (searchedIngredients.length <= 0) {
@@ -68,12 +78,12 @@ class Results extends Component {
                     <OneResult key={ele.ID} id={ele.ID} title={ele.Name} details={ele} likes={ele.likes} imageSrc={ele.Image} />
                 );
             });
-        // if it is an invalid search
         }
 
         return (
             <div className= 'main-content'>
                 <h5>Results for: {this.props.userInputs.join(", ")}</h5>
+                {/* <h7>{resultArray.length} recipes out of {}</h7> */}
                     {
                         resultArray
                     }      
