@@ -10,6 +10,7 @@ import '../../node_modules/font-awesome/css/font-awesome.min.css';
 const BASE_URL = 'http://localhost:8000/server/getData.php';
 
 class Results extends Component {
+    page = 1;
     constructor(props) {
         super(props);
         this.state = {
@@ -43,10 +44,8 @@ class Results extends Component {
         if (scrolledToBottom) {
             console.log('scrolled to bottom');
             console.log(this.props.userInputs);
-            this.props.searchedRecipe(this.props.userInputs, 1);
-            this.setState({
-                page: this.state.page + 1
-            });
+            this.props.searchedRecipe(this.props.userInputs, this.page);
+            this.page++;
             scrolledToBottom = false;
         }
     }
@@ -60,9 +59,8 @@ class Results extends Component {
         }
         //if on load
         if (searchedIngredients.length <= 0) {
-            
             return (
-                <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span className="sr-only">Loading...</span></div>
+                <div className='loading-spinner'><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span className="sr-only">Loading...</span></div>
             );
         // when valid search
         } else if (typeof (searchedIngredients[0]) === 'object') {
@@ -75,7 +73,7 @@ class Results extends Component {
         }
 
         return (
-            <div>
+            <div className= 'main-content'>
                 <h5>Results for: {this.props.userInputs.join(", ")}</h5>
                     {
                         resultArray

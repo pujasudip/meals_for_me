@@ -47,8 +47,6 @@ changeHeart = ()=>{
         const comp = this.state.component;
 
         switch(comp){
-            case 'Ingredients':
-                return  <Ingredients ingredients={ingredients}/>;
             case 'Directions':
                 return <Directions directions={directions}/>;
             case 'ShoppingList':
@@ -113,6 +111,7 @@ changeHeart = ()=>{
             </section>
         <div>
             <p className='left'>Ingredients</p>
+            <Ingredients ingredients={ingredientList} />
         </div>
             <div className='row s12 tabs'>
                 <div className='tab col s4 center' title='Directions' onClick={()=>this.setStateForComponentRender('Directions')}>Directions</div>
