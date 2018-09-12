@@ -119,9 +119,11 @@ export function deleteFromFavorite(user_id, recipe_id){
     }
 }
 
-export function getFavorites(favorite_id){
-    var dataToSend = formatQueryString(favorite_id);
-    const resp = axios.get(BASE_URL_SEARCH, dataToSend);
+export function getFavorites(user_id){
+    var dataToSend = {params: {
+        user_id: user_id
+    }}
+    const resp = axios.get(FAV_URL_GET, dataToSend);
 
     return {
         type: types.ADD_TO_FAVORITE,

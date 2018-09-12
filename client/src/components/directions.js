@@ -9,8 +9,8 @@ class Directions extends Component{
 
         // console.log('directions:', directions);
 
-        if(directions){
-            let directionListArray = directions.map((ele, index)=>{
+        if(directions) {
+            let directionListArray = directions.map((ele, index) => {
                 return ele.step;
             });
             directionListArray = directionListArray.join('');
@@ -18,14 +18,15 @@ class Directions extends Component{
             //     if (directionListArray[index - 1] === 'tbsp' || directionListArray[index - 1] === 'teaspoon')
             // }
             directionListArray = directionListArray.split('.');
-            directionList = directionListArray.map((ele, index)=>{
+            directionList = directionListArray.map((ele, index) => {
                 return <li key={index}>{ele}</li>;
 // -----
-            directionList = directions.map((ele, index)=>{
-                return <li key={index}>{ele.step}</li>;
+                directionList = directions.map((ele, index) => {
+                    return <li key={index}>{ele.step}</li>;
 
-            });
+                });
 
+            })
         }
 
         return (

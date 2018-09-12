@@ -8,6 +8,8 @@ import { clearRecipes, searchIngredient, addIngredeints, removeIngredients, clea
 import bg_image from '../assets/images/mobile-bg.png';
 //import bg_image from '../assets/images/dogbg.jpg';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
+import types from "../actions/types";
+import { userLogin } from '../actions';
 
 class LandingPage extends Component {
     foodIndex = 0;
@@ -22,7 +24,6 @@ class LandingPage extends Component {
         };
     }
     componentDidMount() {
-        // console.log(this.props,'initial prop from LP');
         this.props.clearUserIngredientInputs();
     }
 //     componentWillUnmount(){
@@ -201,7 +202,7 @@ class LandingPage extends Component {
 
 function mapStateToProps(state) {
     return {
-        ingredients: state.search.ingredients
+        ingredients: state.search.ingredients,
     }
 
 }

@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
     favorites: []
 };
 
-function favorites(state=DEFAULT_STATE, action){
+export default function favorites(state=DEFAULT_STATE, action){
     switch(action.type){
         case types.ADD_TO_FAVORITE:
             let list = [...state.favorites, action.payload];
