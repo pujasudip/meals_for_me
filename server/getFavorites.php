@@ -1,29 +1,37 @@
 <?php
-require_once('mysql_server_connect.php');
+require_once('mysqlProcedural.php');
+header("Access-Control-Allow-Origin: *");
 
-if($conn->connect_errno){
+if(!$conn){
     die('Bad connection');
 }
 
+if(empty($_GET)){
+    die('No User ID given');
+}
+
+$user_id = $_GET['user_id'];
+
 $query = "
-SELECT `recipes`.*
+SELECT *
 FROM `recipes`
 JOIN `favorites` ON `recipes`.`ID` = `favorites`.`recipe_ID`
-JOIN `users` ON `favorites`.`user_id` = `users`.`ID`
-WHERE `favorites.`user_id = `users`.`ID`
+JOIN `users` ON `favorites`.`user_id` = `users`.`user_id`
+WHERE `favorites`.`user_id` = $user_id
 ";
 
-if($result = $conn->query($query)){
-    while ($row = fetchAssocStatement($result)){
-        $results[] = $row;
+$result = mysqli_query($conn, $query);
+
+if(mysqli_num_rows($result)>0){
+    $output['data']=[];
+    while($row=mysqli_fetch_assoc($result)){
+        $output['data'][]=$row;
     }
-    $jsonOutput = json_encode($results);
-    print_r($jsonOutput);
 } else{
-    print('bad query');
+    $output['errors'][]='There are no favorites.';
 }
-$result->close();
 
-$conn->close();
-
+$jsonOutput = json_encode($output);
+print($jsonOutput);
+mysqli_close($conn);
 ?>

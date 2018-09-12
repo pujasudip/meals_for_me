@@ -10,6 +10,7 @@ export default (state = DEFAULT_STATE, action) => {
             localStorage.userInfo = JSON.stringify(action.payload.data);
             return { userLoginResponse: action.payload};
         case types.USER_LOGOUT:
+            localStorage.removeItem('userInfo');
             return { userLoginResponse: { userLoginResponse: false }};
         default:
             return state;

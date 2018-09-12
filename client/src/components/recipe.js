@@ -28,9 +28,11 @@ class Recipe extends Component {
     }
 
     changeHeart = ()=>{
-        if(!this.props.userInfo){
+        if(!localStorage.userInfo && !this.props.userInfo){
             this.props.history.push('/login');
         }
+
+        let userId = (JSON.parse(localStorage.userInfo))['user_id'] || this.props.userInfo.user_id;
         const recipe_id =  this.props.match.params.id;
         let heartStatus;
         if(this.state.imgSrc === emptyHeart){
@@ -44,7 +46,7 @@ class Recipe extends Component {
                     toastMessageAddFav: 'hideToast'
                 });
             },1100);
-            this.props.addToFavorite(this.props.userInfo.user_id, recipe_id);
+            this.props.addToFavorite(userId, recipe_id);
         } else {
             heartStatus = emptyHeart;
             this.setState({
@@ -55,7 +57,7 @@ class Recipe extends Component {
                     toastMessageRemFav: 'hideToast'
                 });
             },1100);
-            this.props.deleteFromFavorite(this.props.userInfo.user_id, recipe_id);
+            this.props.deleteFromFavorite(userId, recipe_id);
         }
         this.setState({
             imgSrc: heartStatus
