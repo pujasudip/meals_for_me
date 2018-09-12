@@ -25,7 +25,7 @@ class Recipe extends Component {
         this.props.getDetailsById(id);
     }
 
-changeHeart = ()=>{
+    changeHeart = ()=>{
     let heartStatus;
     if(this.state.imgSrc === emptyHeart){
         heartStatus = redHeart;
@@ -121,7 +121,6 @@ changeHeart = ()=>{
                 <p>Vegetarian: {this.dietOptions(directions.vegetarian)}</p>
             </section>
         <div>
-            <p className='left'>Ingredients</p>
             <Ingredients ingredients={ingredientList} />
         </div>
             <div className='row s12 tabs'>
