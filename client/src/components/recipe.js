@@ -6,7 +6,7 @@ import Directions from './directions';
 import Ingredients from './ingredients';
 import ShoppingList from './shopping_list';
 import { connect } from 'react-redux';
-import { getDetailsById, addToShoppingList } from '../actions';
+import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite } from '../actions';
 import wine_up from '../assets/images/wine_up.png';
 
 class Recipe extends Component {
@@ -16,6 +16,8 @@ class Recipe extends Component {
             imgSrc: emptyHeart,
             addFavText: 'Add to Favorites',
             component: 'Ingredients',
+            toastMessageAddFav: 'hideToast',
+            toastMessageRemFav: 'hideToast'
         }
         this.handleSelect = this.handleSelect.bind(this);
     }
@@ -26,18 +28,39 @@ class Recipe extends Component {
     }
 
     changeHeart = ()=>{
-    let heartStatus;
-    if(this.state.imgSrc === emptyHeart){
-        heartStatus = redHeart;
-        this.state.addFavText = 'Added'
-    } else {
-        heartStatus = emptyHeart;
-        this.state.addFavText = 'Add to Favorites'
+        if(!this.props.userInfo){
+            this.props.history.push('/login');
+        }
+        const recipe_id =  this.props.match.params.id;
+        let heartStatus;
+        if(this.state.imgSrc === emptyHeart){
+            heartStatus = redHeart;
+            // this.state.addFavText = 'Added';
+            this.setState({
+                toastMessageAddFav: 'favToastAdd'
+            });
+            setTimeout(()=>{
+                this.setState({
+                    toastMessageAddFav: 'hideToast'
+                });
+            },1100);
+            this.props.addToFavorite(this.props.userInfo.user_id, recipe_id);
+        } else {
+            heartStatus = emptyHeart;
+            this.setState({
+                toastMessageRemFav: 'favToastRem'
+            });
+            setTimeout(()=>{
+                this.setState({
+                    toastMessageRemFav: 'hideToast'
+                });
+            },1100);
+            this.props.deleteFromFavorite(this.props.userInfo.user_id, recipe_id);
+        }
+        this.setState({
+            imgSrc: heartStatus
+        });
     }
-    this.setState({
-        imgSrc: heartStatus
-    });
-}
     handleSelect(key) {
         alert(`selected ${key}`);
         this.setState({ key: key });
@@ -61,7 +84,7 @@ class Recipe extends Component {
     }
 
     dietOptions(diet){
-        console.log('inside of diet options method', diet)
+        console.log('inside of diet options method', diet);
         if(diet === 1){
             return 'True';
         }else{
@@ -74,10 +97,11 @@ class Recipe extends Component {
     }
 
     render() {
+        console.log('resp:', this.props.userInfo);
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
-        console.log('props in recipe', this.props)
+        console.log('props in recipe', this.props);
         if(this.props.details){
             directions = this.props.details.data.data[0];
             ingredients = JSON.parse(directions.Ingredients);
@@ -131,15 +155,22 @@ class Recipe extends Component {
                 {this.dynamicComponent(directions, ingredientList)}
             </div>
             <div className='wine_pairing_slider valign-wrapper'>
-                <i className='material-icons medium wineNavLeft'>navigate_before</i>
+                <i className='material-icons wineNavLeft'>navigate_before</i>
+                <p className="wineheader">Wine Pairing</p>
                 <div>
-                    <ul>
+                    <ul className="winelist">
                         {wineList}
                     </ul>
                 </div>
             </div>
                 </div> : ""}
 
+            <div className={`${this.state.toastMessageAddFav}`}>
+                <div className="message"><i className="material-icons prefix">check</i>Added to Favorite</div>
+            </div>
+            <div className={`${this.state.toastMessageRemFav}`}>
+                <div className="message"><i className="material-icons prefix">clear</i>Removed from Favorite</div>
+            </div>
         </div>
         )}
 }
@@ -147,10 +178,11 @@ class Recipe extends Component {
 function mapStateToProps(state){
     return {
         details: state.search.details,
+        userInfo: state.userLoginResponse.userLoginResponse.data
     }
 }
 
 
-export default connect(mapStateToProps, {getDetailsById, addToShoppingList})(Recipe);
+export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite})(Recipe);
 
 
