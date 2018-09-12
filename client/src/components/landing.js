@@ -94,7 +94,7 @@ class LandingPage extends Component {
                 break;
             case 'right':
                 this.foodIndex++;
-                if (this.foodIndex > 2) {
+                if (this.foodIndex > 4) {
                     this.foodIndex--;
                     return;
                 }
@@ -115,7 +115,7 @@ class LandingPage extends Component {
     }
 
     render() {
-        const colorArray = ['red accent-1', 'blue lighten-3', 'green lighten-3'];
+        const colorArray = ['red accent-1', 'orange accent-1', 'green lighten-3','red lighten-4','amber accent-1'];
         const ingredient = this.props.ingredients.map((item, index) => {
             return (<div key={index} className='ingredients'>
                 <div className='chip'>
@@ -186,6 +186,10 @@ class LandingPage extends Component {
                             <div className={this.foodIndex === 1 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
                             </div>
                             <div className={this.foodIndex === 2 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                            </div>
+                            <div className={this.foodIndex === 3 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                            </div>
+                            <div className={this.foodIndex === 4 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
                             </div>
                         </div>
                         <div className="landPgSearchBtn btn btn-block center-block" onClick={this.goToResultsPage}>Search</div>
