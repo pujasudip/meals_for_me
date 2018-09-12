@@ -240,7 +240,7 @@ ol>li {
     top: 23%;
     right: 0;
     width: 40px;
-    height: 50px;
+    height: 150px;
     border-radius: 20px 0 0 20px;
     background-color: red;
     transition: height 100ms, width 1000ms;
@@ -276,4 +276,52 @@ ol>li {
         transform: rotate(-180deg);
     }
 
+}
+.wineheader{
+    white-space: nowrap;
+    margin: 0 -35px;
+    transform: rotate(-90deg);
+}
+.winelist{
+    margin-left: 20px;
+}
+.hideToast{
+    display: none;
+}
+.favToastAdd{
+    position: fixed;
+    width: 250px;
+    height: 55px;
+    border-radius: 10px;
+    background-color: rgba(3, 194, 45, 0.69);
+    /*float: left;*/
+    z-index: 100;
+    text-align: center;
+    top: 50%;
+    left: 20%;
+    /*transform: translate(-50% -50%);*/
+}
+.message{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    position: relative;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    text-shadow: 1px 1px 1px black;
+
+}
+.favToastRem{
+    position: fixed;
+    width: 300px;
+    height: 55px;
+    border-radius: 10px;
+    background-color: rgba(194, 28, 0, 0.69);
+    /*float: left;*/
+    z-index: 100;
+    text-align: center;
+    top: 50%;
+    left: 15%;
+    /*transform: translate(-50% -50%);*/
 }
