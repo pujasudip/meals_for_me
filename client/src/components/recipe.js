@@ -88,9 +88,9 @@ class Recipe extends Component {
     dietOptions(diet){
         console.log('inside of diet options method', diet);
         if(diet === 1){
-            return 'True';
+            return 'Yes';
         }else{
-            return 'False';
+            return 'No';
         }
     }
 
@@ -115,7 +115,8 @@ class Recipe extends Component {
 
         if(ingredients){
             ingredientList = ingredients.map((ele)=>{
-                return <li key={ele.id} onClick={this.addToShopingList.bind(this, ele)}>{ele.original}</li>
+                // return <li key={ele.id} onClick={this.addToShopingList.bind(this, ele)}>{ele.original}</li>
+                return <li key={ele.id} onClick={this.addToShopingList.bind(this, ele)}>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
             });
         }
         if(pairedWines){
@@ -136,18 +137,17 @@ class Recipe extends Component {
                     <div className="splittingLine"></div>
                     <div className="splittingLine"></div>
                     </section>
-            <div className="heartPic"><img src= {this.state.imgSrc} onClick={this.changeHeart}></img>
+            <div className="heartPic center"><img src= {this.state.imgSrc} onClick={this.changeHeart}></img>
                     <p>{this.state.addFavText}</p>
             </div>
         </section>
             <section className="dishDetails center">
                 <h1>{directions.Name}</h1>
                 <h3>Prep & Cooking Time: {directions.Time} mins</h3>
-                <p>Vegan: {this.dietOptions(directions.vegan)}</p>
-                <p>Vegetarian: {this.dietOptions(directions.vegetarian)}</p>
+                <p>Vegan Friendly: {this.dietOptions(directions.vegan)}</p>
+                <p>Vegetarian Friendly: {this.dietOptions(directions.vegetarian)}</p>
             </section>
         <div>
-            <p>Ingredients</p>
             <Ingredients ingredients={ingredientList} />
         </div>
             <div className='row s12 tabs'>

@@ -10,6 +10,10 @@
 
 /*  */
 
+* > p, h3{
+    color: #7F977C;
+}
+
 header {
     display: inline-block;
     height: 10vh;
@@ -163,25 +167,28 @@ ol>li {
 }
 
 .heartPic {
-    position: absolute;
-    top: -15%;
-    left: 10%;
+
+    bottom: 73%;
+    left: 3%;
     /* z-index: -1; */
+    display: inline-block;
+    position: absolute;
 }
 
 
 .heartPic > img {
     width: 14vw;
-    position: absolute;
+    /* position: absolute; */
     top: 15px;
     left: -16px;
 }
 
 .heartPic>p {
-    width: 14vw;
-    position: absolute;
+    /* position: absolute; */
+    margin: 0;
     top: 49px;
     left: -29px;
+    font-size: x-small;
 }
 @media only screen and (min-width: 1000px) {
     body {
@@ -224,25 +231,25 @@ ol>li {
     margin-top: 25px;
 }
 .tab{
-    border: 1px solid red;
+    border: 1px solid #ffb74d;
     height: 50px;
     border-radius: 2px;
     cursor: pointer;
 }
 .tab:hover{
-    background-color: rgba(255, 0, 0, 0.47);
+    background-color: #ffcc80;
     color: white;
     border: none;
 }
 
 .wine_pairing_slider{
     position: absolute;
-    top: 23%;
+    top: 56%;
     right: 0;
-    width: 40px;
-    height: 150px;
+    width: 38px;
+    height: 104px;
     border-radius: 20px 0 0 20px;
-    background-color: red;
+    background-color: #ffe0b2;
     transition: height 100ms, width 1000ms;
 }
 
@@ -250,7 +257,7 @@ ol>li {
     right: 0;
     width: 150px;
     height: 200px;
-    background-color: rgba(255, 0, 116, 0.78);
+    background-color: #ff8a65;
     transition: height 1000ms, width 100ms;
 }
 .wine_pairing_body{
@@ -259,7 +266,7 @@ ol>li {
     right: 0;
     width: 70px;
     height: 200px;
-    background-color: blue;
+    /* background-color: blue; */
 }
 .wineNavLeft{
     margin-left: -5px;
@@ -281,6 +288,7 @@ ol>li {
     white-space: nowrap;
     margin: 0 -35px;
     transform: rotate(-90deg);
+    color: #B71C1C;
 }
 .winelist{
     margin-left: 20px;
@@ -317,7 +325,7 @@ ol>li {
     width: 300px;
     height: 55px;
     border-radius: 10px;
-    background-color: rgba(194, 28, 0, 0.69);
+    background-color: #7F977C;
     /*float: left;*/
     z-index: 100;
     text-align: center;
