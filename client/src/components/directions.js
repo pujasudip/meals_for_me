@@ -13,6 +13,9 @@ class Directions extends Component{
                 return ele.step;
             });
             directionListArray = directionListArray.join('');
+            // if(directionListArray[index] === '.'){
+            //     if (directionListArray[index - 1] === 'tbsp' || directionListArray[index - 1] === 'teaspoon')
+            // }
             directionListArray = directionListArray.split('.');
             directionList = directionListArray.map((ele, index)=>{
                 return <li key={index}>{ele}</li>;

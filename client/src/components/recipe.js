@@ -110,7 +110,7 @@ changeHeart = ()=>{
                 <h3>Prep & Cooking Time: {directions.Time} mins</h3>
             </section>
         <div>
-            <p className='left'>Ingredients</p>
+            <p>Ingredients</p>
             <Ingredients ingredients={ingredientList} />
         </div>
             <div className='row s12 tabs'>

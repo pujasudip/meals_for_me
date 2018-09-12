@@ -135,10 +135,19 @@ header {
 
 ol {
     padding: 2px;
+
+}
+ul {
+    padding-left: 40px !important;
+}
+
+ul li {
+    list-style-type: disc !important;
 }
 
 ol li {
     display: block;
+
 }
 
 /* ol li:before {
