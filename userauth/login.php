@@ -7,7 +7,7 @@ if(isset($_POST)){
     include_once 'mysqlconnect.php';
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $userPassword = mysqli_real_escape_string($conn, $_POST['password']);
-    $output = [];
+    $output['success']=0;
 
     //check if inputs are empty
     if(empty($username) || empty($userPassword)){
@@ -37,9 +37,10 @@ if(isset($_POST)){
                     $_SESSION['user_lastName']=$row['user_lastName'];
                     $_SESSION['user_email']=$row['user_email'];
                     $_SESSION['user_id']=$row['user_id'];
-                    $output['success']=true;
+                    $output['success']=1;
                     $output['message'] = 'login successful';
                     $output['username'] = $username;
+                    $output['firstName'] = $_SESSION['user_firstName'];
                     print_r($output);
                     exit();
 

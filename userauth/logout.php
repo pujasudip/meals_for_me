@@ -1,9 +1,9 @@
 <?php
-if (isset($_POST['submit'])){
+if (isset($_POST)){
     session_start();
     session_unset();
     session_destroy();
-    header("createuser.php");
+    print('user has been logged out');
 }
 
 ?>
