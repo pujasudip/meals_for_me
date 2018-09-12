@@ -25,7 +25,6 @@ class Directions extends Component{
                     return <li key={index}>{ele.step}</li>;
 
                 });
-
             })
         }
 
