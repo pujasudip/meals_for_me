@@ -2,7 +2,7 @@
 
 header("Access-Control-Allow-Origin: *");
 
-require_once('mysqlProcedural.php');
+require_once('mysql_server_connect.php');
 
 if(!$conn){
    die('Bad connection');

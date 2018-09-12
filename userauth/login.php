@@ -3,7 +3,6 @@ header("Access-Control-Allow-Origin: *");
 
 session_start();
 if(isset($_POST)){
-    print_r($_POST);
     include_once 'mysqlconnect.php';
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $userPassword = mysqli_real_escape_string($conn, $_POST['password']);
@@ -41,9 +40,11 @@ if(isset($_POST)){
                     $_SESSION['user_id']=$row['user_id'];
                     $output['success']=1;
                     $output['message'] = 'login successful';
+                    $output['user_id'] = $row['user_id'];
                     $output['username'] = $username;
                     $output['firstname'] = $_SESSION['user_firstname'];
 
+                    $output = json_encode($output);
                     print_r($output);
                     exit();
 

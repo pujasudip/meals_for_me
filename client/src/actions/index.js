@@ -6,6 +6,9 @@ const BASE_URL = 'http://localhost:8000/userauth/login.php';
 const BASE_URL_SEARCH = 'http://localhost:8000/server/getData.php';
 const BASE_URL_SIGNUP = 'http://localhost:8000/userauth/createuser.php';
 const BASE_URL_RECIPE_SEARCH = 'http://localhost:8000/server/getRecipe.php';
+const FAV_URL_ADD = 'http://localhost:8000/server/addFavorites.php';
+const FAV_URL_GET = 'http://localhost:8000/server/getFavorites.php';
+const FAV_URL_DEL = 'http://localhost:8000/server/deleteFavorite.php';
 
 export function searchedRecipe(userIngredient, page){
     var dataToSend = formatQueryString(userIngredient, page);
@@ -94,5 +97,35 @@ export function createUserAccount(values){
         type: types.DETAILS_PAGE,
         payload: response
     }
-
 }
+
+export function addToFavorite(user_id, recipe_id){
+    const dataToSend = formatPostData({user_id: user_id, recipe_id: recipe_id});
+    const response = axios.post(`${FAV_URL_ADD}`, dataToSend);
+
+    return {
+        type: types.ADD_TO_FAVORITE,
+        payload: response
+    }
+}
+
+export function deleteFromFavorite(user_id, recipe_id){
+    const dataToSend = formatPostData({user_id: user_id, recipe_id: recipe_id});
+    const response = axios.post(`${FAV_URL_DEL}`, dataToSend);
+
+    return {
+        type: types.DELETE_FROM_FAVORITE,
+        payload: response
+    }
+}
+
+export function getFavorites(favorite_id){
+    var dataToSend = formatQueryString(favorite_id);
+    const resp = axios.get(BASE_URL_SEARCH, dataToSend);
+
+    return {
+        type: types.ADD_TO_FAVORITE,
+        payload: resp
+    }
+}
+
