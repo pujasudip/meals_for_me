@@ -2,7 +2,7 @@ import types from './types';
 import { formatPostData, formatQueryString } from '../helpers';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000/user_info.php';
+const BASE_URL = 'http://localhost:8000/userauth/login.php';
 const BASE_URL_SEARCH = 'http://localhost:8000/server/getData.php';
 const BASE_URL_SIGNUP = 'http://localhost:8000/userauth/createuser.php';
 const BASE_URL_RECIPE_SEARCH = 'http://localhost:8000/server/getRecipe.php';
@@ -57,7 +57,6 @@ export function getDetailsById(id){
     var dataToSend = {params: {
         'id': id
     }};
-    console.log('id:', id);
     const resp = axios.get(BASE_URL_RECIPE_SEARCH, dataToSend);
     return {
         type: types.DETAILS_PAGE,
@@ -69,6 +68,13 @@ export function getDetailsById(id){
 export function addToShoppingList(item) {
     return {
         type: types.ADD_TO_SHOPPINGLIST,
+        payload: item
+    }
+}
+
+export function removeFromShoppingList(item){
+    return {
+        type: types.REMOVE_FROM_SHOPPINGLIST,
         payload: item
     }
 }

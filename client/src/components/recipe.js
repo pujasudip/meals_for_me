@@ -25,7 +25,7 @@ class Recipe extends Component {
         this.props.getDetailsById(id);
     }
 
-changeHeart = ()=>{
+    changeHeart = ()=>{
     let heartStatus;
     if(this.state.imgSrc === emptyHeart){
         heartStatus = redHeart;
@@ -58,6 +58,15 @@ changeHeart = ()=>{
         this.setState({
             component: comp
         });
+    }
+
+    dietOptions(diet){
+        console.log('inside of diet options method', diet)
+        if(diet === 1){
+            return 'True';
+        }else{
+            return 'False';
+        }
     }
 
     addToShopingList(item){
@@ -108,6 +117,8 @@ changeHeart = ()=>{
             <section className="dishDetails center">
                 <h1>{directions.Name}</h1>
                 <h3>Prep & Cooking Time: {directions.Time} mins</h3>
+                <p>Vegan: {this.dietOptions(directions.vegan)}</p>
+                <p>Vegetarian: {this.dietOptions(directions.vegetarian)}</p>
             </section>
         <div>
             <p>Ingredients</p>

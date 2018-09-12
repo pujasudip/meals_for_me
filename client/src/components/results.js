@@ -50,7 +50,6 @@ class Results extends Component {
         }
     }
     render() {
-        debugger;
         const { searchedIngredients } = this.props;
         console.log('se:',searchedIngredients);
         let resultArray = '';

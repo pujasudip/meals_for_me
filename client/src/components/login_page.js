@@ -22,7 +22,7 @@ class Login extends React.Component{
         return (
             <Fragment>
                 <label>{label}</label>
-                <input {...input} type={type}/>
+                <input {...input} type={type} autoComplete='off'/>
                 <p className='red-text'>{touched && error}</p>
             </Fragment>
         );
@@ -35,6 +35,8 @@ class Login extends React.Component{
         if(resp){
             userLoggedIn =  resp.success;
         }
+
+        console.log('aaa:', resp);
 
         const { handleSubmit } = this.props;
 

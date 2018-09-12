@@ -8,6 +8,8 @@ if(isset($_POST)){
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $userPassword = mysqli_real_escape_string($conn, $_POST['password']);
     $output = [];
+    $output['success'] = 0;
+
 
     //check if inputs are empty
     if(empty($username) || empty($userPassword)){
@@ -33,13 +35,15 @@ if(isset($_POST)){
                 }elseif ($passwordCheck === true){
                     //gonna log in the user , grab the data and from sessions and store that.
                     $_SESSION['user_username']=$row['user_username'];
-                    $_SESSION['user_firstName']=$row['user_firstName'];
-                    $_SESSION['user_lastName']=$row['user_lastName'];
+                    $_SESSION['user_firstname']=$row['user_firstname'];
+                    $_SESSION['user_lastname']=$row['user_lastname'];
                     $_SESSION['user_email']=$row['user_email'];
                     $_SESSION['user_id']=$row['user_id'];
-                    $output['success']=true;
+                    $output['success']=1;
                     $output['message'] = 'login successful';
                     $output['username'] = $username;
+                    $output['firstname'] = $_SESSION['user_firstname'];
+
                     print_r($output);
                     exit();
 
