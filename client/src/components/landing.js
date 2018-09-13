@@ -181,7 +181,7 @@ class LandingPage extends Component {
                             <img id="ingAddMinImg" src={plus} onClick={this.addIngredientToListFromInput.bind(this)} className="center-block" />
                         </div>
                         :
-                        <div className='center purple-text'><h5>Go for the food</h5></div>
+                        <div className='center green-text'><h5>Go for the food</h5></div>
                     }
                     {this.props.ingredients.length < 3 ?
                         <div className="ingredientBtns">

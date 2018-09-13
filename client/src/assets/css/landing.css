@@ -154,6 +154,10 @@ button{
     height: 0;
     animation: error 2s;
 }
+input::placeholder {
+    color: #424242;
+}
+
 @keyframes error{
     20%{
         width: 100px;
