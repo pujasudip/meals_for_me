@@ -11,6 +11,9 @@
     right: 0;
     z-index: 1000;
 }
+h6{
+    
+}
 
 .headerBanner{
     : sticky;
@@ -60,7 +63,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    background-color: #FFE0B2;
+    background-color: #e0e0e0;
     padding: 10px;
     animation: slideInRight 0.5s;
 }
