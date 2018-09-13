@@ -39,12 +39,40 @@ class Header extends Component {
            return( <Link to='/login'>
                 <button className='btn btn-flat white-text btn-small headerBtn'>Login</button>
         </Link> )
-        } else {
-            return (
-                <div onClick={this.goBack.bind(this)} className="btn btn-large backArrow">
-                    <i className="material-icons medium" >arrow_back</i>
-                </div>
-            )
+        } 
+        // else {
+        //     return (
+        //         <div onClick={this.goBack.bind(this)} className="btn btn-large backArrow">
+        //             <i className="material-icons medium" >arrow_back</i>
+        //         </div>
+        //     )
+        // }
+    }
+    displayBackBtn(){
+        return (
+            <div onClick={this.goBack.bind(this)} className="btn btn-large backArrow">
+                <i className="material-icons medium" >arrow_back</i>
+            </div>
+        )
+    }
+    displayHeaderButton(success, username){
+        if (this.props.location.pathname === '/'){
+            if(success){
+                return (<div>
+                    <h6 className='center'>Hello, {username}</h6>
+                        </div>)
+            }else{
+                return (this.displayLogInBtn())
+            }
+        }else{
+            if (success) {
+                return (<div>
+                    <h6 className='center'>Hello, {username}</h6>
+                    {this.displayBackBtn()}
+                </div>)
+            }else {
+                return ((this.displayBackBtn()))
+            }
         }
     }
     render() {
@@ -60,16 +88,11 @@ class Header extends Component {
         }
         return (
             <div className='header'>
-                { success ? 
-                <div>
-                <h6 className='center'>Hello, {username}</h6>
-                {this.displayLogInBtn()}
-                </div>
-                : this.displayLogInBtn() }
+                {this.displayHeaderButton(success, username)}
                 <div>
                     <Link to='/'>
                         {/* <img src={logo} className='logo'/> */}
-                        <h4 className='logo'>RF</h4>
+                        <h4 className='logo'>Meals 4 Me</h4>
                     </Link>
                 </div>
                 <div>
