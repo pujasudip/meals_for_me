@@ -77,6 +77,12 @@
     }
 }
 
+.backArrow{
+    background-color: #527E46;
+    width: 41.9px;
+    height: 32.39px
+}
+
 .headerBtn{
     margin: 27% 0 0 15%;
     background-color: #527E45;

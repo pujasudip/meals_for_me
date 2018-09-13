@@ -41,9 +41,9 @@ class Header extends Component {
         </Link> )
         } else {
             return (
-                <button onClick={this.goBack.bind(this)} className='backBtn'>
-                    <img src={backButton} className='btn btn-small' />
-                </button>
+                <div onClick={this.goBack.bind(this)} className="btn btn-large backArrow">
+                    <i className="material-icons medium" >arrow_back</i>
+                </div>
             )
         }
     }
@@ -60,7 +60,12 @@ class Header extends Component {
         }
         return (
             <div className='header'>
-                { success ? <h5 className='center'>Hello, {username}</h5> : this.displayLogInBtn() }
+                { success ? 
+                <div>
+                <h8 className='center'>Hello, {username}</h8>
+                {this.displayLogInBtn()}
+                </div>
+                : this.displayLogInBtn() }
                 <div>
                     <Link to='/'>
                         {/* <img src={logo} className='logo'/> */}
