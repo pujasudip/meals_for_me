@@ -35,9 +35,9 @@
 
 .landPgSearchBtn {
     width: 50vw;
-
     background-color: #527E45;
     text-shadow: 1px 1px 1px #000000;
+    border: 1px solid darkgreen;
 
 }
 
@@ -119,6 +119,7 @@ button{
 .clearBtn{
     border: 1px solid red;
     border-radius: 5px;
+    background-color: #FF8A80;
 }
 .ingredients{
     display: inline;
