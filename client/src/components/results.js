@@ -23,8 +23,6 @@ class Results extends Component {
     }
 
     componentDidMount() {
-        
-        // console.log(this.props.searchedRecipe(this.props.userInputs), "@@@@@@")
         console.log('compoennet did mount called data')
         this.props.searchedRecipe(this.props.userInputs, 0);
         window.addEventListener('scroll', this.handleOnScroll);
@@ -34,9 +32,7 @@ class Results extends Component {
         window.removeEventListener('scroll', this.handleOnScroll);
     }
 
-    // displayMore(){
-        
-    // }
+
 
     goBack() {
         this.props.history.goBack();
@@ -82,17 +78,17 @@ class Results extends Component {
                 );
             });
         }
-
         return (
             <div className= 'main-content mainPage'>
                 <h5 className='resultHeader'>Results for: {this.props.userInputs.join(", ")}</h5>
-            {/* <div className= 'main-content'>}
-//                 <h5>Results for: {this.props.userInputs.join(", ")}</h5>
-//                 {/* <h7>{resultArray.length} recipes out of {}</h7> */}
+            <div className= 'main-content'>
+                 {/* <h5>Results for: {this.props.userInputs.join(", ")}</h5> */}
+                {/* <h7>{resultArray.length} recipes out of {}</h7> */}
                     {
                         resultArray
                     }      
                 {/* <button type='text' onClick={this.displayMore}>Display More</button> */}
+            </div>
             </div>
         )
     }
@@ -105,4 +101,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { searchedRecipe, setDetailsOfItem, setDetailsId })(Results);
+export default connect(mapStateToProps, { searchedRecipe , setDetailsOfItem , setDetailsId })(Results);

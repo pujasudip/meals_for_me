@@ -3,14 +3,16 @@
     justify-content: space-between;
 }
 
-.memberPicture {
-    border-radius: 50%;
-    background-color: red;
-    width: 30vw;
-    height: 20vh;
-    margin: 0 35px;
-}
 
 .memberInfo {
     display: inline-block;
+}
+
+.memberIndividual{
+    height: 22vh;
+    text-align: center;
+}
+
+.containerAboutUs{
+    background-color: rgba(141, 140, 128, 0.36);
 }
