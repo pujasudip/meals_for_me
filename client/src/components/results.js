@@ -16,7 +16,7 @@ class Results extends Component {
         super(props);
         this.state = {
             resultArray: '',
-            page: 0
+            page: 0,
         }
         this.handleOnScroll = this.handleOnScroll.bind(this);
     }
@@ -28,9 +28,9 @@ class Results extends Component {
         window.addEventListener('scroll', this.handleOnScroll);
     }
 
-     componentWillUnmount() {
-         window.removeEventListener('scroll', this.handleOnScroll);
-     }
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleOnScroll);
+    }
 
     // displayMore(){
         

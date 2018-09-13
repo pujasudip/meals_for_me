@@ -17,8 +17,10 @@ class Recipe extends Component {
             addFavText: 'Add to Favorites',
             component: 'Ingredients',
             toastMessageAddFav: 'hideToast',
-            toastMessageRemFav: 'hideToast'
-        }
+            toastMessageRemFav: 'hideToast',
+            modalClass: 'hideModal',
+            wineSlider: ''
+        };
         this.handleSelect = this.handleSelect.bind(this);
     }
 
@@ -98,6 +100,12 @@ class Recipe extends Component {
         this.props.addToShoppingList(item.name);
     }
 
+    clickHandler(){
+        this.setState({
+            modalClass: this.state.modalClass === 'showModal' ? 'hideModal' : 'showModal',
+        });
+    }
+
     render() {
         console.log('resp:', this.props.userInfo);
         let directions = '';
@@ -111,7 +119,6 @@ class Recipe extends Component {
         }
         let ingredientList = '';
         let wineList = '';
-        console.log('det:', pairedWines);
 
         if(ingredients){
             ingredientList = ingredients.map((ele)=>{
@@ -125,13 +132,15 @@ class Recipe extends Component {
             });
         }
 
+        console.log('aaa:', pairedWines);
+
         return(
         <div>
             { this.props.details ?
                 <div>
             <section id='mainContent'>
                 <div className="pictureContainer">
-                    <img src={directions.Image} alt="hamPic" className="mainPicture"/>
+                    <img src={directions.Image} alt="hamPic" className="mainPicture" onClick={()=>this.clickHandler()}/>
             </div>
                     <section id='splittingAnimation'>
                     <div className="splittingLine"></div>
@@ -157,7 +166,7 @@ class Recipe extends Component {
             <div>
                 {this.dynamicComponent(directions, ingredientList)}
             </div>
-            <div className='wine_pairing_slider valign-wrapper'>
+            <div className={`wine_pairing_slider valign-wrapper ${this.state.wineSlider}`}>
                 <i className='material-icons wineNavLeft'>navigate_before</i>
                 <p className="wineheader">Wine Pairing</p>
                 <div>
@@ -173,6 +182,19 @@ class Recipe extends Component {
             </div>
             <div className={`${this.state.toastMessageRemFav}`}>
                 <div className="message"><i className="material-icons prefix">clear</i>Removed from Favorite</div>
+            </div>
+            <div className={this.state.modalClass}>
+                <div className='inner-content-modal'>
+                    <i className='material-icons close' onClick={()=>this.clickHandler()}>close</i>
+                    <div className='webpage'>
+                        <div className="imageContainer">
+                           <img src={directions.Image}/>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button className='btn btn-small modalBtn center' onClick={()=>this.clickHandler()}>Close</button>
+                </div>
             </div>
         </div>
         )}

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import '../assets/css/about_us.css';
 import Member from './member';
-import leah from '../assets/images/leah.jpg';
-import sudip from '../assets/images/sudip.png';
-import sean from '../assets/images/sean.png';
-import josh from '../assets/images/josh.jpg';
+import leah from '../assets/images/leah.png';
+import sudip from '../assets/images/sudip-min.jpg';
+import sean from '../assets/images/sean-min.jpg';
+import josh from '../assets/images/josh-min.jpg';
 
 
 class AboutUs extends Component {
@@ -16,17 +16,10 @@ class AboutUs extends Component {
             { name: 'Sudip Baral', github: 'https://github.com/pujasudip', linkedin: 'https://www.linkedin.com/in/sudip-baral-5a2a96113/', image: sudip},
             { name: 'Sean Prouty', github: 'a.a', linkedin: 'l.l', image: sean},
         ];
-        this.state = {
-            modalClass: 'hideModal',
-            pageToDisplay: ''
-        }
     }
 
     clickHandler(link){
-        this.setState({
-            modalClass: this.state.modalClass === 'showModal' ? 'hideModal' : 'showModal',
-            pageToDisplay: link
-        });
+        console.log('link:', link);
     }
 
     render() {
@@ -42,22 +35,7 @@ class AboutUs extends Component {
         });
         return (
             <div>
-                <div>
-                    {member}
-                </div>
-                <div className={this.state.modalClass}>
-                   <div className='inner-content-modal'>
-                       <i className='material-icons close' onClick={()=>this.clickHandler()}>close</i>
-                       <div className='webpage'>
-                           <div>
-                               <iframe src={this.state.pageToDisplay}></iframe>
-                           </div>
-                       </div>
-                   </div>
-                    <div>
-                        <button className='btn btn-small modalBtn center' onClick={()=>this.clickHandler()}>Close</button>
-                    </div>
-                </div>
+                {member}
             </div>
         )
     }
