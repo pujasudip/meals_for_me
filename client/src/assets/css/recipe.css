@@ -33,7 +33,6 @@
     margin-bottom: 25px;
     
 }
-
 /* * > p, h3{
     color: #7F977C;
 } */
@@ -142,13 +141,16 @@ header {
 .dishDetails h1 {
     text-align: center;
     font-size: 5vmax;
-    margin-top: -45px;
+    margin: -30px 0;
 }
 
 .dishDetails h3 {
     text-align: center;
     font-size: 1.5rem;
-    margin: -50px 0 15px;
+}
+
+.dishDetails > p{
+    margin: -3px 0;
 }
 
 .ingredients,
@@ -408,4 +410,14 @@ ol>li {
 }
 .hideWineSlider{
     display: none;
+}
+.ingredientList{
+    height: 20vh;
+    overflow-y: hidden;
+}
+.showall{
+    height: 100%;
+}
+.activeTab{
+    background-color: #ffcc80;
 }
