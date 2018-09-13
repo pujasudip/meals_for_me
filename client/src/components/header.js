@@ -41,9 +41,9 @@ class Header extends Component {
         </Link> )
         } else {
             return (
-                <button onClick={this.goBack.bind(this)} className='backBtn'>
-                    <img src={backButton} className='btn btn-small' />
-                </button>
+                <div onClick={this.goBack.bind(this)} className="btn btn-large red">
+                    <i className="material-icons medium" >arrow_back</i>
+                </div>
             )
         }
     }
