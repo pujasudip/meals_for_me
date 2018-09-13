@@ -92,7 +92,7 @@ class Header extends Component {
                 <div>
                     <Link to='/'>
                         {/* <img src={logo} className='logo'/> */}
-                        <h4 className='logo'>Meals 4 Me</h4>
+                        <h6 className='logo center'>Meals<br/>4<br/>Me</h6>
                     </Link>
                 </div>
                 <div>
