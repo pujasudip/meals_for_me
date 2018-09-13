@@ -203,9 +203,6 @@ class Recipe extends Component {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <button className='btn btn-small modalBtn center' onClick={()=>this.clickHandler()}>Close</button>
-                </div>
             </div>
         </div>
         )}
