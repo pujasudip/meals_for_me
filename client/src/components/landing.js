@@ -85,7 +85,6 @@ class LandingPage extends Component {
     }
 
     commonFoodCarousel(direction) {
-        debugger;
         switch (direction) {
             case 'left':
                 this.foodIndex--;
