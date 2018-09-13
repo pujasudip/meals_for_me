@@ -49,7 +49,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    background-color: #d1ffd9;
+    background-color: #FFE0B2;
     padding: 10px;
     animation: slideInRight 0.5s;
 }
@@ -75,6 +75,12 @@
     100%{
         transform: rotate(180deg);
     }
+}
+
+.backArrow{
+    background-color: #527E46;
+    width: 41.9px;
+    height: 32.39px
 }
 
 .headerBtn{
