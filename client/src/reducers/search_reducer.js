@@ -22,7 +22,6 @@ function  searchResult(state = DEFAULT_STATE, action){
         case types.CLEAR_USER_INGREDIENT_INPUTS:
             return {...state, ingredients: []};
         case types.SEARCHED_RECIPE:
-            console.log('action payload:', action.payload);
             if(Array.isArray(action.payload.data)){
                 return { ...state, searched_recipe: [ ...state.searched_recipe, ...action.payload.data]};
             }

@@ -16,17 +16,26 @@ class SignUp extends Component{
         return (
             <Fragment>
                 <label>{label}</label>
-                <input {...input} type={type} />
+                <input {...input} type={type} autoComplete="off"/>
                 <p className="red-text">{touched && error}</p>
             </Fragment>
         )
     }
 
     render(){
+        const resp = this.props.signup;
+        let userSignedUp = false;
+        if(resp){
+            userSignedUp =  resp.success;
+        }
+
+        console.log('resp:', userSignedUp);
+
         const {handleSubmit} = this.props;
         return (
-
-            <div className='container signup'>
+            userSignedUp ? `${this.props.history.push('/')}`
+                :
+            <div className='signup'>
                 <form className='col' onSubmit={handleSubmit(this.userSignUp)}>
 
                     <div className='row'>
@@ -49,16 +58,14 @@ class SignUp extends Component{
                     </div>
                     <div className='input-field col s6'>
                         <i className="material-icons prefix">lock</i>
-                        <Field name='password' label='Password' type='text' component={this.renderInput} />
+                        <Field name='password' label='Password' type='password' component={this.renderInput} />
                     </div>
                     <div className='input-field col s6'>
                         <i className="material-icons prefix">lock</i>
-                        <Field name='c_password' label='Confirm Password' type='text' component={this.renderInput} />
+                        <Field name='c_password' label='Confirm Password' type='password' component={this.renderInput} />
                     </div>
                     <div className='center'>
-                    <div className='btn btn-small'>
-                        <button type="submit">Sign Up</button>
-                    </div>
+                    <button type="submit" className="btn btn-small">Sign Up</button>
                 </div>
                 </form>
                
@@ -92,13 +99,15 @@ function validate(values){
     return errors;
 }
 
-// function mapStateToProps(state){
-
-// }
+function mapStateToProps(state){
+    return {
+        signup: state.userLoginResponse.signup.data,
+    }
+}
 
 SignUp = reduxForm({
     form: 'sign-form',
     validate: validate
 })(SignUp);
 
-export default connect(null, {createUserAccount})(SignUp);
+export default connect(mapStateToProps, {createUserAccount})(SignUp);
