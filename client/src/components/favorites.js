@@ -26,7 +26,6 @@ class Favorites extends Component {
 
     render() {
         let favList = '';
-        debugger;
         if(this.props.favorites){
             const favItem = this.props.favorites;
             if(favItem){

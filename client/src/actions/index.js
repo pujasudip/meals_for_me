@@ -115,7 +115,7 @@ export function deleteFromFavorite(user_id, recipe_id){
 
     return {
         type: types.DELETE_FROM_FAVORITE,
-        payload: response
+        payload: recipe_id
     }
 }
 
