@@ -13,7 +13,7 @@ class InvidualFavorite extends Component{
         const { user_id, recipe_id, Image, Name } = this.props.item;
         return (
             <div className='center-block card-panel'>
-                    <div className='indivDish'>
+                <div className='individualPanel'>
                         <Link to={`/recipe`}><h5>{Name}</h5></Link>
                         <div className='dishContainer'>
                             <img src={Image} />
@@ -21,6 +21,8 @@ class InvidualFavorite extends Component{
                         <i className="medium material-icons red-text favTrash" onClick={()=>this.props.delete(user_id, recipe_id)}>delete</i>
                     </div>
             </div>
+            
+
         );
     }
 }
