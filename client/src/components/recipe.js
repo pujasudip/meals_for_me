@@ -15,11 +15,14 @@ class Recipe extends Component {
         this.state = {
             imgSrc: emptyHeart,
             addFavText: 'Add to Favorites',
-            component: 'Ingredients',
+            component: 'Directions',
             toastMessageAddFav: 'hideToast',
             toastMessageRemFav: 'hideToast',
             modalClass: 'hideModal',
-            wineSlider: ''
+            wineSlider: '',
+            showall: 'ingredientList',
+            showHideIcon: 'control_point',
+            tabIndex: 0
         };
         this.handleSelect = this.handleSelect.bind(this);
     }
@@ -70,7 +73,7 @@ class Recipe extends Component {
         this.setState({ key: key });
     }
 
-    dynamicComponent(directions, ingredients){
+    dynamicComponent(directions, index){
         const comp = this.state.component;
 
         switch(comp){
@@ -81,14 +84,14 @@ class Recipe extends Component {
         }
     }
 
-    setStateForComponentRender(comp){
+    setStateForComponentRender(comp, index){
         this.setState({
-            component: comp
+            component: comp,
+            tabIndex: index
         });
     }
 
     dietOptions(diet){
-        console.log('inside of diet options method', diet);
         if(diet === 1){
             return 'Yes';
         }else{
@@ -106,6 +109,12 @@ class Recipe extends Component {
         });
     }
 
+    showHideControl(){
+        var showHide = this.state.showall === 'showall' ? 'ingredientList' : 'showall';
+        var controllBtn  = this.state.showHideIcon === 'control_point' ? 'remove_circle_outline' : 'control_point';
+        this.setState({showall: showHide, showHideIcon: controllBtn});
+    }
+
     render() {
         console.log('resp:', this.props.userInfo);
         let directions = '';
@@ -121,9 +130,9 @@ class Recipe extends Component {
         let wineList = '';
 
         if(ingredients){
-            ingredientList = ingredients.map((ele)=>{
+            ingredientList = ingredients.map((ele, index)=>{
                 // return <li key={ele.id} onClick={this.addToShopingList.bind(this, ele)}>{ele.original}</li>
-                return <li key={ele.id} onClick={this.addToShopingList.bind(this, ele)}>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
+                return <li key={index} onClick={this.addToShopingList.bind(this, ele)}>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
             });
         }
         if(pairedWines){
@@ -131,8 +140,6 @@ class Recipe extends Component {
                 return <li key={index}>{ele}</li>
             });
         }
-
-        console.log('aaa:', pairedWines);
 
         return(
         <div>
@@ -156,15 +163,19 @@ class Recipe extends Component {
                 <p>Vegan Friendly: {this.dietOptions(directions.vegan)}</p>
                 <p>Vegetarian Friendly: {this.dietOptions(directions.vegetarian)}</p>
             </section>
-        <div>
+                    <h6 className="center">Ingredients</h6>
+        <div className={`${this.state.showall}`}>
             <Ingredients ingredients={ingredientList} />
         </div>
+                   <div className="center">
+                       <i className="material-icons" onClick={()=>this.showHideControl()}>{this.state.showHideIcon}</i>
+                   </div>
             <div className='row s12 tabs'>
-                <div className='tab col s4 center' title='Directions' onClick={()=>this.setStateForComponentRender('Directions')}>Directions</div>
-                <div className='tab col s4' title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList')}>Shopping List</div>
+                <div className={'tab col s4' + (this.state.tabIndex===0 ? ' activeTab' : '')} title='Directions' onClick={()=>this.setStateForComponentRender('Directions', 0)}>Directions</div>
+                <div className={'tab col s4' + (this.state.tabIndex===1 ? ' activeTab' : '')} title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList', 1)}>Shopping List</div>
             </div>
             <div>
-                {this.dynamicComponent(directions, ingredientList)}
+                {this.dynamicComponent(directions)}
             </div>
             <div className={`wine_pairing_slider valign-wrapper ${this.state.wineSlider}`}>
                 <i className='material-icons wineNavLeft'>navigate_before</i>

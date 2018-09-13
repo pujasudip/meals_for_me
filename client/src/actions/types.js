@@ -13,5 +13,5 @@ export default {
     REMOVE_FROM_SHOPPINGLIST: 'remove_from_shoppinglist',
     ADD_TO_FAVORITE: 'add_to_favorite',
     DELETE_FROM_FAVORITE: 'delete_from_favorite',
-    GET_FAVORITE: 'get_favorites'
+    GET_FAVORITE: 'get_favorites',
 }

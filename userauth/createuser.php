@@ -1,7 +1,7 @@
 <?php
     header("Access-Control-Allow-Origin: *");  
     include_once 'mysqlconnect.php';
-    $output['success']= 0;
+    $output['success']= 'false';
 
 //security measure to make sure the submit button was clicked
     if(isset($_POST)){
@@ -15,15 +15,15 @@
         if(empty($firstName) || empty($lastName) || empty($username) || empty($email) || empty($password)){
             //will pass along an error message if a field is empty
             $output['message'] = 'Fill in all fields.';
-            $output['success']= 0;
-            print_r($output);
+            $output['success']= 'false';
+            print_r(json_encode($output));
 
             exit();
         }else{
             //checking if the name is valid if so return user to signup with error message
             if (!preg_match("/^[a-zA-Z]*$/",$firstName) || !preg_match("/^[a-zA-Z]*$/",$lastName)){
                 $output['message'] = 'invalid name.';
-                $output['success']= 0;
+                $output['success']= 'false';
                 print_r($output);
 
                 exit();
@@ -31,8 +31,8 @@
                 //checking if email is valid if so return user to signup with error message invalid email
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                    $output['message'] = 'invalid email.';
-                   $output['success']= 0;
-                    print_r($output);
+                   $output['success']= 'false';
+                    print_r(json_encode($output));
 
                     exit();
                 }else{
@@ -43,9 +43,9 @@
                     $queryResult = mysqli_num_rows($result);
                     if($queryResult > 0){
                        $output['message'] = 'username or email is taken.';
-                       $output['success']= 0;
+                       $output['success']= 'false';
 
-                    print_r($output);
+                    print_r(json_encode($output));
 
                         exit();
                     }else{
@@ -55,11 +55,13 @@
                         $result = mysqli_query($conn , $query);
                         $output['message'] = 'user has been created.';
 
-                        $output['success']=1;
+                        $output['success']='true';
                     }
                 }
             }
         }
 
      }
+     $jsonoutput = json_encode($output);
+    print_r($jsonoutput);
 ?>

@@ -21,6 +21,8 @@ class LandingPage extends Component {
             currentIngredientInput: '',
             commonIngredients: commonIngredientsRef[this.foodIndex].food,
             remainingEntries: this.allowedEntries,
+            zoomBackground: '',
+            inputError: ''
         };
     }
     componentDidMount() {
@@ -82,6 +84,10 @@ class LandingPage extends Component {
 
     clearUserInputs() {
         this.props.clearUserIngredientInputs();
+        this.allowedEntries = 3;
+        this.setState({
+            remainingEntries: this.allowedEntries
+        });
     }
 
     commonFoodCarousel(direction) {
@@ -89,15 +95,13 @@ class LandingPage extends Component {
             case 'left':
                 this.foodIndex--;
                 if (this.foodIndex < 0) {
-                    this.foodIndex = 5;
-                    return;
+                    this.foodIndex = 4;
                 }
                 break;
             case 'right':
                 this.foodIndex++;
                 if (this.foodIndex > 4) {
-                    this.foodIndex = -1;
-                    return;
+                    this.foodIndex = 0;
                 }
                 break;
             default:
@@ -115,6 +119,20 @@ class LandingPage extends Component {
         }
     }
 
+    randomAccessCommonFood(index){
+        this.foodIndex = index;
+        this.setState({
+            commonIngredients: commonIngredientsRef[this.foodIndex].food,
+        });
+    }
+
+    zoomBackground(){
+        console.log('bg:');
+        this.setState({
+            zoomBackground: 'bgZoom'
+        });
+    }
+
     render() {
 
         const colorArray = ['red accent-1', 'orange accent-1', 'green lighten-3','red lighten-4','amber accent-1'];
@@ -123,7 +141,7 @@ class LandingPage extends Component {
                 <div className='chip'>
                     <div className="valign-wrapper">
                         {item}
-                        <i className="material-icons" onClick={() => this.removeFromTheIngredient(item)}>close</i>
+                        <i className="material-icons clickPointer" onClick={() => this.removeFromTheIngredient(item)}>close</i>
                     </div>
                 </div>
             </div>);
@@ -141,7 +159,7 @@ class LandingPage extends Component {
         };
 
         return (
-            <div className='center bgImg' style={{ backgroundImage: `url(${bg_image})` }}>
+            <div className="center bgImg" style={{ backgroundImage: `url(${bg_image})` }}>
             {/* <div className='center bgImg' style={{ background: `linear-gradient( rgba(185, 160, 160, 0.5), rgba(0, 0, 0, 0.5) ), url(${bg_image})` }}> */}
 
 
@@ -155,12 +173,15 @@ class LandingPage extends Component {
                     {this.props.ingredients.length < 3 ?
                         <div className='search_field'>
                             <div className="">
-                                <input placeholder={`Insert ${this.state.remainingEntries} more Ingredients`} className='center' onChange={(event) => this.userInputHandler(event)} value={this.state.currentIngredientInput} />
+                                <input placeholder={this.state.remainingEntries === 3 ?`Insert ${this.state.remainingEntries} Ingredients` : `Insert ${this.state.remainingEntries} more Ingredients`}
+                                       className='center bgZoom' onChange={(event) => this.userInputHandler(event)}
+                                       value={this.state.currentIngredientInput}
+                                       onFocus={()=>this.zoomBackground()}/>
                             </div>
                             <img id="ingAddMinImg" src={plus} onClick={this.addIngredientToListFromInput.bind(this)} className="center-block" />
                         </div>
                         :
-                        <div className='center purple-text'><h5>Go for the food</h5></div>
+                        <div className='center green-text'><h5>Go for the food</h5></div>
                     }
                     {this.props.ingredients.length < 3 ?
                         <div className="ingredientBtns">
@@ -183,15 +204,15 @@ class LandingPage extends Component {
                     }
                     <div>
                         <div className="center" style={hideBubbles()}>
-                            <div className={this.foodIndex === 0 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                            <div onClick={()=>this.randomAccessCommonFood(0)} className={this.foodIndex === 0 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
                             </div>
-                            <div className={this.foodIndex === 1 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                            <div onClick={()=>this.randomAccessCommonFood(1)} className={this.foodIndex === 1 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
                             </div>
-                            <div className={this.foodIndex === 2 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                            <div onClick={()=>this.randomAccessCommonFood(2)} className={this.foodIndex === 2 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
                             </div>
-                            <div className={this.foodIndex === 3 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                            <div onClick={()=>this.randomAccessCommonFood(3)} className={this.foodIndex === 3 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
                             </div>
-                            <div className={this.foodIndex === 4 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                            <div onClick={()=>this.randomAccessCommonFood(4)} className={this.foodIndex === 4 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
                             </div>
                         </div>
                         <div className="landPgSearchBtn btn btn-block center-block" onClick={this.goToResultsPage}>Search</div>
@@ -199,6 +220,8 @@ class LandingPage extends Component {
                             <button type='button' className='btn btn-flat clearBtn waves-effect' onClick={() => this.clearUserInputs()}>Clear Inputs</button>
                         </div>
                     </div>
+                </div>
+                <div>
                 </div>
             </div>
         );

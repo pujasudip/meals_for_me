@@ -60,8 +60,9 @@ class Results extends Component {
             return <div className='goback'>
                 <h5>No Search Available</h5>
                 <button onClick={this.goBack.bind(this)} className='backBtn'>
-                    <img src={backButton} className='btn btn-small' /> Go Back
+                    <img src={backButton} className='btn btn-small' />
                 </button>
+                Go Back
                 </div>
         }
         //if on load
@@ -77,7 +78,6 @@ class Results extends Component {
                 );
             });
         }
-
         return (
             <div className= 'main-content mainPage'>
                 <h5 className='resultHeader'>Results for: {this.props.userInputs.join(", ")}</h5>

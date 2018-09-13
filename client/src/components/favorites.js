@@ -16,7 +16,6 @@ class Favorites extends Component {
         } else if(this.props.loginResponse){
             id = this.props.userInfo.user_id;
         }
-
         this.props.getFavorites(id);
     }
 
@@ -28,8 +27,7 @@ class Favorites extends Component {
     render() {
         let favList = '';
         if(this.props.favorites){
-            const favItem = this.props.favorites.data.data;
-
+            const favItem = this.props.favorites;
             if(favItem){
                 favList = favItem.map((ele)=>{
                     return <IndividualFavorite item={ele} key={ele.ID} delete={this.handleDeleteFav}/>
@@ -38,17 +36,16 @@ class Favorites extends Component {
         }
 
         return (
-            favList === '' ? 'No favorite item to display.' :
-                    <div>
-                    {favList}
-                    </div>
+            <div>
+                {favList}
+            </div>
         )
     }
 }
 
 function mapStateToProps(state){
     return {
-        favorites: state.favorites.favorites[0],
+        favorites: state.favorites.favorites,
         userInfo: state.userLoginResponse.userLoginResponse.data
     }
 }

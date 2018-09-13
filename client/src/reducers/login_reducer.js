@@ -1,7 +1,8 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE = {
-    userLoginResponse: ''
+    userLoginResponse: '',
+    signup: ''
 };
 
 export default (state = DEFAULT_STATE, action) => {
@@ -12,6 +13,8 @@ export default (state = DEFAULT_STATE, action) => {
         case types.USER_LOGOUT:
             localStorage.removeItem('userInfo');
             return { userLoginResponse: { userLoginResponse: false }};
+        case types.SIGN_UP:
+            return { ...state, signup: action.payload }
         default:
             return state;
     }

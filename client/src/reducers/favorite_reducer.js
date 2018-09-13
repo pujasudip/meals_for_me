@@ -7,15 +7,24 @@ const DEFAULT_STATE = {
 export default function favorites(state=DEFAULT_STATE, action){
     switch(action.type){
         case types.ADD_TO_FAVORITE:
-            let list = [...state.favorites, action.payload];
-            if(state.favorites.includes(action.payload)){
-                return state;
-            };
-            return {...state, favorites: list};
-        case types.REMOVE_FROM_FAVORITE:
-            return state;
+            let list = [action.payload];
+            return {state};
+        case types.DELETE_FROM_FAVORITE:
+            let recipe_id = action.payload;
+            let newList = [...state.favorites];
+            let tobeDeletedIndex = '';
+            for(var i = 0; i < newList; i++){
+                if(newList[i].recipe_id === recipe_id){
+                    tobeDeletedIndex = i;
+                }
+            }
+            newList.splice(tobeDeletedIndex, 1);
+            console.log('aa:', newList);
+            return {favorites: newList};
         case types.GET_FAVORITE:
-            return {...state, favorites: action.payload};
+            list = [...action.payload.data.data];
+            console.log('list:', list);
+            return {...state, favorites: list};
         default:
             return state;
     }
