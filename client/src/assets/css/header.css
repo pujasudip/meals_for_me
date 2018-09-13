@@ -29,6 +29,14 @@
     margin-top: 14px;
     margin-right: 11px;
 }
+.hamicon:hover{
+    animation-name: bounceIn;
+    animation-iteration-count: 1;
+    animation-duration: 2s;
+}
+
+@keyframes bounceIn {
+}
 
 .no_menu{
     display: none;

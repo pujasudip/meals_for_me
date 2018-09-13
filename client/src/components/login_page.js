@@ -36,8 +36,6 @@ class Login extends React.Component{
             userLoggedIn =  resp.success;
         }
 
-        console.log('aaa:', resp);
-
         const { handleSubmit } = this.props;
 
         return (

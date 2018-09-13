@@ -132,8 +132,6 @@ class Recipe extends Component {
             });
         }
 
-        console.log('aaa:', pairedWines);
-
         return(
         <div>
             { this.props.details ?

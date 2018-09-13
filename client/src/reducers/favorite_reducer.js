@@ -7,15 +7,14 @@ const DEFAULT_STATE = {
 export default function favorites(state=DEFAULT_STATE, action){
     switch(action.type){
         case types.ADD_TO_FAVORITE:
-            let list = [...state.favorites, action.payload];
-            if(state.favorites.includes(action.payload)){
-                return state;
-            };
-            return {...state, favorites: list};
-        case types.REMOVE_FROM_FAVORITE:
+            // let list = [...state.favorites, action.payload];
+            return {state};
+        case types.DELETE_FROM_FAVORITE:
             return state;
         case types.GET_FAVORITE:
-            return {...state, favorites: action.payload};
+            let list = [...state.favorites, ...action.payload.data.data];
+            console.log('list:', list);
+            return {...state, favorites: list};
         default:
             return state;
     }

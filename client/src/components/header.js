@@ -62,7 +62,7 @@ class Header extends Component {
             <div className='header'>
                 { success ? 
                 <div>
-                <h8 className='center'>Hello, {username}</h8>
+                <h6 className='center'>Hello, {username}</h6>
                 {this.displayLogInBtn()}
                 </div>
                 : this.displayLogInBtn() }
