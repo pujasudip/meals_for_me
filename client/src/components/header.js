@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../assets/css/header.css';
-import hamicon from '../assets/images/hamicon.png';
+import hamicon from '../assets/images/burger-menu.png';
 import HamburgerMenu from '../components/hamburger_menu';
 import { Link } from 'react-router-dom';
 import backButton from '../assets/images/back_arrow.png';

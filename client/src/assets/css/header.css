@@ -24,7 +24,10 @@
     animation: spin 50s alternate infinite; */
 }
 .hamicon{
-    width: 80px;
+    width: 60px;
+    height: 50px;
+    margin-top: 14px;
+    margin-right: 11px;
 }
 
 .no_menu{
