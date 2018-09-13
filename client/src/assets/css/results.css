@@ -31,3 +31,10 @@ button{
 .loading-spinner > *{
     font-size: 6rem;
 }
+
+.resultHeader{
+    margin-top: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
