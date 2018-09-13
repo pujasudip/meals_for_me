@@ -23,7 +23,6 @@
     margin-top: 5px;
     text-shadow: 0px 0px 0px #000000;
     font-weight: bold;
-
 }
 #titleText{
     color:#7F977C;
@@ -34,6 +33,12 @@
     margin-bottom: 25px;
     
 }
+
+/* * > p, h3{
+    color: #7F977C;
+} */
+
+
 header {
     display: inline-block;
     height: 10vh;
@@ -159,10 +164,19 @@ header {
 
 ol {
     padding: 2px;
+
+}
+ul {
+    padding-left: 40px !important;
+}
+
+ul li {
+    list-style-type: disc !important;
 }
 
 ol li {
     display: block;
+
 }
 
 /* ol li:before {
@@ -178,25 +192,28 @@ ol>li {
 }
 
 .heartPic {
-    position: absolute;
-    top: -15%;
-    left: 10%;
+
+    bottom: 73%;
+    left: 3%;
     /* z-index: -1; */
+    display: inline-block;
+    position: absolute;
 }
 
 
 .heartPic > img {
     width: 14vw;
-    position: absolute;
+    /* position: absolute; */
     top: 15px;
     left: -16px;
 }
 
 .heartPic>p {
-    width: 14vw;
-    position: absolute;
+    /* position: absolute; */
+    margin: 0;
     top: 49px;
     left: -29px;
+    font-size: x-small;
 }
 @media only screen and (min-width: 1000px) {
     body {
@@ -239,25 +256,25 @@ ol>li {
     margin-top: 25px;
 }
 .tab{
-    border: 1px solid red;
+    border: 1px solid #ffb74d;
     height: 50px;
     border-radius: 2px;
     cursor: pointer;
 }
 .tab:hover{
-    background-color: rgba(255, 0, 0, 0.47);
+    background-color: #ffcc80;
     color: white;
     border: none;
 }
 
 .wine_pairing_slider{
     position: absolute;
-    top: 23%;
+    top: 56%;
     right: 0;
-    width: 40px;
-    height: 50px;
+    width: 38px;
+    height: 104px;
     border-radius: 20px 0 0 20px;
-    background-color: red;
+    background-color: #ffe0b2;
     transition: height 100ms, width 1000ms;
 }
 
@@ -265,7 +282,7 @@ ol>li {
     right: 0;
     width: 150px;
     height: 200px;
-    background-color: rgba(255, 0, 116, 0.78);
+    background-color: #ff8a65;
     transition: height 1000ms, width 100ms;
 }
 .wine_pairing_body{
@@ -274,7 +291,7 @@ ol>li {
     right: 0;
     width: 70px;
     height: 200px;
-    background-color: blue;
+    /* background-color: blue; */
 }
 .wineNavLeft{
     margin-left: -5px;
@@ -291,4 +308,104 @@ ol>li {
         transform: rotate(-180deg);
     }
 
+}
+.wineheader{
+    white-space: nowrap;
+    margin: 0 -35px;
+    transform: rotate(-90deg);
+    color: #B71C1C;
+}
+.winelist{
+    margin-left: 20px;
+}
+.hideToast{
+    display: none;
+}
+.favToastAdd{
+    position: fixed;
+    width: 250px;
+    height: 55px;
+    border-radius: 10px;
+    background-color: rgba(3, 194, 45, 0.69);
+    /*float: left;*/
+    z-index: 100;
+    text-align: center;
+    top: 50%;
+    left: 20%;
+    /*transform: translate(-50% -50%);*/
+}
+.message{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    position: relative;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    text-shadow: 1px 1px 1px black;
+
+}
+.favToastRem{
+    position: fixed;
+    width: 300px;
+    height: 55px;
+    border-radius: 10px;
+    background-color: #7F977C;
+    /*float: left;*/
+    z-index: 100;
+    text-align: center;
+    top: 50%;
+    left: 15%;
+    /*transform: translate(-50% -50%);*/
+}
+.showModal{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(163, 163, 163, 0.32);
+    z-index: 1001;
+}
+
+.inner-content-modal{
+    position: absolute;
+    width: 80vw;
+    height: 40vh;
+    top: 30%;
+    left: 10%;
+}
+
+.close{
+    border: 2px solid white;
+    border-radius: 50px;
+    position: relative;
+    top: 17px;
+    left: -10px;
+    background-color: #00d3ff;
+    cursor: pointer;
+}
+
+.modalBtn{
+    position: fixed;
+    bottom: 32%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.modalBtn:hover{
+    border-radius: 3px;
+    color: #fdff02;
+    box-shadow: 0 0 4px 4px rgba(113, 236, 5, 0.54);
+}
+
+.hideModal{
+    display: none;
+}
+.imageContainer > img{
+    width: 100%;
+}
+.hideWineSlider{
+    display: none;
 }

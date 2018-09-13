@@ -6,7 +6,7 @@ import Directions from './directions';
 import Ingredients from './ingredients';
 import ShoppingList from './shopping_list';
 import { connect } from 'react-redux';
-import { getDetailsById, addToShoppingList } from '../actions';
+import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite } from '../actions';
 import wine_up from '../assets/images/wine_up.png';
 
 class Recipe extends Component {
@@ -16,7 +16,11 @@ class Recipe extends Component {
             imgSrc: emptyHeart,
             addFavText: 'Add to Favorites',
             component: 'Ingredients',
-        }
+            toastMessageAddFav: 'hideToast',
+            toastMessageRemFav: 'hideToast',
+            modalClass: 'hideModal',
+            wineSlider: ''
+        };
         this.handleSelect = this.handleSelect.bind(this);
     }
 
@@ -25,19 +29,42 @@ class Recipe extends Component {
         this.props.getDetailsById(id);
     }
 
-changeHeart = ()=>{
-    let heartStatus;
-    if(this.state.imgSrc === emptyHeart){
-        heartStatus = redHeart;
-        this.state.addFavText = 'Added'
-    } else {
-        heartStatus = emptyHeart;
-        this.state.addFavText = 'Add to Favorites'
+    changeHeart = ()=>{
+        if(!localStorage.userInfo && !this.props.userInfo){
+            this.props.history.push('/login');
+        }
+
+        let userId = (JSON.parse(localStorage.userInfo))['user_id'] || this.props.userInfo.user_id;
+        const recipe_id =  this.props.match.params.id;
+        let heartStatus;
+        if(this.state.imgSrc === emptyHeart){
+            heartStatus = redHeart;
+            // this.state.addFavText = 'Added';
+            this.setState({
+                toastMessageAddFav: 'favToastAdd'
+            });
+            setTimeout(()=>{
+                this.setState({
+                    toastMessageAddFav: 'hideToast'
+                });
+            },1100);
+            this.props.addToFavorite(userId, recipe_id);
+        } else {
+            heartStatus = emptyHeart;
+            this.setState({
+                toastMessageRemFav: 'favToastRem'
+            });
+            setTimeout(()=>{
+                this.setState({
+                    toastMessageRemFav: 'hideToast'
+                });
+            },1100);
+            this.props.deleteFromFavorite(userId, recipe_id);
+        }
+        this.setState({
+            imgSrc: heartStatus
+        });
     }
-    this.setState({
-        imgSrc: heartStatus
-    });
-}
     handleSelect(key) {
         alert(`selected ${key}`);
         this.setState({ key: key });
@@ -61,11 +88,11 @@ changeHeart = ()=>{
     }
 
     dietOptions(diet){
-        console.log('inside of diet options method', diet)
+        console.log('inside of diet options method', diet);
         if(diet === 1){
-            return 'True';
+            return 'Yes';
         }else{
-            return 'False';
+            return 'No';
         }
     }
 
@@ -73,11 +100,18 @@ changeHeart = ()=>{
         this.props.addToShoppingList(item.name);
     }
 
+    clickHandler(){
+        this.setState({
+            modalClass: this.state.modalClass === 'showModal' ? 'hideModal' : 'showModal',
+        });
+    }
+
     render() {
+        console.log('resp:', this.props.userInfo);
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
-        console.log('props in recipe', this.props)
+        console.log('props in recipe', this.props);
         if(this.props.details){
             directions = this.props.details.data.data[0];
             ingredients = JSON.parse(directions.Ingredients);
@@ -85,11 +119,11 @@ changeHeart = ()=>{
         }
         let ingredientList = '';
         let wineList = '';
-        console.log('det:', pairedWines);
 
         if(ingredients){
             ingredientList = ingredients.map((ele)=>{
-                return <li key={ele.id} onClick={this.addToShopingList.bind(this, ele)}>{ele.original}</li>
+                // return <li key={ele.id} onClick={this.addToShopingList.bind(this, ele)}>{ele.original}</li>
+                return <li key={ele.id} onClick={this.addToShopingList.bind(this, ele)}>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
             });
         }
         if(pairedWines){
@@ -98,30 +132,31 @@ changeHeart = ()=>{
             });
         }
 
+        console.log('aaa:', pairedWines);
+
         return(
         <div>
             { this.props.details ?
                 <div>
             <section id='mainContent'>
                 <div className="pictureContainer">
-                    <img src={directions.Image} alt="hamPic" className="mainPicture"/>
+                    <img src={directions.Image} alt="hamPic" className="mainPicture" onClick={()=>this.clickHandler()}/>
             </div>
                     <section id='splittingAnimation'>
                     <div className="splittingLine"></div>
                     <div className="splittingLine"></div>
                     </section>
-            <div className="heartPic"><img src= {this.state.imgSrc} onClick={this.changeHeart}></img>
+            <div className="heartPic center"><img src= {this.state.imgSrc} onClick={this.changeHeart}></img>
                     <p>{this.state.addFavText}</p>
             </div>
         </section>
             <section className="dishDetails center">
                 <h1>{directions.Name}</h1>
                 <h3>Prep & Cooking Time: {directions.Time} mins</h3>
-                <p>Vegan: {this.dietOptions(directions.vegan)}</p>
-                <p>Vegetarian: {this.dietOptions(directions.vegetarian)}</p>
+                <p>Vegan Friendly: {this.dietOptions(directions.vegan)}</p>
+                <p>Vegetarian Friendly: {this.dietOptions(directions.vegetarian)}</p>
             </section>
         <div>
-            <p className='left'>Ingredients</p>
             <Ingredients ingredients={ingredientList} />
         </div>
             <div className='row s12 tabs'>
@@ -131,16 +166,36 @@ changeHeart = ()=>{
             <div>
                 {this.dynamicComponent(directions, ingredientList)}
             </div>
-            <div className='wine_pairing_slider valign-wrapper'>
-                <i className='material-icons medium wineNavLeft'>navigate_before</i>
+            <div className={`wine_pairing_slider valign-wrapper ${this.state.wineSlider}`}>
+                <i className='material-icons wineNavLeft'>navigate_before</i>
+                <p className="wineheader">Wine Pairing</p>
                 <div>
-                    <ul>
+                    <ul className="winelist">
                         {wineList}
                     </ul>
                 </div>
             </div>
                 </div> : ""}
 
+            <div className={`${this.state.toastMessageAddFav}`}>
+                <div className="message"><i className="material-icons prefix">check</i>Added to Favorite</div>
+            </div>
+            <div className={`${this.state.toastMessageRemFav}`}>
+                <div className="message"><i className="material-icons prefix">clear</i>Removed from Favorite</div>
+            </div>
+            <div className={this.state.modalClass}>
+                <div className='inner-content-modal'>
+                    <i className='material-icons close' onClick={()=>this.clickHandler()}>close</i>
+                    <div className='webpage'>
+                        <div className="imageContainer">
+                           <img src={directions.Image}/>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button className='btn btn-small modalBtn center' onClick={()=>this.clickHandler()}>Close</button>
+                </div>
+            </div>
         </div>
         )}
 }
@@ -148,10 +203,11 @@ changeHeart = ()=>{
 function mapStateToProps(state){
     return {
         details: state.search.details,
+        userInfo: state.userLoginResponse.userLoginResponse.data
     }
 }
 
 
-export default connect(mapStateToProps, {getDetailsById, addToShoppingList})(Recipe);
+export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite})(Recipe);
 
 

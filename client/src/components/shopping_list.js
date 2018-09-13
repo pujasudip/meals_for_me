@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { removeFromShoppingList } from '../actions'
 
 class ShoppingList extends Component{
     render(){
-        console.log('shop:', this.props.shoppingList);
+        let list = '';
+        if(this.props.shoppingList){
+            list = this.props.shoppingList.map((ele, index)=>{
+                return <li onClick={()=>this.props.removeFromShoppingList(ele)} key={index}>{ele}</li>
+            });
+
+        }
+
         return (
             <section className="shopping_list">
-                <ul start= '1'>Nutrition
-                    <li>Chicken</li>
-                    <li>Potato</li>
-                    <li>Milk</li>
-                    <li>Peanuts</li>
-                    <li>Olive Oil</li>
+                <ul start= '1'>Shopping List
+                    {list}
                 </ul>
             </section>
         );
@@ -20,8 +24,8 @@ class ShoppingList extends Component{
 
 function mapStateToProps(state){
     return {
-        shoppingList: state.shoppingList
+        shoppingList: state.shoppingList.shoppingList
     }
 }
 
-export default connect(mapStateToProps, {})(ShoppingList);
+export default connect(mapStateToProps, {removeFromShoppingList})(ShoppingList);

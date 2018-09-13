@@ -9,5 +9,9 @@ export default {
     DETAILS_PAGE: 'details_page',
     ADD_TO_SHOPPINGLIST: 'add_to_shoppinglist',
     CLEAR_RECIPES: 'clear_recipes',
-    SIGN_UP: 'sign_up'
+    SIGN_UP: 'sign_up',
+    REMOVE_FROM_SHOPPINGLIST: 'remove_from_shoppinglist',
+    ADD_TO_FAVORITE: 'add_to_favorite',
+    DELETE_FROM_FAVORITE: 'delete_from_favorite',
+    GET_FAVORITE: 'get_favorites'
 }

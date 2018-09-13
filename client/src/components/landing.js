@@ -8,6 +8,8 @@ import { clearRecipes, searchIngredient, addIngredeints, removeIngredients, clea
 import bg_image from '../assets/images/mobile-bg.png';
 //import bg_image from '../assets/images/dogbg.jpg';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
+import types from "../actions/types";
+import { userLogin } from '../actions';
 
 class LandingPage extends Component {
     foodIndex = 0;
@@ -22,7 +24,6 @@ class LandingPage extends Component {
         };
     }
     componentDidMount() {
-        // console.log(this.props,'initial prop from LP');
         this.props.clearUserIngredientInputs();
     }
 //     componentWillUnmount(){
@@ -84,18 +85,19 @@ class LandingPage extends Component {
     }
 
     commonFoodCarousel(direction) {
+        debugger;
         switch (direction) {
             case 'left':
                 this.foodIndex--;
                 if (this.foodIndex < 0) {
-                    this.foodIndex++;
+                    this.foodIndex = 5;
                     return;
                 }
                 break;
             case 'right':
                 this.foodIndex++;
-                if (this.foodIndex > 2) {
-                    this.foodIndex--;
+                if (this.foodIndex > 4) {
+                    this.foodIndex = -1;
                     return;
                 }
                 break;
@@ -115,7 +117,8 @@ class LandingPage extends Component {
     }
 
     render() {
-        const colorArray = ['red accent-1', 'blue lighten-3', 'green lighten-3'];
+
+        const colorArray = ['red accent-1', 'orange accent-1', 'green lighten-3','red lighten-4','amber accent-1'];
         const ingredient = this.props.ingredients.map((item, index) => {
             return (<div key={index} className='ingredients'>
                 <div className='chip'>
@@ -187,6 +190,10 @@ class LandingPage extends Component {
                             </div>
                             <div className={this.foodIndex === 2 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
                             </div>
+                            <div className={this.foodIndex === 3 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                            </div>
+                            <div className={this.foodIndex === 4 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                            </div>
                         </div>
                         <div className="landPgSearchBtn btn btn-block center-block" onClick={this.goToResultsPage}>Search</div>
                         <div className='center' style={this.props.ingredients.length !== 3 ? { 'display': 'none' } : {}}>
@@ -201,7 +208,7 @@ class LandingPage extends Component {
 
 function mapStateToProps(state) {
     return {
-        ingredients: state.search.ingredients
+        ingredients: state.search.ingredients,
     }
 
 }

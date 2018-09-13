@@ -41,9 +41,9 @@ class Header extends Component {
         </Link> )
         } else {
             return (
-                <button onClick={this.goBack.bind(this)} className='backBtn'>
-                    <img src={backButton} className='btn btn-small' />
-                </button>
+                <div onClick={this.goBack.bind(this)} className="btn btn-large backArrow">
+                    <i className="material-icons medium" >arrow_back</i>
+                </div>
             )
         }
     }
@@ -51,13 +51,21 @@ class Header extends Component {
         let menuClass = this.state.menuShow ? ['menu', 'menu_backdrop'] : ['no_menu', 'no_menu'];
         let username = '';
         let success = false;
-        if(this.props.loginResponse){
+        if(localStorage.userInfo){
+            username = (JSON.parse(localStorage.userInfo))['firstname'];
+            success = (JSON.parse(localStorage.userInfo))['success']
+        } else if(this.props.loginResponse){
             username = this.props.loginResponse.username;
             success = this.props.loginResponse.success;
         }
         return (
             <div className='header'>
-                { success ? <h5 className='center'>Hello, {username}</h5> : this.displayLogInBtn() }
+                { success ? 
+                <div>
+                <h8 className='center'>Hello, {username}</h8>
+                {this.displayLogInBtn()}
+                </div>
+                : this.displayLogInBtn() }
                 <div>
                     <Link to='/'>
                         {/* <img src={logo} className='logo'/> */}

@@ -12,10 +12,9 @@ export default function (WrappedComponent, path='/') {
         }
 
         checkAuth(){
-            const { auth, history } = this.props;
-
-            if(!auth){
-                history.push(path);
+            console.log('auth:', localStorage.userInfo);
+            if(!localStorage.userInfo){
+                this.props.history.push(path);
             }
         }
 
@@ -23,12 +22,5 @@ export default function (WrappedComponent, path='/') {
             return <WrappedComponent {...this.props}/>
         }
     }
-
-    function mapStateToProps(state){
-        return {
-            auth: state.user.auth
-        }
-    }
-
-    return connect(mapStateToProps)(Auth)
+    return connect(null)(Auth)
 }
