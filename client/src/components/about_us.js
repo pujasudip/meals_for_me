@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import '../assets/css/about_us.css';
 import Member from './member';
-import leah from '../assets/images/leah.jpg';
-import sudip from '../assets/images/sudip.png';
-import sean from '../assets/images/sean.png';
-import josh from '../assets/images/josh.jpg';
+import leah from '../assets/images/leah.png';
+import sudip from '../assets/images/sudip-min.jpg';
+import sean from '../assets/images/sean-min.jpg';
+import josh from '../assets/images/josh-min.jpg';
 
 
 class AboutUs extends Component {
