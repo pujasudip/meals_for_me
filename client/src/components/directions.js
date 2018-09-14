@@ -14,6 +14,7 @@ class Directions extends Component{
             directionList = directionListArray.map((ele, index) => {
                 return <li key={index}>{ele}</li>;
             })
+            directionList.pop();
         }
         return (
             <div className="directions">

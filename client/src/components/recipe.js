@@ -137,12 +137,12 @@ class Recipe extends Component {
         }
 
         return(
-        <div>
+        <div className='contain'>
             { this.props.details ?
                 <div>
             <section id='mainContent'>
                 <div className="pictureContainer">
-                    <img src={directions.Image} alt="hamPic" className="mainPicture" onClick={()=>this.clickHandler()}/>
+                    <img src={directions.Image} className="mainPicture" onClick={()=>this.clickHandler()}/>
             </div>
                     <section id='splittingAnimation'>
                     <div className="splittingLine"></div>

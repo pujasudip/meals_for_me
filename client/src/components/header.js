@@ -5,6 +5,7 @@ import HamburgerMenu from '../components/hamburger_menu';
 import { Link } from 'react-router-dom';
 import backButton from '../assets/images/back_arrow.png';
 import { connect } from 'react-redux';
+import logo from '../assets/images/ourlogo.png';
 
 class Header extends Component {
     constructor(props) {
@@ -91,7 +92,7 @@ class Header extends Component {
                 {this.displayHeaderButton(success, username)}
                 <div>
                     <Link to='/'>
-                        <h6 className='logo center'>Meals<br/>4<br/>Me</h6>
+                        <img src={logo} className="logo"/>
                     </Link>
                 </div>
                 <div>

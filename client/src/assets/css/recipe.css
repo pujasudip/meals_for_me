@@ -1,3 +1,7 @@
+.contain{
+    background-color: #F5F5F5;
+    margin: 0%;
+}
 #pictureFrame{
     padding: 0px;
     height:auto;
@@ -74,6 +78,7 @@ header {
     left: 50%;
     top: 30%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 .pictureContainer img {
@@ -89,7 +94,6 @@ header {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    z-index: -1;
 }
 
 @keyframes splittingLines {
