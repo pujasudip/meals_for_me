@@ -7,8 +7,6 @@ import { formatPostData, formatQueryString } from '../helpers';
 import { searchedRecipe, setDetailsOfItem, setDetailsId } from '../actions';
 import backButton from '../assets/images/back_arrow.png';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
-import recipebackground from '../assets/images/recipe-background.png';
-
 const BASE_URL = 'http://localhost:8000/server/getData.php';
 
 class Results extends Component {
@@ -32,13 +30,10 @@ class Results extends Component {
         window.removeEventListener('scroll', this.handleOnScroll);
     }
 
-
-
     goBack() {
         this.props.history.goBack();
     }
     handleOnScroll() {
-        // debugger;
         let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
         let scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
         let clientHeight = document.documentElement.clientHeight + 1 || window.innerHeight + 1; // changed client height to + 1
@@ -65,12 +60,12 @@ class Results extends Component {
                 Go Back
                 </div>
         }
-        //if on load
+        //When loading,
         if (searchedIngredients.length <= 0) {
             return (
                 <div className='loading-spinner'><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span className="sr-only">Loading...</span></div>
             );
-        // when valid search
+        // when valid search,
         } else if (typeof (searchedIngredients[0]) === 'object') {
             resultArray = searchedIngredients.map((ele, index) => {
                 return (
@@ -82,12 +77,9 @@ class Results extends Component {
             <div className= 'main-content mainPage'>
                 <h5 className='resultHeader'>Results for: {this.props.userInputs.join(", ")}</h5>
             <div className= 'main-content'>
-                 {/* <h5>Results for: {this.props.userInputs.join(", ")}</h5> */}
-                {/* <h7>{resultArray.length} recipes out of {}</h7> */}
                     {
                         resultArray
                     }      
-                {/* <button type='text' onClick={this.displayMore}>Display More</button> */}
             </div>
             </div>
         )

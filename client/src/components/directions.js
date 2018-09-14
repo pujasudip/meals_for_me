@@ -5,25 +5,16 @@ class Directions extends Component{
     render(){
         const directions = JSON.parse(this.props.directions.Instructions)[0].steps;
         let directionList = '';
-
-        // console.log('directions:', directions);
-
         if(directions) {
-            let directionListArray = directions.map((ele, index) => {
+            let directionListArray = directions.map((ele) => {
                 return ele.step;
             });
             directionListArray = directionListArray.join('');
-            // if(directionListArray[index] === '.'){
-            //     if (directionListArray[index - 1] === 'tbsp' || directionListArray[index - 1] === 'teaspoon')
-            // }
             directionListArray = directionListArray.split('.');
             directionList = directionListArray.map((ele, index) => {
                 return <li key={index}>{ele}</li>;
             })
-            // directionList = directions.map((ele, index)=>{
-            //     return <li key={index}>{ele.step}</li>;
-
-            // });
+            directionList.pop();
         }
         return (
             <div className="directions">
@@ -41,7 +32,6 @@ class Directions extends Component{
 
 function mapStateToProps(state){
     return {
-        // directions: state.search.details
     }
 }
 

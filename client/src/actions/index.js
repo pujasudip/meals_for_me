@@ -1,7 +1,6 @@
 import types from './types';
 import { formatPostData, formatQueryString } from '../helpers';
 import axios from 'axios';
-
 const BASE_URL = 'http://localhost:8000/userauth/login.php';
 const BASE_URL_SEARCH = 'http://localhost:8000/server/getData.php';
 const BASE_URL_SIGNUP = 'http://localhost:8000/userauth/createuser.php';
@@ -102,7 +101,6 @@ export function createUserAccount(values){
 export function addToFavorite(user_id, recipe_id){
     const dataToSend = formatPostData({user_id: user_id, recipe_id: recipe_id});
     const response = axios.post(`${FAV_URL_ADD}`, dataToSend);
-    console.log("list:", response);
     return {
         type: types.ADD_TO_FAVORITE,
         payload: response
@@ -112,7 +110,6 @@ export function addToFavorite(user_id, recipe_id){
 export function deleteFromFavorite(user_id, recipe_id){
     const dataToSend = formatPostData({user_id: user_id, recipe_id: recipe_id});
     const response = axios.post(`${FAV_URL_DEL}`, dataToSend);
-
     return {
         type: types.DELETE_FROM_FAVORITE,
         payload: recipe_id
@@ -124,7 +121,6 @@ export function getFavorites(user_id){
         user_id: user_id
     }};
     const resp = axios.get(FAV_URL_GET, dataToSend);
-
     return {
         type: types.GET_FAVORITE,
         payload: resp
