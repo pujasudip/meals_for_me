@@ -1,4 +1,5 @@
 import types from '../actions/types';
+import React from "react";
 
 const DEFAULT_STATE = {
     ingredients: [],
@@ -29,6 +30,7 @@ function  searchResult(state = DEFAULT_STATE, action){
 //             let recipes = [ ...state.searched_recipe, ...action.payload.data];
 //             return { ...state, searched_recipe: recipes };
         case types.DETAILS_PAGE:
+            console.log('searched:', action.payload.data);
             return { ...state, details: action.payload};
         case types.CLEAR_RECIPES:
             return {...state, searched_recipe: ''};
