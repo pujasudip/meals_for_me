@@ -4,25 +4,25 @@ import axios from 'axios';
 import OneResult from './individual_result_panel';
 import { connect } from 'react-redux';
 import { formatPostData, formatQueryString } from '../helpers';
-import { searchedRecipe, setDetailsOfItem, setDetailsId } from '../actions';
+import { searchedRecipe, setDetailsOfItem, setDetailsId, setPageNo } from '../actions';
 import backButton from '../assets/images/back_arrow.png';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 const BASE_URL = 'http://localhost:8000/server/getData.php';
 
 class Results extends Component {
-    page = 1;
     constructor(props) {
         super(props);
         this.state = {
             resultArray: '',
-            page: 0,
-        }
+        };
         this.handleOnScroll = this.handleOnScroll.bind(this);
     }
 
     componentDidMount() {
-        console.log('compoennet did mount called data')
-        this.props.searchedRecipe(this.props.userInputs, 0);
+        let pageNo = this.props.page.page;
+        console.log('pageNo:', pageNo);
+        this.props.searchedRecipe(this.props.userInputs, pageNo);
+        this.props.setPageNo(pageNo);
         window.addEventListener('scroll', this.handleOnScroll);
     }
 
@@ -40,16 +40,16 @@ class Results extends Component {
         let scrolledToBottom = (parseInt(scrollTop + clientHeight)) >= scrollHeight;
         console.log('log:', scrolledToBottom);
         if (scrolledToBottom) {
-            console.log('scrolled to bottom');
-            console.log(this.props.userInputs);
-            this.props.searchedRecipe(this.props.userInputs, this.page);
-            this.page++;
+            let pageNo = this.props.page.page;
+            console.log('pageNo:', pageNo);
+            this.props.searchedRecipe(this.props.userInputs, pageNo);
+            this.props.setPageNo(pageNo);
             scrolledToBottom = false;
         }
     }
     render() {
         const { searchedIngredients } = this.props;
-        console.log('se:',searchedIngredients);
+        console.log('page:', this.props.page.page);
         let resultArray = '';
         if(!this.props.userInputs.length){
             return <div className='goback'>
@@ -81,6 +81,10 @@ class Results extends Component {
                         resultArray
                     }      
             </div>
+                <div className={`btn btn-floating red ${document.documentElement.scrollTop > 0 ? 'goToTop' : 'hideGoToTop'}`}
+                     onClick={()=> window.scrollTo(0, 0)}>
+                    <i className='material-icons'>keyboard_arrow_up</i>
+                </div>
             </div>
         )
     }
@@ -89,8 +93,9 @@ class Results extends Component {
 function mapStateToProps(state){
     return {
         userInputs: state.search.ingredients,
-        searchedIngredients: state.search.searched_recipe
+        searchedIngredients: state.search.searched_recipe,
+        page: state.page
     }
 }
 
-export default connect(mapStateToProps, { searchedRecipe , setDetailsOfItem , setDetailsId })(Results);
+export default connect(mapStateToProps, { searchedRecipe , setDetailsOfItem , setDetailsId, setPageNo })(Results);

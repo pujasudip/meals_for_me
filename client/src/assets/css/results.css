@@ -32,4 +32,20 @@
     margin-bottom: 30px;
     font-weight: bold;
 }
-
+h5{
+    margin-top: 0;
+}
+.goToTop{
+    display: inline-block;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.goToTop > i{
+    font-size: 3rem;
+    margin: auto;
+}
+.hideGoToTop{
+    display: none;
+}

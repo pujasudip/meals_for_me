@@ -31,7 +31,7 @@ class Header extends Component {
 
     goBack(){
         console.log('this.props in goback:', this.props);
-        console.log('this.state in goback', this.state)
+        console.log('this.state in goback', this.state);
         this.props.history.goBack();
     }
 

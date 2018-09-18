@@ -14,4 +14,6 @@ export default {
     ADD_TO_FAVORITE: 'add_to_favorite',
     DELETE_FROM_FAVORITE: 'delete_from_favorite',
     GET_FAVORITE: 'get_favorites',
+    GET_PAGE_NO: 'get_page_no',
+    SET_PAGE_NO: 'set_page_no'
 }

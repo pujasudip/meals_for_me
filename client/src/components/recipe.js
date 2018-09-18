@@ -32,7 +32,7 @@ class Recipe extends Component {
         this.props.getDetailsById(id);
     }
 
-    changeHeart = ()=>{
+    changeHeart(){
         if(!localStorage.userInfo && !this.props.userInfo){
             this.props.history.push('/login');
         }
@@ -148,7 +148,7 @@ class Recipe extends Component {
                     <div className="splittingLine"></div>
                     <div className="splittingLine"></div>
                     </section>
-            <div className="heartPic center"><img src= {this.state.imgSrc} onClick={this.changeHeart}></img>
+            <div className="heartPic center"><img src= {this.state.imgSrc} onClick={() => this.changeHeart()}></img>
                     <p>{this.state.addFavText}</p>
             </div>
         </section>

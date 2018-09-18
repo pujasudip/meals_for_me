@@ -101,6 +101,12 @@ export function createUserAccount(values){
 export function addToFavorite(user_id, recipe_id){
     const dataToSend = formatPostData({user_id: user_id, recipe_id: recipe_id});
     const response = axios.post(`${FAV_URL_ADD}`, dataToSend);
+    // const promise = new Promise((resolve, reject) => {
+    //     const response = axios.post(`${FAV_URL_ADD}`, dataToSend)
+    //         .then((response) => {
+    //             resolve({user_id: user_id, recipe_id: recipe_id})
+    //         });
+    // })
     return {
         type: types.ADD_TO_FAVORITE,
         payload: response
@@ -109,10 +115,15 @@ export function addToFavorite(user_id, recipe_id){
 
 export function deleteFromFavorite(user_id, recipe_id){
     const dataToSend = formatPostData({user_id: user_id, recipe_id: recipe_id});
-    const response = axios.post(`${FAV_URL_DEL}`, dataToSend);
+    var getFavData = {params: {
+            user_id: user_id
+        }};
+    const deleteResponse = axios.post(`${FAV_URL_DEL}`, dataToSend)
+        .then(() => axios.get(FAV_URL_GET, getFavData));
+    // const favResp = axios.get(FAV_URL_GET, getFavData);
     return {
         type: types.DELETE_FROM_FAVORITE,
-        payload: recipe_id
+        payload: deleteResponse
     }
 }
 
@@ -124,6 +135,13 @@ export function getFavorites(user_id){
     return {
         type: types.GET_FAVORITE,
         payload: resp
+    }
+}
+export function setPageNo(page){
+    ++page;
+    return {
+        type: types.SET_PAGE_NO,
+        payload: page
     }
 }
 

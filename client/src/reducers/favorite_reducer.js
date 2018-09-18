@@ -7,8 +7,7 @@ const DEFAULT_STATE = {
 export default function favorites(state=DEFAULT_STATE, action){
     switch(action.type){
         case types.ADD_TO_FAVORITE:
-            let list = [action.payload];
-            return {state};
+            return {...state};
         case types.DELETE_FROM_FAVORITE:
             let recipe_id = action.payload;
             let newList = [...state.favorites];
@@ -21,7 +20,7 @@ export default function favorites(state=DEFAULT_STATE, action){
             newList.splice(tobeDeletedIndex, 1);
             return {favorites: newList};
         case types.GET_FAVORITE:
-            list = [...action.payload.data.data];
+            let list = [...action.payload.data.data];
             return {...state, favorites: list};
         default:
             return state;

@@ -9,7 +9,8 @@ import bg_image from '../assets/images/mobile-bg.png';
 //import bg_image from '../assets/images/dogbg.jpg';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 import types from "../actions/types";
-import { userLogin } from '../actions';
+import { userLogin, setPageNo } from '../actions';
+import pageReducer from "../reducers/page_no_reducer";
 
 class LandingPage extends Component {
     foodIndex = 0;
@@ -34,6 +35,8 @@ class LandingPage extends Component {
 //     }
     componentWillUnmount() {
         this.props.clearRecipes();
+        this.props.setPageNo(0);
+
     }
 
     componentWillReceiveProps(newProp) {
@@ -241,6 +244,7 @@ const mapActionsToProps = {
     removeIngredient: removeIngredients,
     clearUserIngredientInputs: clearUserIngredientInputs,
     clearRecipes: clearRecipes,
+    setPageNo: setPageNo
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(LandingPage);
