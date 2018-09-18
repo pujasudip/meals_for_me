@@ -30,8 +30,6 @@ class Header extends Component {
     }
 
     goBack(){
-        console.log('this.props in goback:', this.props);
-        console.log('this.state in goback', this.state);
         this.props.history.goBack();
     }
 
@@ -80,7 +78,7 @@ class Header extends Component {
         let menuClass = this.state.menuShow ? ['menu', 'menu_backdrop'] : ['no_menu', 'no_menu'];
         let username = '';
         let success = false;
-        if(localStorage.userInfo){
+        if(localStorage.userInfo !== "undefined"){
             username = (JSON.parse(localStorage.userInfo))['firstname'];
             success = (JSON.parse(localStorage.userInfo))['success']
         } else if(this.props.loginResponse){
