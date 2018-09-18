@@ -36,13 +36,11 @@ class Recipe extends Component {
         if(!localStorage.userInfo && !this.props.userInfo){
             this.props.history.push('/login');
         }
-
         let userId = (JSON.parse(localStorage.userInfo))['user_id'] || this.props.userInfo.user_id;
         const recipe_id =  this.props.match.params.id;
         let heartStatus;
         if(this.state.imgSrc === emptyHeart){
             heartStatus = redHeart;
-            // this.state.addFavText = 'Added';
             this.setState({
                 toastMessageAddFav: 'favToastAdd'
             });
@@ -129,7 +127,6 @@ class Recipe extends Component {
 
         if(ingredients){
             ingredientList = ingredients.map((ele, index)=>{
-                // return <li key={ele.id} onClick={this.addToShopingList.bind(this, ele)}>{ele.original}</li>
                 return <li key={index} onClick={this.addToShopingList.bind(this, ele)}>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
             });
         }
@@ -140,12 +137,12 @@ class Recipe extends Component {
         }
 
         return(
-        <div>
+        <div className='contain'>
             { this.props.details ?
                 <div>
             <section id='mainContent'>
                 <div className="pictureContainer">
-                    <img src={directions.Image} alt="hamPic" className="mainPicture" onClick={()=>this.clickHandler()}/>
+                    <img src={directions.Image} className="mainPicture" onClick={()=>this.clickHandler()}/>
             </div>
                     <section id='splittingAnimation'>
                     <div className="splittingLine"></div>
@@ -200,9 +197,6 @@ class Recipe extends Component {
                            <img src={directions.Image}/>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <button className='btn btn-small modalBtn center' onClick={()=>this.clickHandler()}>Close</button>
                 </div>
             </div>
         </div>

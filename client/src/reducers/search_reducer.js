@@ -26,9 +26,6 @@ function  searchResult(state = DEFAULT_STATE, action){
             if(Array.isArray(action.payload.data)){
                 return { ...state, searched_recipe: [ ...state.searched_recipe, ...action.payload.data]};
             }
-
-//             let recipes = [ ...state.searched_recipe, ...action.payload.data];
-//             return { ...state, searched_recipe: recipes };
         case types.DETAILS_PAGE:
             console.log('searched:', action.payload.data);
             return { ...state, details: action.payload};

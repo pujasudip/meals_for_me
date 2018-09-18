@@ -9,7 +9,6 @@ class InvidualFavorite extends Component{
 
 
     render(){
-        // const id = this.props.id;
         const { user_id, recipe_id, Image, Name } = this.props.item;
         return (
             <div className='center-block card-panel'>

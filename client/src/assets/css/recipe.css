@@ -1,21 +1,10 @@
-/* .container{
-    display: flex;
-    align-content: space-around;
+.contain{
+    background-color: #F5F5F5;
+    margin: 0%;
 }
-.dishPicture{
-    width: 25px;
-    height: 25px;
-    background-color: red;
-} */
-
-/*  */
 #pictureFrame{
     padding: 0px;
     height:auto;
-}
-.main-content{
-    /* background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../images/recipe-background.png"); */
-    /* background: url("../images/recipe-background.png"); */
 }
 
 .likeTitle{
@@ -33,10 +22,6 @@
     margin-bottom: 25px;
     
 }
-/* * > p, h3{
-    color: #7F977C;
-} */
-
 
 header {
     display: inline-block;
@@ -84,7 +69,6 @@ header {
     position: relative;
     margin-top: 4rem;
 }
-/*  */
 
 .pictureContainer {
     height: 90%;
@@ -94,6 +78,7 @@ header {
     left: 50%;
     top: 30%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 .pictureContainer img {
@@ -109,7 +94,6 @@ header {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    z-index: -1;
 }
 
 @keyframes splittingLines {
@@ -164,6 +148,10 @@ header {
     font-weight: bold;
 }
 
+.ingredients>ol>ul{
+    color: pink;
+}
+
 ol {
     padding: 2px;
 
@@ -181,13 +169,6 @@ ol li {
 
 }
 
-/* ol li:before {
-    content: counter(indexForLi) ") ";
-    counter-increment: indexForLi;
-    font-weight: bold;
-    font-size: 150%;
-} */
-
 ol>li {
     font-size: 1.5vmax;
     font-weight: 400;
@@ -197,21 +178,17 @@ ol>li {
 
     bottom: 73%;
     left: 3%;
-    /* z-index: -1; */
     display: inline-block;
     position: absolute;
 }
 
-
 .heartPic > img {
     width: 14vw;
-    /* position: absolute; */
     top: 15px;
     left: -16px;
 }
 
 .heartPic>p {
-    /* position: absolute; */
     margin: 0;
     top: 49px;
     left: -29px;
@@ -240,9 +217,6 @@ ol>li {
     .directions>ol {
         font-size: 2.5vmax;
     }
-    /* ol li:before {
-        font-size: 125%
-    } */
     .heartPic {
         font-size: 10vmin;
     }
@@ -293,7 +267,6 @@ ol>li {
     right: 0;
     width: 70px;
     height: 200px;
-    /* background-color: blue; */
 }
 .wineNavLeft{
     margin-left: -5px;
@@ -329,12 +302,10 @@ ol>li {
     height: 55px;
     border-radius: 10px;
     background-color: rgba(3, 194, 45, 0.69);
-    /*float: left;*/
     z-index: 100;
     text-align: center;
     top: 50%;
     left: 20%;
-    /*transform: translate(-50% -50%);*/
 }
 .message{
     font-size: 1.5rem;
@@ -353,12 +324,10 @@ ol>li {
     height: 55px;
     border-radius: 10px;
     background-color: #7F977C;
-    /*float: left;*/
     z-index: 100;
     text-align: center;
     top: 50%;
     left: 15%;
-    /*transform: translate(-50% -50%);*/
 }
 .showModal{
     display: block;
@@ -385,7 +354,7 @@ ol>li {
     position: relative;
     top: 17px;
     left: -10px;
-    background-color: #00d3ff;
+    background-color: #7F977C;
     cursor: pointer;
 }
 
