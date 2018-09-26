@@ -14,7 +14,7 @@ class HamburgerMenu extends Component{
     render() {
         let username = '';
         let success = false;
-        if(localStorage.userInfo !== "undefined"){
+        if(localStorage.userInfo !== undefined){
             username = (JSON.parse(localStorage.userInfo))['firstname'];
             success = (JSON.parse(localStorage.userInfo))['success']
         } else if(this.props.loginResponse){
