@@ -1,4 +1,4 @@
-# c618_what_to_food
+# Meals for Me
 
 find recipes that make use of the food you have on hand and local ingredients in stores
 
