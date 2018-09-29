@@ -23,14 +23,19 @@ class Recipe extends Component {
             showall: 'ingredientList',
             showHideIcon: 'control_point',
             tabIndex: 0,
-            winePairingHide: 'hideWine'
         };
         this.handleSelect = this.handleSelect.bind(this);
     }
 
     componentWillMount(){
-        let userId = (JSON.parse(localStorage.userInfo))['user_id'] || this.props.userInfo.data.user_id;
-        this.props.getFavorites(userId);
+        let userId;
+        if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
+            userId = (JSON.parse(localStorage.userInfo))['user_id'];
+            this.props.getFavorites(userId);
+        } else if((typeof this.props.userInfo.data !== undefined) && (typeof this.props.userInfo.data !== "undefined")) {
+            userId = typeof this.props.userInfo.data.user_id;
+            this.props.getFavorites(userId);
+        }
     }
 
     componentDidMount(){
@@ -50,38 +55,50 @@ class Recipe extends Component {
     }
 
     changeHeart(){
-        if(!localStorage.userInfo && !this.props.userInfo){
-            this.props.history.push('/login');
+        // if(!localStorage.userInfo && !this.props.userInfo){
+        //     this.props.history.push('/login');
+        // }
+        let userId;
+        if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
+            userId = (JSON.parse(localStorage.userInfo))['user_id'];
+            this.props.getFavorites(userId);
+        } else if((typeof this.props.userInfo.data !== undefined) && (typeof this.props.userInfo.data !== "undefined")) {
+            userId = typeof this.props.userInfo.data.user_id;
+            this.props.getFavorites(userId);
         }
-        let userId = (JSON.parse(localStorage.userInfo))['user_id'] || this.props.userInfo.data.user_id;
         const recipe_id =  this.props.match.params.id;
         let heartStatus;
-        if(this.state.imgSrc === emptyHeart){
-            heartStatus = redHeart;
-            this.setState({
-                toastMessageAddFav: 'favToastAdd'
-            });
-            setTimeout(()=>{
+        if(userId){
+            if(this.state.imgSrc === emptyHeart){
+                heartStatus = redHeart;
                 this.setState({
-                    toastMessageAddFav: 'hideToast'
+                    toastMessageAddFav: 'favToastAdd'
                 });
-            },1100);
-            this.props.addToFavorite(userId, recipe_id);
+                setTimeout(()=>{
+                    this.setState({
+                        toastMessageAddFav: 'hideToast'
+                    });
+                },1100);
+                this.props.addToFavorite(userId, recipe_id);
+            } else {
+                heartStatus = emptyHeart;
+                this.setState({
+                    toastMessageRemFav: 'favToastRem'
+                });
+                setTimeout(()=>{
+                    this.setState({
+                        toastMessageRemFav: 'hideToast'
+                    });
+                },1100);
+                this.props.deleteFromFavorite(userId, recipe_id);
+            }
+            this.setState({
+                imgSrc: heartStatus
+            });
         } else {
-            heartStatus = emptyHeart;
-            this.setState({
-                toastMessageRemFav: 'favToastRem'
-            });
-            setTimeout(()=>{
-                this.setState({
-                    toastMessageRemFav: 'hideToast'
-                });
-            },1100);
-            this.props.deleteFromFavorite(userId, recipe_id);
+            this.props.history.push('/login');
         }
-        this.setState({
-            imgSrc: heartStatus
-        });
+
     }
     handleSelect(key) {
         alert(`selected ${key}`);
@@ -189,15 +206,19 @@ class Recipe extends Component {
             <div>
                 {this.dynamicComponent(directions)}
             </div>
-            <div className={`wine_pairing_slider valign-wrapper ${this.state.wineSlider} ${this.state.winePairingHide}`}>
-                <i className='material-icons wineNavLeft'>navigate_before</i>
-                <p className="wineheader">Wine Pairing</p>
-                <div>
-                    <ul className="winelist">
-                        {wineList}
-                    </ul>
-                </div>
-            </div>
+                    {
+                        wineList.length ?
+                            <div className={`wine_pairing_slider valign-wrapper ${this.state.wineSlider}`}>
+                                <i className='material-icons wineNavLeft'>navigate_before</i>
+                                <p className="wineheader">Wine Pairing</p>
+                                <div>
+                                    <ul className="winelist">
+                                        {wineList}
+                                    </ul>
+                                </div>
+                            </div> : ''
+
+                    }
                 </div> : ""}
 
             <div className={`${this.state.toastMessageAddFav}`}>
