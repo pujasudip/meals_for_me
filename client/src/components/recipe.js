@@ -22,49 +22,83 @@ class Recipe extends Component {
             wineSlider: '',
             showall: 'ingredientList',
             showHideIcon: 'control_point',
-            tabIndex: 0
+            tabIndex: 0,
         };
         this.handleSelect = this.handleSelect.bind(this);
     }
 
+    componentWillMount(){
+        let userId;
+        if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
+            userId = (JSON.parse(localStorage.userInfo))['user_id'];
+            this.props.getFavorites(userId);
+        } else if((typeof this.props.userInfo.data !== undefined) && (typeof this.props.userInfo.data !== "undefined")) {
+            userId = typeof this.props.userInfo.data.user_id;
+            this.props.getFavorites(userId);
+        }
+    }
+
     componentDidMount(){
-        const id =  this.props.match.params.id;
-        this.props.getDetailsById(id);
+        const recipe_id =  this.props.match.params.id;
+        this.props.getDetailsById(recipe_id);
+        const favList = this.props.favorites;
+
+        if(favList.length !== 0){
+            for(let item of favList){
+                if(item.recipe_id === recipe_id){
+                    this.setState({
+                        imgSrc: redHeart
+                    });
+                }
+            }
+        }
     }
 
     changeHeart(){
-        if(!localStorage.userInfo && !this.props.userInfo){
-            this.props.history.push('/login');
+        // if(!localStorage.userInfo && !this.props.userInfo){
+        //     this.props.history.push('/login');
+        // }
+        let userId;
+        if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
+            userId = (JSON.parse(localStorage.userInfo))['user_id'];
+            this.props.getFavorites(userId);
+        } else if((typeof this.props.userInfo.data !== undefined) && (typeof this.props.userInfo.data !== "undefined")) {
+            userId = typeof this.props.userInfo.data.user_id;
+            this.props.getFavorites(userId);
         }
-        let userId = (JSON.parse(localStorage.userInfo))['user_id'] || this.props.userInfo.user_id;
         const recipe_id =  this.props.match.params.id;
         let heartStatus;
-        if(this.state.imgSrc === emptyHeart){
-            heartStatus = redHeart;
-            this.setState({
-                toastMessageAddFav: 'favToastAdd'
-            });
-            setTimeout(()=>{
+        if(userId){
+            if(this.state.imgSrc === emptyHeart){
+                heartStatus = redHeart;
                 this.setState({
-                    toastMessageAddFav: 'hideToast'
+                    toastMessageAddFav: 'favToastAdd'
                 });
-            },1100);
-            this.props.addToFavorite(userId, recipe_id);
+                setTimeout(()=>{
+                    this.setState({
+                        toastMessageAddFav: 'hideToast'
+                    });
+                },1100);
+                this.props.addToFavorite(userId, recipe_id);
+            } else {
+                heartStatus = emptyHeart;
+                this.setState({
+                    toastMessageRemFav: 'favToastRem'
+                });
+                setTimeout(()=>{
+                    this.setState({
+                        toastMessageRemFav: 'hideToast'
+                    });
+                },1100);
+                this.props.deleteFromFavorite(userId, recipe_id);
+            }
+            this.setState({
+                imgSrc: heartStatus
+            });
         } else {
-            heartStatus = emptyHeart;
-            this.setState({
-                toastMessageRemFav: 'favToastRem'
-            });
-            setTimeout(()=>{
-                this.setState({
-                    toastMessageRemFav: 'hideToast'
-                });
-            },1100);
-            this.props.deleteFromFavorite(userId, recipe_id);
+            this.props.history.push('/login');
         }
-        this.setState({
-            imgSrc: heartStatus
-        });
+
     }
     handleSelect(key) {
         alert(`selected ${key}`);
@@ -172,15 +206,19 @@ class Recipe extends Component {
             <div>
                 {this.dynamicComponent(directions)}
             </div>
-            <div className={`wine_pairing_slider valign-wrapper ${this.state.wineSlider}`}>
-                <i className='material-icons wineNavLeft'>navigate_before</i>
-                <p className="wineheader">Wine Pairing</p>
-                <div>
-                    <ul className="winelist">
-                        {wineList}
-                    </ul>
-                </div>
-            </div>
+                    {
+                        wineList.length ?
+                            <div className={`wine_pairing_slider valign-wrapper ${this.state.wineSlider}`}>
+                                <i className='material-icons wineNavLeft'>navigate_before</i>
+                                <p className="wineheader">Wine Pairing</p>
+                                <div>
+                                    <ul className="winelist">
+                                        {wineList}
+                                    </ul>
+                                </div>
+                            </div> : ''
+
+                    }
                 </div> : ""}
 
             <div className={`${this.state.toastMessageAddFav}`}>
@@ -206,7 +244,8 @@ class Recipe extends Component {
 function mapStateToProps(state){
     return {
         details: state.search.details,
-        userInfo: state.userLoginResponse.userLoginResponse.data
+        userInfo: state.userLoginResponse.userLoginResponse,
+        favorites: state.favorites.favorites
     }
 }
 
