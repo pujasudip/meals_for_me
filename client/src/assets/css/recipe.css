@@ -253,6 +253,12 @@ ol>li {
     background-color: #ffe0b2;
     transition: height 100ms, width 1000ms;
 }
+.winelist{
+   display: none;
+}
+.wine_pairing_slider:hover .winelist{
+    display: block;
+}
 
 .wine_pairing_slider:hover{
     right: 0;
@@ -271,7 +277,7 @@ ol>li {
 .wineNavLeft{
     margin-left: -5px;
 }
-.wineNavLeft:hover{
+.wine_pairing_slider:hover .wineNavLeft{
     animation: rightTurn 1s;
     transform: rotate(-180deg);
 }
@@ -289,9 +295,6 @@ ol>li {
     margin: 0 -35px;
     transform: rotate(-90deg);
     color: #B71C1C;
-}
-.winelist{
-    margin-left: 20px;
 }
 .hideToast{
     display: none;

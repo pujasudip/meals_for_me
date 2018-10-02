@@ -14,7 +14,7 @@ class HamburgerMenu extends Component{
     render() {
         let username = '';
         let success = false;
-        if(localStorage.userInfo !== "undefined"){
+        if(localStorage.userInfo !== undefined){
             username = (JSON.parse(localStorage.userInfo))['firstname'];
             success = (JSON.parse(localStorage.userInfo))['success']
         } else if(this.props.loginResponse){
@@ -27,7 +27,7 @@ class HamburgerMenu extends Component{
                     <i className='material-icons closeIcon'
                        onClick={this.props.hideMenu}>close</i>
                 </div>
-                { success ? <div>Hello, {username}</div> : '' }
+                { success ? <div className="greetFont"><i className="material-icons prefix">portrait</i> Hello, <span className="hamMenuGreetingName greetFont">{username}</span></div> : '' }
                 <i className='material-icons prefix'>home</i>
                 <Link to='/'
                       onClick={this.props.hideMenu} className='menuItem'>&nbsp;Home</Link><br/>

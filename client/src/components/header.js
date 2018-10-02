@@ -78,7 +78,7 @@ class Header extends Component {
         let menuClass = this.state.menuShow ? ['menu', 'menu_backdrop'] : ['no_menu', 'no_menu'];
         let username = '';
         let success = false;
-        if(localStorage.userInfo !== "undefined"){
+        if(localStorage.userInfo !== undefined){
             username = (JSON.parse(localStorage.userInfo))['firstname'];
             success = (JSON.parse(localStorage.userInfo))['success']
         } else if(this.props.loginResponse){
