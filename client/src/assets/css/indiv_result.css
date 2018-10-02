@@ -1,13 +1,13 @@
-.main-content-recipe>.resultRow {
+.mainContentRecipe>.resultRow {
     display: inline-block;
 }
 
-.main-content-recipe {
+.mainContentRecipe {
     width: 25%;
     display: inline-block;
 }
 
-img{
+#pictureFrame img {
     width: 100%;
     border: 2px solid #7F977C;
 }
