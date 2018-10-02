@@ -14,7 +14,7 @@ function OneResult(props) {
                     <div id="pictureFrame">
                         <img src={imageSrc} />
                     </div>
-                    <div id="titleText">{title}</div>
+                    <div className="titleText"><p>{title}</p></div>
                     <div className="likeTitle">Likes: {likes}</div>
                 </div>
             </div>

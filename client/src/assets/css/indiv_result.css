@@ -11,3 +11,9 @@
     width: 100%;
     border: 2px solid #7F977C;
 }
+.titleText > p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20vw;
+}
