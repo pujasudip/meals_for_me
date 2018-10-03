@@ -56,22 +56,9 @@ class Header extends Component {
     }
     displayHeaderButton(success, username){
         if (this.props.location.pathname === '/'){
-            if(success){
-                return (<div>
-                    <h6 className='center'>Hello, {username}</h6>
-                        </div>)
-            }else{
-                return (this.displayLogInBtn())
-            }
-        }else{
-            if (success) {
-                return (<div>
-                    <h6 className='center'>Hello, {username}</h6>
-                    {this.displayBackBtn()}
-                </div>)
-            }else {
-                return ((this.displayBackBtn()))
-            }
+            return;
+        } else{
+            return this.displayBackBtn();
         }
     }
     render() {
@@ -87,13 +74,15 @@ class Header extends Component {
         }
         return (
             <div className='header'>
-                {this.displayHeaderButton(success, username)}
-                <div>
+                <div className="valign-wrapper">
+                    {this.displayHeaderButton(success, username)}
+                </div>
+                <div className="center-align">
                     <Link to='/'>
                         <img src={logo} className="logo"/>
                     </Link>
                 </div>
-                <div>
+                <div className="valign-wrapper">
                     <img src={hamicon} className='hamicon' onClick={()=>this.hamburgerMenu()}/>
                 </div>
                 <div className={menuClass[1]} onClick={(event)=>this.backdropClicked(event)}>

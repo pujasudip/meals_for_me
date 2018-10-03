@@ -151,7 +151,7 @@ class Recipe extends Component {
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
-        if(this.props.details){
+        if(typeof this.props.details.data !== "undefined"){
             directions = this.props.details.data.data[0];
             ingredients = JSON.parse(directions.Ingredients);
             pairedWines = JSON.parse(directions.winepairings).pairedWines;
