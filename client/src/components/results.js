@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../assets/css/results.css'
 import axios from 'axios';
-import OneResult from './individual_result_desktop';
+import OneResult from './individual_result_panel';
 import { connect } from 'react-redux';
 import { formatPostData, formatQueryString } from '../helpers';
 import { searchedRecipe, setDetailsOfItem, setDetailsId, setPageNo, setInvalidSearch } from '../actions';
@@ -75,18 +75,18 @@ class Results extends Component {
         } else if (typeof (searchedIngredients[0]) === 'object') {
             resultArray = searchedIngredients.map((ele, index) => {
                 return (
-                    <OneResult key={ele.ID} id={ele.ID} title={ele.Name} details={ele} likes={ele.likes} imageSrc={ele.Image} />
+                    <OneResult key={ele.ID} id={ele.ID} title={ele.Name} details={ele} likes={ele.likes} imageSrc={ele.Image}/>
                 );
             });
         }
         return (
-            <div className= 'main-content mainPage'>
+            <div className= 'mainPage'>
                 <h5 className='resultHeader'>Results for: {this.props.userInputs.join(", ")}</h5>
-            <div className= 'main-content'>
-                    {
-                        resultArray
-                    }      
-            </div>
+                <div className= 'main-content center-align'>
+                        {
+                            resultArray
+                        }
+                </div>
                 <div className={`btn btn-floating red ${document.documentElement.scrollTop > 0 ? 'goToTop' : 'hideGoToTop'}`}
                      onClick={()=> window.scrollTo(0, 0)}>
                     <i className='material-icons'>keyboard_arrow_up</i>
