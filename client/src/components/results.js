@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../assets/css/results.css'
 import axios from 'axios';
-import OneResult from './individual_result_desktop';
+import OneResult from './individual_result_panel';
 import { connect } from 'react-redux';
 import { formatPostData, formatQueryString } from '../helpers';
 import { searchedRecipe, setDetailsOfItem, setDetailsId, setPageNo, setInvalidSearch } from '../actions';
