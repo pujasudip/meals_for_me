@@ -220,7 +220,7 @@ ol>li {
     }
     .pictureContainer {
         max-width: 25vw;
-        z-index: -1;
+        z-index: 1;
     }
 }
 .tabs{

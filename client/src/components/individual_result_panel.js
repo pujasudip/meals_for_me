@@ -1,12 +1,9 @@
-import React, {Fragment} from 'react';
+import React from 'react';
+import '../assets/css/indiv_result.css';
 import { Link } from 'react-router-dom';
 import '../assets/css/indiv_result.css';
 
 function OneResult(props){
-    let style = {
-        'width': '120px',
-        'border': '2px solid #7F977C'
-    };
 
     const {id, imageSrc, title, likes} = props;
 

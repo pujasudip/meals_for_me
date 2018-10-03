@@ -9,7 +9,7 @@ function OneResult(props) {
 
     return (
         <Link to={`/recipe/${id}`}>
-            <div className='main-content-recipe'>
+            <div className='mainContentRecipe'>
                 <div className="row resultRow col s4" key={id}>
                     <div id="pictureFrame">
                         <img src={imageSrc} />

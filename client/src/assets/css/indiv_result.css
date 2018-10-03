@@ -1,3 +1,4 @@
+
 .resultContainer:hover{
     box-shadow: 0 0 2px 2px rgba(9, 164, 28, 0.79);
 }
@@ -85,3 +86,39 @@
     }
 
 }
+    .mainContentRecipe>.resultRow {
+        display: inline-block;
+    }
+
+    .mainContentRecipe {
+        width: 25%;
+        display: inline-block;
+    }
+
+    .pictureFrame img {
+        width: 100%;
+        border: 2px solid #7F977C;
+    }
+
+    .titleText>p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 20vw;
+    }
+
+    @media screen and (max-width: 414px) {
+        .pictureFrame img {
+            width: 120px;
+            border: 2px solid #7F977C
+        }
+
+        .mainContentRecipe {
+            width: 100%;
+            display: inline-block;
+        }
+
+        .mainContentRecipe>.resultRow {
+            display: block;
+        }
+    }
