@@ -1,18 +1,69 @@
-.dishContainer > img{
-    width: 30vmin;
-    height: 30vmin;
-    border-radius: 50%;
+@media only screen and (max-width: 500px){
+    .dishContainer > img{
+        width: 30vmin;
+        height: 30vmin;
+        border-radius: 50%;
+    }
+    .card-panel{
+        height: 135px;
+        border: solid 3px #7F977C;
+        background-color: #F5F5F5;
+    }
+    .individualPanel{
+        display: flex;
+        align-items: center;
+    }
+    .favTrash{
+        margin-right: -5%;
+        margin-left: 1%;
+        cursor: pointer;
+    }
 }
-.card-panel{
-    height: 135px;
-    border: solid 3px #7F977C;
-    background-color: #F5F5F5;
-}
-.individualPanel{
-    display: flex;
-    align-items: center;
-}
-.favTrash{
-    margin-right: -5%;
-    margin-left: 1%;
+@media only screen and (min-width: 501px){
+    .favContainer{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-left: 1%;
+    }
+    .individualPanel{
+        display: inline-block;
+        width: 31%;
+        height: 35vh;
+        background-color: rgba(235, 186, 81, 0.22);
+        position: relative;
+        margin: 1%;
+    }
+    .dishContainer > img{
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20vmin;
+        height: 20vmin;
+        border-radius: 50%;
+    }
+    .favTrash{
+        position: absolute;
+        bottom: 1px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .favTrash > i{
+        font-size: 2.5rem !important;
+        cursor: pointer;
+    }
+    .favListItemName *{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 20vw;
+    }
+    .favListItemName h5{
+        text-align: center;
+        width: 100%;
+        font-size: 1.5rem;
+        position: absolute;
+        bottom: 35px;
+    }
 }

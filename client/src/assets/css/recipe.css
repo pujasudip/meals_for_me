@@ -388,3 +388,18 @@ ol>li {
 .activeTab{
     background-color: #ffcc80;
 }
+@media only screen and (min-width: 1000px){
+    .heartPic{
+        bottom: 45%;
+    }
+}
+@media only screen and (min-width: 500px){
+    #mainContent{
+        margin-top: 12%;
+    }
+}
+@media only screen and (max-width: 400px){
+    #mainContent{
+        margin-top: 10%;
+    }
+}

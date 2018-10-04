@@ -35,7 +35,7 @@ class Favorites extends Component {
         }
 
         return (
-            <div>
+            <div className="favContainer">
                 {favList}
             </div>
         )
