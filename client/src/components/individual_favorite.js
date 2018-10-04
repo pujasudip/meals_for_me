@@ -19,7 +19,7 @@ class InvidualFavorite extends Component{
                     <img src={Image} />
                 </div>
                 <div className="favTrash">
-                    <i className="medium material-icons red-text favTrash" onClick={()=>this.props.delete(user_id, recipe_id)}>delete</i>
+                    <i className="medium material-icons red-text" onClick={()=>this.props.delete(user_id, recipe_id)}>delete</i>
                 </div>
             </div>
             

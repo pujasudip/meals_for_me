@@ -38,7 +38,7 @@ class SignUp extends Component{
             <div className='signup'>
                 <form className='col' onSubmit={handleSubmit(this.userSignUp)}>
 
-                    <div className='row'>
+                    <div className='row f_l_names_signup'>
                         <div className='input-field col s6'>
                             <i className="material-icons prefix">person_outline</i>
                             <Field name='firstName' label='First Name' type='text' component={this.renderInput}/>

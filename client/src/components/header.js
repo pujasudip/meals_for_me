@@ -56,7 +56,9 @@ class Header extends Component {
     }
     displayHeaderButton(success, username){
         if (this.props.location.pathname === '/'){
-            return;
+            if(!success){
+                return this.displayLogInBtn();
+            }
         } else{
             return this.displayBackBtn();
         }
