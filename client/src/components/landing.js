@@ -239,7 +239,7 @@ class LandingPage extends Component {
                 <div>
                 </div>
                 <div className={`ingredientInputError ${this.state.toastMessage}`}>
-                    <h5>Enter only three ingredients.</h5>
+                    <p>Enter only three ingredients.</p>
                 </div>
             </div>
         );

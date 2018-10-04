@@ -303,7 +303,8 @@ ol>li {
     z-index: 100;
     text-align: center;
     top: 50%;
-    left: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .message{
     font-size: 1.5rem;
@@ -325,7 +326,8 @@ ol>li {
     z-index: 100;
     text-align: center;
     top: 50%;
-    left: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .showModal{
     display: block;
@@ -391,6 +393,9 @@ ol>li {
 @media only screen and (min-width: 1000px){
     .heartPic{
         bottom: 45%;
+    }
+    .wine_pairing_slider{
+        margin-right: 8%;
     }
 }
 @media only screen and (min-width: 500px){

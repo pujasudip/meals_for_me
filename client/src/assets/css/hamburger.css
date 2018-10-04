@@ -17,7 +17,7 @@
 @media only screen and (min-width: 1000px){
     .menu{
         margin-right: 8%;
-        animation: rotateInDownRight 0.5s;
+        animation: rotateInDownRight 500ms;
     }
     @keyframes rotateInDownRight {
         from {

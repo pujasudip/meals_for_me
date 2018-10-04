@@ -7,9 +7,9 @@ import { userLogin } from "../actions";
 import { Field, reduxForm } from 'redux-form';
 
 class Login extends React.Component{
-
     userLoggingIn = (values) =>{
-        this.props.userLogin(values.username, values.password);
+        const resp = this.props.userLogin(values.username, values.password);
+        console.log('aa:', this.props.loginResponse.userLoginResponse);
     };
 
     componentDidMount(){
