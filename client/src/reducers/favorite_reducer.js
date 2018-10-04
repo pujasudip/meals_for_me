@@ -20,7 +20,10 @@ export default function favorites(state=DEFAULT_STATE, action){
             newList.splice(tobeDeletedIndex, 1);
             return {favorites: newList};
         case types.GET_FAVORITE:
-            let list = [...action.payload.data.data];
+            let list = '';
+            if(typeof action.payload.data.data !== "undefined"){
+                list = [...action.payload.data.data];
+            }
             return {...state, favorites: list};
         default:
             return state;
