@@ -15,6 +15,7 @@ import SignUp from './sign_up';
 import AboutUs from './about_us';
 import NotFound from '../404/404_page';
 import auth from '../hoc/auth';
+import '../assets/css/desktop_navbar.css';
 
 const App = () => (
     <Router>

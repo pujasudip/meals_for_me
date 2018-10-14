@@ -161,3 +161,9 @@ export function setInvalidSearch(){
     }
 }
 
+export function setLoginErrorToDefault(){
+    return {
+        type: types.LOGIN_DEFAULT
+    }
+}
+

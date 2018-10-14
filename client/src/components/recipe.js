@@ -21,8 +21,9 @@ class Recipe extends Component {
             modalClass: 'hideModal',
             wineSlider: '',
             showall: 'ingredientList',
-            showHideIcon: 'control_point',
+            showHideIcon: 'expand_more',
             tabIndex: 0,
+            loginConfirmToast: 'hideLoginToast'
         };
         this.handleSelect = this.handleSelect.bind(this);
     }
@@ -96,7 +97,9 @@ class Recipe extends Component {
                 imgSrc: heartStatus
             });
         } else {
-            this.props.history.push('/login');
+            this.setState({
+                loginConfirmToast: 'showLoginToast'
+            });
         }
 
     }
@@ -143,18 +146,31 @@ class Recipe extends Component {
 
     showHideControl(){
         var showHide = this.state.showall === 'showall' ? 'ingredientList' : 'showall';
-        var controllBtn  = this.state.showHideIcon === 'control_point' ? 'remove_circle_outline' : 'control_point';
+        var controllBtn  = this.state.showHideIcon === 'expand_more' ? 'expand_less' : 'expand_more';
         this.setState({showall: showHide, showHideIcon: controllBtn});
+    }
+    confirmLogin(){
+        this.setState({
+            loginConfirmToast: 'hideLoginToast'
+        });
+        this.props.history.push('/login');
+    }
+    cancelLogin(){
+        this.setState({
+            loginConfirmToast: 'hideLoginToast'
+        });
     }
 
     render() {
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
-        if(typeof this.props.details.data !== "undefined"){
-            directions = this.props.details.data.data[0];
-            ingredients = JSON.parse(directions.Ingredients);
-            pairedWines = JSON.parse(directions.winepairings).pairedWines;
+        if(typeof this.props.details.data !== undefined && typeof this.props.details.data !== "undefined"){
+            if((typeof this.props.details.data.data !== undefined) && (typeof this.props.details.data.data !== "undefined")){
+                directions = this.props.details.data.data[0];
+                ingredients = JSON.parse(directions.Ingredients);
+                pairedWines = JSON.parse(directions.winepairings).pairedWines;
+            }
         }
         let ingredientList = '';
         let wineList = '';
@@ -196,12 +212,12 @@ class Recipe extends Component {
         <div className={`${this.state.showall}`}>
             <Ingredients ingredients={ingredientList} />
         </div>
-                   <div className="center">
+                   <div className="center expandIngredients">
                        <i className="material-icons" onClick={()=>this.showHideControl()}>{this.state.showHideIcon}</i>
                    </div>
             <div className='row s12 tabs'>
-                <div className={'tab col s4' + (this.state.tabIndex===0 ? ' activeTab' : '')} title='Directions' onClick={()=>this.setStateForComponentRender('Directions', 0)}>Directions</div>
-                <div className={'tab col s4' + (this.state.tabIndex===1 ? ' activeTab' : '')} title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList', 1)}>Shopping List</div>
+                <div className={'tab col s6' + (this.state.tabIndex===0 ? ' activeTab' : '')} title='Directions' onClick={()=>this.setStateForComponentRender('Directions', 0)}>Directions</div>
+                <div className={'tab col s6' + (this.state.tabIndex===1 ? ' activeTab' : '')} title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList', 1)}>Shopping List</div>
             </div>
             <div>
                 {this.dynamicComponent(directions)}
@@ -235,6 +251,16 @@ class Recipe extends Component {
                            <img src={directions.Image}/>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className={`confirmLogin ${this.state.loginConfirmToast}`}>
+                <div className="favConfirmHeader center-align"><h5>Confirm?</h5></div>
+                <hr />
+                <div className="loginConfirmMessage center-align"><p>To add to favorite you have to login.</p></div>
+                <hr />
+                <div className="favConfirmBtns">
+                    <div className="btn btn-small favLoginConfirmBtn" onClick={()=>this.confirmLogin()}>OK</div>
+                    <div className="btn btn-small favLoginCancelBtn red" onClick={()=>this.cancelLogin()}>Cancel</div>
                 </div>
             </div>
         </div>

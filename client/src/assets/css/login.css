@@ -1,12 +1,10 @@
 @media only screen and (max-width: 500px) {
     .login{
         position: absolute;
-        top: 30%;
-        left: 10%;
+        top: 50%;
+        left: 50%;
         transform: translate(-50%, -50%);
-        height: 100vh;
         width: 80vw;
-        z-index: -1;
     }
 }
 
@@ -19,4 +17,7 @@
         width: 40vw;
         z-index: -1;
     }
+}
+.loginError{
+    display: none;
 }

@@ -16,5 +16,6 @@ export default {
     GET_PAGE_NO: 'get_page_no',
     SET_PAGE_NO: 'set_page_no',
     CLEAR_SEARCHED_RECIPE: 'clear_searched_recipe',
-    INVALID_SEARCH: 'invalid_search'
+    INVALID_SEARCH: 'invalid_search',
+    LOGIN_DEFAULT: 'login_default'
 }
