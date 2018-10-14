@@ -7,6 +7,7 @@
         height: 10vh;
         top: 0;
         left: 0;
+        z-index: 1000;
     }
     .desktop_menu ul{
         float: right;
@@ -37,7 +38,7 @@
         margin-top: 5%;
     }
     .containerAboutUs{
-        margin-top: 5%;
+        margin-top: 7%;
     }
     .favContainer{
         position: relative;
@@ -48,6 +49,18 @@
         width: 100vw;
         font-size: 2rem;
         font-weight: bold;
+    }
+    .main{
+        position: absolute;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+    .bgImg{
+        position: absolute;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
     }
 }
 @media only screen and ( max-width: 500px) {

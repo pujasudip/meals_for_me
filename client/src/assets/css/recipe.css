@@ -1,6 +1,9 @@
 .contain{
     background-color: #F5F5F5;
-    margin: 0%;
+    margin-top: 10vh;
+    width: 100vw;
+    position: absolute;
+    left: 0;
 }
 #pictureFrame{
     padding: 0px;
@@ -62,30 +65,26 @@ header {
     width: 100vw;
     height: 25vh;
     position: relative;
-    margin-top: 4rem;
 }
 
 .pictureContainer {
-    height: 90%;
-    width: 50%;
-    max-width: 25vh;
     position: absolute;
     left: 50%;
-    top: 30%;
+    top: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
 }
 
 .pictureContainer img {
-    height: 100%;
-    width: 100%;
+    height: 25vmin;
+    width: 25vmin;
     border: 3px solid rgba(0, 0, 0, 0.51);
     border-radius: 50%;
 }
 
 #splittingAnimation {
     position: relative;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
@@ -143,12 +142,18 @@ header {
     animation-name: splittingLines;
     animation-duration: 2s;
 }
+.expandIngredients > i{
+    cursor: pointer;
+    border: 2px solid green;
+    border-radius: 50%;
+}
 
 #splittingAnimation>div:last-child {
     float: right;
 }
 
 .dishDetails {
+    margin-top: 2%;
     width: 100vw;
 }
 
@@ -334,7 +339,7 @@ ol>li {
     width: 250px;
     height: 55px;
     border-radius: 10px;
-    background-color: rgba(3, 194, 45, 0.69);
+    background-color: rgb(3, 194, 45);
     z-index: 100;
     text-align: center;
     top: 50%;
@@ -436,7 +441,7 @@ ol>li {
 }
 @media only screen and (min-width: 500px){
     #mainContent{
-        margin-top: 12%;
+        margin-top: 10vh;
     }
 }
 @media only screen and (max-width: 500px){

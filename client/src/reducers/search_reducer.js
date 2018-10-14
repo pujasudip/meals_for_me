@@ -35,7 +35,6 @@ function  searchResult(state = DEFAULT_STATE, action){
         case types.CLEAR_SEARCHED_RECIPE:
             return {...state, searched_recipe: []};
         case types.INVALID_SEARCH:
-            console.log('setting:', action.payload);
             return { ...state, searched_recipe_null: action.payload};
         default:
             return state;

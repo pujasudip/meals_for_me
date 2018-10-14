@@ -51,16 +51,16 @@ class Results extends Component {
         let resultArray = '';
         if(!this.props.userInputs.length){
             return <div className='goback'>
-                <h5 className="invalid_null-search">No Search Available</h5>
+                <h5 className="invalid_null-search">Go to home page and enter ingredients to see recipe.</h5>
                 <button onClick={this.goBack.bind(this)} className='backBtn center-block'>
                     <img src={backButton} className='btn btn-small' />
                 </button>
                 </div>
-        } else if(this.props.searched_recipe_null){
+        } else if(this.props.searched_recipe_null && this.props.searchedIngredients.length === 0){
             var userInputs = this.props.userInputs.join(", ");
             return (<div className='goback'>
                 <h6 className="center-align">You searched for: <b>{userInputs}</b></h6>
-                <h5 className="invalid_null-search">Invalid Search</h5>
+                <h5 className="invalid_null-search">No recipe found.</h5>
                 <button onClick={this.goBack.bind(this)} className='backBtn center-block'>
                     <img src={backButton} className='btn btn-small' />
                 </button>

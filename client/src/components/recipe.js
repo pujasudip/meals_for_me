@@ -21,7 +21,7 @@ class Recipe extends Component {
             modalClass: 'hideModal',
             wineSlider: '',
             showall: 'ingredientList',
-            showHideIcon: 'control_point',
+            showHideIcon: 'expand_more',
             tabIndex: 0,
             loginConfirmToast: 'hideLoginToast'
         };
@@ -146,7 +146,7 @@ class Recipe extends Component {
 
     showHideControl(){
         var showHide = this.state.showall === 'showall' ? 'ingredientList' : 'showall';
-        var controllBtn  = this.state.showHideIcon === 'control_point' ? 'remove_circle_outline' : 'control_point';
+        var controllBtn  = this.state.showHideIcon === 'expand_more' ? 'expand_less' : 'expand_more';
         this.setState({showall: showHide, showHideIcon: controllBtn});
     }
     confirmLogin(){
@@ -212,12 +212,12 @@ class Recipe extends Component {
         <div className={`${this.state.showall}`}>
             <Ingredients ingredients={ingredientList} />
         </div>
-                   <div className="center">
+                   <div className="center expandIngredients">
                        <i className="material-icons" onClick={()=>this.showHideControl()}>{this.state.showHideIcon}</i>
                    </div>
             <div className='row s12 tabs'>
-                <div className={'tab col s4' + (this.state.tabIndex===0 ? ' activeTab' : '')} title='Directions' onClick={()=>this.setStateForComponentRender('Directions', 0)}>Directions</div>
-                <div className={'tab col s4' + (this.state.tabIndex===1 ? ' activeTab' : '')} title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList', 1)}>Shopping List</div>
+                <div className={'tab col s6' + (this.state.tabIndex===0 ? ' activeTab' : '')} title='Directions' onClick={()=>this.setStateForComponentRender('Directions', 0)}>Directions</div>
+                <div className={'tab col s6' + (this.state.tabIndex===1 ? ' activeTab' : '')} title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList', 1)}>Shopping List</div>
             </div>
             <div>
                 {this.dynamicComponent(directions)}

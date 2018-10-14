@@ -11,6 +11,7 @@
     border-radius: 50%;
 }
 .mainPage{
+    margin-top: 10vh;
     background-color: #F5F5F5;
 }
 .loading-spinner, .goback{

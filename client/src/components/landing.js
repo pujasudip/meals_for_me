@@ -24,7 +24,9 @@ class LandingPage extends Component {
             remainingEntries: this.allowedEntries,
             zoomBackground: '',
             inputError: '',
-            toastMessage: 'hideToast'
+            toastMessage: 'hideToast',
+            nothingEntered: 'nothingEnteredIsFalse',
+            emptyInputField: 'emptyInputFieldFalse'
         };
     }
     componentDidMount() {
@@ -56,6 +58,14 @@ class LandingPage extends Component {
         if (event.target) {
             item = this.state.currentIngredientInput.toLowerCase();
             if (item.length === 0) {
+                this.setState({
+                    emptyInputField: 'emptyInputFiled'
+                });
+                setTimeout(()=>{
+                    this.setState({
+                        emptyInputField: 'emptyInputFieldFalse'
+                    });
+                }, 2000);
                 return;
             }
         }
@@ -73,7 +83,7 @@ class LandingPage extends Component {
                     currentIngredientInput: '',
                     toastMessage: 'hideToast'
                 });
-            }, 1000);
+            }, 2000);
             return;
         } else {
             for(let i = 0; i < itemArray.length; i++){
@@ -139,6 +149,15 @@ class LandingPage extends Component {
     goToResultsPage = () => {
         if (this.props.ingredients.length !== 0) {
             this.props.history.push('/results');
+        } else {
+            this.setState({
+                nothingEntered: 'nothingEntered'
+            });
+            setTimeout(()=>{
+                this.setState({
+                    nothingEntered: 'nothingEnteredIsFalse'
+                });
+            }, 2000);
         }
     }
 
@@ -181,7 +200,7 @@ class LandingPage extends Component {
 
                 <div className="main">
                     <div className='text center'>
-                        <h4 className='margin-top-zero' style={this.props.ingredients.length === 3 ? { 'display': 'none' } : {}}>Enter your Ingredients</h4>
+                        <h4 className='margin-top-zero inputFieldHeader ' style={this.props.ingredients.length === 3 ? { 'display': 'none' } : {}}>Enter your Ingredients</h4>
                     </div>
                     <div className="center">
                         {ingredient}
@@ -189,11 +208,11 @@ class LandingPage extends Component {
                     {this.props.ingredients.length < 3 ?
                         <div className='search_field center-block'>
                             <div className="center-block">
-                                <input placeholder={this.state.remainingEntries === 3 ?`Insert ${this.state.remainingEntries} Ingredients` : `Insert ${this.state.remainingEntries} more Ingredients`}
+                                <input placeholder={this.state.remainingEntries === 3 ?`Insert upto ${this.state.remainingEntries} Ingredients` : `Insert ${this.state.remainingEntries} more Ingredients`}
                                        className='ingInput center' onChange={(event) => this.userInputHandler(event)}
                                        value={this.state.currentIngredientInput} />
                             </div>
-                            <img id="ingAddImg" src={plus} onClick={this.addIngredientToListFromInput.bind(this)} className="center-block" />
+                            <i id="ingAddImg" src={plus} onClick={this.addIngredientToListFromInput.bind(this)} className="material-icons center-block">add_circle_outline</i>
                         </div>
                         :
                         <div className='center green-text'><h5>Go for the food</h5></div>
@@ -240,6 +259,12 @@ class LandingPage extends Component {
                 </div>
                 <div className={`ingredientInputError ${this.state.toastMessage}`}>
                     <p>Enter only three ingredients.</p>
+                </div>
+                <div className={`nothingEntered ${this.state.nothingEntered}`}>
+                    <p>Enter ingredient to start your search.</p>
+                </div>
+                <div className={`emptyInputField ${this.state.emptyInputField}`}>
+                    <p>Input field is empty.</p>
                 </div>
             </div>
         );

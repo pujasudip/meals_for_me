@@ -11,10 +11,11 @@
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
 }
 .main{
-    height: 90vh;
+    margin-top: 0;
+    height: 100vh;
     background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) );
     display: flex;
     flex-direction: column;
@@ -25,13 +26,20 @@
     display: flex;
 }
 .ingInput{
+    background-color: #d7eaff !important;
     width: 110% !important;
+    border-radius: 5px !important;
+}
+.ingInput:focus{
+    background-color: #fffaeb !important;
+    color: green;
 }
 
 #ingAddImg {
-    width: 50px;
-    height: 50px;
-    margin-right: -5%;
+    font-size: 3rem;
+    cursor: pointer;
+    margin-left: 10%;
+    color: #802c52;
 }
 
 .landPgSearchBtn {
@@ -184,6 +192,56 @@ input::placeholder {
     font-size: 1.2rem;
 }
 .ingredientInputError > p {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+.inputFieldHeader{
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.99);
+}
+.nothingEnteredIsFalse{
+    display: none;
+}
+.nothingEntered{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    width: 35%;
+    height: 5%;
+    color: white;
+    background-color: rgba(255, 0, 0, 0.6);
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+.nothingEntered > p{
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+.emptyInputFieldFalse{
+    display: none;
+}
+.emptyInputField{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    width: 25%;
+    height: 5%;
+    color: white;
+    background-color: rgba(255, 0, 0, 0.6);
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+.emptyInputField > p{
     text-align: center;
     width: 100%;
     position: absolute;

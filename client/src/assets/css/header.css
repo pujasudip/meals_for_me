@@ -1,5 +1,5 @@
 .header {
-    position: sticky !important;
+    position: fixed !important;
     display: flex;
     height: 10vh;
     justify-content: space-between;
@@ -8,15 +8,16 @@
 .header{
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
+    width: 100vw;
     z-index: 1000;
 }
-
-.headerBanner{
-    display: sticky;
-}
 .logo{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     height: 90%;
+    width: 7vh;
 }
 .hamicon{
     width: 60px;
