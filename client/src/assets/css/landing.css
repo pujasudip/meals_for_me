@@ -118,13 +118,6 @@ button{
         transform: translateX(10%);
     }
 }
-@media only screen and (max-width: 500px) {
-    .slogan > img{
-        width: 30vw;
-        height: 50px;
-        animation: swing 10s linear alternate infinite;
-    }
-}
 .clearBtn{
     border: 1px solid red;
     border-radius: 5px;
@@ -248,4 +241,20 @@ input::placeholder {
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
+}
+@media only screen and (max-width: 500px) {
+    .slogan > img{
+        width: 30vw;
+        height: 50px;
+        animation: swing 10s linear alternate infinite;
+    }
+    .ingredientInputError{
+        width: 55%;
+    }
+    .nothingEntered{
+        width: 65%;
+    }
+    .emptyInputField{
+        width: 55%;
+    }
 }

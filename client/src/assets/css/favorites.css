@@ -84,3 +84,7 @@
         bottom: 35px;
     }
 }
+.noFavInList{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
