@@ -40,8 +40,6 @@ class Login extends React.Component{
         );
     }
     resetLoginError(e){
-        //onFocus={(event)=>this.resetLoginError()}
-        console.log('hello');
         this.props.loginDefault();
     }
 

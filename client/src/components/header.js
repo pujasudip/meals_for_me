@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import backButton from '../assets/images/back_arrow.png';
 import { connect } from 'react-redux';
 import logo from '../assets/images/ourlogo.png';
+import { userLogout } from '../actions';
 
 class Header extends Component {
     constructor(props) {
@@ -63,6 +64,9 @@ class Header extends Component {
             return this.displayBackBtn();
         }
     }
+    goHome(){
+        console.log('home');
+    }
     render() {
         let menuClass = this.state.menuShow ? ['menu', 'menu_backdrop'] : ['no_menu', 'no_menu'];
         let username = '';
@@ -75,23 +79,37 @@ class Header extends Component {
             success = this.props.loginResponse.success;
         }
         return (
-            <div className='header'>
-                <div className="valign-wrapper">
-                    {this.displayHeaderButton(success, username)}
-                </div>
-                <div className="center-align">
-                    <Link to='/'>
-                        <img src={logo} className="logo"/>
-                    </Link>
-                </div>
-                <div className="valign-wrapper">
-                    <img src={hamicon} className='hamicon' onClick={()=>this.hamburgerMenu()}/>
-                </div>
-                <div className={menuClass[1]} onClick={(event)=>this.backdropClicked(event)}>
-                    <div className={menuClass[0]}>
-                        <HamburgerMenu hideMenu={()=>this.hamburgerMenu()}/>
+            <div>
+                <div className='header'>
+                    <div className="valign-wrapper">
+                        {this.displayHeaderButton(success, username)}
+                    </div>
+                    <div className="center-align">
+                        <Link to='/'>
+                            <img src={logo} className="logo"/>
+                        </Link>
+                    </div>
+                    <div className="valign-wrapper">
+                        <img src={hamicon} className='hamicon' onClick={()=>this.hamburgerMenu()}/>
+                    </div>
+                    <div className={menuClass[1]} onClick={(event)=>this.backdropClicked(event)}>
+                        <div className={menuClass[0]}>
+                            <HamburgerMenu hideMenu={()=>this.hamburgerMenu()}/>
+                        </div>
                     </div>
                 </div>
+                <nav className="desktop_menu">
+                    <div className="desktop_logo" onClick={this.goHome}>
+                    </div>
+                    <div className="nav-wrapper">
+                        <ul>
+                            <li><Link to='/'>Home</Link></li>
+                            <li><Link  to='/favorites'>Favorites</Link></li>
+                            <li><Link to='/about_us'>About Team</Link></li>
+                            <li>{success ? <a onClick={this.props.userLogout}>Log Out</a> : <Link to='/login'>Log In</Link>}</li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
         )
     }
@@ -103,4 +121,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {})(Header);
+export default connect(mapStateToProps, {userLogout})(Header);

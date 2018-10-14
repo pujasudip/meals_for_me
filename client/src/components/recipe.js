@@ -23,6 +23,7 @@ class Recipe extends Component {
             showall: 'ingredientList',
             showHideIcon: 'control_point',
             tabIndex: 0,
+            loginConfirmToast: 'hideLoginToast'
         };
         this.handleSelect = this.handleSelect.bind(this);
     }
@@ -96,7 +97,9 @@ class Recipe extends Component {
                 imgSrc: heartStatus
             });
         } else {
-            this.props.history.push('/login');
+            this.setState({
+                loginConfirmToast: 'showLoginToast'
+            });
         }
 
     }
@@ -146,15 +149,28 @@ class Recipe extends Component {
         var controllBtn  = this.state.showHideIcon === 'control_point' ? 'remove_circle_outline' : 'control_point';
         this.setState({showall: showHide, showHideIcon: controllBtn});
     }
+    confirmLogin(){
+        this.setState({
+            loginConfirmToast: 'hideLoginToast'
+        });
+        this.props.history.push('/login');
+    }
+    cancelLogin(){
+        this.setState({
+            loginConfirmToast: 'hideLoginToast'
+        });
+    }
 
     render() {
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
-        if(typeof this.props.details.data !== "undefined"){
-            directions = this.props.details.data.data[0];
-            ingredients = JSON.parse(directions.Ingredients);
-            pairedWines = JSON.parse(directions.winepairings).pairedWines;
+        if(typeof this.props.details.data !== undefined && typeof this.props.details.data !== "undefined"){
+            if((typeof this.props.details.data.data !== undefined) && (typeof this.props.details.data.data !== "undefined")){
+                directions = this.props.details.data.data[0];
+                ingredients = JSON.parse(directions.Ingredients);
+                pairedWines = JSON.parse(directions.winepairings).pairedWines;
+            }
         }
         let ingredientList = '';
         let wineList = '';
@@ -235,6 +251,16 @@ class Recipe extends Component {
                            <img src={directions.Image}/>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className={`confirmLogin ${this.state.loginConfirmToast}`}>
+                <div className="favConfirmHeader center-align"><h5>Confirm?</h5></div>
+                <hr />
+                <div className="loginConfirmMessage center-align"><p>To add to favorite you have to login.</p></div>
+                <hr />
+                <div className="favConfirmBtns">
+                    <div className="btn btn-small favLoginConfirmBtn" onClick={()=>this.confirmLogin()}>OK</div>
+                    <div className="btn btn-small favLoginCancelBtn red" onClick={()=>this.cancelLogin()}>Cancel</div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,57 @@
+@media only screen and ( min-width: 500px) {
+    .header{
+        display: none;
+    }
+    .desktop_menu{
+        position: absolute;
+        height: 10vh;
+        top: 0;
+        left: 0;
+    }
+    .desktop_menu ul{
+        float: right;
+
+    }
+    .desktop_menu ul > li{
+        list-style-type: none !important;
+    }
+
+    .desktop_logo{
+        display: inline-block;
+        width: 10vh;
+        height: 10vh;
+        border-radius: 50%;
+        border: 2px double green;
+        background-color: rgba(255, 254, 208, 0.51);
+        background-image: url("../images/ourlogo.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        float: left;
+        margin-left: 2%;
+    }
+    .main{
+        width: 100%;
+    }
+    .main-content{
+        margin-top: 5%;
+    }
+    .containerAboutUs{
+        margin-top: 5%;
+    }
+    .favContainer{
+        position: relative;
+        top: 10vh;
+    }
+    .noFavInList > p{
+        text-align: center;
+        width: 100vw;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+}
+@media only screen and ( max-width: 500px) {
+    .desktop_menu{
+        display: none;
+    }
+}

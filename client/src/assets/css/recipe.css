@@ -90,6 +90,41 @@ header {
     transform: translate(-50%, -50%);
     width: 100%;
 }
+.confirmLogin{
+    width: 35%;
+    height: 25%;
+    background-color: #bafdbb;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 7px;
+    box-shadow: 0 0 2px 3px rgba(218, 218, 218, 0.93);
+}
+.loginConfirmMessage{
+    height: 30%;
+}
+.favLoginConfirmBtn{
+    margin-left: 3%;
+}
+.loginConfirmMessage > p{
+    
+}
+.favLoginCancelBtn{
+    float: right;
+    margin-right: 3%;
+}
+.favConfirmBtns{
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+}
+.hideLoginToast{
+    display: none;
+}
+.showLoginToast{
+    display: block;
+}
 
 @keyframes splittingLines {
     0% {
@@ -178,8 +213,8 @@ ol>li {
 }
 
 .heartPic > img {
-    width: 14vw;
-    top: 15px;
+    width: 5vw;
+    top: 25px;
     left: -16px;
 }
 
@@ -391,20 +426,29 @@ ol>li {
     background-color: #ffcc80;
 }
 @media only screen and (min-width: 1000px){
-    .heartPic{
-        bottom: 45%;
-    }
+    /*.heartPic{*/
+        /*bottom: 45%;*/
+    /*}*/
     .wine_pairing_slider{
         margin-right: 8%;
     }
+
 }
 @media only screen and (min-width: 500px){
     #mainContent{
         margin-top: 12%;
     }
 }
-@media only screen and (max-width: 400px){
+@media only screen and (max-width: 500px){
     #mainContent{
         margin-top: 10%;
+    }
+    .heartPic > img{
+        width: 10vw;
+    }
+}
+@media only screen and (max-width: 650px){
+    #mainContent{
+        margin-top: 15%;
     }
 }
