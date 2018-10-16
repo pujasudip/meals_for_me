@@ -430,6 +430,24 @@ ol>li {
 .activeTab{
     background-color: #ffcc80;
 }
+.ingList{
+    list-style-type: none !important;
+}
+.ingList > i{
+    vertical-align: middle;
+}
+.ingList {
+    cursor: pointer;
+}
+.ingList:after{
+    content: ' added ';
+    color: white;
+    background-color: green;
+    border-radius: 2px;
+}
+ingListAfter::after{
+    content: 'added';
+}
 @media only screen and (min-width: 1000px){
     /*.heartPic{*/
         /*bottom: 45%;*/

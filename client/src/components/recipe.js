@@ -6,7 +6,7 @@ import Directions from './directions';
 import Ingredients from './ingredients';
 import ShoppingList from './shopping_list';
 import { connect } from 'react-redux';
-import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite } from '../actions';
+import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList } from '../actions';
 import wine_up from '../assets/images/wine_up.png';
 
 class Recipe extends Component {
@@ -25,17 +25,17 @@ class Recipe extends Component {
             tabIndex: 0,
             loginConfirmToast: 'hideLoginToast'
         };
+        this.userId = '';
         this.handleSelect = this.handleSelect.bind(this);
     }
 
     componentWillMount(){
-        let userId;
         if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
-            userId = (JSON.parse(localStorage.userInfo))['user_id'];
-            this.props.getFavorites(userId);
+            this.userId = (JSON.parse(localStorage.userInfo))['user_id'];
+            this.props.getFavorites(this.userId);
         } else if((typeof this.props.userInfo.data !== undefined) && (typeof this.props.userInfo.data !== "undefined")) {
-            userId = typeof this.props.userInfo.data.user_id;
-            this.props.getFavorites(userId);
+            this.userId = typeof this.props.userInfo.data.user_id;
+            this.props.getFavorites(this.userId);
         }
     }
 
@@ -56,20 +56,9 @@ class Recipe extends Component {
     }
 
     changeHeart(){
-        // if(!localStorage.userInfo && !this.props.userInfo){
-        //     this.props.history.push('/login');
-        // }
-        let userId;
-        if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
-            userId = (JSON.parse(localStorage.userInfo))['user_id'];
-            this.props.getFavorites(userId);
-        } else if((typeof this.props.userInfo.data !== undefined) && (typeof this.props.userInfo.data !== "undefined")) {
-            userId = typeof this.props.userInfo.data.user_id;
-            this.props.getFavorites(userId);
-        }
         const recipe_id =  this.props.match.params.id;
         let heartStatus;
-        if(userId){
+        if(this.userId !== ''){
             if(this.state.imgSrc === emptyHeart){
                 heartStatus = redHeart;
                 this.setState({
@@ -80,7 +69,7 @@ class Recipe extends Component {
                         toastMessageAddFav: 'hideToast'
                     });
                 },1100);
-                this.props.addToFavorite(userId, recipe_id);
+                this.props.addToFavorite(this.userId, recipe_id);
             } else {
                 heartStatus = emptyHeart;
                 this.setState({
@@ -91,7 +80,7 @@ class Recipe extends Component {
                         toastMessageRemFav: 'hideToast'
                     });
                 },1100);
-                this.props.deleteFromFavorite(userId, recipe_id);
+                this.props.deleteFromFavorite(this.userId, recipe_id);
             }
             this.setState({
                 imgSrc: heartStatus
@@ -108,7 +97,7 @@ class Recipe extends Component {
         this.setState({ key: key });
     }
 
-    dynamicComponent(directions, index){
+    dynamicComponent(directions){
         const comp = this.state.component;
 
         switch(comp){
@@ -135,7 +124,15 @@ class Recipe extends Component {
     }
 
     addToShopingList(item){
-        this.props.addToShoppingList(item.name);
+        const recipe_id =  this.props.match.params.id;
+
+        if(this.userId !== ''){
+            this.props.setShoppingList(this.userId, recipe_id, item.name)
+        } else {
+            this.props.addToShoppingList(item.name);
+        }
+
+
     }
 
     clickHandler(){
@@ -177,7 +174,7 @@ class Recipe extends Component {
 
         if(ingredients){
             ingredientList = ingredients.map((ele, index)=>{
-                return <li key={index} onClick={this.addToShopingList.bind(this, ele)}>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
+                return <li key={index} onClick={this.addToShopingList.bind(this, ele)} className="ingList"><i className="material-icons">check_circle</i>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
             });
         }
         if(pairedWines){
@@ -216,8 +213,8 @@ class Recipe extends Component {
                        <i className="material-icons" onClick={()=>this.showHideControl()}>{this.state.showHideIcon}</i>
                    </div>
             <div className='row s12 tabs'>
-                <div className={'tab col s6' + (this.state.tabIndex===0 ? ' activeTab' : '')} title='Directions' onClick={()=>this.setStateForComponentRender('Directions', 0)}>Directions</div>
-                <div className={'tab col s6' + (this.state.tabIndex===1 ? ' activeTab' : '')} title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList', 1)}>Shopping List</div>
+                <div className={'tab col s6' + (this.state.tabIndex===0 ? ' activeTab' : '')} title='Directions' onClick={()=>this.setStateForComponentRender('Directions')}>Directions</div>
+                <div className={'tab col s6' + (this.state.tabIndex===1 ? ' activeTab' : '')} title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList')}>Shopping List</div>
             </div>
             <div>
                 {this.dynamicComponent(directions)}
@@ -271,11 +268,11 @@ function mapStateToProps(state){
     return {
         details: state.search.details,
         userInfo: state.userLoginResponse.userLoginResponse,
-        favorites: state.favorites.favorites
+        favorites: state.favorites.favorites,
     }
 }
 
 
-export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite})(Recipe);
+export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList})(Recipe);
 
 
