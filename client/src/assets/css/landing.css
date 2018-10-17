@@ -23,11 +23,12 @@
 }
 
 .search_field{
-    display: flex;
+    position: relative;
+    left: 0;
+    width: 70vw;
 }
 .ingInput{
     background-color: #d7eaff !important;
-    width: 110% !important;
     border-radius: 5px !important;
 }
 .ingInput:focus{
@@ -36,9 +37,9 @@
 }
 
 #ingAddImg {
+    display: block;
     font-size: 3rem;
     cursor: pointer;
-    margin-left: 10%;
     color: #802c52;
 }
 
