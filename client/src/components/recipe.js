@@ -6,7 +6,7 @@ import Directions from './directions';
 import Ingredients from './ingredients';
 import ShoppingList from './shopping_list';
 import { connect } from 'react-redux';
-import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList } from '../actions';
+import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList } from '../actions';
 import wine_up from '../assets/images/wine_up.png';
 
 class Recipe extends Component {
@@ -26,16 +26,21 @@ class Recipe extends Component {
             loginConfirmToast: 'hideLoginToast'
         };
         this.userId = '';
+        this.success = '';
         this.handleSelect = this.handleSelect.bind(this);
     }
 
     componentWillMount(){
         if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
             this.userId = (JSON.parse(localStorage.userInfo))['user_id'];
+            this.success = (JSON.parse(localStorage.userInfo))['success'];
             this.props.getFavorites(this.userId);
+            this.props.getShoppingList(this.userId);
         } else if((typeof this.props.userInfo.data !== undefined) && (typeof this.props.userInfo.data !== "undefined")) {
             this.userId = typeof this.props.userInfo.data.user_id;
             this.props.getFavorites(this.userId);
+            this.props.getShoppingList(this.userId);
+            this.success = this.props.loginResponse.success;
         }
     }
 
@@ -124,6 +129,7 @@ class Recipe extends Component {
     }
 
     addToShopingList(item){
+        debugger;
         const recipe_id =  this.props.match.params.id;
 
         if(this.userId !== ''){
@@ -173,8 +179,26 @@ class Recipe extends Component {
         let wineList = '';
 
         if(ingredients){
+            debugger;
             ingredientList = ingredients.map((ele, index)=>{
-                return <li key={index} onClick={this.addToShopingList.bind(this, ele)} className="ingList"><i className="material-icons">check_circle</i>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
+                let addOrRemove = 'add_circle';
+                let ingListAdded = '';
+                let iconColor = 'brown-text';
+                let title = 'Click to add to the shopping list.';
+                if(this.userId !== '' && this.props.shoppingList){
+                    // console.log('list123:', this.props.shoppingList);
+                    // console.log('list123:', ele);
+                    for(let item of this.props.shoppingList){
+                        if(item.items === ele.name){
+                            console.log('items', item.items, '---', ele);
+                            addOrRemove = 'check_circle';
+                            ingListAdded = 'ingListAdded';
+                            iconColor = 'green-text';
+                            title = 'Item has been added to the shopping list.'
+                        }
+                    }
+                }
+                return <li key={index} onClick={this.addToShopingList.bind(this, ele)} className={`ingList ${ingListAdded}`} title={title}><i className={`material-icons ${iconColor}`}>{addOrRemove}</i>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
             });
         }
         if(pairedWines){
@@ -214,7 +238,13 @@ class Recipe extends Component {
                    </div>
             <div className='row s12 tabs'>
                 <div className={'tab col s6' + (this.state.tabIndex===0 ? ' activeTab' : '')} title='Directions' onClick={()=>this.setStateForComponentRender('Directions')}>Directions</div>
-                <div className={'tab col s6' + (this.state.tabIndex===1 ? ' activeTab' : '')} title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList')}>Shopping List</div>
+                { this.success ?
+                    <div className={'tab col s6' + (this.state.tabIndex === 1 ? ' activeTab' : '')}
+                         title='ShoppingList'
+                         onClick={() => this.setStateForComponentRender('ShoppingList')}>Shopping List</div>
+                    :
+                    ''
+                }
             </div>
             <div>
                 {this.dynamicComponent(directions)}
@@ -269,10 +299,11 @@ function mapStateToProps(state){
         details: state.search.details,
         userInfo: state.userLoginResponse.userLoginResponse,
         favorites: state.favorites.favorites,
+        shoppingList: state.shoppingList.shoppingListServer
     }
 }
 
 
-export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList})(Recipe);
+export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList})(Recipe);
 
 

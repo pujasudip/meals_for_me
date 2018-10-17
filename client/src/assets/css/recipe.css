@@ -439,14 +439,11 @@ ol>li {
 .ingList {
     cursor: pointer;
 }
-.ingList:after{
+.ingListAdded:after{
     content: ' added ';
     color: white;
     background-color: green;
     border-radius: 2px;
-}
-ingListAfter::after{
-    content: 'added';
 }
 @media only screen and (min-width: 1000px){
     /*.heartPic{*/
@@ -474,4 +471,13 @@ ingListAfter::after{
     #mainContent{
         margin-top: 15%;
     }
+}
+.removeFromShoppingList{
+    cursor: pointer;
+    list-style-type: none !important;
+}
+.removeFromShoppingList > i{
+    vertical-align: middle;
+    color: red;
+    font-size: 1.2rem;
 }

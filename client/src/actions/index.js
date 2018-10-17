@@ -19,6 +19,7 @@ const FAV_URL_GET = 'http://localhost:8000/server/getFavorites.php';
 const FAV_URL_DEL = 'http://localhost:8000/server/deleteFavorite.php';
 const ADD_TO_SHOPPINGLIST = 'http://localhost:8000/server/shoppingList.php';
 const DEL_FROM_SHOPPINGLIST = 'http://localhost:8000/server/del_shoppingList.php';
+const STATUS_SHOPPINGLIST = 'http://localhost:8000/server/shoppingStatus.php';
 
 
 export function searchedRecipe(userIngredient, page){
@@ -176,7 +177,7 @@ export function setShoppingList(user_id, recipe_id, item){
         }};
 
     const response = axios.post(`${ADD_TO_SHOPPINGLIST}`, dataToSend)
-        .then(()=>axios.get(`${ADD_TO_SHOPPINGLIST}`, getList));
+        .then(()=>axios.get(ADD_TO_SHOPPINGLIST, getList));
 
     return {
         type: types.ADD_SHOPPINGLIST_SER,
@@ -206,6 +207,21 @@ export function deleteFromShoppingListServer(user_id, recipe_id, item, shopId){
 
     return {
         type: types.DEL_SHOPPINGLIST_SER,
+        payload: response
+    }
+}
+
+export function shoppingStatus(shopId, status, user_id){
+    const dataToSend = formatPostData({shop_id: shopId, status: status});
+    var getList = {params: {
+            'id': user_id
+        }};
+
+    const response = axios.post(`${STATUS_SHOPPINGLIST}`, dataToSend)
+        .then(()=>axios.get(`${ADD_TO_SHOPPINGLIST}`, getList));
+
+    return {
+        type: types.STATUS_SHOPPING,
         payload: response
     }
 }

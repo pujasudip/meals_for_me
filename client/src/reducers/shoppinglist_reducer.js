@@ -26,6 +26,9 @@ const DEFAULT_STATE = {
         case types.DEL_SHOPPINGLIST_SER:
             list = action.payload.data.data;
             return {...state, shoppingListServer: list};
+        case types.STATUS_SHOPPING:
+            list = action.payload.data.data;
+            return {...state, shoppingListServer: list};
         default:
             return state;
     }

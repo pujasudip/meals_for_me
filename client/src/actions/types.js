@@ -20,5 +20,6 @@ export default {
     LOGIN_DEFAULT: 'login_default',
     ADD_SHOPPINGLIST_SER: 'add_shoppingList_ser',
     GET_SHOPPINGLIST_SER: 'get_shoopinglist_ser',
-    DEL_SHOPPINGLIST_SER: 'del_shoppinglist_ser'
+    DEL_SHOPPINGLIST_SER: 'del_shoppinglist_ser',
+    STATUS_SHOPPING: 'status_shopping'
 }

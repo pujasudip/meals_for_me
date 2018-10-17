@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { removeFromShoppingList, getShoppingList, deleteFromShoppingListServer } from '../actions'
+import '../assets/css/recipe.css';
 
 class ShoppingList extends Component{
     constructor(props){
@@ -10,7 +11,7 @@ class ShoppingList extends Component{
     componentDidMount(){
         if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
             this.userId = (JSON.parse(localStorage.userInfo))['user_id'];
-        } else if((typeof this.props.userInfo.data !== undefined) && (typeof this.props.userInfo.data !== "undefined")) {
+        } else if((typeof this.props.userInfo !== undefined) && (typeof this.props.userInfo !== "undefined")) {
             this.userId = typeof this.props.userInfo.data.user_id;
         }
         if(this.userId !== ''){
@@ -25,7 +26,7 @@ class ShoppingList extends Component{
         if(this.userId !== '' ){
             if(typeof this.props.shoppingListServer !== "undefined"){
                 list = this.props.shoppingListServer.map((ele)=>{
-                    return <li key={ele.id} onClick={()=>this.removeItemFromServer(ele.user_id, ele.recipe_id, ele.items, ele.id)}>{ele.items}</li>
+                    return <li className="removeFromShoppingList" key={ele.id} onClick={()=>this.removeItemFromServer(ele.user_id, ele.recipe_id, ele.items, ele.id)}><i className="material-icons">remove_circle</i>{ele.items}</li>
                 });
             }
         } else if(this.props.shoppingList){

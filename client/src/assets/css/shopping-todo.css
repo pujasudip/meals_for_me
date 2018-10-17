@@ -1,0 +1,95 @@
+.shopping-todo-container{
+    position: absolute;
+    top: 10vh;
+}
+.shopping-todo-container ul{
+  padding-left: 0 !important;
+}
+.shopping-todo-container li{
+    margin-bottom: 1%;
+}
+.sNos{
+    display: inline-block;
+    width: 10vw;
+    text-align: center;
+    font-weight: bold;
+}
+.items{
+    display: inline-block;
+    width: 60vw;
+    text-align: center;
+    font-weight: bold;
+}
+.operations{
+    display: inline-block;
+    width: 30vw;
+    text-align: center;
+    font-weight: bold;
+}
+.shopTodo{
+    list-style-type: none !important;
+}
+.sNo{
+    display: inline-block;
+    width: 10vw;
+    text-align: center;
+}
+.item{
+    display: inline-block;
+    width: 50vw;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.opBtn{
+    display: inline-block;
+    width: 30vw;
+    text-align: center;
+}
+.shopDel{
+    display: inline-block;
+    height: 5vh;
+    margin-right: 3%;
+    padding: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 7vw;
+    background-color: #fbbe6d;
+    box-shadow: 0 0 1px 1px #bebebe;
+    color: white;
+    font-size: 1.2rem;
+}
+.shopDel:hover{
+    background-color: #fb6643;
+    color: black;
+    box-shadow: 0 0 1px 3px #bebebe;
+}
+.shopDone{
+    display: inline-block;
+    height: 5vh;
+    padding: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 10vw;
+    background-color: #61DAFB;
+    box-shadow: 0 0 1px 1px #bebebe;
+    color: white;
+    font-size: 1.2rem;
+}
+.shopDone:hover{
+    background-color: #44ddfb;
+    color: black;
+    box-shadow: 0 0 1px 3px #bebebe;
+}
+.taskDone{
+    text-decoration: line-through;
+}
+.btnDone{
+    background-color: red;
+}
+.shopTodo i{
+    vertical-align: bottom;
+}
+.shopTodo i:hover{
+    color: red;
+    cursor: pointer;
+}

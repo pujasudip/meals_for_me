@@ -16,6 +16,7 @@ import AboutUs from './about_us';
 import NotFound from '../404/404_page';
 import auth from '../hoc/auth';
 import '../assets/css/desktop_navbar.css';
+import ShoppingToDo from "./shopping_todo";
 
 const App = () => (
     <Router>
@@ -29,6 +30,7 @@ const App = () => (
                 <Route path='/recipe/:id' component={Recipe}/>
                 <Route path='/results' component={Results}/>
                 <Route path='/favorites' component={auth(Favorites, '/login')}/>
+                <Route path='/shopping-todo' component={auth(ShoppingToDo, '/login')}/>
                 <Route component={NotFound}/>
             </Switch>
         </div>
