@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Directions extends Component{
     render(){
         let directions = '';
-        {(typeof (this.props.directions.Instructions[0]) !== 'undefined') || (typeof (this.props.directions.Instructions)[0] !== undefined)?
+        {(!this.props.directions)?
             directions = JSON.parse(this.props.directions.Instructions)[0].steps : ''
         }
 

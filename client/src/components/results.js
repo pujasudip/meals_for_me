@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import '../assets/css/results.css'
-import axios from 'axios';
 import OneResult from './individual_result_panel';
 import { connect } from 'react-redux';
-import { formatPostData, formatQueryString } from '../helpers';
 import { searchedRecipe, setDetailsOfItem, setDetailsId, setPageNo, setInvalidSearch } from '../actions';
 import backButton from '../assets/images/back_arrow.png';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
-const BASE_URL = 'http://localhost:8000/server/getData.php';
 
 class Results extends Component {
     constructor(props) {
@@ -26,8 +23,14 @@ class Results extends Component {
        var dataToSend = [];
 
         for(let key in this.params){
-            dataToSend.push(this.params[key]);
+            let item = this.params[key];
+            if(item !== undefined){
+                dataToSend.push(this.params[key]);
+            }
         }
+
+        console.log('a:', this.props.match.url);
+
 
         this.setState({
             query: dataToSend
@@ -62,12 +65,12 @@ class Results extends Component {
     render() {
         const { searchedIngredients } = this.props;
         let resultArray = '';
-        if(this.params.length === 0){
+        if(this.props.match.url === '/results' || this.props.match.url === '/results/'){
             return <div className='goback'>
-                <h5 className="invalid_null-search">Go to home page and enter ingredients to see recipe.</h5>
-                <button onClick={this.goBack.bind(this)} className='backBtn center-block'>
-                    <img src={backButton} className='btn btn-small' />
-                </button>
+                <div className="invalid_null-search">Go to home page and enter ingredients to see recipe.</div>
+                <div onClick={this.goBack.bind(this)} className='btn btn-small invalidGoBack'>
+                    <i className="material-icons">arrow_back</i>
+                </div>
                 </div>
         } else if(this.props.searched_recipe_null && this.props.searchedIngredients.length === 0){
             var userInputs = this.state.query.join(", ");

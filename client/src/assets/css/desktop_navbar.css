@@ -30,6 +30,7 @@
         background-repeat: no-repeat;
         float: left;
         margin-left: 2%;
+        cursor: pointer;
     }
     .main{
         width: 100%;

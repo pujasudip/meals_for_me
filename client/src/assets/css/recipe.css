@@ -91,7 +91,7 @@ header {
 }
 .confirmLogin{
     width: 45%;
-    height: 20%;
+    height: 25%;
     background-color: #bafdbb;
     position: absolute;
     top: 15%;
@@ -101,10 +101,18 @@ header {
     box-shadow: 0 0 2px 3px rgba(218, 218, 218, 0.93);
     z-index: 1000;
 }
+.favConfirmHeader{
+    border-bottom-color: #7F977C;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
 .loginConfirmMessage{
     height: 30%;
     font-weight: bold;
     font-size: 1.3rem;
+    border-bottom-color: #7F977C;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
 }
 .favLoginConfirmBtn{
     margin-left: 3%;
@@ -116,7 +124,8 @@ header {
 }
 .favConfirmBtns{
     position: absolute;
-    bottom: 5%;
+    top: 70%;
+    height: 5vh;
     width: 100%;
 }
 .hideLoginToast{
