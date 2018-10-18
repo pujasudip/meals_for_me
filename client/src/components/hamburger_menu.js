@@ -6,10 +6,14 @@ import axios from "axios";
 import { userLogout } from '../actions';
 
 class HamburgerMenu extends Component{
-    logOutUser = async () => {
+    constructor(props){
+        super(props);
+    }
+    logOutUser(){
         this.props.hideMenu();
-        console.log('aa:', this.props.userLogout());
-    };
+        this.props.userLogout();
+
+    }
 
     render() {
         let username = '';
@@ -43,7 +47,7 @@ class HamburgerMenu extends Component{
                 { success ?
                     <div>
                         <i className='material-icons prefix'>exit_to_app</i>
-                        <Link to='/' onClick={this.logOutUser} className='menuItem'>&nbsp;Log out</Link>
+                        <Link to='/' onClick={()=>this.logOutUser()} className='menuItem'>&nbsp;Log out</Link>
                     </div>
                     :
                     <div>

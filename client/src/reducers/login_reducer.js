@@ -17,7 +17,7 @@ export default (state = DEFAULT_STATE, action) => {
             return { ...state, userLoginResponse: action.payload, loginError: loginStatus};
         case types.USER_LOGOUT:
             localStorage.removeItem('userInfo');
-            return { userLoginResponse: { userLoginResponse: false }};
+            return { ...state, userLoginResponse: false };
         case types.SIGN_UP:
             return { ...state, signup: action.payload };
         case types.LOGIN_DEFAULT:

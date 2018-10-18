@@ -237,7 +237,7 @@ ol>li {
         width: 84vw;
     }
     #mainContent {
-        width: 84vw;
+        width: 100vw;
     }
     .dishDetails {
         width: 84vw;
@@ -280,13 +280,14 @@ ol>li {
 
 .wine_pairing_slider{
     position: absolute;
-    top: 56%;
+    top: 1%;
     right: 0;
     width: 38px;
     height: 104px;
     border-radius: 20px 0 0 20px;
     background-color: #ffe0b2;
     transition: height 100ms, width 1000ms;
+    z-index: 1000;
 }
 .winelist{
    display: none;
@@ -384,7 +385,7 @@ ol>li {
     position: absolute;
     width: 80vw;
     height: 40vh;
-    top: 30%;
+    top: 0;
     left: 10%;
 }
 
@@ -444,15 +445,6 @@ ol>li {
     color: white;
     background-color: green;
     border-radius: 2px;
-}
-@media only screen and (min-width: 1000px){
-    /*.heartPic{*/
-        /*bottom: 45%;*/
-    /*}*/
-    .wine_pairing_slider{
-        margin-right: 8%;
-    }
-
 }
 @media only screen and (min-width: 500px){
     #mainContent{

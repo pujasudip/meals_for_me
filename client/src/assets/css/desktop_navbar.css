@@ -35,7 +35,7 @@
         width: 100%;
     }
     .main-content{
-        margin-top: 5%;
+        /*margin-top: 5%;*/
     }
     .containerAboutUs{
         margin-top: 7%;
@@ -72,5 +72,17 @@
 @media only screen and ( max-width: 500px) {
     .desktop_menu{
         display: none;
+    }
+}
+@media only screen and ( min-width: 1000px) {
+    .noFavInList{
+        margin-left: -11%;
+    }
+    .memberIndividual{
+        background-color: rgba(168, 168, 168, 0.31);
+        box-shadow: 0 0 5px 15px rgba(168, 168, 168, 0.31);
+    }
+    .wine_pairing_slider {
+        top: 2%;
     }
 }

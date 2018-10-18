@@ -1,6 +1,8 @@
 .shopping-todo-container{
     position: absolute;
+    width: 100vw;
     top: 10vh;
+    left: 0;
 }
 .shopping-todo-container ul{
   padding-left: 0 !important;
@@ -16,7 +18,7 @@
 }
 .items{
     display: inline-block;
-    width: 50vw;
+    width: 60vw;
     text-align: center;
     font-weight: bold;
 }
@@ -28,6 +30,7 @@
 }
 .shopTodo{
     list-style-type: none !important;
+    background-color: rgba(226, 226, 226, 0.31);
 }
 .sNo{
     display: inline-block;
@@ -36,7 +39,7 @@
 }
 .item{
     display: inline-block;
-    width: 50vw;
+    width: 60vw;
     text-align: center;
     font-size: 1.5rem;
 }
@@ -52,7 +55,7 @@
     padding: 1px;
     border-radius: 4px;
     cursor: pointer;
-    width: 7vw;
+    width: 13vw;
     background-color: #fbbe6d;
     box-shadow: 0 0 1px 1px #bebebe;
     color: white;
@@ -69,7 +72,7 @@
     padding: 1px;
     border-radius: 4px;
     cursor: pointer;
-    width: 10vw;
+    width: 15vw;
     background-color: #61DAFB;
     box-shadow: 0 0 1px 1px #bebebe;
     color: white;
@@ -82,6 +85,7 @@
 }
 .taskDone{
     text-decoration: line-through;
+    color: red;
 }
 .btnDone{
     background-color: red;

@@ -129,7 +129,6 @@ class Recipe extends Component {
     }
 
     addToShopingList(item){
-        debugger;
         const recipe_id =  this.props.match.params.id;
 
         if(this.userId !== ''){
@@ -179,7 +178,6 @@ class Recipe extends Component {
         let wineList = '';
 
         if(ingredients){
-            debugger;
             ingredientList = ingredients.map((ele, index)=>{
                 let addOrRemove = 'add_circle';
                 let ingListAdded = '';
