@@ -22,7 +22,7 @@
 }
 .goback{
     display: block;
-    width: 150%;
+    width: 90%;
 }
 .loading-spinner > *{
     font-size: 6rem;
@@ -51,4 +51,10 @@ h5{
 }
 .invalid_null-search{
     text-align: center;
+    font-size: 1.5rem;
+}
+.invalidGoBack{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }

@@ -310,9 +310,7 @@ class Recipe extends Component {
             </div>
             <div className={`confirmLogin ${this.state.loginConfirmToast}`}>
                 <div className="favConfirmHeader center-align"><h5>Confirm?</h5></div>
-                <hr />
                 <div className="loginConfirmMessage center-align"><p>To add to favorite you have to login.</p></div>
-                <hr />
                 <div className="favConfirmBtns">
                     <div className="btn btn-small favLoginConfirmBtn" onClick={()=>this.confirmLogin()}>OK</div>
                     <div className="btn btn-small favLoginCancelBtn red" onClick={()=>this.cancelLogin()}>Cancel ({this.state.cancelTimer})</div>

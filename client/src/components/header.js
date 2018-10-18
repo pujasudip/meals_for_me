@@ -50,8 +50,8 @@ class Header extends Component {
     }
     displayBackBtn(){
         return (
-            <div onClick={this.goBack.bind(this)} className="btn btn-large backArrow">
-                <i className="material-icons medium" >arrow_back</i>
+            <div onClick={this.goBack.bind(this)} className="backArrow">
+                <i className="material-icons medium" >chevron_left</i>
             </div>
         )
     }
@@ -99,7 +99,7 @@ class Header extends Component {
                     </div>
                 </div>
                 <nav className="desktop_menu">
-                    <div className="desktop_logo" onClick={this.goHome}>
+                    <div className="desktop_logo" onClick={()=>this.goHome()}>
                     </div>
                     <div className="nav-wrapper">
                         <ul>
