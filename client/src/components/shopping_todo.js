@@ -36,7 +36,6 @@ class ShoppingToDo extends Component{
 
     render(){
         let shoppingList = '';
-        console.log('list:', this.props.shoppingList);
         if(this.props.shoppingList){
             let linethrough = '';
             let btnStyle = '';

@@ -14,20 +14,33 @@ class Results extends Component {
         super(props);
         this.state = {
             resultArray: '',
+            query: []
         };
         this.handleOnScroll = this.handleOnScroll.bind(this);
+        this.params = [];
     }
 
     componentDidMount() {
+       this.params = this.props.match.params;
+
+       var dataToSend = [];
+
+        for(let key in this.params){
+            dataToSend.push(this.params[key]);
+        }
+
+        this.setState({
+            query: dataToSend
+        });
+
         let pageNo = this.props.page.page;
-        this.props.searchedRecipe(this.props.userInputs, pageNo);
+        this.props.searchedRecipe(dataToSend, pageNo);
         this.props.setPageNo(pageNo);
         window.addEventListener('scroll', this.handleOnScroll);
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleOnScroll);
-        console.log('unmounting');
         this.props.setInvalidSearch();
     }
 
@@ -41,7 +54,7 @@ class Results extends Component {
         let scrolledToBottom = (parseInt(scrollTop + clientHeight)) >= scrollHeight;
         if (scrolledToBottom) {
             let pageNo = this.props.page.page;
-            this.props.searchedRecipe(this.props.userInputs, pageNo);
+            this.props.searchedRecipe(this.params, pageNo);
             this.props.setPageNo(pageNo);
             scrolledToBottom = false;
         }
@@ -49,7 +62,7 @@ class Results extends Component {
     render() {
         const { searchedIngredients } = this.props;
         let resultArray = '';
-        if(!this.props.userInputs.length){
+        if(this.params.length === 0){
             return <div className='goback'>
                 <h5 className="invalid_null-search">Go to home page and enter ingredients to see recipe.</h5>
                 <button onClick={this.goBack.bind(this)} className='backBtn center-block'>
@@ -57,7 +70,7 @@ class Results extends Component {
                 </button>
                 </div>
         } else if(this.props.searched_recipe_null && this.props.searchedIngredients.length === 0){
-            var userInputs = this.props.userInputs.join(", ");
+            var userInputs = this.state.query.join(", ");
             return (<div className='goback'>
                 <h6 className="center-align">You searched for: <b>{userInputs}</b></h6>
                 <h5 className="invalid_null-search">No recipe found.</h5>
@@ -81,7 +94,7 @@ class Results extends Component {
         }
         return (
             <div className= 'mainPage'>
-                <h5 className='resultHeader'>Results for: {this.props.userInputs.join(", ")}</h5>
+                <h5 className='resultHeader'>Results for: {this.state.query.join(", ")}</h5>
                 <div className= 'main-content center-align'>
                         {
                             resultArray

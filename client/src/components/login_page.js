@@ -25,7 +25,6 @@ class Login extends React.Component{
     };
 
     componentDidMount(){
-        console.log('login_status:', this.props.login_status);
 
     }
 

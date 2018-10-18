@@ -148,7 +148,14 @@ class LandingPage extends Component {
 
     goToResultsPage = () => {
         if (this.props.ingredients.length !== 0) {
-            this.props.history.push('/results');
+            if(this.props.ingredients.length === 1){
+                this.props.history.push('/results/' + `${this.props.ingredients[0]}`);
+            } else if (this.props.ingredients.length === 2) {
+                this.props.history.push('/results/' + `${this.props.ingredients[0]}` + '/' + `${this.props.ingredients[1]}`);
+            } else if (this.props.ingredients.length === 3) {
+                this.props.history.push('/results/' + `${this.props.ingredients[0]}` + '/' + `${this.props.ingredients[1]}` + '/' + `${this.props.ingredients[2]}`);
+            }
+
         } else {
             this.setState({
                 nothingEntered: 'nothingEntered'

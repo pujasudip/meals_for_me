@@ -209,11 +209,8 @@ class Recipe extends Component {
                 let iconColor = 'brown-text';
                 let title = 'Click to add to the shopping list.';
                 if(this.userId !== '' && this.props.shoppingList){
-                    // console.log('list123:', this.props.shoppingList);
-                    // console.log('list123:', ele);
                     for(let item of this.props.shoppingList){
                         if(item.items === ele.name){
-                            console.log('items', item.items, '---', ele);
                             addOrRemove = 'check_circle';
                             ingListAdded = 'ingListAdded';
                             iconColor = 'green-text';
