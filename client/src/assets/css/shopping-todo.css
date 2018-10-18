@@ -31,6 +31,7 @@
 .shopTodo{
     list-style-type: none !important;
     background-color: rgba(226, 226, 226, 0.31);
+    box-shadow: 1px 1px 1px 1px #cdcdcd;
 }
 .sNo{
     display: inline-block;
@@ -120,6 +121,7 @@
         width: 30vw;
     }
     .shopping-todo-container li{
-        margin-bottom: 5%;
+        height: 5vh;
+        box-shadow: 1px 1px 1px 1px #cdcdcd;
     }
 }

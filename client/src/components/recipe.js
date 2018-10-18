@@ -23,11 +23,14 @@ class Recipe extends Component {
             showall: 'ingredientList',
             showHideIcon: 'expand_more',
             tabIndex: 0,
-            loginConfirmToast: 'hideLoginToast'
+            loginConfirmToast: 'hideLoginToast',
+            cancelTimer: 10
         };
         this.userId = '';
         this.success = '';
         this.handleSelect = this.handleSelect.bind(this);
+        this.cancelInterval = null;
+        this.timer = 10;
     }
 
     componentWillMount(){
@@ -94,6 +97,22 @@ class Recipe extends Component {
             this.setState({
                 loginConfirmToast: 'showLoginToast'
             });
+
+            this.cancelInterval = setInterval(()=>{
+                if(this.timer > 0){
+                    this.setState({
+                        cancelTimer: --this.timer
+                    });
+                } else {
+                    this.setState({
+                        loginConfirmToast: 'hideToast',
+                        cancelTimer: 10
+                    });
+                    this.timer = 10;
+                    clearInterval(this.cancelInterval);
+                }
+
+            }, 1000);
         }
 
     }
@@ -152,15 +171,21 @@ class Recipe extends Component {
         this.setState({showall: showHide, showHideIcon: controllBtn});
     }
     confirmLogin(){
+        clearInterval(this.cancelInterval);
         this.setState({
-            loginConfirmToast: 'hideLoginToast'
+            loginConfirmToast: 'hideLoginToast',
+            cancelTimer: 10
         });
+        this.timer = 10;
         this.props.history.push('/login');
     }
     cancelLogin(){
+        clearInterval(this.cancelInterval);
         this.setState({
-            loginConfirmToast: 'hideLoginToast'
+            loginConfirmToast: 'hideLoginToast',
+            cancelTimer: 10
         });
+        this.timer = 10;
     }
 
     render() {
@@ -235,7 +260,15 @@ class Recipe extends Component {
                        <i className="material-icons" onClick={()=>this.showHideControl()}>{this.state.showHideIcon}</i>
                    </div>
             <div className='row s12 tabs'>
-                <div className={'tab col s6' + (this.state.tabIndex===0 ? ' activeTab' : '')} title='Directions' onClick={()=>this.setStateForComponentRender('Directions')}>Directions</div>
+                {this.success ?
+                    <div className={'tab col s6' + (this.state.tabIndex === 0 ? ' activeTab' : '')}
+                         title='Directions'
+                         onClick={() => this.setStateForComponentRender('Directions')}>Directions</div>
+                    :
+                    <div className={'tab col s12' + (this.state.tabIndex === 0 ? ' activeTab' : '')}
+                                     title='Directions'
+                                     onClick={() => this.setStateForComponentRender('Directions')}>Directions</div>
+                }
                 { this.success ?
                     <div className={'tab col s6' + (this.state.tabIndex === 1 ? ' activeTab' : '')}
                          title='ShoppingList'
@@ -285,7 +318,7 @@ class Recipe extends Component {
                 <hr />
                 <div className="favConfirmBtns">
                     <div className="btn btn-small favLoginConfirmBtn" onClick={()=>this.confirmLogin()}>OK</div>
-                    <div className="btn btn-small favLoginCancelBtn red" onClick={()=>this.cancelLogin()}>Cancel</div>
+                    <div className="btn btn-small favLoginCancelBtn red" onClick={()=>this.cancelLogin()}>Cancel ({this.state.cancelTimer})</div>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/css/hamburger.css';
 import { connect } from 'react-redux';
@@ -41,9 +41,17 @@ class HamburgerMenu extends Component{
                 <i className='material-icons prefix'>group</i>
                 <Link to='/about_us'
                       onClick={this.props.hideMenu} className='menuItem'>&nbsp;About Team</Link><br/>
-                <i className='material-icons prefix'>format_list_bulleted</i>
-                <Link to='/shopping-todo'
-                      onClick={this.props.hideMenu} className='menuItem'>&nbsp;Shopping List</Link><br/>
+                {
+                    success ?
+                        <Fragment>
+                            <i className='material-icons prefix'>format_list_bulleted</i>
+                        <Link to='/shopping-todo'
+                              onClick={this.props.hideMenu} className='menuItem'>&nbsp;Shopping List</Link><br />
+                        </Fragment>
+                        :
+                        ''
+                }
+
                 { success ?
                     <div>
                         <i className='material-icons prefix'>exit_to_app</i>
