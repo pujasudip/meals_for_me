@@ -5,8 +5,7 @@ import minus from '../assets/images/minus.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { clearRecipes, searchIngredient, addIngredeints, removeIngredients, clearUserIngredientInputs } from '../actions';
-import bg_image from '../assets/images/mobile-bg.png';
-//import bg_image from '../assets/images/dogbg.jpg';
+import bg_image from '../assets/images/desktop-bg.jpg';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 import types from "../actions/types";
 import { userLogin, setPageNo, clearSearchedRecipe } from '../actions';
@@ -201,7 +200,7 @@ class LandingPage extends Component {
         };
 
         return (
-            <div className="center bgImg" style={{ backgroundImage: `url(${bg_image})` }}>
+            <div className="center bgImg mobile" style={{ backgroundImage: `url(${bg_image})` }}>
             {/* <div className='center bgImg' style={{ background: `linear-gradient( rgba(185, 160, 160, 0.5), rgba(0, 0, 0, 0.5) ), url(${bg_image})` }}> */}
 
 
@@ -231,13 +230,13 @@ class LandingPage extends Component {
                             </div>
                             <div className="row s12 valign-wrapper">
                                 <div className="col s2">
-                                    <i className="material-icons medium directionLeft" onClick={this.commonFoodCarousel.bind(this, 'left')}>chevron_left</i>
+                                    <i className="material-icons medium directionLeft" style={{ color: '#e6f0e3' }} onClick={this.commonFoodCarousel.bind(this, 'left')}>chevron_left</i>
                                 </div>
                                 <div className="col s8 center">
                                     {commonIngredientsBtns}
                                 </div>
                                 <div className="col s2">
-                                    <i className="material-icons medium directionRight" onClick={this.commonFoodCarousel.bind(this, 'right')}>chevron_right</i>
+                                    <i className="material-icons medium directionRight" style={{ color:'#e6f0e3'}} onClick={this.commonFoodCarousel.bind(this, 'right')}>chevron_right</i>
                                 </div>
                             </div>
                         </div>
