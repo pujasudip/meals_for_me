@@ -33,7 +33,7 @@
         margin: 2%;
     }
     .memberPicture > img {
-        width: 30vh;
+        width: 27vh;
         border-radius: 40px;
         float: left;
     }
@@ -42,5 +42,11 @@
     }
     .nameOfPerson{
         text-align: center;
+    }
+}
+@media only screen and (min-width: 600px) {
+    .containerAboutUs{
+        display: flex;
+        flex-wrap: wrap;
     }
 }

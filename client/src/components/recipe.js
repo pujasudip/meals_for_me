@@ -6,7 +6,7 @@ import Directions from './directions';
 import Ingredients from './ingredients';
 import ShoppingList from './shopping_list';
 import { connect } from 'react-redux';
-import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite } from '../actions';
+import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList } from '../actions';
 import wine_up from '../assets/images/wine_up.png';
 
 class Recipe extends Component {
@@ -21,20 +21,29 @@ class Recipe extends Component {
             modalClass: 'hideModal',
             wineSlider: '',
             showall: 'ingredientList',
-            showHideIcon: 'control_point',
+            showHideIcon: 'expand_more',
             tabIndex: 0,
+            loginConfirmToast: 'hideLoginToast',
+            cancelTimer: 10
         };
+        this.userId = '';
+        this.success = '';
         this.handleSelect = this.handleSelect.bind(this);
+        this.cancelInterval = null;
+        this.timer = 10;
     }
 
     componentWillMount(){
-        let userId;
         if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
-            userId = (JSON.parse(localStorage.userInfo))['user_id'];
-            this.props.getFavorites(userId);
+            this.userId = (JSON.parse(localStorage.userInfo))['user_id'];
+            this.success = (JSON.parse(localStorage.userInfo))['success'];
+            this.props.getFavorites(this.userId);
+            this.props.getShoppingList(this.userId);
         } else if((typeof this.props.userInfo.data !== undefined) && (typeof this.props.userInfo.data !== "undefined")) {
-            userId = typeof this.props.userInfo.data.user_id;
-            this.props.getFavorites(userId);
+            this.userId = typeof this.props.userInfo.data.user_id;
+            this.props.getFavorites(this.userId);
+            this.props.getShoppingList(this.userId);
+            this.success = this.props.loginResponse.success;
         }
     }
 
@@ -55,20 +64,9 @@ class Recipe extends Component {
     }
 
     changeHeart(){
-        // if(!localStorage.userInfo && !this.props.userInfo){
-        //     this.props.history.push('/login');
-        // }
-        let userId;
-        if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
-            userId = (JSON.parse(localStorage.userInfo))['user_id'];
-            this.props.getFavorites(userId);
-        } else if((typeof this.props.userInfo.data !== undefined) && (typeof this.props.userInfo.data !== "undefined")) {
-            userId = typeof this.props.userInfo.data.user_id;
-            this.props.getFavorites(userId);
-        }
         const recipe_id =  this.props.match.params.id;
         let heartStatus;
-        if(userId){
+        if(this.userId !== ''){
             if(this.state.imgSrc === emptyHeart){
                 heartStatus = redHeart;
                 this.setState({
@@ -79,7 +77,7 @@ class Recipe extends Component {
                         toastMessageAddFav: 'hideToast'
                     });
                 },1100);
-                this.props.addToFavorite(userId, recipe_id);
+                this.props.addToFavorite(this.userId, recipe_id);
             } else {
                 heartStatus = emptyHeart;
                 this.setState({
@@ -90,13 +88,31 @@ class Recipe extends Component {
                         toastMessageRemFav: 'hideToast'
                     });
                 },1100);
-                this.props.deleteFromFavorite(userId, recipe_id);
+                this.props.deleteFromFavorite(this.userId, recipe_id);
             }
             this.setState({
                 imgSrc: heartStatus
             });
         } else {
-            this.props.history.push('/login');
+            this.setState({
+                loginConfirmToast: 'showLoginToast'
+            });
+
+            this.cancelInterval = setInterval(()=>{
+                if(this.timer > 0){
+                    this.setState({
+                        cancelTimer: --this.timer
+                    });
+                } else {
+                    this.setState({
+                        loginConfirmToast: 'hideToast',
+                        cancelTimer: 10
+                    });
+                    this.timer = 10;
+                    clearInterval(this.cancelInterval);
+                }
+
+            }, 1000);
         }
 
     }
@@ -105,7 +121,7 @@ class Recipe extends Component {
         this.setState({ key: key });
     }
 
-    dynamicComponent(directions, index){
+    dynamicComponent(directions){
         const comp = this.state.component;
 
         switch(comp){
@@ -132,7 +148,15 @@ class Recipe extends Component {
     }
 
     addToShopingList(item){
-        this.props.addToShoppingList(item.name);
+        const recipe_id =  this.props.match.params.id;
+
+        if(this.userId !== ''){
+            this.props.setShoppingList(this.userId, recipe_id, item.name)
+        } else {
+            this.props.addToShoppingList(item.name);
+        }
+
+
     }
 
     clickHandler(){
@@ -143,25 +167,58 @@ class Recipe extends Component {
 
     showHideControl(){
         var showHide = this.state.showall === 'showall' ? 'ingredientList' : 'showall';
-        var controllBtn  = this.state.showHideIcon === 'control_point' ? 'remove_circle_outline' : 'control_point';
+        var controllBtn  = this.state.showHideIcon === 'expand_more' ? 'expand_less' : 'expand_more';
         this.setState({showall: showHide, showHideIcon: controllBtn});
+    }
+    confirmLogin(){
+        clearInterval(this.cancelInterval);
+        this.setState({
+            loginConfirmToast: 'hideLoginToast',
+            cancelTimer: 10
+        });
+        this.timer = 10;
+        this.props.history.push('/login');
+    }
+    cancelLogin(){
+        clearInterval(this.cancelInterval);
+        this.setState({
+            loginConfirmToast: 'hideLoginToast',
+            cancelTimer: 10
+        });
+        this.timer = 10;
     }
 
     render() {
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
-        if(typeof this.props.details.data !== "undefined"){
-            directions = this.props.details.data.data[0];
-            ingredients = JSON.parse(directions.Ingredients);
-            pairedWines = JSON.parse(directions.winepairings).pairedWines;
+        if(typeof this.props.details.data !== undefined && typeof this.props.details.data !== "undefined"){
+            if((typeof this.props.details.data.data !== undefined) && (typeof this.props.details.data.data !== "undefined")){
+                directions = this.props.details.data.data[0];
+                ingredients = JSON.parse(directions.Ingredients);
+                pairedWines = JSON.parse(directions.winepairings).pairedWines;
+            }
         }
         let ingredientList = '';
         let wineList = '';
 
         if(ingredients){
             ingredientList = ingredients.map((ele, index)=>{
-                return <li key={index} onClick={this.addToShopingList.bind(this, ele)}>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
+                let addOrRemove = 'add_circle';
+                let ingListAdded = '';
+                let iconColor = 'brown-text';
+                let title = 'Click to add to the shopping list.';
+                if(this.userId !== '' && this.props.shoppingList){
+                    for(let item of this.props.shoppingList){
+                        if(item.items === ele.name){
+                            addOrRemove = 'check_circle';
+                            ingListAdded = 'ingListAdded';
+                            iconColor = 'green-text';
+                            title = 'Item has been added to the shopping list.'
+                        }
+                    }
+                }
+                return <li key={index} onClick={this.addToShopingList.bind(this, ele)} className={`ingList ${ingListAdded}`} title={title}><i className={`material-icons ${iconColor}`}>{addOrRemove}</i>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
             });
         }
         if(pairedWines){
@@ -196,12 +253,26 @@ class Recipe extends Component {
         <div className={`${this.state.showall}`}>
             <Ingredients ingredients={ingredientList} />
         </div>
-                   <div className="center">
+                   <div className="center expandIngredients">
                        <i className="material-icons" onClick={()=>this.showHideControl()}>{this.state.showHideIcon}</i>
                    </div>
             <div className='row s12 tabs'>
-                <div className={'tab col s4' + (this.state.tabIndex===0 ? ' activeTab' : '')} title='Directions' onClick={()=>this.setStateForComponentRender('Directions', 0)}>Directions</div>
-                <div className={'tab col s4' + (this.state.tabIndex===1 ? ' activeTab' : '')} title='ShoppingList' onClick={()=>this.setStateForComponentRender('ShoppingList', 1)}>Shopping List</div>
+                {this.success ?
+                    <div className={'tab col s6' + (this.state.tabIndex === 0 ? ' activeTab' : '')}
+                         title='Directions'
+                         onClick={() => this.setStateForComponentRender('Directions')}>Directions</div>
+                    :
+                    <div className={'tab col s12' + (this.state.tabIndex === 0 ? ' activeTab' : '')}
+                                     title='Directions'
+                                     onClick={() => this.setStateForComponentRender('Directions')}>Directions</div>
+                }
+                { this.success ?
+                    <div className={'tab col s6' + (this.state.tabIndex === 1 ? ' activeTab' : '')}
+                         title='ShoppingList'
+                         onClick={() => this.setStateForComponentRender('ShoppingList')}>Shopping List</div>
+                    :
+                    ''
+                }
             </div>
             <div>
                 {this.dynamicComponent(directions)}
@@ -237,6 +308,14 @@ class Recipe extends Component {
                     </div>
                 </div>
             </div>
+            <div className={`confirmLogin ${this.state.loginConfirmToast}`}>
+                <div className="favConfirmHeader center-align"><h5>Confirm?</h5></div>
+                <div className="loginConfirmMessage center-align"><p>To add to favorite you have to login.</p></div>
+                <div className="favConfirmBtns">
+                    <div className="btn btn-small favLoginConfirmBtn" onClick={()=>this.confirmLogin()}>OK</div>
+                    <div className="btn btn-small favLoginCancelBtn red" onClick={()=>this.cancelLogin()}>Cancel ({this.state.cancelTimer})</div>
+                </div>
+            </div>
         </div>
         )}
 }
@@ -245,11 +324,12 @@ function mapStateToProps(state){
     return {
         details: state.search.details,
         userInfo: state.userLoginResponse.userLoginResponse,
-        favorites: state.favorites.favorites
+        favorites: state.favorites.favorites,
+        shoppingList: state.shoppingList.shoppingListServer
     }
 }
 
 
-export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite})(Recipe);
+export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList})(Recipe);
 
 

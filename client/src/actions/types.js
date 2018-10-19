@@ -16,5 +16,10 @@ export default {
     GET_PAGE_NO: 'get_page_no',
     SET_PAGE_NO: 'set_page_no',
     CLEAR_SEARCHED_RECIPE: 'clear_searched_recipe',
-    INVALID_SEARCH: 'invalid_search'
+    INVALID_SEARCH: 'invalid_search',
+    LOGIN_DEFAULT: 'login_default',
+    ADD_SHOPPINGLIST_SER: 'add_shoppingList_ser',
+    GET_SHOPPINGLIST_SER: 'get_shoopinglist_ser',
+    DEL_SHOPPINGLIST_SER: 'del_shoppinglist_ser',
+    STATUS_SHOPPING: 'status_shopping'
 }

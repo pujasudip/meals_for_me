@@ -1,33 +1,49 @@
 import React, { Component } from 'react';
 import '../assets/css/results.css'
-import axios from 'axios';
 import OneResult from './individual_result_panel';
 import { connect } from 'react-redux';
-import { formatPostData, formatQueryString } from '../helpers';
 import { searchedRecipe, setDetailsOfItem, setDetailsId, setPageNo, setInvalidSearch } from '../actions';
 import backButton from '../assets/images/back_arrow.png';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
-const BASE_URL = 'http://localhost:8000/server/getData.php';
 
 class Results extends Component {
     constructor(props) {
         super(props);
         this.state = {
             resultArray: '',
+            query: []
         };
         this.handleOnScroll = this.handleOnScroll.bind(this);
+        this.params = [];
     }
 
     componentDidMount() {
+       this.params = this.props.match.params;
+
+       var dataToSend = [];
+
+        for(let key in this.params){
+            let item = this.params[key];
+            if(item !== undefined){
+                dataToSend.push(this.params[key]);
+            }
+        }
+
+        console.log('a:', this.props.match.url);
+
+
+        this.setState({
+            query: dataToSend
+        });
+
         let pageNo = this.props.page.page;
-        this.props.searchedRecipe(this.props.userInputs, pageNo);
+        this.props.searchedRecipe(dataToSend, pageNo);
         this.props.setPageNo(pageNo);
         window.addEventListener('scroll', this.handleOnScroll);
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleOnScroll);
-        console.log('unmounting');
         this.props.setInvalidSearch();
     }
 
@@ -41,7 +57,7 @@ class Results extends Component {
         let scrolledToBottom = (parseInt(scrollTop + clientHeight)) >= scrollHeight;
         if (scrolledToBottom) {
             let pageNo = this.props.page.page;
-            this.props.searchedRecipe(this.props.userInputs, pageNo);
+            this.props.searchedRecipe(this.params, pageNo);
             this.props.setPageNo(pageNo);
             scrolledToBottom = false;
         }
@@ -49,18 +65,18 @@ class Results extends Component {
     render() {
         const { searchedIngredients } = this.props;
         let resultArray = '';
-        if(!this.props.userInputs.length){
+        if(this.props.match.url === '/results' || this.props.match.url === '/results/'){
             return <div className='goback'>
-                <h5 className="invalid_null-search">No Search Available</h5>
-                <button onClick={this.goBack.bind(this)} className='backBtn center-block'>
-                    <img src={backButton} className='btn btn-small' />
-                </button>
+                <div className="invalid_null-search">Go to home page and enter ingredients to see recipe.</div>
+                <div onClick={this.goBack.bind(this)} className='btn btn-small invalidGoBack'>
+                    <i className="material-icons">arrow_back</i>
                 </div>
-        } else if(this.props.searched_recipe_null){
-            var userInputs = this.props.userInputs.join(", ");
+                </div>
+        } else if(this.props.searched_recipe_null && this.props.searchedIngredients.length === 0){
+            var userInputs = this.state.query.join(", ");
             return (<div className='goback'>
                 <h6 className="center-align">You searched for: <b>{userInputs}</b></h6>
-                <h5 className="invalid_null-search">Invalid Search</h5>
+                <h5 className="invalid_null-search">No recipe found.</h5>
                 <button onClick={this.goBack.bind(this)} className='backBtn center-block'>
                     <img src={backButton} className='btn btn-small' />
                 </button>
@@ -81,7 +97,7 @@ class Results extends Component {
         }
         return (
             <div className= 'mainPage'>
-                <h5 className='resultHeader'>Results for: {this.props.userInputs.join(", ")}</h5>
+                <h5 className='resultHeader'>Results for: {this.state.query.join(", ")}</h5>
                 <div className= 'main-content center-align'>
                         {
                             resultArray

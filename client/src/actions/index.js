@@ -9,6 +9,9 @@ const BASE_URL_RECIPE_SEARCH = '/api/server/getRecipe.php';
 const FAV_URL_ADD = '/api/server/addFavorites.php';
 const FAV_URL_GET = '/api/server/getFavorites.php';
 const FAV_URL_DEL = '/api/server/deleteFavorite.php';
+const ADD_TO_SHOPPINGLIST = '/api/server/shoppingList.php';
+const DEL_FROM_SHOPPINGLIST = '/api/server/del_shoppingList.php';
+const STATUS_SHOPPINGLIST = '/api/server/shoppingStatus.php';
 
 // const BASE_URL = 'http://localhost:8000/userauth/login.php';
 // const BASE_URL_SEARCH = 'http://localhost:8000/server/getData.php';
@@ -17,6 +20,9 @@ const FAV_URL_DEL = '/api/server/deleteFavorite.php';
 // const FAV_URL_ADD = 'http://localhost:8000/server/addFavorites.php';
 // const FAV_URL_GET = 'http://localhost:8000/server/getFavorites.php';
 // const FAV_URL_DEL = 'http://localhost:8000/server/deleteFavorite.php';
+// const ADD_TO_SHOPPINGLIST = 'http://localhost:8000/server/shoppingList.php';
+// const DEL_FROM_SHOPPINGLIST = 'http://localhost:8000/server/del_shoppingList.php';
+// const STATUS_SHOPPINGLIST = 'http://localhost:8000/server/shoppingStatus.php';
 
 
 export function searchedRecipe(userIngredient, page){
@@ -158,6 +164,68 @@ export function setInvalidSearch(){
     return {
         type: types.INVALID_SEARCH,
         payload: false
+    }
+}
+
+export function setLoginErrorToDefault(){
+    return {
+        type: types.LOGIN_DEFAULT
+    }
+}
+export function setShoppingList(user_id, recipe_id, item){
+    const dataToSend = formatPostData({user_id: user_id, recipe_id: recipe_id, item: item});
+
+    var getList = {params: {
+            'id': user_id
+        }};
+
+    const response = axios.post(`${ADD_TO_SHOPPINGLIST}`, dataToSend)
+        .then(()=>axios.get(ADD_TO_SHOPPINGLIST, getList));
+
+    return {
+        type: types.ADD_SHOPPINGLIST_SER,
+        payload: response
+    }
+}
+export function getShoppingList(user_id){
+    var dataToSend = {params: {
+            'id': user_id
+        }};
+    const response = axios.get(ADD_TO_SHOPPINGLIST, dataToSend);
+    return {
+        type: types.GET_SHOPPINGLIST_SER,
+        payload: response
+    }
+
+}
+
+export function deleteFromShoppingListServer(user_id, recipe_id, item, shopId){
+    const dataToSend = formatPostData({user_id: user_id, recipe_id: recipe_id, item: item});
+    var getList = {params: {
+            'id': user_id
+        }};
+
+    const response = axios.post(`${DEL_FROM_SHOPPINGLIST}`, dataToSend)
+        .then(()=>axios.get(`${ADD_TO_SHOPPINGLIST}`, getList));
+
+    return {
+        type: types.DEL_SHOPPINGLIST_SER,
+        payload: response
+    }
+}
+
+export function shoppingStatus(shopId, status, user_id){
+    const dataToSend = formatPostData({shop_id: shopId, status: status});
+    var getList = {params: {
+            'id': user_id
+        }};
+
+    const response = axios.post(`${STATUS_SHOPPINGLIST}`, dataToSend)
+        .then(()=>axios.get(`${ADD_TO_SHOPPINGLIST}`, getList));
+
+    return {
+        type: types.STATUS_SHOPPING,
+        payload: response
     }
 }
 

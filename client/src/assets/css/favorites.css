@@ -1,8 +1,21 @@
 @media only screen and (max-width: 500px){
     .dishContainer > img{
-        width: 30vmin;
-        height: 30vmin;
+        position: absolute;
+        right: 20%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 25vmin;
+        height: 25vmin;
         border-radius: 50%;
+    }
+    .favContainer{
+        margin-top: 10.5vh;
+    }
+    .favListItemName{
+        width: 50%;
+    }
+    dishContainer{
+
     }
     .card-panel{
         height: 135px;
@@ -10,10 +23,14 @@
         background-color: #F5F5F5;
     }
     .individualPanel{
+        position: relative;
         display: flex;
         align-items: center;
+        margin: 5px;
     }
     .favTrash{
+        position: absolute;
+        right: 10%;
         margin-right: -5%;
         margin-left: 1%;
         cursor: pointer;
@@ -66,4 +83,8 @@
         position: absolute;
         bottom: 35px;
     }
+}
+.noFavInList{
+    font-size: 1.3rem;
+    font-weight: bold;
 }

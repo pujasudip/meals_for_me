@@ -10,10 +10,9 @@ function Member(props){
             <div className='memberInfo center-block'>
                 <h5 className='left-align nameOfPerson'>{props.name}</h5>
                 <p className='title'>{props.title} </p>
-                <a className='linkedin' href={props.linkedin} target="_blank">Linkedin</a>
-                <br/>
-                <a className='github' href={props.github} target="_blank">GitHub</a> <br/>
-                <a className='github' href={props.portfolio} target="_blank">Portfolio</a>
+                <a className='linkedin' href={props.linkedin} target="_blank"><i className="fab fa-linkedin"></i> Linkedin</a><br/>
+                <a className='github' href={props.github} target="_blank"><i className="fab fa-github-square"></i> GitHub</a> <br/>
+                <a className='github' href={props.portfolio} target="_blank"><i className="far fa-file-image"></i> Portfolio</a>
             </div>
         </div>
     );

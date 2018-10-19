@@ -1,5 +1,5 @@
 .header {
-    position: sticky !important;
+    position: fixed !important;
     display: flex;
     height: 10vh;
     justify-content: space-between;
@@ -8,21 +8,23 @@
 .header{
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
+    width: 100vw;
     z-index: 1000;
 }
-
-.headerBanner{
-    display: sticky;
-}
 .logo{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     height: 90%;
+    width: 7vh;
 }
 .hamicon{
     width: 60px;
     height: 50px;
     /*margin-top: 14px;*/
-    /*margin-right: 11px;*/
+    margin-right: 11px;
+    cursor: pointer;
 }
 .hamicon:hover{
     animation-name: bounceIn;
@@ -84,12 +86,12 @@
 }
 
 .backArrow{
-    background-color: #527E46;
     width: 42px;
     height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .headerBtn{
     background-color: #527E45;

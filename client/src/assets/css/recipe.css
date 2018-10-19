@@ -1,6 +1,9 @@
 .contain{
     background-color: #F5F5F5;
-    margin: 0%;
+    margin-top: 10vh;
+    width: 100vw;
+    position: absolute;
+    left: 0;
 }
 #pictureFrame{
     padding: 0px;
@@ -62,33 +65,74 @@ header {
     width: 100vw;
     height: 25vh;
     position: relative;
-    margin-top: 4rem;
 }
 
 .pictureContainer {
-    height: 90%;
-    width: 50%;
-    max-width: 25vh;
     position: absolute;
     left: 50%;
-    top: 30%;
+    top: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
 }
 
 .pictureContainer img {
-    height: 100%;
-    width: 100%;
+    height: 25vmin;
+    width: 25vmin;
     border: 3px solid rgba(0, 0, 0, 0.51);
     border-radius: 50%;
 }
 
 #splittingAnimation {
     position: relative;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+}
+.confirmLogin{
+    width: 45%;
+    height: 25%;
+    background-color: #bafdbb;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 7px;
+    box-shadow: 0 0 2px 3px rgba(218, 218, 218, 0.93);
+    z-index: 1000;
+}
+.favConfirmHeader{
+    border-bottom-color: #7F977C;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+.loginConfirmMessage{
+    height: 30%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-bottom-color: #7F977C;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+.favLoginConfirmBtn{
+    margin-left: 3%;
+}
+
+.favLoginCancelBtn{
+    float: right;
+    margin-right: 3%;
+}
+.favConfirmBtns{
+    position: absolute;
+    top: 70%;
+    height: 5vh;
+    width: 100%;
+}
+.hideLoginToast{
+    display: none;
+}
+.showLoginToast{
+    display: block;
 }
 
 @keyframes splittingLines {
@@ -108,12 +152,18 @@ header {
     animation-name: splittingLines;
     animation-duration: 2s;
 }
+.expandIngredients > i{
+    cursor: pointer;
+    border: 2px solid green;
+    border-radius: 50%;
+}
 
 #splittingAnimation>div:last-child {
     float: right;
 }
 
 .dishDetails {
+    margin-top: 2%;
     width: 100vw;
 }
 
@@ -178,8 +228,8 @@ ol>li {
 }
 
 .heartPic > img {
-    width: 14vw;
-    top: 15px;
+    width: 5vw;
+    top: 25px;
     left: -16px;
 }
 
@@ -197,7 +247,7 @@ ol>li {
         width: 84vw;
     }
     #mainContent {
-        width: 84vw;
+        width: 100vw;
     }
     .dishDetails {
         width: 84vw;
@@ -240,13 +290,14 @@ ol>li {
 
 .wine_pairing_slider{
     position: absolute;
-    top: 56%;
+    top: 1%;
     right: 0;
     width: 38px;
     height: 104px;
     border-radius: 20px 0 0 20px;
     background-color: #ffe0b2;
     transition: height 100ms, width 1000ms;
+    z-index: 100;
 }
 .winelist{
    display: none;
@@ -299,11 +350,12 @@ ol>li {
     width: 250px;
     height: 55px;
     border-radius: 10px;
-    background-color: rgba(3, 194, 45, 0.69);
+    background-color: rgb(3, 194, 45);
     z-index: 100;
     text-align: center;
     top: 50%;
-    left: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .message{
     font-size: 1.5rem;
@@ -325,7 +377,8 @@ ol>li {
     z-index: 100;
     text-align: center;
     top: 50%;
-    left: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .showModal{
     display: block;
@@ -342,7 +395,7 @@ ol>li {
     position: absolute;
     width: 80vw;
     height: 40vh;
-    top: 30%;
+    top: 0;
     left: 10%;
 }
 
@@ -388,18 +441,49 @@ ol>li {
 .activeTab{
     background-color: #ffcc80;
 }
-@media only screen and (min-width: 1000px){
-    .heartPic{
-        bottom: 45%;
-    }
+.ingList{
+    list-style-type: none !important;
+}
+.ingList > i{
+    vertical-align: middle;
+}
+.ingList {
+    cursor: pointer;
+}
+.ingListAdded:after{
+    content: ' added ';
+    color: white;
+    background-color: green;
+    border-radius: 2px;
 }
 @media only screen and (min-width: 500px){
     #mainContent{
-        margin-top: 12%;
+        margin-top: 10vh;
     }
 }
-@media only screen and (max-width: 400px){
+@media only screen and (max-width: 500px){
     #mainContent{
         margin-top: 10%;
     }
+    .heartPic > img{
+        width: 10vw;
+    }
+}
+@media only screen and (max-width: 650px){
+    #mainContent{
+        margin-top: 15%;
+    }
+    .loginConfirmMessage > p{
+        font-size: 1rem;
+    }
+
+}
+.removeFromShoppingList{
+    cursor: pointer;
+    list-style-type: none !important;
+}
+.removeFromShoppingList > i{
+    vertical-align: middle;
+    color: red;
+    font-size: 1.2rem;
 }

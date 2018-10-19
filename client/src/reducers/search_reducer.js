@@ -25,7 +25,6 @@ function  searchResult(state = DEFAULT_STATE, action){
             return {...state, ingredients: []};
         case types.SEARCHED_RECIPE:
             if(Array.isArray(action.payload.data)){
-                console.log('not_null:', action.payload);
                 return { ...state, searched_recipe: [ ...state.searched_recipe, ...action.payload.data]};
             } else if(action.payload.data === null){
                 return { ...state, searched_recipe_null: true};
@@ -35,7 +34,6 @@ function  searchResult(state = DEFAULT_STATE, action){
         case types.CLEAR_SEARCHED_RECIPE:
             return {...state, searched_recipe: []};
         case types.INVALID_SEARCH:
-            console.log('setting:', action.payload);
             return { ...state, searched_recipe_null: action.payload};
         default:
             return state;

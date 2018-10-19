@@ -11,10 +11,11 @@
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
 }
 .main{
-    height: 90vh;
+    margin-top: 0;
+    height: 100vh;
     background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) );
     display: flex;
     flex-direction: column;
@@ -22,18 +23,26 @@
 }
 
 .search_field{
-    display: flex;
+    position: relative;
+    left: 0;
+    width: 70vw;
 }
 .ingInput{
-    width: 110% !important;
+    background-color: #d7eaff !important;
+    border-radius: 5px !important;
+}
+.ingInput:focus{
+    background-color: #fffaeb !important;
+    color: green;
 }
 
 #ingAddImg {
-    width: 50px;
-    height: 50px;
-    margin-right: -5%;
+    display: block;
+    font-size: 3rem;
+    cursor: pointer;
+    color: #05801a;
+    text-shadow: 1px 1px 2px black, 0 0 5px yellow, 0 0 5px white;
 }
-
 .landPgSearchBtn {
     width: 50vw;
     background-color: #527E45;
@@ -91,7 +100,8 @@ button{
 .commonFoodHeader{
     text-align: center;
     margin: 10px auto;
-    text-shadow: 2px 2px 7px #8e8e8e;
+    text-shadow: 2px 2px 7px #2e2e2e;
+    color: white;
 }
 @keyframes swing {
     0%{
@@ -108,13 +118,6 @@ button{
     }
     100%{
         transform: translateX(10%);
-    }
-}
-@media only screen and (max-width: 500px) {
-    .slogan > img{
-        width: 30vw;
-        height: 50px;
-        animation: swing 10s linear alternate infinite;
     }
 }
 .clearBtn{
@@ -174,10 +177,86 @@ input::placeholder {
 .ingredientInputError{
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
+    top: 20%;
+    transform: translateX(-50%);
+    width: 25%;
+    height: 5%;
     color: white;
     background-color: rgba(255, 0, 0, 0.6);
     border-radius: 10px;
+    font-size: 1.2rem;
+}
+.ingredientInputError > p {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+.inputFieldHeader{
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.99);
+}
+.nothingEnteredIsFalse{
+    display: none;
+}
+.nothingEntered{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    width: 35%;
+    height: 5%;
+    color: white;
+    background-color: rgba(255, 0, 0, 0.6);
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+.nothingEntered > p{
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+.emptyInputFieldFalse{
+    display: none;
+}
+.emptyInputField{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    width: 25%;
+    height: 5%;
+    color: white;
+    background-color: rgba(255, 0, 0, 0.6);
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+.emptyInputField > p{
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+@media only screen and (max-width: 500px) {
+    .slogan > img{
+        width: 30vw;
+        height: 50px;
+        animation: swing 10s linear alternate infinite;
+    }
+    .ingredientInputError{
+        width: 55%;
+    }
+    .nothingEntered{
+        width: 65%;
+    }
+    .emptyInputField{
+        width: 55%;
+    }
 }
