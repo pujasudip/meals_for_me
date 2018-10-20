@@ -243,14 +243,24 @@ ol>li {
     body {
         margin: 0 8%;
     }
+    .splittingLine{
+        display: none;
+    }
     header {
         width: 84vw;
     }
     #mainContent {
+        margin-top: 1vmin !important;
         width: 100vw;
     }
     .dishDetails {
-        width: 84vw;
+        width: 65vw;
+        margin-left: 35vw;
+        margin-top: -15%;
+    }
+    .ingredientList {
+        width: 65vw;
+        margin-left: 35vw;
     }
     .dishDetails h1 {
         font-size: 5.5vmin;
@@ -264,13 +274,26 @@ ol>li {
     }
     .heartPic {
         font-size: 10vmin;
+        position: absolute;
+        top: 0;
+        z-index: 500;
+        left: 25vw;
     }
     #menuButton {
         max-width: 55px;
     }
     .pictureContainer {
-        max-width: 25vw;
+        left: 1vmin;
+        top: 0;
+        transform: translate(0,0);
+        width: 55vmin;
+        height: 55vmin;
         z-index: 1;
+    }
+    .pictureContainer > img{
+        width: inherit;
+        height: inherit;
+        border-radius: 0;
     }
 }
 .tabs{
