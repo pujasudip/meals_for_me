@@ -5,8 +5,7 @@ import minus from '../assets/images/minus.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { clearRecipes, searchIngredient, addIngredeints, removeIngredients, clearUserIngredientInputs } from '../actions';
-import bg_image from '../assets/images/mobile-bg.png';
-//import bg_image from '../assets/images/dogbg.jpg';
+import bg_image from '../assets/images/desktop-bg.jpg';
 import commonIngredientsRef from '../assets/dummy_data/commonIngredientsRef';
 import types from "../actions/types";
 import { userLogin, setPageNo, clearSearchedRecipe } from '../actions';
@@ -202,6 +201,9 @@ class LandingPage extends Component {
 
         return (
             <div className="center bgImg" style={{ backgroundImage: `url(${bg_image})` }}>
+//             <div className="center bgImg mobile" style={{ backgroundImage: `url(${bg_image})` }}>
+//             {/* <div className='center bgImg' style={{ background: `linear-gradient( rgba(185, 160, 160, 0.5), rgba(0, 0, 0, 0.5) ), url(${bg_image})` }}> */}
+
                 <div className="main">
                     <div className="userActivity center-block">
                             <div className='text center'>
@@ -218,6 +220,9 @@ class LandingPage extends Component {
                                                value={this.state.currentIngredientInput} />
                                         <i id="ingAddImg" onClick={this.addIngredientToListFromInput.bind(this)} className="material-icons center-block">add_circle_outline</i>
                                     </div>
+//                             <div className="row s12 valign-wrapper">
+//                                 <div className="col s2">
+//                                     <i className="material-icons medium directionLeft" style={{ color: '#e6f0e3' }} onClick={this.commonFoodCarousel.bind(this, 'left')}>chevron_left</i>
                                 </div>
                                 :
                                 <div className='center black-text'><h4>Go for the food</h4></div>
@@ -257,6 +262,8 @@ class LandingPage extends Component {
                                 <div className="landPgSearchBtn btn btn-block center-block" onClick={this.goToResultsPage}>Search</div>
                                 <div className='center' style={this.props.ingredients.length !== 3 ? { 'display': 'none' } : {}}>
                                     <button type='button' className='btn btn-flat clearBtn waves-effect' onClick={() => this.clearUserInputs()}>Clear Inputs</button>
+//                                 <div className="col s2">
+//                                     <i className="material-icons medium directionRight" style={{ color:'#e6f0e3'}} onClick={this.commonFoodCarousel.bind(this, 'right')}>chevron_right</i>
                                 </div>
                             </div>
                     </div>
