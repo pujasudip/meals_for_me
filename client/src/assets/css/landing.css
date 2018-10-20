@@ -37,11 +37,13 @@
 }
 
 #ingAddImg {
-    display: block;
+    display: inline-block;
+    width: 7vw;
     font-size: 3rem;
     cursor: pointer;
     color: #05801a;
     text-shadow: 1px 1px 2px black, 0 0 5px yellow, 0 0 5px white;
+    vertical-align: top;
 }
 .landPgSearchBtn {
     width: 50vw;
@@ -100,8 +102,8 @@ button{
 .commonFoodHeader{
     text-align: center;
     margin: 10px auto;
-    text-shadow: 2px 2px 7px #2e2e2e;
-    color: white;
+    text-shadow: 2px 2px 7px #ffffff;
+    color: black;
 }
 @keyframes swing {
     0%{
@@ -195,8 +197,8 @@ input::placeholder {
     margin: 0;
 }
 .inputFieldHeader{
-    color: white;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.99);
+    color: #000000;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.99);
 }
 .nothingEnteredIsFalse{
     display: none;
@@ -259,4 +261,10 @@ input::placeholder {
     .emptyInputField{
         width: 55%;
     }
+}
+.userActivity{
+    background-color: rgba(255, 250, 240, 0.50);
+    width: 70vw;
+    padding: 20px;
+    box-shadow: 0 0 10px 10px rgba(255, 250, 240, 0.5);
 }

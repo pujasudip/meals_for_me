@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {getShoppingList, shoppingStatus, deleteFromShoppingListServer} from '../actions';
 import '../assets/css/shopping-todo.css';
 import {connect} from 'react-redux';
@@ -36,11 +36,13 @@ class ShoppingToDo extends Component{
 
     render(){
         let shoppingList = '';
+        let nothingToShop = 'nothingToShop';
         if(this.props.shoppingList){
             let linethrough = '';
             let btnStyle = '';
             let check = '';
             let status = '';
+            nothingToShop = '';
             shoppingList = this.props.shoppingList.map((ele, index)=>{
                 if(ele.status === 'complete'){
                     linethrough = 'taskDone';
@@ -67,17 +69,17 @@ class ShoppingToDo extends Component{
         }
         return (
             <div className="shopping-todo-container">
-                <div className="sNos hide-on-small-and-down">
+                <div className={`sNos hide-on-small-and-down ${nothingToShop}`}>
                     Status
                 </div>
-                <div className="items">
+                <div className={`items ${nothingToShop}`}>
                     Items
                 </div>
-                <div className="operations">
+                <div className={`operations ${nothingToShop}`}>
                     Operations
                 </div>
                 <ul>
-                    {shoppingList}
+                    {shoppingList.length === 0 ? <h4 className="center-align">Nothing to display.</h4> : shoppingList}
                 </ul>
             </div>
         )

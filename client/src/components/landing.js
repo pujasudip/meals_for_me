@@ -202,67 +202,64 @@ class LandingPage extends Component {
 
         return (
             <div className="center bgImg" style={{ backgroundImage: `url(${bg_image})` }}>
-            {/* <div className='center bgImg' style={{ background: `linear-gradient( rgba(185, 160, 160, 0.5), rgba(0, 0, 0, 0.5) ), url(${bg_image})` }}> */}
-
-
                 <div className="main">
-                    <div className='text center'>
-                        <h4 className='margin-top-zero inputFieldHeader ' style={this.props.ingredients.length === 3 ? { 'display': 'none' } : {}}>Enter your Ingredients</h4>
-                    </div>
-                    <div className="center">
-                        {ingredient}
-                    </div>
-                    {this.props.ingredients.length < 3 ?
-                        <div className='search_field center-block'>
-                            <div className="center-block">
-                                <input placeholder={this.state.remainingEntries === 3 ?`Insert up to ${this.state.remainingEntries} Ingredients` : `Insert ${this.state.remainingEntries} more Ingredients`}
-                                       className='ingInput center' onChange={(event) => this.userInputHandler(event)}
-                                       value={this.state.currentIngredientInput} />
+                    <div className="userActivity center-block">
+                            <div className='text center'>
+                                <h4 className='margin-top-zero inputFieldHeader' style={this.props.ingredients.length === 3 ? { 'display': 'none' } : {}}>Enter your Ingredients</h4>
                             </div>
-                            <i id="ingAddImg" src={plus} onClick={this.addIngredientToListFromInput.bind(this)} className="material-icons center-block">add_circle_outline</i>
-                        </div>
-                        :
-                        <div className='center green-text'><h5>Go for the food</h5></div>
-                    }
-                    {this.props.ingredients.length < 3 ?
-                        <div className="ingredientBtns">
+                            <div className="center">
+                                {ingredient}
+                            </div>
+                            {this.props.ingredients.length < 3 ?
+                                <div className='search_field'>
+                                    <div className="">
+                                        <input placeholder={this.state.remainingEntries === 3 ?`Insert up to ${this.state.remainingEntries} Ingredients` : `Insert ${this.state.remainingEntries} more Ingredients`}
+                                               className='ingInput center' onChange={(event) => this.userInputHandler(event)}
+                                               value={this.state.currentIngredientInput} />
+                                        <i id="ingAddImg" onClick={this.addIngredientToListFromInput.bind(this)} className="material-icons center-block">add_circle_outline</i>
+                                    </div>
+                                </div>
+                                :
+                                <div className='center black-text'><h4>Go for the food</h4></div>
+                            }
+                            {this.props.ingredients.length < 3 ?
+                                <div className="ingredientBtns">
+                                    <div>
+                                        <h5 className="commonFoodHeader">Common Choices</h5>
+                                    </div>
+                                    <div className="row s12 valign-wrapper">
+                                        <div className="col s2">
+                                            <i className="material-icons medium directionLeft" onClick={this.commonFoodCarousel.bind(this, 'left')}>chevron_left</i>
+                                        </div>
+                                        <div className="col s8 center">
+                                            {commonIngredientsBtns}
+                                        </div>
+                                        <div className="col s2">
+                                            <i className="material-icons medium directionRight" onClick={this.commonFoodCarousel.bind(this, 'right')}>chevron_right</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                : ''
+                            }
                             <div>
-                                <h5 className="commonFoodHeader">Common Choices</h5>
-                            </div>
-                            <div className="row s12 valign-wrapper">
-                                <div className="col s2">
-                                    <i className="material-icons medium directionLeft" onClick={this.commonFoodCarousel.bind(this, 'left')}>chevron_left</i>
+                                <div className="center" style={hideBubbles()}>
+                                    <div onClick={()=>this.randomAccessCommonFood(0)} className={this.foodIndex === 0 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                                    </div>
+                                    <div onClick={()=>this.randomAccessCommonFood(1)} className={this.foodIndex === 1 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                                    </div>
+                                    <div onClick={()=>this.randomAccessCommonFood(2)} className={this.foodIndex === 2 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                                    </div>
+                                    <div onClick={()=>this.randomAccessCommonFood(3)} className={this.foodIndex === 3 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                                    </div>
+                                    <div onClick={()=>this.randomAccessCommonFood(4)} className={this.foodIndex === 4 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
+                                    </div>
                                 </div>
-                                <div className="col s8 center">
-                                    {commonIngredientsBtns}
-                                </div>
-                                <div className="col s2">
-                                    <i className="material-icons medium directionRight" onClick={this.commonFoodCarousel.bind(this, 'right')}>chevron_right</i>
+                                <div className="landPgSearchBtn btn btn-block center-block" onClick={this.goToResultsPage}>Search</div>
+                                <div className='center' style={this.props.ingredients.length !== 3 ? { 'display': 'none' } : {}}>
+                                    <button type='button' className='btn btn-flat clearBtn waves-effect' onClick={() => this.clearUserInputs()}>Clear Inputs</button>
                                 </div>
                             </div>
-                        </div>
-                        : ''
-                    }
-                    <div>
-                        <div className="center" style={hideBubbles()}>
-                            <div onClick={()=>this.randomAccessCommonFood(0)} className={this.foodIndex === 0 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
-                            </div>
-                            <div onClick={()=>this.randomAccessCommonFood(1)} className={this.foodIndex === 1 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
-                            </div>
-                            <div onClick={()=>this.randomAccessCommonFood(2)} className={this.foodIndex === 2 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
-                            </div>
-                            <div onClick={()=>this.randomAccessCommonFood(3)} className={this.foodIndex === 3 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
-                            </div>
-                            <div onClick={()=>this.randomAccessCommonFood(4)} className={this.foodIndex === 4 ? 'commonFoodBubbleActive' : 'commonFoodBubble'}>
-                            </div>
-                        </div>
-                        <div className="landPgSearchBtn btn btn-block center-block" onClick={this.goToResultsPage}>Search</div>
-                        <div className='center' style={this.props.ingredients.length !== 3 ? { 'display': 'none' } : {}}>
-                            <button type='button' className='btn btn-flat clearBtn waves-effect' onClick={() => this.clearUserInputs()}>Clear Inputs</button>
-                        </div>
                     </div>
-                </div>
-                <div>
                 </div>
                 <div className={`ingredientInputError ${this.state.toastMessage}`}>
                     <p>Enter only three ingredients.</p>

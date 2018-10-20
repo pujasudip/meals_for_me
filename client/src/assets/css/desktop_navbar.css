@@ -13,6 +13,9 @@
         float: right;
 
     }
+    .nav-wrapper *{
+        height: 100%;
+    }
     .desktop_menu ul > li{
         list-style-type: none !important;
     }
@@ -22,7 +25,6 @@
         width: 10vh;
         height: 10vh;
         border-radius: 50%;
-        border: 2px double green;
         background-color: rgba(255, 254, 208, 0.51);
         background-image: url("../images/ourlogo.png");
         background-position: center;
@@ -66,13 +68,22 @@
     .search_field input{
         width: 40vw !important;
     }
-    #ingAddImg{
-        margin-left: 0;
-    }
 }
 @media only screen and ( max-width: 550px) {
     .desktop_menu{
         display: none;
+    }
+    .main{
+        margin-top: 10vh;
+    }
+    .search_field{
+        margin-left: -25px;
+    }
+    .search_field input {
+        width: 60vw;
+    }
+    .directionLeft{
+        margin-left: -12vw;
     }
 }
 @media only screen and ( min-width: 1000px) {
