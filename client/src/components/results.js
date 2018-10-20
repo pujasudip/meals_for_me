@@ -15,17 +15,18 @@ class Results extends Component {
         };
         this.handleOnScroll = this.handleOnScroll.bind(this);
         this.params = [];
+        this.dataToSend = [];
     }
 
     componentDidMount() {
        this.params = this.props.match.params;
 
-       var dataToSend = [];
+       this.dataToSend = [];
 
         for(let key in this.params){
             let item = this.params[key];
             if(item !== undefined){
-                dataToSend.push(this.params[key]);
+                this.dataToSend.push(this.params[key]);
             }
         }
 
@@ -33,11 +34,11 @@ class Results extends Component {
 
 
         this.setState({
-            query: dataToSend
+            query: this.dataToSend
         });
 
         let pageNo = this.props.page.page;
-        this.props.searchedRecipe(dataToSend, pageNo);
+        this.props.searchedRecipe(this.dataToSend, pageNo);
         this.props.setPageNo(pageNo);
         window.addEventListener('scroll', this.handleOnScroll);
     }
@@ -57,7 +58,7 @@ class Results extends Component {
         let scrolledToBottom = (parseInt(scrollTop + clientHeight)) >= scrollHeight;
         if (scrolledToBottom) {
             let pageNo = this.props.page.page;
-            this.props.searchedRecipe(this.params, pageNo);
+            this.props.searchedRecipe(this.dataToSend, pageNo);
             this.props.setPageNo(pageNo);
             scrolledToBottom = false;
         }

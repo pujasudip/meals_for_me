@@ -50,12 +50,13 @@
 }
 
 #ingAddImg {
-    display: inline;
-    position: absolute;
+    display: inline-block;
+    width: 7vw;
     font-size: 3rem;
     cursor: pointer;
     color: #05801a;
     text-shadow: 1px 1px 2px black, 0 0 5px yellow, 0 0 5px white;
+    vertical-align: top;
 }
 
 .landPgSearchBtn {
@@ -132,7 +133,6 @@ button {
     color: white;
     text-transform: uppercase;
     word-spacing: 4px;
-
 }
 
 @keyframes swing {
@@ -241,7 +241,6 @@ input::placeholder {
     transform: translateY(-50%);
     margin: 0;
 }
-
 .inputFieldHeader {
     color: white;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.99);
@@ -322,6 +321,12 @@ input::placeholder {
     .emptyInputField {
         width: 55%;
     }
+}
+.userActivity{
+    background-color: rgba(255, 250, 240, 0.50);
+    width: 70vw;
+    padding: 20px;
+    box-shadow: 0 0 10px 10px rgba(255, 250, 240, 0.5);
 
     .center.bgImg {}
 
