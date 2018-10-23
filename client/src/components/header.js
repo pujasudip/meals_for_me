@@ -65,7 +65,7 @@ class Header extends Component {
         }
     }
     goHome(){
-        console.log('home');
+        this.props.history.push('/');
     }
     render() {
         let menuClass = this.state.menuShow ? ['menu', 'menu_backdrop'] : ['no_menu', 'no_menu'];
@@ -98,10 +98,10 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
-                <nav className="desktop_menu">
+                <div className="desktop_menu">
                     <div className="desktop_logo" onClick={()=>this.goHome()}>
                     </div>
-                    <div className="nav-wrapper">
+                    <nav className="nav-wrapper">
                         <ul>
                             <li><Link to='/'>Home</Link></li>
                             <li><Link  to='/favorites'>Favorites</Link></li>
@@ -109,8 +109,8 @@ class Header extends Component {
                             <li><Link to='/about_us'>About Team</Link></li>
                             <li>{success ? <Link to='/' onClick={()=>this.props.userLogout()}>Log Out</Link> : <Link to='/login'>Log In</Link>}</li>
                         </ul>
-                    </div>
-                </nav>
+                    </nav>
+                </div>
             </div>
         )
     }

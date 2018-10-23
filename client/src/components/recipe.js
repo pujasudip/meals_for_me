@@ -14,7 +14,6 @@ class Recipe extends Component {
         super(props);
         this.state = {
             imgSrc: emptyHeart,
-            addFavText: 'Add to Favorites',
             component: 'Directions',
             toastMessageAddFav: 'hideToast',
             toastMessageRemFav: 'hideToast',
@@ -212,13 +211,13 @@ class Recipe extends Component {
                     for(let item of this.props.shoppingList){
                         if(item.items === ele.name){
                             addOrRemove = 'check_circle';
-                            ingListAdded = 'ingListAdded';
+                            ingListAdded = 'ingListAdded badge';
                             iconColor = 'green-text';
                             title = 'Item has been added to the shopping list.'
                         }
                     }
                 }
-                return <li key={index} onClick={this.addToShopingList.bind(this, ele)} className={`ingList ${ingListAdded}`} title={title}><i className={`material-icons ${iconColor}`}>{addOrRemove}</i>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
+                return <div key={index} onClick={this.addToShopingList.bind(this, ele)} className={`ingList ${ingListAdded}`} title={title}><i className={`material-icons ${iconColor}`}>{addOrRemove}</i>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</div>
             });
         }
         if(pairedWines){
@@ -240,7 +239,6 @@ class Recipe extends Component {
                     <div className="splittingLine"></div>
                     </section>
             <div className="heartPic center"><img src= {this.state.imgSrc} onClick={() => this.changeHeart()}></img>
-                    <p>{this.state.addFavText}</p>
             </div>
         </section>
             <section className="dishDetails center">

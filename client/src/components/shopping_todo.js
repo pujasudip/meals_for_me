@@ -46,12 +46,12 @@ class ShoppingToDo extends Component{
             shoppingList = this.props.shoppingList.map((ele, index)=>{
                 if(ele.status === 'complete'){
                     linethrough = 'taskDone';
-                    btnStyle = '';
+                    btnStyle = 'green';
                     check = 'check_box';
                     status = 'cancel';
                 } else {
                     linethrough = '';
-                    btnStyle = 'btnDone';
+                    btnStyle = 'amber accent-3';
                     check = 'crop_din';
                     status = 'check';
                 }
@@ -60,27 +60,29 @@ class ShoppingToDo extends Component{
                         <div className="sNo" onClick={()=>this.changeStatus(ele.id, ele.status, ele.user_id)}><i className="material-icons hide-on-small-and-down">{check}</i></div>
                         <div className={`item ${linethrough}`}>{ele.items}</div>
                         <div className="opBtn">
-                            <div className="shopDel" onClick={()=>this.deleteFromShoppingList(ele.user_id, ele.recipe_id, ele.items, ele.id)}><i className="material-icons show-on-small hide-on-med-and-up">delete</i><span className="hide-on-small-only">Delete</span></div>
-                            <div className={`shopDone ${btnStyle}`} onClick={()=>this.changeStatus(ele.id, ele.status, ele.user_id)}><i className="material-icons show-on-small hide-on-med-and-up">{status}</i><span className="hide-on-small-only">{ele.status}</span></div>
+                            <div className="shopDel btn red darken-1" onClick={()=>this.deleteFromShoppingList(ele.user_id, ele.recipe_id, ele.items, ele.id)}><i className="material-icons show-on-small show-on-medium hide-on-large-only">delete</i><span className="show-on-large">Delete</span></div>
+                            <div className={`shopDone btn ${btnStyle}`} onClick={()=>this.changeStatus(ele.id, ele.status, ele.user_id)}><i className="material-icons show-on-small show-on-medium hide-on-large-only">{status}</i><span className="show-on-large">{ele.status}</span></div>
                         </div>
                     </li>
                 )
             });
         }
         return (
-            <div className="shopping-todo-container">
-                <div className={`sNos hide-on-small-and-down ${nothingToShop}`}>
-                    Status
+            <div className="todoWholeContainer">
+                <div className="shopping-todo-container">
+                    <div className={`sNos hide-on-small-and-down ${nothingToShop}`}>
+                        Status
+                    </div>
+                    <div className={`items ${nothingToShop}`}>
+                        Items
+                    </div>
+                    <div className={`operations ${nothingToShop}`}>
+                        Operations
+                    </div>
+                    <ul>
+                        {shoppingList.length === 0 ? <h4 className="center-align">Nothing to display.</h4> : shoppingList}
+                    </ul>
                 </div>
-                <div className={`items ${nothingToShop}`}>
-                    Items
-                </div>
-                <div className={`operations ${nothingToShop}`}>
-                    Operations
-                </div>
-                <ul>
-                    {shoppingList.length === 0 ? <h4 className="center-align">Nothing to display.</h4> : shoppingList}
-                </ul>
             </div>
         )
     }

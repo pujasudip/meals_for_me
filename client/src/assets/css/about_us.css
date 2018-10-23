@@ -18,9 +18,24 @@
         height: 90vh;
         background-color: rgba(141, 140, 128, 0.36);
     }
-}
-@media only screen and (min-width: 499px){
-    .memberIndividual{
-        width: 33%;
+    .title{
+        height: 5vh !important;
     }
 }
+@media only screen and (max-width: 999px){
+    .containerAboutUs{
+        background-color: red;
+        background-color: rgba(168, 168, 168, 0.31);
+        box-shadow: 0 0 5px 15px rgba(168, 168, 168, 0.31);
+        margin-top: 10vh;
+    }
+    .title{
+        height: 10vh;
+    }
+}
+@media only screen and (min-width: 1000px){
+    .containerAboutUs{
+        margin-top: 10vh !important;
+    }
+}
+

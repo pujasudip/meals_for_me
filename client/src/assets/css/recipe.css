@@ -256,11 +256,17 @@ ol>li {
     .dishDetails {
         width: 65vw;
         margin-left: 35vw;
-        margin-top: -15%;
+        margin-top: -10%;
+    }
+    .showall{
+        width: 65vw;
+        margin-left: 35vw;
     }
     .ingredientList {
         width: 65vw;
         margin-left: 35vw;
+        display: flex;
+        justify-content: flex-start;
     }
     .dishDetails h1 {
         font-size: 5.5vmin;
@@ -274,7 +280,7 @@ ol>li {
     }
     .heartPic {
         font-size: 10vmin;
-        position: absolute;
+        position: relative;
         top: 0;
         z-index: 500;
         left: 25vw;
@@ -284,7 +290,7 @@ ol>li {
     }
     .pictureContainer {
         left: 1vmin;
-        top: 0;
+        top: 1vmin;
         transform: translate(0,0);
         width: 55vmin;
         height: 55vmin;
@@ -294,6 +300,17 @@ ol>li {
         width: inherit;
         height: inherit;
         border-radius: 0;
+    }
+    .dishDetails + h6{
+        width: 65vw;
+        margin-left: 35vw;
+    }
+    .expandIngredients{
+        width: 65vw;
+        margin-left: 35vw;
+    }
+    .showModal > .inner-content-modal{
+        margin-top: -5vh;
     }
 }
 .tabs{
@@ -428,7 +445,7 @@ ol>li {
     position: relative;
     top: 17px;
     left: -10px;
-    background-color: #7F977C;
+    background-color: #b0a81e;
     cursor: pointer;
 }
 
@@ -466,18 +483,21 @@ ol>li {
 }
 .ingList{
     list-style-type: none !important;
+    cursor: pointer;
+    display: inline-block;
+    width: 49%;
 }
 .ingList > i{
     vertical-align: middle;
 }
-.ingList {
-    cursor: pointer;
-}
 .ingListAdded:after{
-    content: ' added ';
+    content: " added ";
     color: white;
+    white-space: pre;
     background-color: green;
-    border-radius: 2px;
+    border-radius: 3px;
+    padding: 1px;
+    margin-left: 3px;
 }
 @media only screen and (min-width: 500px){
     #mainContent{

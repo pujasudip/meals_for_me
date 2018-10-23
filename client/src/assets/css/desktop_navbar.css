@@ -13,6 +13,10 @@
         float: right;
 
     }
+    .nav-wrapper{
+        background-color: #7F977C;
+        width: 100vw;
+    }
     .nav-wrapper *{
         height: 100%;
     }
@@ -33,6 +37,7 @@
         float: left;
         margin-left: 2%;
         cursor: pointer;
+        border: 4px solid #7F977C;
     }
     .main{
         width: 100%;
@@ -41,7 +46,7 @@
         /*margin-top: 5%;*/
     }
     .containerAboutUs{
-        margin-top: 7%;
+        margin-top: 12vh;
     }
     .favContainer{
         position: relative;
