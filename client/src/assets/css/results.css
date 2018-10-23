@@ -1,3 +1,9 @@
+.resultsWholeContainer{
+    position: absolute;
+    background-color: rgba(168, 168, 168, 0.31);
+    width: 100vw;
+    height: 100vh;
+}
 .indivDish{
     border: 2px black solid;
     display: flex;

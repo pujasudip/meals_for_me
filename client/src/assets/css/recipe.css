@@ -220,9 +220,8 @@ ol>li {
 }
 
 .heartPic {
-
-    bottom: 73%;
-    left: 3%;
+    top: 3vh;
+    left: 2vw;
     display: inline-block;
     position: absolute;
 }
@@ -279,11 +278,10 @@ ol>li {
         font-size: 2.5vmax;
     }
     .heartPic {
-        font-size: 10vmin;
-        position: relative;
-        top: 0;
+        position: absolute;
+        top: 10px;
         z-index: 500;
-        left: 25vw;
+        left: 10px;
     }
     #menuButton {
         max-width: 55px;
@@ -501,21 +499,18 @@ ol>li {
 }
 @media only screen and (min-width: 500px){
     #mainContent{
-        margin-top: 10vh;
+        margin-top: 3vh;
     }
 }
 @media only screen and (max-width: 500px){
     #mainContent{
-        margin-top: 10%;
+        margin-top: 0;
     }
     .heartPic > img{
         width: 10vw;
     }
 }
 @media only screen and (max-width: 650px){
-    #mainContent{
-        margin-top: 15%;
-    }
     .loginConfirmMessage > p{
         font-size: 1rem;
     }

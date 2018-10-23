@@ -1,4 +1,4 @@
-@media only screen and ( min-width: 550px) {
+@media only screen and ( min-width: 551px) {
     .header{
         display: none;
     }
@@ -101,5 +101,11 @@
     }
     .wine_pairing_slider {
         top: 2%;
+    }
+    .favWholeContainer{
+        left: 0;
+    }
+    .resultsWholeContainer{
+        left: 0;
     }
 }

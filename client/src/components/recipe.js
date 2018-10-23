@@ -228,6 +228,8 @@ class Recipe extends Component {
 
         return(
         <div className='contain'>
+            <div className="heartPic center"><img src= {this.state.imgSrc} onClick={() => this.changeHeart()}></img>
+            </div>
             { this.props.details ?
                 <div>
             <section id='mainContent'>
@@ -238,8 +240,6 @@ class Recipe extends Component {
                     <div className="splittingLine"></div>
                     <div className="splittingLine"></div>
                     </section>
-            <div className="heartPic center"><img src= {this.state.imgSrc} onClick={() => this.changeHeart()}></img>
-            </div>
         </section>
             <section className="dishDetails center">
                 <h1>{directions.Name}</h1>

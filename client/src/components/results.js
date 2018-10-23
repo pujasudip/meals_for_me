@@ -97,16 +97,18 @@ class Results extends Component {
             });
         }
         return (
-            <div className= 'mainPage'>
-                <h5 className='resultHeader'>Results for: {this.state.query.join(", ")}</h5>
-                <div className= 'main-content center-align'>
+            <div className="resultsWholeContainer">
+                <div className= 'mainPage'>
+                    <h5 className='resultHeader'>Results for: {this.state.query.join(", ")}</h5>
+                    <div className= 'main-content center-align'>
                         {
                             resultArray
                         }
-                </div>
-                <div className={`btn btn-floating red ${document.documentElement.scrollTop > 0 ? 'goToTop' : 'hideGoToTop'}`}
-                     onClick={()=> window.scrollTo(0, 0)}>
-                    <i className='material-icons'>keyboard_arrow_up</i>
+                    </div>
+                    <div className={`btn btn-floating red ${document.documentElement.scrollTop > 0 ? 'goToTop' : 'hideGoToTop'}`}
+                         onClick={()=> window.scrollTo(0, 0)}>
+                        <i className='material-icons'>keyboard_arrow_up</i>
+                    </div>
                 </div>
             </div>
         )

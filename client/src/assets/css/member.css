@@ -50,3 +50,53 @@
         flex-wrap: wrap;
     }
 }
+@media only screen and (max-width: 550px) and (min-width: 501px) {
+    .containerAboutUs{
+        position: absolute;
+        background-color: rgba(168, 168, 168, 0.31);
+        margin-top: 10vh;
+    }
+    .memberIndividual{
+        position: relative;
+    }
+    .memberIndividual img{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .memberInfo h5{
+        width: 70%;
+    }
+    .nameOfPerson{
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: sandybrown;
+        background-color: rgba(97, 218, 251, 0.80);
+    }
+    .title{
+        position: absolute;
+        top: 85%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: red;
+        background-color: rgba(97, 218, 251, 0.80);
+        border-radius: 0 0 40px 40px;
+        width: 70%;
+        height: 7vh;
+        padding: 3px;
+    }
+    .memberResource{
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        background-color: rgba(186, 234, 251, 0.8);
+    }
+    .memberIndividual:hover .memberResource{
+        display: inline-block;
+    }
+}

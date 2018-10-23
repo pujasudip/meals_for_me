@@ -35,8 +35,10 @@ class Favorites extends Component {
         }
 
         return (
-            <div className="favContainer">
-                { favList.length === 0 ? <div className="noFavInList center-align"><p>Nothing has been added to list.</p></div> : favList}
+            <div className="favWholeContainer">
+                <div className="favContainer">
+                    { favList.length === 0 ? <div className="noFavInList center-align"><p>Nothing has been added to list.</p></div> : favList}
+                </div>
             </div>
         )
     }
