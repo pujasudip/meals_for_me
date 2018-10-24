@@ -3,11 +3,12 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
+    overflow: auto;
 }
 .shopping-todo-container{
     position: absolute;
     width: 100vw;
-    top: 10vh;
+    top: 70px;
     left: 0;
     padding-top: 2vh;
 }
@@ -97,7 +98,9 @@
 }
 .taskDone{
     text-decoration: line-through;
-    color: red;
+    text-decoration-color: cornflowerblue;
+    color: green;
+    opacity: 0.8;
 }
 .btnDone{
     background-color: red;

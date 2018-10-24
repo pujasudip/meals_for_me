@@ -2,7 +2,15 @@
     position: absolute;
     background-color: rgba(168, 168, 168, 0.31);
     width: 100vw;
-    height: 100vh;
+    height: 100%;
+    overflow: auto;
+}
+.favContainer{
+    margin-top: 75px;
+}
+.noFavInList{
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 500px){
@@ -15,14 +23,8 @@
         height: 25vmin;
         border-radius: 50%;
     }
-    .favContainer{
-        margin-top: 10.5vh;
-    }
     .favListItemName{
         width: 50%;
-    }
-    dishContainer{
-
     }
     .card-panel{
         height: 135px;
@@ -43,20 +45,19 @@
         cursor: pointer;
     }
 }
-@media only screen and (min-width: 501px){
+@media only screen and (min-width: 1000px){
     .favContainer{
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-start;
-        margin-left: 1%;
+        justify-content: center;
     }
     .individualPanel{
         display: inline-block;
-        width: 31%;
-        height: 35vh;
+        width: 30vh;
+        height: 30vh;
         background-color: rgba(235, 186, 81, 0.22);
         position: relative;
-        margin: 1%;
+        margin: 3px;
     }
     .dishContainer > img{
         position: absolute;
@@ -85,18 +86,57 @@
     }
     .favListItemName h5{
         text-align: center;
-        width: 100%;
+        width: 90%;
         font-size: 1.5rem;
         position: absolute;
         bottom: 35px;
     }
 }
-.noFavInList{
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-@media only screen and (max-width: 550px) {
+@media only screen and (min-width: 500px){
     .favContainer{
-        margin-top: 10.5vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .individualPanel{
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        background-color: rgba(235, 186, 81, 0.22);
+        position: relative;
+        margin: 3px;
+    }
+    .dishContainer > img{
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+    .favTrash{
+        position: absolute;
+        bottom: 1px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .favTrash > i{
+        font-size: 2.5rem !important;
+        cursor: pointer;
+    }
+    .favListItemName p{
+    }
+    .favListItemName p{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 90%;
+        font-size: 1.5rem;
+        position: absolute;
+        bottom: 35px;
+        left: 50%;
+        transform: translateX(-50%);
+
     }
 }

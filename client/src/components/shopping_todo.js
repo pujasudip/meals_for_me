@@ -48,12 +48,12 @@ class ShoppingToDo extends Component{
                     linethrough = 'taskDone';
                     btnStyle = 'green';
                     check = 'check_box';
-                    status = 'cancel';
+                    status = 'check';
                 } else {
                     linethrough = '';
                     btnStyle = 'amber accent-3';
                     check = 'crop_din';
-                    status = 'check';
+                    status = 'cancel';
                 }
                 return (
                     <li className="shopTodo" key={ele.id}>

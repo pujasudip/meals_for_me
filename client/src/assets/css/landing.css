@@ -152,7 +152,7 @@ button{
 .clickPointer{
     cursor: pointer;
     margin: 0;
-    color: #b00000;
+    color: #ffffff;
 }
 .bgZoom{
     transform: scale(1.2);
@@ -270,7 +270,7 @@ input::placeholder {
     box-shadow: 0 0 10px 10px rgba(255, 250, 240, 0.5);
 }
 .chip{
-    background-color: #4bc217;
-    color: white;
+    background-color: #91c29b;
+    color: #000000;
     font-weight: bold;
 }

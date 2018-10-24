@@ -62,6 +62,10 @@ class Recipe extends Component {
         }
     }
 
+    componentWillUnmount(){
+        
+    }
+
     changeHeart(){
         const recipe_id =  this.props.match.params.id;
         let heartStatus;
