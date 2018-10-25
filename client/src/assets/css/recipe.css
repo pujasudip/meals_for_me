@@ -1,6 +1,6 @@
 .contain{
     background-color: #F5F5F5;
-    margin-top: 10vh;
+    margin-top: 70px;
     width: 100vw;
     position: absolute;
     left: 0;
@@ -238,7 +238,7 @@ ol>li {
     left: -29px;
     font-size: x-small;
 }
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1500px) {
     body {
         margin: 0 8%;
     }
@@ -279,9 +279,9 @@ ol>li {
     }
     .heartPic {
         position: absolute;
-        top: 10px;
+        top: 30px;
         z-index: 500;
-        left: 10px;
+        left: 30px;
     }
     #menuButton {
         max-width: 55px;
@@ -295,8 +295,9 @@ ol>li {
         z-index: 1;
     }
     .pictureContainer > img{
-        width: inherit;
-        height: inherit;
+        position: relative;
+        width: 50vmin;
+        height: 50vmin;
         border-radius: 0;
     }
     .dishDetails + h6{
@@ -310,9 +311,9 @@ ol>li {
     .showModal > .inner-content-modal{
         margin-top: -5vh;
     }
-}
-.tabs{
-    margin-top: 25px;
+    .tabs{
+        margin-top: 50px;
+    }
 }
 .tab{
     border: 1px solid #ffb74d;
@@ -484,6 +485,7 @@ ol>li {
     cursor: pointer;
     display: inline-block;
     width: 49%;
+    padding-left: 20px;
 }
 .ingList > i{
     vertical-align: middle;
@@ -508,6 +510,9 @@ ol>li {
     }
     .heartPic > img{
         width: 10vw;
+    }
+    .ingList{
+        width: 100%;
     }
 }
 @media only screen and (max-width: 650px){
