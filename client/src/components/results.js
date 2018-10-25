@@ -54,14 +54,30 @@ class Results extends Component {
     handleOnScroll() {
         let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
         let scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
-        let clientHeight = document.documentElement.clientHeight + 1 || window.innerHeight + 1; // changed client height to + 1
+        let clientHeight = document.documentElement.clientHeight || window.innerHeight; // changed client height to + 1
         let scrolledToBottom = (parseInt(scrollTop + clientHeight)) >= scrollHeight;
         if (scrolledToBottom) {
             let pageNo = this.props.page.page;
+            console.log('page:', pageNo);
             this.props.searchedRecipe(this.dataToSend, pageNo);
             this.props.setPageNo(pageNo);
             scrolledToBottom = false;
         }
+
+        // let scrollTop = document.documentElement.scrollTop;
+        // let clientHeight = document.documentElement.clientHeight;
+        // let scrollHeight = document.documentElement.scrollHeight;
+        //
+        // let scrollBottom = scrollHeight - (scrollTop + clientHeight);
+        // let scrolled = scrollBottom === parseInt(clientHeight*.30);
+        //
+        // if(scrolled){
+        //     let pageNo = this.props.page.page;
+        //     console.log('page:', pageNo);
+        //     this.props.searchedRecipe(this.dataToSend, pageNo);
+        //     this.props.setPageNo(pageNo);
+        //     scrolled = false;
+        // }
     }
     render() {
         const { searchedIngredients } = this.props;
