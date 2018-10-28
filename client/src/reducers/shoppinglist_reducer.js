@@ -5,6 +5,10 @@ const DEFAULT_STATE = {
     shoppingListServer: []
 };
  function shoppingList(state=DEFAULT_STATE, action){
+     if(action.error){
+         return {state};
+     }
+
     switch(action.type){
         case types.ADD_TO_SHOPPINGLIST:
             let list = [...state.shoppingList, action.payload];

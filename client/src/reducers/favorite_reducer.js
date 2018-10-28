@@ -5,6 +5,9 @@ const DEFAULT_STATE = {
 };
 
 export default function favorites(state=DEFAULT_STATE, action){
+    if(action.error){
+        return {state};
+    }
     switch(action.type){
         case types.ADD_TO_FAVORITE:
             return {...state};
@@ -24,6 +27,7 @@ export default function favorites(state=DEFAULT_STATE, action){
             if(typeof action.payload.data.data !== "undefined"){
                 list = [...action.payload.data.data];
             }
+
             return {...state, favorites: list};
         default:
             return state;
