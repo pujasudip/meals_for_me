@@ -30,7 +30,12 @@ const App = () => (
                 <Route path='/login' component={Login}/>
                 <Route path='/about_us' component={AboutUs}/>
                 <Route path='/recipe/:id' component={Recipe}/>
-                <Route path='/results/:q1?/:q2?/:q3' component={Results}/>
+                {/*<Route path='/recipe/:id' render={*/}
+                    {/*props => {*/}
+                        {/*return <Recipe {...props}/>*/}
+                    {/*}*/}
+                {/*}/>*/}
+                <Route path='/results/:q1/:q2?/:q3?' component={Results}/>
                 <Route path='/results' component={Results}/>
                 <Route path='/favorites' component={auth(Favorites, '/login')}/>
                 <Route path='/shopping-todo' component={auth(ShoppingToDo, '/login')}/>

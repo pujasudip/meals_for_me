@@ -142,6 +142,9 @@
 .nothingToShop{
     display: none;
 }
+.nothingToShop > ul{
+    margin: 0;
+}
 @media only screen and (max-width: 650px) {
     .shopDel{
         width: 5vw;
@@ -193,4 +196,19 @@
     .todoWholeContainer{
         left: 0;
     }
+}
+.nothingToShopHeader > p{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+
+}
+.nothingToShopImg{
+    width: 50vw;
+    height: 50vh;
+    background-image: url("../images/emptycart.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: auto;
 }

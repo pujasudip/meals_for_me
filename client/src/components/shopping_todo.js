@@ -80,7 +80,7 @@ class ShoppingToDo extends Component{
                         Operations
                     </div>
                     <ul>
-                        {shoppingList.length === 0 ? <h4 className="center-align">Nothing to display.</h4> : shoppingList}
+                        {shoppingList.length === 0 ? <div className="nothingToShopHeader"><p>Nothing to shop.</p><div className="nothingToShopImg"></div></div> : shoppingList}
                     </ul>
                 </div>
             </div>

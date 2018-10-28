@@ -6,7 +6,7 @@ import Directions from './directions';
 import Ingredients from './ingredients';
 import ShoppingList from './shopping_list';
 import { connect } from 'react-redux';
-import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList } from '../actions';
+import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList, resetResultsPage } from '../actions';
 import wine_up from '../assets/images/wine_up.png';
 
 class Recipe extends Component {
@@ -33,6 +33,7 @@ class Recipe extends Component {
     }
 
     componentWillMount(){
+        window.scrollTo(0, 0);
         if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
             this.userId = (JSON.parse(localStorage.userInfo))['user_id'];
             this.success = (JSON.parse(localStorage.userInfo))['success'];
@@ -63,7 +64,8 @@ class Recipe extends Component {
     }
 
     componentWillUnmount(){
-        
+        this.props.resetResultsPage();
+        console.log('unmounting');
     }
 
     changeHeart(){
@@ -191,15 +193,23 @@ class Recipe extends Component {
         this.timer = 10;
     }
 
+    footerShowDelay(){
+        setTimeout(()=>{
+
+        })
+    }
+
     render() {
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
+        let delayFooterShow = 'delayFooterShow';
         if(typeof this.props.details.data !== undefined && typeof this.props.details.data !== "undefined"){
             if((typeof this.props.details.data.data !== undefined) && (typeof this.props.details.data.data !== "undefined")){
                 directions = this.props.details.data.data[0];
                 ingredients = JSON.parse(directions.Ingredients);
                 pairedWines = JSON.parse(directions.winepairings).pairedWines;
+                delayFooterShow = '';
             }
         }
         let ingredientList = '';
@@ -318,6 +328,9 @@ class Recipe extends Component {
                     <div className="btn btn-small favLoginCancelBtn red" onClick={()=>this.cancelLogin()}>Cancel ({this.state.cancelTimer})</div>
                 </div>
             </div>
+            <div className={`recipeFooter ${delayFooterShow}`}>
+                <p>The best ingredient for any food is love.</p>
+            </div>
         </div>
         )}
 }
@@ -332,6 +345,6 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList})(Recipe);
+export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList, resetResultsPage})(Recipe);
 
 

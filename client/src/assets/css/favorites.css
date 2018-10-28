@@ -8,9 +8,20 @@
 .favContainer{
     margin-top: 75px;
 }
-.noFavInList{
+.noFavInList > p{
     font-size: 1.3rem;
     font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+.noFavInListImg{
+    width: 100%;
+    height: 50vh;
+    background-image: url("../images/sadheart.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: auto;
 }
 
 @media only screen and (max-width: 500px){
@@ -46,19 +57,19 @@
     }
 }
 @media only screen and (min-width: 1000px){
-    .favContainer{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .individualPanel{
-        display: inline-block;
-        width: 30vh;
-        height: 30vh;
-        background-color: rgba(235, 186, 81, 0.22);
-        position: relative;
-        margin: 3px;
-    }
+    /*.favContainer{*/
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+        /*justify-content: center;*/
+    /*}*/
+    /*.individualPanel{*/
+        /*display: inline-block;*/
+        /*width: 30vh;*/
+        /*height: 30vh;*/
+        /*background-color: rgba(235, 186, 81, 0.22);*/
+        /*position: relative;*/
+        /*margin: 3px;*/
+    /*}*/
     .dishContainer > img{
         position: absolute;
         top: 10px;
@@ -94,9 +105,13 @@
 }
 @media only screen and (min-width: 500px){
     .favContainer{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+        /*justify-content: flex-start;*/
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+
     }
     .individualPanel{
         display: inline-block;
@@ -104,7 +119,7 @@
         height: 200px;
         background-color: rgba(235, 186, 81, 0.22);
         position: relative;
-        margin: 3px;
+        margin: auto;
     }
     .dishContainer > img{
         position: absolute;

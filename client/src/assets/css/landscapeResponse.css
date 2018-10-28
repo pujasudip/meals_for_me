@@ -116,7 +116,6 @@
 
 @media only screen and (max-device-width: 736px) and (max-device-height: 414px){
     .userActivity{
-        margin-top: 70px !important;
         transform: scale(.8);
     }
 }

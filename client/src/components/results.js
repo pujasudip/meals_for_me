@@ -11,11 +11,13 @@ class Results extends Component {
         super(props);
         this.state = {
             resultArray: '',
-            query: []
+            query: [],
+            scrollToTop: ''
         };
         this.handleOnScroll = this.handleOnScroll.bind(this);
         this.params = [];
         this.dataToSend = [];
+        this.callInProgress = false;
     }
 
     componentDidMount() {
@@ -52,32 +54,46 @@ class Results extends Component {
         this.props.history.goBack();
     }
     handleOnScroll() {
-        let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-        let scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
-        let clientHeight = document.documentElement.clientHeight || window.innerHeight; // changed client height to + 1
-        let scrolledToBottom = (parseInt(scrollTop + clientHeight)) >= scrollHeight;
-        if (scrolledToBottom) {
-            let pageNo = this.props.page.page;
-            console.log('page:', pageNo);
-            this.props.searchedRecipe(this.dataToSend, pageNo);
-            this.props.setPageNo(pageNo);
-            scrolledToBottom = false;
-        }
-
-        // let scrollTop = document.documentElement.scrollTop;
-        // let clientHeight = document.documentElement.clientHeight;
-        // let scrollHeight = document.documentElement.scrollHeight;
-        //
-        // let scrollBottom = scrollHeight - (scrollTop + clientHeight);
-        // let scrolled = scrollBottom === parseInt(clientHeight*.30);
-        //
-        // if(scrolled){
+        // let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+        // let scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
+        // let clientHeight = document.documentElement.clientHeight || window.innerHeight; // changed client height to + 1
+        // let scrolledToBottom = (parseInt(scrollTop + clientHeight)) >= scrollHeight;
+        // if (scrolledToBottom) {
         //     let pageNo = this.props.page.page;
         //     console.log('page:', pageNo);
-        //     this.props.searchedRecipe(this.dataToSend, pageNo);
+        //     const response = this.props.searchedRecipe(this.dataToSend, pageNo);
+        //     console.log('response:', response);
         //     this.props.setPageNo(pageNo);
-        //     scrolled = false;
+        //     scrolledToBottom = false;
         // }
+
+        let scrollTop = document.documentElement.scrollTop;
+        let clientHeight = document.documentElement.clientHeight;
+        let scrollHeight = document.documentElement.scrollHeight;
+
+        let scrollBottom = scrollHeight - (scrollTop + clientHeight);
+        let scrolled = scrollBottom <= parseInt(clientHeight*.5);
+
+        if(scrolled && !this.callInProgress){
+            let pageNo = this.props.page.page;
+            console.log('page:', pageNo);
+            // if(!this.callInProgress){
+                this.callInProgress = true;
+                this.props.searchedRecipe(this.dataToSend, pageNo).then(()=>{
+                    this.callInProgress = false;
+                });
+            // }
+            this.props.setPageNo(pageNo);
+        }
+        if(document.documentElement.scrollTop > document.documentElement.clientHeight){
+            this.setState({
+                scrollToTop: 'goToTop'
+            });
+        } else {
+            this.setState({
+                scrollToTop: 'hideGoToTop'
+            });
+        }
     }
     render() {
         const { searchedIngredients } = this.props;
@@ -121,7 +137,7 @@ class Results extends Component {
                             resultArray
                         }
                     </div>
-                    <div className={`btn btn-floating red ${document.documentElement.scrollTop > 0 ? 'goToTop' : 'hideGoToTop'}`}
+                    <div className={`btn btn-floating red ${this.state.scrollToTop}`}
                          onClick={()=> window.scrollTo(0, 0)}>
                         <i className='material-icons'>keyboard_arrow_up</i>
                     </div>
