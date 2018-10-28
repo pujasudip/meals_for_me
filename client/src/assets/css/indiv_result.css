@@ -1,5 +1,4 @@
-
-.resultContainer:hover{
+.resultRow:hover{
     box-shadow: 0 0 2px 2px rgba(9, 164, 28, 0.79);
 }
 
@@ -60,6 +59,7 @@
         width: 95%;
         display: flex;
         align-items: center;
+        background-color: rgba(0, 255, 40, 0.04);
         box-shadow: 2px 2px 2px 2px #bfbfbf;
         margin-left: 2.5%;
     }

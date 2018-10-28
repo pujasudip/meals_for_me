@@ -21,5 +21,6 @@ export default {
     ADD_SHOPPINGLIST_SER: 'add_shoppingList_ser',
     GET_SHOPPINGLIST_SER: 'get_shoopinglist_ser',
     DEL_SHOPPINGLIST_SER: 'del_shoppinglist_ser',
-    STATUS_SHOPPING: 'status_shopping'
+    STATUS_SHOPPING: 'status_shopping',
+    RESET_DETAILS_PAGE: 'reset_details_page'
 }

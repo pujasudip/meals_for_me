@@ -35,6 +35,8 @@ function  searchResult(state = DEFAULT_STATE, action){
             return {...state, searched_recipe: []};
         case types.INVALID_SEARCH:
             return { ...state, searched_recipe_null: action.payload};
+        case types.RESET_DETAILS_PAGE:
+            return { ...state, details: '' };
         default:
             return state;
     }

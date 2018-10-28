@@ -11,10 +11,10 @@ class InvidualFavorite extends Component{
     render(){
         const { user_id, recipe_id, Image, Name } = this.props.item;
         return (
-            <div className='center-block card-panel individualPanel'>
+            <div className='card-panel individualPanel'>
                 <Link to={`/recipe/${recipe_id}`}>
                     <div className="favListItemName">
-                        <h5>{Name}</h5>
+                        <p>{Name}</p>
                     </div>
                     <div className='dishContainer'>
                         <img src={Image} />

@@ -1,3 +1,8 @@
+.resultsWholeContainer{
+    position: absolute;
+    background-color: rgba(168, 168, 168, 0.31);
+    width: 100vw;
+    height: 100vh;
 body{
     margin: 0 !important;
 }
@@ -14,7 +19,7 @@ body{
     border-radius: 50%;
 }
 .mainPage{
-    margin-top: 10vh;
+    margin-top: 70px;
     background-color: #F5F5F5;
 }
 .loading-spinner, .goback{
@@ -40,15 +45,29 @@ h5{
     margin-top: 0;
 }
 .goToTop{
-    display: inline-block;
     position: fixed;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    box-shadow: 0 0 3px 3px #00cf20;
+}
+.goToTop:hover{
+    animation-name: glowGo;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes glowGo {
+    from{
+        box-shadow: 0 0 5px 5px #cfcf3b;
+    }
+    to{
+        box-shadow: 0 0 1px 1px #cfaab3;
+    }
+
 }
 .goToTop > i{
-    font-size: 3rem;
-    margin: auto;
+    font-size: 2rem;
 }
 .hideGoToTop{
     display: none;

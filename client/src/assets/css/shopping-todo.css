@@ -1,8 +1,16 @@
+.todoWholeContainer{
+    background-color: rgba(168, 168, 168, 0.31);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+}
 .shopping-todo-container{
     position: absolute;
     width: 100vw;
-    top: 10vh;
+    top: 70px;
     left: 0;
+    padding-top: 2vh;
 }
 .shopping-todo-container ul{
   padding-left: 0 !important;
@@ -30,8 +38,11 @@
 }
 .shopTodo{
     list-style-type: none !important;
-    background-color: rgba(226, 226, 226, 0.31);
+    background-color: rgba(223, 226, 123, 0.31);
     box-shadow: 1px 1px 1px 1px #cdcdcd;
+    height: 7vh;
+    display: flex;
+    align-items: center;
 }
 .sNo{
     display: inline-block;
@@ -50,17 +61,18 @@
     text-align: center;
 }
 .shopDel{
-    display: inline-block;
-    height: 5vh;
+    /*display: inline-block;*/
+    /*height: 5vh;*/
+    /*margin-right: 3%;*/
+    /*padding: 1px;*/
+    /*border-radius: 4px;*/
+    /*cursor: pointer;*/
+    /*width: 13vw;*/
+    /*background-color: #fbbe6d;*/
+    /*box-shadow: 0 0 1px 1px #bebebe;*/
+    /*color: white;*/
+    /*font-size: 1.2rem;*/
     margin-right: 3%;
-    padding: 1px;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 13vw;
-    background-color: #fbbe6d;
-    box-shadow: 0 0 1px 1px #bebebe;
-    color: white;
-    font-size: 1.2rem;
 }
 .shopDel:hover{
     background-color: #fb6643;
@@ -68,16 +80,16 @@
     box-shadow: 0 0 1px 3px #bebebe;
 }
 .shopDone{
-    display: inline-block;
-    height: 5vh;
-    padding: 1px;
-    border-radius: 4px;
-    cursor: pointer;
+    /*display: inline-block;*/
+    /*height: 5vh;*/
+    /*padding: 1px;*/
+    /*border-radius: 4px;*/
+    /*cursor: pointer;*/
     width: 15vw;
-    background-color: #61DAFB;
-    box-shadow: 0 0 1px 1px #bebebe;
-    color: white;
-    font-size: 1.2rem;
+    /*background-color: #00a81a;*/
+    /*box-shadow: 0 0 1px 1px #bebebe;*/
+    /*color: white;*/
+    /*font-size: 1.2rem;*/
 }
 .shopDone:hover{
     background-color: #44ddfb;
@@ -86,7 +98,9 @@
 }
 .taskDone{
     text-decoration: line-through;
-    color: red;
+    text-decoration-color: cornflowerblue;
+    color: green;
+    opacity: 0.8;
 }
 .btnDone{
     background-color: red;
@@ -127,4 +141,74 @@
 }
 .nothingToShop{
     display: none;
+}
+.nothingToShop > ul{
+    margin: 0;
+}
+@media only screen and (max-width: 650px) {
+    .shopDel{
+        width: 5vw;
+        height: 4.5vh;
+    }
+    .shopDone{
+        width: 5vw;
+        height: 4.5vh;
+    }
+    .opBtn span{
+        display: none;
+    }
+    .opBtn{
+        box-sizing: content-box;
+    }
+    .opBtn i{
+        line-height: 4vh;
+    }
+}
+@media only screen and (max-width: 350px) {
+    .item{
+        width: 50vw;
+    }
+    .opBtn{
+        width: 50vw;
+        left: 50vw;
+    }
+    .shopTodo{
+        height: 15vh !important;
+    }
+    .shopDel{
+        width: 5vw;
+        height: 7vh;
+    }
+    .shopDone{
+        width: 5vw;
+        height: 7vh;
+    }
+    .opBtn i{
+        line-height: 7vh;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .opBtn span{
+        display: none;
+    }
+}
+@media only screen and (min-width: 1000px) {
+    .todoWholeContainer{
+        left: 0;
+    }
+}
+.nothingToShopHeader > p{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+
+}
+.nothingToShopImg{
+    width: 50vw;
+    height: 50vh;
+    background-image: url("../images/emptycart.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: auto;
 }

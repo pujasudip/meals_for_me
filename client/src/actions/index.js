@@ -229,3 +229,10 @@ export function shoppingStatus(shopId, status, user_id){
     }
 }
 
+export function resetResultsPage(){
+    return {
+        type: types.RESET_DETAILS_PAGE,
+        payload: ''
+    }
+}
+

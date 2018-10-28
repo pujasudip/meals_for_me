@@ -6,7 +6,7 @@ import Directions from './directions';
 import Ingredients from './ingredients';
 import ShoppingList from './shopping_list';
 import { connect } from 'react-redux';
-import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList } from '../actions';
+import { getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList, resetResultsPage } from '../actions';
 import wine_up from '../assets/images/wine_up.png';
 
 class Recipe extends Component {
@@ -14,7 +14,6 @@ class Recipe extends Component {
         super(props);
         this.state = {
             imgSrc: emptyHeart,
-            addFavText: 'Add to Favorites',
             component: 'Directions',
             toastMessageAddFav: 'hideToast',
             toastMessageRemFav: 'hideToast',
@@ -34,6 +33,7 @@ class Recipe extends Component {
     }
 
     componentWillMount(){
+        window.scrollTo(0, 0);
         if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
             this.userId = (JSON.parse(localStorage.userInfo))['user_id'];
             this.success = (JSON.parse(localStorage.userInfo))['success'];
@@ -61,6 +61,11 @@ class Recipe extends Component {
                 }
             }
         }
+    }
+
+    componentWillUnmount(){
+        this.props.resetResultsPage();
+        console.log('unmounting');
     }
 
     changeHeart(){
@@ -188,15 +193,23 @@ class Recipe extends Component {
         this.timer = 10;
     }
 
+    footerShowDelay(){
+        setTimeout(()=>{
+
+        })
+    }
+
     render() {
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
+        let delayFooterShow = 'delayFooterShow';
         if(typeof this.props.details.data !== undefined && typeof this.props.details.data !== "undefined"){
             if((typeof this.props.details.data.data !== undefined) && (typeof this.props.details.data.data !== "undefined")){
                 directions = this.props.details.data.data[0];
                 ingredients = JSON.parse(directions.Ingredients);
                 pairedWines = JSON.parse(directions.winepairings).pairedWines;
+                delayFooterShow = '';
             }
         }
         let ingredientList = '';
@@ -212,13 +225,13 @@ class Recipe extends Component {
                     for(let item of this.props.shoppingList){
                         if(item.items === ele.name){
                             addOrRemove = 'check_circle';
-                            ingListAdded = 'ingListAdded';
+                            ingListAdded = 'ingListAdded badge';
                             iconColor = 'green-text';
                             title = 'Item has been added to the shopping list.'
                         }
                     }
                 }
-                return <li key={index} onClick={this.addToShopingList.bind(this, ele)} className={`ingList ${ingListAdded}`} title={title}><i className={`material-icons ${iconColor}`}>{addOrRemove}</i>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</li>
+                return <div key={index} onClick={this.addToShopingList.bind(this, ele)} className={`ingList ${ingListAdded}`} title={title}><i className={`material-icons ${iconColor}`}>{addOrRemove}</i>{ele.measures.us.amount} {ele.measures.us.unitShort} {ele.name}</div>
             });
         }
         if(pairedWines){
@@ -229,6 +242,8 @@ class Recipe extends Component {
 
         return(
         <div className='contain'>
+            <div className="heartPic center"><img src= {this.state.imgSrc} onClick={() => this.changeHeart()}></img>
+            </div>
             { this.props.details ?
                 <div>
             <section id='mainContent'>
@@ -239,9 +254,6 @@ class Recipe extends Component {
                     <div className="splittingLine"></div>
                     <div className="splittingLine"></div>
                     </section>
-            <div className="heartPic center"><img src= {this.state.imgSrc} onClick={() => this.changeHeart()}></img>
-                    <p>{this.state.addFavText}</p>
-            </div>
         </section>
             <section className="dishDetails center">
                 <h1>{directions.Name}</h1>
@@ -316,6 +328,9 @@ class Recipe extends Component {
                     <div className="btn btn-small favLoginCancelBtn red" onClick={()=>this.cancelLogin()}>Cancel ({this.state.cancelTimer})</div>
                 </div>
             </div>
+            <div className={`recipeFooter ${delayFooterShow}`}>
+                <p>The best ingredient for any food is love.</p>
+            </div>
         </div>
         )}
 }
@@ -330,6 +345,6 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList})(Recipe);
+export default connect(mapStateToProps, {getDetailsById, addToShoppingList, addToFavorite, getFavorites, deleteFromFavorite, setShoppingList, getShoppingList, resetResultsPage})(Recipe);
 
 
