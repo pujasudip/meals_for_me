@@ -60,7 +60,7 @@
 }
 
 .landPgSearchBtn {
-    width: 20vw;
+    width: 30vw;
     background-color: #576a54;
     text-shadow: 1px 1px 1px #000000;
     border: 1px solid darkgreen;
@@ -245,13 +245,9 @@ input::placeholder {
 .inputFieldHeader {
     color: white;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.99);
-    font-size: 240%;
-    font-weight: 300;
+    font-size: 150%;
     text-transform: uppercase;
-    word-spacing: 4px;
-    letter-spacing: 1px;
 }
-
 .nothingEnteredIsFalse {
     display: none;
 }
@@ -324,7 +320,6 @@ input::placeholder {
     }
 }
 .userActivity{
-    margin-top: 70px;
     background-color: rgba(255, 250, 240, 0.50);
     width: 70vw;
     padding: 20px;
