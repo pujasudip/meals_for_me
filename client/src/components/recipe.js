@@ -155,8 +155,14 @@ class Recipe extends Component {
     addToShopingList(item){
         const recipe_id =  this.props.match.params.id;
 
+        const amount =  item.measures.us.amount;
+        const unitShort = item.measures.us.unitShort;
+        let qty = amount + ' ' + unitShort;
+
+        console.log('aa:', qty);
+
         if(this.userId !== ''){
-            this.props.setShoppingList(this.userId, recipe_id, item.name)
+            this.props.setShoppingList(this.userId, recipe_id, item.name, qty)
         } else {
             this.props.addToShoppingList(item.name);
         }

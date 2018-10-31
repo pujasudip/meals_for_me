@@ -6,7 +6,7 @@
     left: 0;
 }
 #pictureFrame{
-    padding: 0px;
+    padding: 0;
     height:auto;
 }
 
@@ -425,20 +425,20 @@ ol>li {
 .showModal{
     display: block;
     position: absolute;
-    top: 0;
+    top: -70px;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(163, 163, 163, 0.32);
     z-index: 1001;
+    overflow: auto;
 }
 
 .inner-content-modal{
     position: absolute;
-    width: 80vw;
-    height: 40vh;
+    width: 60vw;
     top: 0;
-    left: 10%;
+    left: 20%;
 }
 
 .close{
@@ -533,6 +533,11 @@ ol>li {
     color: red;
     font-size: 1.2rem;
 }
+.recipeFooter{
+    position: sticky;
+    background-color: #61DAFB;
+    top: 0;
+}
 .recipeFooter > p{
     text-align: center;
     font-size: 1rem;
@@ -543,4 +548,7 @@ ol>li {
 }
 .delayFooterShow{
     display: none;
+}
+.message>i{
+    vertical-align: middle;
 }

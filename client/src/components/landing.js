@@ -179,7 +179,7 @@ class LandingPage extends Component {
 
         const colorArray = ['red accent-1', 'orange accent-1', 'green lighten-3','red lighten-4','amber accent-1'];
         const ingredient = this.props.ingredients.map((item, index) => {
-            return (<div key={index} className='ingredients'>
+            return (<div key={index} className='ingredientsLandPg'>
                 <div className='chip'>
                     <div className="valign-wrapper">
                         {item}
@@ -256,7 +256,7 @@ class LandingPage extends Component {
                             </div>
                             <div className="landPgSearchBtn btn btn-block center-block" onClick={this.goToResultsPage}>Search</div>
                             <div className='center' style={this.props.ingredients.length !== 3 ? { 'display': 'none' } : {}}>
-                                <button type='button' className='btn btn-flat clearBtn waves-effect' onClick={() => this.clearUserInputs()}>Clear Inputs</button>
+                                <div className='btn btn-block clearBtn waves-effect' onClick={() => this.clearUserInputs()}>Clear Inputs</div>
                             </div>
                         </div>
                     </div>

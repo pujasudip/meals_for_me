@@ -4,7 +4,6 @@
 }
 
 * {
-    color: #555;
     font-family: 'Lato',
         'Arial',
         sans-serif;
@@ -59,9 +58,9 @@
 
 .landPgSearchBtn {
     width: 30vw;
-    background-color: #576a54;
+    background-color: #688867;
     text-shadow: 1px 1px 1px #000000;
-    border: 1px solid darkgreen;
+    border-radius: 5px;
 
 }
 
@@ -109,12 +108,8 @@ button {
 }
 
 .landPgSearchBtn.btn:hover {
-    transition: background-color 0.2s,
-        border 0.2s,
-        color 0.2s;
-    border: #283127;
     color: white;
-    background-color: #283127;
+    background-color: #576a54;
 }
 
 /* .slogan > img{
@@ -156,12 +151,18 @@ button {
 }
 
 .clearBtn {
-    border: 1px solid red;
+    width: 30vw;
     border-radius: 5px;
     background-color: #FF8A80;
+    margin-top: 10px;
+    color: white;
 }
 
-.ingredients {
+.clearBtn:hover{
+    background-color: #ff4653;
+}
+
+.ingredientsLandPg {
     display: inline;
 }
 
@@ -190,6 +191,21 @@ button {
     cursor: pointer;
     margin: 0;
     color: #ffffff;
+}
+.clickPointer:hover{
+    animation-name: wobble;
+    animation-duration: 300ms;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes wobble {
+    0%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
 
 .bgZoom {
@@ -327,13 +343,7 @@ input::placeholder {
     background-color: #91c29b;
     color: #000000;
     font-weight: bold;
-}
-.chip > .valign-wrapper{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 20vw;
-    color: red;
+    text-transform: uppercase;
 }
 
 /* .directionRight{

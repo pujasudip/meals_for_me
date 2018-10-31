@@ -172,8 +172,8 @@ export function setLoginErrorToDefault(){
         type: types.LOGIN_DEFAULT
     }
 }
-export function setShoppingList(user_id, recipe_id, item){
-    const dataToSend = formatPostData({user_id: user_id, recipe_id: recipe_id, item: item});
+export function setShoppingList(user_id, recipe_id, item, qty){
+    const dataToSend = formatPostData({user_id: user_id, recipe_id: recipe_id, item: item, qty: qty});
 
     var getList = {params: {
             'id': user_id

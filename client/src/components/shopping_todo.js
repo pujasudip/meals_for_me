@@ -48,17 +48,18 @@ class ShoppingToDo extends Component{
                     linethrough = 'taskDone';
                     btnStyle = 'green';
                     check = 'check_box';
-                    status = 'check';
+                    status = 'done';
                 } else {
                     linethrough = '';
                     btnStyle = 'amber accent-3';
                     check = 'crop_din';
-                    status = 'cancel';
+                    status = 'shopping_basket';
                 }
                 return (
                     <li className="shopTodo" key={ele.id}>
                         <div className="sNo" onClick={()=>this.changeStatus(ele.id, ele.status, ele.user_id)}><i className="material-icons hide-on-small-and-down">{check}</i></div>
                         <div className={`item ${linethrough}`}>{ele.items}</div>
+                        <div className={`qty ${linethrough}`}>{ele.quantity}</div>
                         <div className="opBtn">
                             <div className="shopDel btn red darken-1" onClick={()=>this.deleteFromShoppingList(ele.user_id, ele.recipe_id, ele.items, ele.id)}><i className="material-icons show-on-small show-on-medium hide-on-large-only">delete</i><span className="show-on-large">Delete</span></div>
                             <div className={`shopDone btn ${btnStyle}`} onClick={()=>this.changeStatus(ele.id, ele.status, ele.user_id)}><i className="material-icons show-on-small show-on-medium hide-on-large-only">{status}</i><span className="show-on-large">{ele.status}</span></div>
@@ -75,6 +76,9 @@ class ShoppingToDo extends Component{
                     </div>
                     <div className={`items ${nothingToShop}`}>
                         Items
+                    </div>
+                    <div className={`qtys ${nothingToShop}`}>
+                        Qty
                     </div>
                     <div className={`operations ${nothingToShop}`}>
                         Operations

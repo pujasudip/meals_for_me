@@ -36,6 +36,7 @@ if($_POST){
     $user_id = $_POST['user_id'];
     $recipe_id = $_POST['recipe_id'];
     $item = $_POST['item'];
+    $qty = $_POST['qty'];
     $status = 'incomplete';
 
     $queryGet = "SELECT * FROM shoppinglist WHERE `user_id`=$user_id AND `recipe_id`=$recipe_id AND `items`='$item'";
@@ -50,7 +51,7 @@ if($_POST){
         exit();
     }
 
-    $queryInsert = "REPLACE INTO `shoppinglist` (`id`, `user_id`, `recipe_id`, `items`, `status`) VALUES (NULL, '$user_id', '$recipe_id', '$item', '$status')";
+    $queryInsert = "REPLACE INTO `shoppinglist` (`id`, `user_id`, `recipe_id`, `items`, `status`) VALUES (NULL, '$user_id', '$recipe_id', '$item', '$qty', '$status')";
 
     $result = mysqli_query($conn, $queryInsert);
     if(mysqli_affected_rows($conn)>0) {

@@ -26,7 +26,13 @@
 }
 .items{
     display: inline-block;
-    width: 60vw;
+    width: 50vw;
+    text-align: center;
+    font-weight: bold;
+}
+.qtys{
+    display: inline-block;
+    width: 10vw;
     text-align: center;
     font-weight: bold;
 }
@@ -51,8 +57,13 @@
 }
 .item{
     display: inline-block;
-    width: 60vw;
+    width: 50vw;
     text-align: center;
+    font-size: 1.5rem;
+}
+.qty{
+    display: inline-block;
+    width: 10vw;
     font-size: 1.5rem;
 }
 .opBtn{

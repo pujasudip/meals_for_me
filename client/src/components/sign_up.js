@@ -65,8 +65,11 @@ class SignUp extends Component{
                         <Field name='c_password' label='Confirm Password' type='password' component={this.renderInput} />
                     </div>
                     <div className='center'>
-                    <button type="submit" className="btn btn-small">Sign Up</button>
-                </div>
+                        <button type="submit" className="btn btn-small">Sign Up</button>
+                    </div>
+                    <div className='center'>
+                        <Link to="/login">Log In</Link>
+                    </div>
                 </form>
                
             </div>
