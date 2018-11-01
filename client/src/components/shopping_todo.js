@@ -8,8 +8,15 @@ class ShoppingToDo extends Component{
     constructor(props){
         super(props);
         this.userId = '';
+        this.state = {
+            confirmDeletionDialogBox: 'hideConfirmDelSL'
+        }
+        this.user_id = '';
+        this.recipe_id = '';
+        this.item = '';
+        this.id = '';
     }
-    componentDidMount(){
+    componentWillMount(){
         if((typeof localStorage.userInfo !== undefined) && (typeof localStorage.userInfo !== "undefined")){
             this.userId = (JSON.parse(localStorage.userInfo))['user_id'];
         } else if((typeof this.props.userInfo !== undefined) && (typeof this.props.userInfo !== "undefined")) {
@@ -32,6 +39,33 @@ class ShoppingToDo extends Component{
 
     deleteFromShoppingList(user_id, recipe_id, item, id){
         this.props.deleteFromShoppingListServer(user_id, recipe_id, item, id);
+    }
+
+    deleteShopLDialog(user_id, recipe_id, item, id){
+        this.user_id = user_id;
+        this.recipe_id = recipe_id;
+        this.item = item;
+        this.id = id;
+
+        let confirmDelBody = document.getElementById('shopDelContent');
+        confirmDelBody.textContent = this.item + ' ?';
+
+        this.setState({
+            confirmDeletionDialogBox: ''
+        });
+    }
+
+    confirmDeletionShopTodo(confirm){
+        if(confirm.toLowerCase() === 'cancel'){
+            this.setState({
+                confirmDeletionDialogBox: 'hideConfirmDelSL'
+            });
+        } else if(confirm.toLowerCase() === 'ok') {
+            this.setState({
+                confirmDeletionDialogBox: 'hideConfirmDelSL'
+            });
+            this.deleteFromShoppingList(this.user_id, this.recipe_id, this.item, this.id);
+        }
     }
 
     render(){
@@ -61,7 +95,8 @@ class ShoppingToDo extends Component{
                         <div className={`item ${linethrough}`}>{ele.items}</div>
                         <div className={`qty ${linethrough}`}>{ele.quantity}</div>
                         <div className="opBtn">
-                            <div className="shopDel btn red darken-1" onClick={()=>this.deleteFromShoppingList(ele.user_id, ele.recipe_id, ele.items, ele.id)}><i className="material-icons show-on-small show-on-medium hide-on-large-only">delete</i><span className="show-on-large">Delete</span></div>
+                            {/*<div className="shopDel btn red darken-1" onClick={()=>this.deleteFromShoppingList(ele.user_id, ele.recipe_id, ele.items, ele.id)}><i className="material-icons show-on-small show-on-medium hide-on-large-only">delete</i><span className="show-on-large">Delete</span></div>*/}
+                            <div className="shopDel btn red darken-1" onClick={()=>this.deleteShopLDialog(ele.user_id, ele.recipe_id, ele.items, ele.id)}><i className="material-icons show-on-small show-on-medium hide-on-large-only">delete</i><span className="show-on-large">Delete</span></div>
                             <div className={`shopDone btn ${btnStyle}`} onClick={()=>this.changeStatus(ele.id, ele.status, ele.user_id)}><i className="material-icons show-on-small show-on-medium hide-on-large-only">{status}</i><span className="show-on-large">{ele.status}</span></div>
                         </div>
                     </li>
@@ -86,6 +121,20 @@ class ShoppingToDo extends Component{
                     <ul>
                         {shoppingList.length === 0 ? <div className="nothingToShopHeader"><p>Nothing is in the list. You can add items here from the recipe page to shop for later.</p><div className="nothingToShopImg"></div></div> : shoppingList}
                     </ul>
+                </div>
+                <div className={`confirmDeletionSL ${this.state.confirmDeletionDialogBox}`}>
+                    <div className="confirmDeletionSLHeader">
+                        <h5>Delete Confirm?</h5>
+                    </div>
+                    <div className="confirmDeletionSLBody">
+                        <p id="shopDelContent"></p>
+                    </div>
+                    <div className="confirmDeletionSLFooter">
+                        <div className="btnsSL">
+                            <div className="btn btn-small btnSLOk" onClick={()=>this.confirmDeletionShopTodo('ok')}>OK</div>
+                            <div className="btn btn-small btnSLCancel" onClick={()=>this.confirmDeletionShopTodo('cancel')}>Cancel</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

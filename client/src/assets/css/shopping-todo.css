@@ -47,6 +47,7 @@
     background-color: rgba(223, 226, 123, 0.31);
     box-shadow: 1px 1px 1px 1px #cdcdcd;
     height: 7vh;
+    min-height: 50px;
     display: flex;
     align-items: center;
 }
@@ -60,6 +61,7 @@
     width: 50vw;
     text-align: center;
     font-size: 1.5rem;
+    text-transform: capitalize;
 }
 .qty{
     display: inline-block;
@@ -222,4 +224,60 @@
     background-position: center;
     background-size: contain;
     margin: auto;
+}
+.hideConfirmDelSL{
+    display: none;
+}
+.confirmDeletionSL{
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    transform: translateX(-50%);
+    background-color: #7f977c;
+    border-radius: 5px;
+}
+.confirmDeletionSLHeader{
+    height: 20%;
+}
+.confirmDeletionSLHeader > h5{
+    margin: 0;
+    padding: 5px;
+    height: 100%;
+    color: #b40034;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.confirmDeletionSLBody{
+    height: 40%;
+    background-color: #bab374;
+}
+#shopDelContent{
+    position: relative;
+    text-transform: capitalize;
+    text-align: center;
+    color: white;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    margin: 0;
+}
+.confirmDeletionSLFooter{
+    position: relative;
+    height: 40%;
+}
+.btnsSL{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.btnSLOk{
+    margin:0 0 0 30px;
+}
+.btnSLCancel{
+    margin:0 30px 0 0;
 }

@@ -9,7 +9,7 @@ class Favorites extends Component {
         super(props);
     }
 
-    componentDidMount(){
+    componentWillMount(){
         let id = '';
         if(localStorage.userInfo){
             id = (JSON.parse(localStorage.userInfo))['user_id'];

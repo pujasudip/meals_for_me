@@ -23,13 +23,15 @@ class Recipe extends Component {
             showHideIcon: 'expand_more',
             tabIndex: 0,
             loginConfirmToast: 'hideLoginToast',
-            cancelTimer: 10
+            cancelTimer: 10,
+            hideExpandButton: ''
         };
         this.userId = '';
         this.success = '';
         this.handleSelect = this.handleSelect.bind(this);
         this.cancelInterval = null;
         this.timer = 10;
+        this.done = false;
     }
 
     componentWillMount(){
@@ -61,6 +63,25 @@ class Recipe extends Component {
                 }
             }
         }
+    }
+    componentDidUpdate(){
+        debugger;
+        let overflowedIngredientList = document.getElementById('overflowedOrNot');
+        if(!overflowedIngredientList){
+            return;
+        }
+        let clientHeight =  overflowedIngredientList.clientHeight;
+        let scrollHeight = overflowedIngredientList.scrollHeight;
+
+        console.log('h1', clientHeight);
+        console.log('h2', scrollHeight);
+
+        if((scrollHeight <= clientHeight) && !this.done){
+            this.setState({
+                hideExpandButton: 'hideExpandButton'
+            });
+        }
+        this.done = true;
     }
 
     componentWillUnmount(){
@@ -220,6 +241,14 @@ class Recipe extends Component {
                 let ingListAdded = '';
                 let iconColor = 'brown-text';
                 let title = 'Click to add to the shopping list.';
+
+                if(this.userId === ''){
+                    addOrRemove = 'brightness_1';
+                    title = '';
+                    iconColor = 'tiny';
+                    ingListAdded = 'regularList'
+                }
+
                 if(this.userId !== '' && this.props.shoppingList){
                     for(let item of this.props.shoppingList){
                         if(item.items === ele.name){
@@ -261,10 +290,10 @@ class Recipe extends Component {
                 <p>Vegetarian Friendly: {this.dietOptions(directions.vegetarian)}</p>
             </section>
                     <h6 className="center">Ingredients</h6>
-        <div className={`${this.state.showall}`}>
+        <div className={`${this.state.showall}`} id="overflowedOrNot">
             <Ingredients ingredients={ingredientList} />
         </div>
-                   <div className="center expandIngredients">
+                   <div className={`center expandIngredients ${this.state.hideExpandButton}`}>
                        <i className="material-icons" onClick={()=>this.showHideControl()}>{this.state.showHideIcon}</i>
                    </div>
             <div className='row s12 tabs'>

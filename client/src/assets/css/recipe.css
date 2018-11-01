@@ -552,3 +552,14 @@ ol>li {
 .message>i{
     vertical-align: middle;
 }
+.regularList{
+    cursor: default;
+}
+.hideExpandButton{
+    display: none;
+}
+@media only screen and (min-width: 501px){
+    .ingredientList {
+        height: 12vh;
+    }
+}
