@@ -1,4 +1,4 @@
-@media only screen and ( min-width: 551px) {
+@media only screen and ( min-width: 600px) {
     .header{
         display: none;
     }
@@ -49,7 +49,7 @@
     }
     .containerAboutUs{
         margin-top: 70px;
-        height: 100vh;
+        height: calc(100vh - 70px);
     }
     .noFavInList > p{
         text-align: center;
@@ -77,12 +77,12 @@
         margin-top: 70px;
     }
 }
-@media only screen and ( max-width: 550px) {
+@media only screen and ( max-width: 600px) {
     .desktop_menu{
         display: none;
     }
     .main{
-        margin-top: 70px;
+        margin-top: 60px;
     }
     .search_field{
         margin-left: -25px;
@@ -95,10 +95,6 @@
     }
 }
 @media only screen and ( min-width: 1000px) {
-    .memberIndividual{
-        background-color: rgba(168, 168, 168, 0.31);
-        box-shadow: 0 0 5px 15px rgba(168, 168, 168, 0.31);
-    }
     .wine_pairing_slider {
         top: 2%;
     }

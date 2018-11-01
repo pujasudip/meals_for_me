@@ -54,26 +54,28 @@ class Login extends React.Component{
         return (
             userLoggedIn ? `${this.props.history.goBack()}`
                 :
-           <div className='login'>
-               <form className='col' onSubmit={handleSubmit(this.userLoggingIn)}>
-                   <div className='input-field col s6'>
-                       <i className="material-icons prefix">account_circle</i>
-                       <Field name='username' label='Username' type='text' component={this.renderInput} onFocus={this.resetLoginError}/>
-                   </div>
-                   <div className='input-field col s6'>
-                       <i className="material-icons prefix">lock</i>
-                       <Field name='password' label='Password' type='password' component={this.renderInput} onFocus={this.resetLoginError}/>
-                   </div>
-                   { this.props.loginResponse.loginError === false ?
-                   <div className='center-align red-text'>
-                       <p>Invalid username and/or password.</p>
-                   </div> : ''}
-               <button className='btn btn-block center-block'>Log In</button>
-               </form>
-               <div className='center'>
-                <Link to='/signup'>Sign Up</Link>
-               </div>
-           </div>
+                <div className='loginContainer'>
+                    <div className='login'>
+                        <form className='col' onSubmit={handleSubmit(this.userLoggingIn)}>
+                            <div className='input-field col s6'>
+                                <i className="material-icons prefix">account_circle</i>
+                                <Field name='username' label='Username' type='text' component={this.renderInput} onFocus={this.resetLoginError}/>
+                            </div>
+                            <div className='input-field col s6'>
+                                <i className="material-icons prefix">lock</i>
+                                <Field name='password' label='Password' type='password' component={this.renderInput} onFocus={this.resetLoginError}/>
+                            </div>
+                            { this.props.loginResponse.loginError === false ?
+                                <div className='center-align red-text'>
+                                    <p>Invalid username and/or password.</p>
+                                </div> : ''}
+                            <button className='btn btn-block center-block'>Log In</button>
+                        </form>
+                        <div className='center'>
+                            <Link to='/signup'>Sign Up</Link>
+                        </div>
+                    </div>
+                </div>
         );
     }
 }

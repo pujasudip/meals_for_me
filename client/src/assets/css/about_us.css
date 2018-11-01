@@ -1,29 +1,6 @@
-@media only screen and (max-width: 500px) {
-    .memberInfo {
-        display: inline-block;
-    }
-
-    .memberIndividual{
-        height: 22vh;
-        text-align: center;
-    }
-
-    .containerAboutUs{
-        margin-top: 70px;
-        height: 90vh;
-        background-color: rgba(141, 140, 128, 0.36);
-    }
-    .title{
-        height: 5vh !important;
-    }
+.aboutUsWholeContainer{
+    height: 100vh;
+    width: 100vw;
+    background-color: #a8a8a84f;
+    overflow-y: auto;
 }
-@media only screen and (max-width: 999px){
-    .containerAboutUs{
-        background-color: rgba(168, 168, 168, 0.31);
-        box-shadow: 0 0 5px 15px rgba(168, 168, 168, 0.31);
-    }
-    .title{
-        height: 10vh;
-    }
-}
-

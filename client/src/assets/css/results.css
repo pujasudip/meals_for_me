@@ -1,8 +1,11 @@
 .resultsWholeContainer {
     position: absolute;
-    background-color: rgba(168, 168, 168, 0.31);
+    background-color: #a8a8a84f;
     width: 100vw;
     height: 100vh;
+}
+.resultContainer{
+    background-color: floralwhite;
 }
 body{
     margin: 0 !important;

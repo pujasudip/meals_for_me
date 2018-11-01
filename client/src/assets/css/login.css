@@ -1,3 +1,6 @@
+.loginContainer{
+    background-color: #a8a8a84f;
+}
 @media only screen and (max-width: 500px) {
     .login{
         position: absolute;

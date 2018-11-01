@@ -31,9 +31,12 @@ class AboutUs extends Component {
             );
         });
         return (
-            <div className='containerAboutUs'>
-                {member}
+            <div className="aboutUsWholeContainer">
+                <div className='containerAboutUs'>
+                    {member}
+                </div>
             </div>
+
         )
     }
 }

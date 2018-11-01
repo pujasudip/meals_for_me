@@ -65,16 +65,12 @@ class Recipe extends Component {
         }
     }
     componentDidUpdate(){
-        debugger;
         let overflowedIngredientList = document.getElementById('overflowedOrNot');
         if(!overflowedIngredientList){
             return;
         }
         let clientHeight =  overflowedIngredientList.clientHeight;
         let scrollHeight = overflowedIngredientList.scrollHeight;
-
-        console.log('h1', clientHeight);
-        console.log('h2', scrollHeight);
 
         if((scrollHeight <= clientHeight) && !this.done){
             this.setState({
@@ -86,7 +82,6 @@ class Recipe extends Component {
 
     componentWillUnmount(){
         this.props.resetResultsPage();
-        console.log('unmounting');
     }
 
     changeHeart(){
@@ -179,8 +174,6 @@ class Recipe extends Component {
         const amount =  item.measures.us.amount;
         const unitShort = item.measures.us.unitShort;
         let qty = amount + ' ' + unitShort;
-
-        console.log('aa:', qty);
 
         if(this.userId !== ''){
             this.props.setShoppingList(this.userId, recipe_id, item.name, qty)

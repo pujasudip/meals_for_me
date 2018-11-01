@@ -1,6 +1,6 @@
 .favWholeContainer{
     position: absolute;
-    background-color: rgba(168, 168, 168, 0.31);
+    background-color: #a8a8a84f;
     width: 100vw;
     height: 100%;
     overflow: auto;
@@ -22,6 +22,9 @@
     background-position: center;
     background-size: contain;
     margin: auto;
+}
+.individualPanel{
+    background-color: floralwhite;
 }
 
 @media only screen and (max-width: 500px){
@@ -117,7 +120,6 @@
         display: inline-block;
         width: 200px;
         height: 200px;
-        background-color: rgba(235, 186, 81, 0.22);
         position: relative;
         margin: auto;
     }

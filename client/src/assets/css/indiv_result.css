@@ -8,9 +8,9 @@
         margin-bottom: 1%;
     }
     .resultContainer{
-        min-width: 34vmin;
+        min-width: 200px;
         width: 34vmin;
-        min-height: 34vmin;
+        min-height: 200px;
         height: 34vmin;
         display: inline-block;
         position: relative;
