@@ -25,7 +25,10 @@ const DEFAULT_STATE = {
             newList.splice(index, 1);
             return {...state, shoppingList: newList};
         case types.GET_SHOPPINGLIST_SER:
-            let shoplist = action.payload.data.data;
+            let shoplist = '';
+            if(action.payload.data.data){
+                shoplist = action.payload.data.data;
+            }
             return {...state, shoppingListServer: shoplist};
         case types.DEL_SHOPPINGLIST_SER:
             list = action.payload.data.data;

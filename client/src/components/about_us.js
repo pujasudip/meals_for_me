@@ -33,7 +33,9 @@ class AboutUs extends Component {
         return (
             <div className="aboutUsWholeContainer">
                 <div className='containerAboutUs'>
-                    {member}
+                    <div className="innerContainerAboutUs">
+                        {member}
+                    </div>
                 </div>
             </div>
 

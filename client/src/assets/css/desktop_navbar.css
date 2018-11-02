@@ -47,10 +47,6 @@
     .main-content{
         /*margin-top: 5%;*/
     }
-    .containerAboutUs{
-        margin-top: 70px;
-        height: calc(100vh - 70px);
-    }
     .noFavInList > p{
         text-align: center;
         width: 100%;

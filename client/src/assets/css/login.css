@@ -1,6 +1,9 @@
 .loginContainer{
     background-color: #a8a8a84f;
 }
+.loginContainer label{
+    pointer-events: none;
+}
 @media only screen and (max-width: 500px) {
     .login{
         position: absolute;

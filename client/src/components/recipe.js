@@ -212,6 +212,18 @@ class Recipe extends Component {
         });
         this.timer = 10;
     }
+    addAllIngredients(ings){
+        const recipe_id =  this.props.match.params.id;
+
+        for(let i = 0; i < ings.length; i++){
+
+            const amount =  ings[0].measures.us.amount;
+            const unitShort = ings[0].measures.us.unitShort;
+            let qty = amount + ' ' + unitShort;
+
+            this.props.setShoppingList(this.userId, recipe_id, ings[i].name, qty);
+        }
+    }
     render() {
         let directions = '';
         let ingredients = '';
@@ -227,6 +239,7 @@ class Recipe extends Component {
         }
         let ingredientList = '';
         let wineList = '';
+        let ingredientsArray = [];
 
         if(ingredients){
             ingredientList = ingredients.map((ele, index)=>{
@@ -234,6 +247,7 @@ class Recipe extends Component {
                 let ingListAdded = '';
                 let iconColor = 'brown-text';
                 let title = 'Click to add to the shopping list.';
+                ingredientsArray.push(ele);
 
                 if(this.userId === ''){
                     addOrRemove = 'brightness_1';
@@ -283,6 +297,7 @@ class Recipe extends Component {
                 <p>Vegetarian Friendly: {this.dietOptions(directions.vegetarian)}</p>
             </section>
                     <h6 className="center">Ingredients</h6>
+                    <div className="btn btn-small ingAddAll" onClick={()=>this.addAllIngredients(ingredientsArray)}>Add All</div>
         <div className={`${this.state.showall}`} id="overflowedOrNot">
             <Ingredients ingredients={ingredientList} />
         </div>

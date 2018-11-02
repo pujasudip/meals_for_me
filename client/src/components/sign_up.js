@@ -33,7 +33,7 @@ class SignUp extends Component{
 
         const {handleSubmit} = this.props;
         return (
-            userSignedUp ? `${this.props.history.push('/')}`
+            userSignedUp ? `${this.props.history.push('/login')}`
                 :
             <div className='signup'>
                 <form className='col' onSubmit={handleSubmit(this.userSignUp)}>

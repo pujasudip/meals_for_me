@@ -14,14 +14,12 @@ import pageReducer from "../reducers/page_no_reducer";
 
 class LandingPage extends Component {
     foodIndex = 0;
-    allowedEntries = 3;
 
     constructor(props) {
         super(props);
         this.state = {
             currentIngredientInput: '',
             commonIngredients: commonIngredientsRef[this.foodIndex].food,
-            remainingEntries: this.allowedEntries,
             zoomBackground: '',
             inputError: '',
             toastMessage: 'hideToast',
@@ -92,35 +90,21 @@ class LandingPage extends Component {
         }
         this.setState({
             currentIngredientInput: '',
-            remainingEntries: this.allowedEntries - itemArray.length,
         });
-
     }
 
     addIngredientToListFromButton(item) {
         this.props.addIngredient(item);
-        this.setState({
-            remainingEntries: --this.allowedEntries,
-        });
         this.commonFoodCarousel('right');
     }
 
     removeFromTheIngredient(item) {
         let index = this.props.ingredients.indexOf(item);
-        // console.log('index: ', index);
-        this.setState({
-            remainingEntries: ++this.allowedEntries,
-        });
         this.props.removeIngredient(index);
-        // console.log('aaa:', this.props.ingredients.length);
     }
 
     clearUserInputs() {
         this.props.clearUserIngredientInputs();
-        this.allowedEntries = 3;
-        this.setState({
-            remainingEntries: this.allowedEntries
-        });
     }
 
     commonFoodCarousel(direction) {
@@ -213,7 +197,7 @@ class LandingPage extends Component {
                         {this.props.ingredients.length < 3 ?
                             <div className='search_field'>
                                 <div className="">
-                                    <input placeholder={this.state.remainingEntries === 3 ?`Insert up to ${this.state.remainingEntries} Ingredients` : `Insert ${this.state.remainingEntries} more Ingredients`}
+                                    <input placeholder={this.props.ingredients.length === 3 ?`Insert up to 3 Ingredients` : `Insert ${3 - this.props.ingredients.length} more Ingredients`}
                                            className='ingInput center' onChange={(event) => this.userInputHandler(event)}
                                            value={this.state.currentIngredientInput} />
                                     <i id="ingAddImg" onClick={this.addIngredientToListFromInput.bind(this)} className="material-icons center-block">add_circle_outline</i>

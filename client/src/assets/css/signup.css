@@ -17,3 +17,6 @@
         margin-bottom: -25px;
     }
 }
+.signup label{
+    pointer-events: none;
+}
