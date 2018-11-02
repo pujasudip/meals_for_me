@@ -21,6 +21,10 @@ export default function favorites(state=DEFAULT_STATE, action){
                 }
             }
             newList.splice(tobeDeletedIndex, 1);
+            if(newList.length === 0){
+                newList = '';
+            }
+            console.log('newlist:', newList);
             return {favorites: newList};
         case types.GET_FAVORITE:
             let list = '';

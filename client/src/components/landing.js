@@ -28,7 +28,9 @@ class LandingPage extends Component {
         };
     }
     componentDidMount() {
-        this.props.clearUserIngredientInputs();
+        if(!this.props.nullSearch){
+            this.props.clearUserIngredientInputs();
+        }
         this.props.setPageNo(0);
     }
 //     componentWillUnmount(){
@@ -197,7 +199,7 @@ class LandingPage extends Component {
                         {this.props.ingredients.length < 3 ?
                             <div className='search_field'>
                                 <div className="">
-                                    <input placeholder={this.props.ingredients.length === 3 ?`Insert up to 3 Ingredients` : `Insert ${3 - this.props.ingredients.length} more Ingredients`}
+                                    <input placeholder={this.props.ingredients.length === 0 ?`Insert up to 3 Ingredients` : `Insert ${3 - this.props.ingredients.length} more Ingredients`}
                                            className='ingInput center' onChange={(event) => this.userInputHandler(event)}
                                            value={this.state.currentIngredientInput} />
                                     <i id="ingAddImg" onClick={this.addIngredientToListFromInput.bind(this)} className="material-icons center-block">add_circle_outline</i>
@@ -262,6 +264,7 @@ class LandingPage extends Component {
 function mapStateToProps(state) {
     return {
         ingredients: state.search.ingredients,
+        nullSearch: state.search.searched_recipe_null
     }
 
 }
@@ -272,7 +275,7 @@ const mapActionsToProps = {
     removeIngredient: removeIngredients,
     clearUserIngredientInputs: clearUserIngredientInputs,
     setPageNo: setPageNo,
-    clearSearchedRecipe: clearSearchedRecipe
+    clearSearchedRecipe: clearSearchedRecipe,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(LandingPage);

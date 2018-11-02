@@ -70,7 +70,6 @@ class ShoppingToDo extends Component{
 
     render(){
         if(typeof this.props.shoppingList === "object" && this.props.shoppingList.length === 0){
-            console.log('spinner');
             return (
                 <div className='loading-spinner'><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span className="sr-only">Loading...</span></div>
             );

@@ -152,7 +152,7 @@ function mapStateToProps(state){
         userInputs: state.search.ingredients,
         searchedIngredients: state.search.searched_recipe,
         searched_recipe_null: state.search.searched_recipe_null,
-        page: state.page
+        page: state.page,
     }
 }
 
