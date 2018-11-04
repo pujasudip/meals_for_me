@@ -32,6 +32,7 @@ class Recipe extends Component {
         this.cancelInterval = null;
         this.timer = 10;
         this.done = false;
+        this.heartChanged = false;
     }
 
     componentWillMount(){
@@ -78,6 +79,22 @@ class Recipe extends Component {
             });
         }
         this.done = true;
+
+        debugger;
+
+        const favList = this.props.favorites;
+        const recipe_id =  this.props.match.params.id;
+
+        if(favList.length !== 0 && !this.heartChanged){
+            for(let item of favList){
+                if(item.recipe_id === recipe_id){
+                    this.setState({
+                        imgSrc: redHeart
+                    });
+                }
+            }
+            this.heartChanged = true;
+        }
     }
 
     componentWillUnmount(){

@@ -18,6 +18,9 @@
 .shopping-todo-container li{
     margin-bottom: 1%;
 }
+.opBtn > div{
+    min-height: 30px;
+}
 .sNos{
     display: inline-block;
     width: 10%;
@@ -146,11 +149,13 @@
         width: 40vw;
         text-align: left;
         padding-left: 5%;
+        font-size: 1.3rem;
     }
     .qty{
         position: absolute;
         left: 40vw;
         width: 30vw;
+        font-size: 1.3rem;
     }
     .opBtn{
         position: absolute;
@@ -184,7 +189,7 @@
         box-sizing: content-box;
     }
     .opBtn i{
-        line-height: 4vh;
+        line-height: 30px;
     }
 }
 @media only screen and (max-width: 350px) {

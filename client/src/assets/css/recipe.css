@@ -90,6 +90,8 @@ header {
     width: 100%;
 }
 .confirmLogin{
+    min-width: 200px;
+    max-height: 150px;
     width: 45%;
     height: 25%;
     background-color: #bafdbb;
