@@ -80,8 +80,6 @@ class Recipe extends Component {
         }
         this.done = true;
 
-        debugger;
-
         const favList = this.props.favorites;
         const recipe_id =  this.props.match.params.id;
 
@@ -245,6 +243,10 @@ class Recipe extends Component {
         let directions = '';
         let ingredients = '';
         let pairedWines = '';
+        let addAllBtnHide = '';
+        if(this.userId === ''){
+            addAllBtnHide = 'addAllBtnHide';
+        }
         let delayFooterShow = 'delayFooterShow';
         if(typeof this.props.details.data !== undefined && typeof this.props.details.data !== "undefined"){
             if((typeof this.props.details.data.data !== undefined) && (typeof this.props.details.data.data !== "undefined")){
@@ -279,7 +281,7 @@ class Recipe extends Component {
                             addOrRemove = 'check_circle';
                             ingListAdded = 'ingListAdded badge';
                             iconColor = 'green-text';
-                            title = 'Item has been added to the shopping list.'
+                            title = 'Item has been added to the shopping list.';
                         }
                     }
                 }
@@ -314,7 +316,7 @@ class Recipe extends Component {
                 <p>Vegetarian Friendly: {this.dietOptions(directions.vegetarian)}</p>
             </section>
                     <h6 className="center">Ingredients</h6>
-                    <div className="btn btn-small ingAddAll" onClick={()=>this.addAllIngredients(ingredientsArray)}>Add All</div>
+                    <div className={`btn btn-small ingAddAll ${addAllBtnHide}`} onClick={()=>this.addAllIngredients(ingredientsArray)}>Add All</div>
         <div className={`${this.state.showall}`} id="overflowedOrNot">
             <Ingredients ingredients={ingredientList} />
         </div>

@@ -592,3 +592,6 @@ ol>li {
 .shopping_list{
     margin: 5px 3vw;
 }
+.addAllBtnHide{
+    display: none;
+}
