@@ -160,10 +160,10 @@ export function setPageNo(page){
     }
 }
 
-export function setInvalidSearch(){
+export function setInvalidSearch(arg=false){
     return {
         type: types.INVALID_SEARCH,
-        payload: false
+        payload: arg
     }
 }
 

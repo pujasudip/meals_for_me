@@ -52,7 +52,7 @@ class Login extends React.Component{
         const { handleSubmit } = this.props;
 
         return (
-            userLoggedIn ? `${this.props.history.goBack()}`
+            userLoggedIn ? `${this.props.history.push('/')}`
                 :
                 <div className='loginContainer'>
                     <div className='login'>

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import backButton from '../assets/images/back_arrow.png';
 import { connect } from 'react-redux';
 import logo from '../assets/images/ourlogo.png';
-import { userLogout } from '../actions';
+import { userLogout, setInvalidSearch } from '../actions';
 
 class Header extends Component {
     constructor(props) {
@@ -65,6 +65,7 @@ class Header extends Component {
         }
     }
     goHome(){
+        this.props.setInvalidSearch();
         this.props.history.push('/');
     }
     render() {
@@ -122,4 +123,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {userLogout})(Header);
+export default connect(mapStateToProps, {userLogout, setInvalidSearch})(Header);

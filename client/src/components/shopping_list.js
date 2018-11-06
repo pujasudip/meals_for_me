@@ -38,7 +38,8 @@ class ShoppingList extends Component{
 
         return (
             <section className="shopping_list">
-                <ul start= '1'>Shopping List
+                <h5>Shopping List:</h5>
+                <ul start= '1'>
                     {list}
                 </ul>
             </section>

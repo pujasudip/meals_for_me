@@ -22,7 +22,7 @@ class Directions extends Component{
         }
         return (
             <div className="directions">
-                <h4>Directions</h4>
+                <h5>Directions:</h5>
                 <ul>
                     {directionList}
                 </ul>

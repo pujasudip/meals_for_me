@@ -91,3 +91,9 @@ h5{
     left: 50%;
     transform: translateX(-50%);
 }
+.resultValidGoBack{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+}

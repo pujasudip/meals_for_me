@@ -31,10 +31,6 @@ class Results extends Component {
                 this.dataToSend.push(this.params[key]);
             }
         }
-
-        console.log('a:', this.props.match.url);
-
-
         this.setState({
             query: this.dataToSend
         });
@@ -52,6 +48,11 @@ class Results extends Component {
 
     goBack() {
         this.props.history.goBack();
+    }
+
+    resultsValidGoBack(){
+        this.props.setInvalidSearch(true);
+        this.props.history.push('/');
     }
     handleOnScroll() {
         // let scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
@@ -76,7 +77,6 @@ class Results extends Component {
 
         if(scrolled && !this.callInProgress){
             let pageNo = this.props.page.page;
-            console.log('page:', pageNo);
             // if(!this.callInProgress){
                 this.callInProgress = true;
                 this.props.searchedRecipe(this.dataToSend, pageNo).then(()=>{
@@ -132,6 +132,7 @@ class Results extends Component {
             <div className="resultsWholeContainer">
                 <div className= 'mainPage'>
                     <h5 className='resultHeader'>Results for: {this.state.query.join(", ")}</h5>
+                    <div className="btn btn-primary resultValidGoBack" onClick={()=>this.resultsValidGoBack()}>Go Back</div>
                     <div className= 'main-content center-align'>
                         {
                             resultArray
