@@ -1,5 +1,6 @@
 <?php
-require_once('mysqlProcedural.php');
+//require_once('mysqlProcedural.php');
+require_once('testConnectLocal.php');
 header("Access-Control-Allow-Origin: *");
 
 if(!$conn){

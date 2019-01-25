@@ -3,7 +3,8 @@ if(empty($_POST)){
     echo 'invalid post';
 }
 
-require_once('mysql_server_connect.php');
+//require_once('mysql_server_connect.php');
+require_once('testConnectLocal.php');
 
 header("Access-Control-Allow-Origin: *");
 
