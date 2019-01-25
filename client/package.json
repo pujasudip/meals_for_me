@@ -20,6 +20,7 @@
     "url": "https://github.com/Learning-Fuze/c618_what_to_food.git"
   },
   "dependencies": {
+    "acorn": "^6.0.5",
     "ajv": "^5.5.2",
     "ajv-keywords": "^2.1.1",
     "axios": "^0.18.0",
@@ -47,7 +48,7 @@
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "file-loader": "^1.1.11",
-    "image-webpack-loader": "^4.3.1",
+    "image-webpack-loader": "^4.6.0",
     "postcss-loader": "^2.1.5",
     "react-hot-loader": "^4.3.0",
     "style-loader": "^0.21.0",

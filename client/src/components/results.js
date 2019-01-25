@@ -139,7 +139,10 @@ class Results extends Component {
                         }
                     </div>
                     <div className={`btn btn-floating red ${this.state.scrollToTop}`}
-                         onClick={()=> window.scrollTo(0, 0)}>
+                         onClick={()=> window.scrollTo({
+                             top: 0,
+                             behavior: 'smooth'
+                         })}>
                         <i className='material-icons'>keyboard_arrow_up</i>
                     </div>
                 </div>

@@ -1,0 +1,85 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js
+
+PATH: 
+  /Users/pujasudip/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/mysql/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  11.3.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "proxy": {
+      "/api/*": {
+        "target": "http://localhost:8000"
+      }
+    },
+    "name": "meals_for_me",
+    "version": "1.0.0",
+    "description": "Recipe finder",
+    "main": "index.js",
+    "scripts": {
+      "start": "node dev_server.js",
+      "bundle": "webpack --config webpack.prod.js --progress",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Meals For Me",
+    "license": "ISC",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Learning-Fuze/c618_what_to_food.git"
+    },
+    "dependencies": {
+      "ajv": "^5.5.2",
+      "ajv-keywords": "^2.1.1",
+      "axios": "^0.18.0",
+      "babel-polyfill": "^6.26.0",
+      "font-awesome": "^4.7.0",
+      "materialize-css": "^1.0.0-rc.2",
+      "react": "^16.4.0",
+      "react-bootstrap": "^0.32.3",
+      "react-burger-menu": "^2.5.2",
+      "react-dom": "^16.4.0",
+      "react-materialize": "^2.4.5",
+      "react-redux": "^5.0.7",
+      "react-router-dom": "^4.3.1",
+      "redux": "^4.0.0",
+      "redux-form": "^7.4.2",
+      "redux-promise": "^0.6.0"
+    },
+    "devDependencies": {
+      "babel-core": "^6.26.3",
+      "babel-loader": "^7.1.4",
+      "babel-plugin-syntax-async-functions": "^6.13.0",
+      "babel-preset-env": "^1.7.0",
+      "babel-preset-react": "^6.24.1",
+      "babel-preset-stage-2": "^6.24.1",
+      "css-loader": "^0.28.11",
+      "eslint": "^4.19.1",
+      "file-loader": "^1.1.11",
+      "image-webpack-loader": "^4.6.0",
+      "postcss-loader": "^2.1.5",
+      "react-hot-loader": "^4.3.0",
+      "style-loader": "^0.21.0",
+      "uglifyjs-webpack-plugin": "^1.2.5",
+      "webpack": "^4.12.0",
+      "webpack-cli": "^3.0.3",
+      "webpack-dev-server": "^3.1.4",
+      "webpack-merge": "^4.1.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: EACCES: permission denied, unlink '/Users/pujasudip/Desktop/meals_for_me/c618_what_to_food/client/node_modules/image-webpack-loader/package.json'
