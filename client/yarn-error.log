@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js add cjpeg
 
 PATH: 
   /Users/pujasudip/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/mysql/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
@@ -8,7 +8,7 @@ Yarn version:
   1.5.1
 
 Node version: 
-  11.3.0
+  11.7.0
 
 Platform: 
   darwin x64
@@ -36,6 +36,7 @@ npm manifest:
       "url": "https://github.com/Learning-Fuze/c618_what_to_food.git"
     },
     "dependencies": {
+      "acorn": "^6.0.5",
       "ajv": "^5.5.2",
       "ajv-keywords": "^2.1.1",
       "axios": "^0.18.0",
@@ -45,7 +46,7 @@ npm manifest:
       "react": "^16.4.0",
       "react-bootstrap": "^0.32.3",
       "react-burger-menu": "^2.5.2",
-      "react-dom": "^16.4.0",
+      "react-dom": "^16.4.2",
       "react-materialize": "^2.4.5",
       "react-redux": "^5.0.7",
       "react-router-dom": "^4.3.1",
@@ -70,7 +71,7 @@ npm manifest:
       "uglifyjs-webpack-plugin": "^1.2.5",
       "webpack": "^4.12.0",
       "webpack-cli": "^3.0.3",
-      "webpack-dev-server": "^3.1.4",
+      "webpack-dev-server": "^3.1.11",
       "webpack-merge": "^4.1.2"
     }
   }
@@ -82,4 +83,14 @@ Lockfile:
   No lockfile
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/Users/pujasudip/Desktop/meals_for_me/c618_what_to_food/client/node_modules/image-webpack-loader/package.json'
+  Error: https://registry.yarnpkg.com/cjpeg: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:65019:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:132430:22)
+      at Request.emit (events.js:188:13)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:133413:10)
+      at Request.emit (events.js:188:13)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:133333:12)
+      at Object.onceWrapper (events.js:276:13)
+      at IncomingMessage.emit (events.js:193:15)
+      at endReadableNT (_stream_readable.js:1129:12)
+      at processTicksAndRejections (internal/process/next_tick.js:76:17)
