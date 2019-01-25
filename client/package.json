@@ -1,31 +1,42 @@
 {
-  "name": "react_starter",
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:8000"
+    }
+  },
+  "name": "meals_for_me",
   "version": "1.0.0",
-  "description": "Starting setup for react redux project",
+  "description": "Recipe finder",
   "main": "index.js",
   "scripts": {
     "start": "node dev_server.js",
     "bundle": "webpack --config webpack.prod.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Scott Bowler",
+  "author": "Meals For Me",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Learning-Fuze/react_starter.git"
+    "url": "https://github.com/Learning-Fuze/c618_what_to_food.git"
   },
   "dependencies": {
+    "acorn": "^6.0.5",
     "ajv": "^5.5.2",
     "ajv-keywords": "^2.1.1",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "font-awesome": "^4.7.0",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.4.0",
+    "react-bootstrap": "^0.32.3",
     "react-burger-menu": "^2.5.2",
-    "react-dom": "^16.4.0",
+    "react-dom": "^16.4.2",
+    "react-materialize": "^2.4.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-form": "^7.4.2",
+    "redux-promise": "^0.6.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -37,14 +48,14 @@
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "file-loader": "^1.1.11",
-    "image-webpack-loader": "^4.3.1",
+    "image-webpack-loader": "^3.6.0",
     "postcss-loader": "^2.1.5",
     "react-hot-loader": "^4.3.0",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.3",
-    "webpack-dev-server": "^3.1.4",
+    "webpack-dev-server": "^3.1.11",
     "webpack-merge": "^4.1.2"
   }
 }

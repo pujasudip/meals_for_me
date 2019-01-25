@@ -1,15 +1,26 @@
-/* .container{
-    display: flex;
-    align-content: space-around;
+.contain{
+    background-color: #a8a8a84f;
+    margin-top: 70px;
+    width: 100vw;
+    position: absolute;
+    left: 0;
 }
-.dishPicture{
-    width: 25px;
-    height: 25px;
-    background-color: red;
-} */
+#pictureFrame{
+    padding: 0;
+    height:auto;
+}
 
-/*  */
-
+.likeTitle{
+    color: #FF8A80;
+    margin-top: 5px;
+    text-shadow: 0px 0px 0px #000000;
+    font-weight: bold;
+}
+#titleText{
+    color:#7F977C;
+    font-size: 14px;
+    font-weight: bold;
+}
 header {
     display: inline-block;
     height: 10vh;
@@ -55,22 +66,19 @@ header {
     height: 25vh;
     position: relative;
 }
-/*  */
 
 .pictureContainer {
-    height: 90%;
-    width: 50%;
-    max-width: 25vh;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 .pictureContainer img {
-    height: 100%;
-    width: 100%;
-    border: 8px solid black;
+    height: 25vmin;
+    width: 25vmin;
+    border: 3px solid rgba(0, 0, 0, 0.51);
     border-radius: 50%;
 }
 
@@ -80,7 +88,53 @@ header {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    z-index: -1;
+}
+.confirmLogin{
+    min-width: 200px;
+    max-height: 150px;
+    width: 45%;
+    height: 25%;
+    background-color: #bafdbb;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 7px;
+    box-shadow: 0 0 2px 3px rgba(218, 218, 218, 0.93);
+    z-index: 1000;
+}
+.favConfirmHeader{
+    border-bottom-color: #7F977C;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+.loginConfirmMessage{
+    height: 30%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-bottom-color: #7F977C;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+.favLoginConfirmBtn{
+    margin-left: 3%;
+}
+
+.favLoginCancelBtn{
+    float: right;
+    margin-right: 3%;
+}
+.favConfirmBtns{
+    position: absolute;
+    top: 70%;
+    height: 5vh;
+    width: 100%;
+}
+.hideLoginToast{
+    display: none;
+}
+.showLoginToast{
+    display: block;
 }
 
 @keyframes splittingLines {
@@ -93,12 +147,17 @@ header {
 }
 
 #splittingAnimation>div {
-    height: 8px;
+    height: 3px;
     width: 50%;
     float: left;
-    background-color: black;
+    background-color: #0d8000;
     animation-name: splittingLines;
     animation-duration: 2s;
+}
+.expandIngredients > i{
+    cursor: pointer;
+    border: 2px solid green;
+    border-radius: 50%;
 }
 
 #splittingAnimation>div:last-child {
@@ -106,25 +165,29 @@ header {
 }
 
 .dishDetails {
-    height: 10vh;
+    margin-top: 2%;
     width: 100vw;
 }
 
 .dishDetails h1 {
     text-align: center;
     font-size: 5vmax;
-    margin: 0;
+    margin: -20px 0;
 }
 
 .dishDetails h3 {
+    padding-top: 10px;
     text-align: center;
-    font-size: 3vmax;
-    margin: 0;
+    font-size: 1.5rem;
+}
+
+.dishDetails > p{
+    margin: -3px 0;
 }
 
 .ingredients,
 .directions {
-    margin: 0 3vw;
+    margin: 5px 3vw;
 }
 
 .ingredients>ol,
@@ -133,19 +196,25 @@ header {
     font-weight: bold;
 }
 
+.ingredients>ol>ul{
+    color: pink;
+}
+
 ol {
-    counter-reset: indexForLi;
+    padding: 2px;
+
+}
+ul {
+    padding-left: 40px !important;
+}
+
+ul li {
+    list-style-type: disc !important;
 }
 
 ol li {
     display: block;
-}
 
-ol li:before {
-    content: counter(indexForLi) ") ";
-    counter-increment: indexForLi;
-    font-weight: bold;
-    font-size: 150%;
 }
 
 ol>li {
@@ -154,50 +223,375 @@ ol>li {
 }
 
 .heartPic {
+    top: 3vh;
+    left: 2vw;
+    display: inline-block;
     position: absolute;
-    top: 55%;
-    left: 10%;
-    font-size: 10vmax;
-    color: white;
-    -webkit-text-stroke: 4px red;
+    z-index: 500;
+    cursor: pointer;
 }
 
-@media only screen and (min-width: 1000px) {
-    body {
-        margin: 0 8%;
+.heartPic > img {
+    width: 5vw;
+    top: 25px;
+    left: -16px;
+}
+
+.heartPic>p {
+    margin: 0;
+    top: 49px;
+    left: -29px;
+    font-size: x-small;
+}
+/*@media only screen and (min-width: 1500px) {*/
+    /*body {*/
+        /*margin: 0 8%;*/
+    /*}*/
+    /*.splittingLine{*/
+        /*display: none;*/
+    /*}*/
+    /*header {*/
+        /*width: 84vw;*/
+    /*}*/
+    /*#mainContent {*/
+        /*margin-top: 1vmin !important;*/
+        /*width: 100vw;*/
+    /*}*/
+    /*.dishDetails {*/
+        /*width: 65vw;*/
+        /*margin-left: 35vw;*/
+        /*margin-top: -10%;*/
+    /*}*/
+    /*.showall{*/
+        /*width: 65vw;*/
+        /*margin-left: 35vw;*/
+    /*}*/
+    /*.ingredientList {*/
+        /*width: 65vw;*/
+        /*margin-left: 35vw;*/
+        /*display: flex;*/
+        /*justify-content: flex-start;*/
+    /*}*/
+    /*.dishDetails h1 {*/
+        /*font-size: 5.5vmin;*/
+    /*}*/
+    /*.dishDetails h3 {*/
+        /*font-size: 4vmin;*/
+    /*}*/
+    /*.ingredients>ol,*/
+    /*.directions>ol {*/
+        /*font-size: 2.5vmax;*/
+    /*}*/
+    /*.heartPic {*/
+        /*position: absolute;*/
+        /*top: 30px;*/
+        /*z-index: 500;*/
+        /*left: 30px;*/
+    /*}*/
+    /*#menuButton {*/
+        /*max-width: 55px;*/
+    /*}*/
+    /*.pictureContainer {*/
+        /*left: 1vmin;*/
+        /*top: 1vmin;*/
+        /*transform: translate(0,0);*/
+        /*width: 55vmin;*/
+        /*height: 55vmin;*/
+        /*z-index: 1;*/
+    /*}*/
+    /*.pictureContainer > img{*/
+        /*position: relative;*/
+        /*width: 50vmin;*/
+        /*height: 50vmin;*/
+        /*border-radius: 0;*/
+    /*}*/
+    /*.dishDetails + h6{*/
+        /*width: 65vw;*/
+        /*margin-left: 35vw;*/
+    /*}*/
+    /*.expandIngredients{*/
+        /*width: 65vw;*/
+        /*margin-left: 35vw;*/
+    /*}*/
+    /*.showModal > .inner-content-modal{*/
+        /*margin-top: -5vh;*/
+    /*}*/
+    /*.tabs{*/
+        /*margin-top: 50px;*/
+    /*}*/
+/*}*/
+.tab{
+    border: 1px solid #ffb74d;
+    height: 50px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.tab:hover{
+    background-color: #ffcc80;
+    color: white;
+    border: none;
+}
+
+.wine_pairing_slider{
+    position: absolute;
+    top: 1%;
+    right: 0;
+    width: 38px;
+    height: 104px;
+    border-radius: 20px 0 0 20px;
+    background-color: #ffe0b2;
+    transition: height 100ms, width 1000ms;
+    z-index: 100;
+}
+.winelist{
+   display: none;
+}
+.wine_pairing_slider:hover .winelist{
+    display: block;
+}
+
+.wine_pairing_slider:hover{
+    right: 0;
+    width: 150px;
+    height: 200px;
+    background-color: #ff8a65;
+    transition: height 1000ms, width 100ms;
+}
+.wine_pairing_body{
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 200px;
+}
+.wineNavLeft{
+    cursor: pointer;
+}
+.wine_pairing_slider:hover .wineNavLeft{
+    animation: rightTurn 1s;
+    transform: rotate(-180deg);
+}
+@keyframes rightTurn {
+    0%{
+        transform: rotate(-90deg);
     }
-    header {
-        width: 84vw;
+    100%{
+        transform: rotate(-180deg);
     }
-    #mainContent {
-        width: 84vw;
+
+}
+.wineheader{
+    white-space: nowrap;
+    margin: 0 -40px;
+    transform: rotate(-90deg);
+    color: #B71C1C;
+    font-size: 15px;
+}
+.hideToast{
+    display: none;
+}
+.favToastAdd{
+    position: fixed;
+    width: 250px;
+    height: 55px;
+    border-radius: 10px;
+    background-color: rgb(3, 194, 45);
+    z-index: 100;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.message{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    position: relative;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    text-shadow: 1px 1px 1px black;
+
+}
+.favToastRem{
+    position: fixed;
+    width: 300px;
+    height: 55px;
+    border-radius: 10px;
+    background-color: #7F977C;
+    z-index: 100;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.showModal{
+    display: block;
+    position: absolute;
+    top: -70px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(163, 163, 163, 0.32);
+    z-index: 1001;
+    overflow: auto;
+}
+
+.inner-content-modal{
+    position: absolute;
+    width: 60vw;
+    top: 0;
+    left: 20%;
+}
+
+.close{
+    border: 2px solid white;
+    border-radius: 50px;
+    position: relative;
+    top: 17px;
+    left: -10px;
+    background-color: #b0a81e;
+    cursor: pointer;
+}
+
+.modalBtn{
+    position: fixed;
+    bottom: 32%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.modalBtn:hover{
+    border-radius: 3px;
+    color: #fdff02;
+    box-shadow: 0 0 4px 4px rgba(113, 236, 5, 0.54);
+}
+
+.hideModal{
+    display: none;
+}
+.imageContainer > img{
+    width: 100%;
+}
+.hideWineSlider{
+    display: none;
+}
+.ingredientList{
+    height: 20vh;
+    overflow-y: hidden;
+}
+.showall{
+    height: 100%;
+}
+.activeTab{
+    background-color: #ffcc80;
+}
+.ingList{
+    list-style-type: none !important;
+    cursor: pointer;
+    display: inline-block;
+    width: 49%;
+    padding-left: 20px;
+}
+.ingList > i{
+    vertical-align: middle;
+}
+.ingListAdded:after{
+    content: " added ";
+    color: white;
+    white-space: pre;
+    background-color: green;
+    border-radius: 3px;
+    padding: 1px;
+    margin-left: 3px;
+}
+@media only screen and (min-width: 500px){
+    #mainContent{
+        margin-top: 3vh;
     }
-    .dishDetails {
-        width: 84vw;
+}
+@media only screen and (max-width: 500px){
+    #mainContent{
+        margin-top: 0;
     }
-    .dishDetails h1 {
-        font-size: 5.5vmin;
+    .heartPic > img{
+        width: 10vw;
     }
-    .dishDetails h3 {
-        font-size: 4vmin;
+    .ingList{
+        width: 100%;
     }
-    .ingredients>ol,
-    .directions>ol {
-        font-size: 2.5vmax;
+}
+@media only screen and (max-width: 650px){
+    .loginConfirmMessage > p{
+        font-size: 1rem;
     }
-    ol li:before {
-        font-size: 125%
+
+}
+.removeFromShoppingList{
+    cursor: pointer;
+    list-style-type: none !important;
+}
+.removeFromShoppingList > i{
+    vertical-align: middle;
+    color: red;
+    font-size: 1.2rem;
+}
+.recipeFooter{
+    position: sticky;
+    background-color: #61DAFB;
+    top: 0;
+}
+.recipeFooter > p{
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    background-color:#7F977C;
+    color: white;
+}
+.delayFooterShow{
+    display: none;
+}
+.message>i{
+    vertical-align: middle;
+}
+.regularList{
+    cursor: default;
+}
+.hideExpandButton{
+    display: none;
+}
+@media only screen and (min-width: 501px){
+    .ingredientList {
+        height: 12vh;
     }
-    .heartPic {
-        font-size: 10vmin;
+}
+.ingAddAll{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: green;
+    margin-bottom: 15px;
+}
+.ingAddAll:hover{
+    animation-name: addAll;
+    animation-duration: 500ms;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+@keyframes addAll {
+    0%{
+        background-color: rgba(0, 128, 0, 0.58);
+        color: yellow;
     }
-    #menuButton {
-        max-width: 55px;
+    100%{
+        background-color: green;
+        color: white;
     }
-    #mainContent {
-        height: 35vh;
-    }
-    .pictureContainer {
-        max-width: 25vw;
-    }
+}
+.shopping_list{
+    margin: 5px 3vw;
+}
+.addAllBtnHide{
+    display: none;
 }

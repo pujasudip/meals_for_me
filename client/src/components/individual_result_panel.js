@@ -1,24 +1,27 @@
 import React from 'react';
+import '../assets/css/indiv_result.css';
 import { Link } from 'react-router-dom';
+import '../assets/css/indiv_result.css';
 
 function OneResult(props){
-    let style = {
-        'width': '120px',
-        'border': '1px solid green',
-    };
+
+    const {id, imageSrc, title, likes} = props;
 
     return (
-        <Link to='/recipe'>
-            <div className='card-panel'>
-                <div className="row" key={props.id}>
-                    <div className="col s6">
-                        <img src={props.imageSrc} style={style}/>
+        <div className="resultContainer">
+            <Link to={`/recipe/${id}`}>
+                <div className="resultRow" key={id}>
+                    <div className="foodImg">
+                        <img src={imageSrc}/>
                     </div>
-                    <div className="col s4">{props.title}</div>
-                    <div className="col s2">{props.likes}</div>
+                    <div className="title-likes">
+                        <div className="resultTitle">{title}</div>
+                        <div className="resultLikes">Likes: {likes}</div>
+                    </div>
                 </div>
-            </div>
-        </Link>
+            </Link>
+        </div>
+
     );
 }
 
