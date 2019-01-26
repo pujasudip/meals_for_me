@@ -1,6 +1,6 @@
 <?php
-//require_once('mysqlProcedural.php');
-require_once('testConnectLocal.php');
+require_once('mysql_server_connect.php');
+//require_once('testConnectLocal.php');
 header("Access-Control-Allow-Origin: *");
 
 if(!$conn){
@@ -16,7 +16,7 @@ $user_id = $_GET['user_id'];
 $query = "
 SELECT *
 FROM `recipes`
-JOIN `favorites` ON `recipes`.`ID` = `favorites`.`recipe_ID`
+JOIN `favorites` ON `recipes`.`ID` = `favorites`.`recipe_id`
 JOIN `users` ON `favorites`.`user_id` = `users`.`user_id`
 WHERE `favorites`.`user_id` = $user_id
 ";

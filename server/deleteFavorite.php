@@ -9,7 +9,7 @@ if(empty($_POST['recipe_id'])){
     die('No Recipe ID');
 }
 
-require_once('mysqlProcedural.php');
+require_once('mysql_server_connect.php');
 
 if(!$conn){
     die("Connection failed: " . mysqli_connect_error());

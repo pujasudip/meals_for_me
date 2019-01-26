@@ -3,8 +3,8 @@ if(empty($_POST)){
     echo 'invalid post';
 }
 
-//require_once('mysql_server_connect.php');
-require_once('testConnectLocal.php');
+require_once('mysql_server_connect.php');
+//require_once('testConnectLocal.php');
 
 header("Access-Control-Allow-Origin: *");
 
@@ -16,7 +16,7 @@ if($conn->connect_errno){
 }
 
 $query = "
-REPLACE INTO `favorites`(`ID`, `recipe_id`, `user_id`) 
+REPLACE INTO `favorites`(`favorite_id`, `recipe_id`, `user_id`) 
 VALUES (null,$recipe_id, $user_id)";
 
 
